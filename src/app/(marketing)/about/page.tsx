@@ -69,33 +69,36 @@ export default function AboutPage() {
           <div className="md:col-span-5">
             <Eyebrow>Positioning</Eyebrow>
             <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              We are not an importer.
+              How we work, and why it matters in Kenya.
             </h2>
           </div>
           <div className="md:col-span-7">
             <Prose>
               <p>
-                Most industrial-equipment suppliers in Kenya are
-                distribution arms of foreign manufacturers. The catalogue
-                is global; the support is import-dependent. When a tank
-                needs a fitting, lead time is measured in months.
+                Our model is straightforward: fabricate locally, support
+                locally, and source globally only when a particular part
+                or material truly requires it. The team and workshop sit
+                in Kenya, so the people answering the phone are the
+                people who build the equipment.
               </p>
               <p>
-                We work the other way round. We fabricate locally,
-                support locally, and source globally only when the part
-                isn&apos;t available here. That structural difference
-                shows up in the things customers actually care about:
-                lead time, replacement parts, install supervision, and
-                someone to call when something stops working.
+                That structural choice tends to show up in the things
+                customers care about most: lead time, availability of
+                replacement parts, install supervision, and having
+                someone to call when something needs attention. It is
+                also the reason we can quote in days rather than weeks,
+                and deliver in weeks rather than months.
               </p>
               <p>
-                Our reference client is{" "}
+                Our anchor reference is{" "}
                 <Link href="/case-studies/crywan-industries-kenya/">
                   Crywan Industries
                 </Link>
-                , a Kenyan food and beverage operator. Operating install,
-                ongoing engagement, named openly because they agreed to
-                be named.
+                , a Kenyan food and beverage operator. It is an
+                operating install with an ongoing engagement, named
+                openly because they agreed to be named, and it is the
+                relationship our newer customers usually ask about
+                first.
               </p>
             </Prose>
           </div>
