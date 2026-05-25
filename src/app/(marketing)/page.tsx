@@ -82,17 +82,15 @@ export default function Home() {
             <span className="h-px w-8 bg-faint/60" aria-hidden />
           </div>
 
-          <h1 className="font-display max-w-5xl text-balance text-[clamp(2.5rem,6.5vw,5.75rem)] font-medium leading-[0.96] tracking-tight">
-            Industrial tanks, silos,{" "}
-            <span className="text-accent">and instruments</span> — engineered
-            in Kenya for the operators who run East Africa.
+          <h1 className="font-display max-w-4xl text-balance text-[clamp(2.25rem,4.5vw,4.25rem)] font-medium leading-[1.02] tracking-tight">
+            Made in Kenya.{" "}
+            <span className="text-accent">Built for East Africa.</span>
           </h1>
 
-          <p className="max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-            One supplier across stainless, epoxy-lined, and zinc-alum tanks;
-            silos and grain storage; structural fabrication; and the full
-            instrument stack. Optional cloud-ready monitoring on every
-            install, when you want it.
+          <p className="max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            Tanks, silos, structural works, and process instruments — one
+            supplier across the full infrastructure stack. Optional
+            cloud-ready monitoring on every install.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -455,51 +453,63 @@ function BentoCard({
     <Link
       href={href}
       className={cn(
-        "press group relative flex flex-col overflow-hidden rounded-card border border-border/8 bg-surface transition-colors duration-300 hover:border-border/20",
+        "press group relative isolate flex flex-col justify-end overflow-hidden rounded-card border border-border/10 text-white transition-shadow duration-500",
+        feature
+          ? "min-h-[520px] md:min-h-[600px]"
+          : "min-h-[300px] md:min-h-[280px]",
+        "hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.35)]",
         className,
       )}
       {...rest}
     >
-      <div className="relative flex-1 overflow-hidden">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          sizes={feature ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
-          style={{
-            background:
-              "linear-gradient(to top, rgb(var(--ns-surface) / 0.95) 10%, transparent 70%)",
-          }}
-        />
-      </div>
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        fill
+        sizes={feature ? "(min-width: 768px) 67vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+        className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+      />
+      {/* Dark wash for legibility — heavier at bottom where text sits. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.65) 35%, rgb(8 6 4 / 0.15) 65%, rgb(8 6 4 / 0) 100%)",
+        }}
+      />
+
       <div
         className={cn(
-          "relative flex flex-col gap-2 p-5 md:p-6",
-          feature && "md:gap-3 md:p-8",
+          "relative flex flex-col gap-2.5 p-6 md:p-7",
+          feature && "md:gap-3 md:p-9",
         )}
       >
         <div className="flex items-baseline justify-between gap-3">
-          <h3
-            className={cn(
-              "font-display font-medium tracking-tight",
-              feature ? "text-2xl md:text-3xl" : "text-xl",
-            )}
-          >
-            {title}
-          </h3>
-          <span className="font-mono-label text-[10px] text-faint">{stat}</span>
+          <p className="font-mono-label text-[10px] text-accent">{tagline}</p>
+          <span className="font-mono-label text-[10px] text-white/55">
+            {stat}
+          </span>
         </div>
-        <p className="font-mono-label text-[10px] text-accent">{tagline}</p>
-        <p className={cn("text-sm leading-relaxed text-muted", feature && "md:text-base")}>
+        <h3
+          className={cn(
+            "font-display font-medium tracking-tight text-white",
+            feature ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl",
+          )}
+        >
+          {title}
+        </h3>
+        <p
+          className={cn(
+            "max-w-md text-sm leading-relaxed text-white/75",
+            feature && "md:text-base",
+          )}
+        >
           {copy}
         </p>
-        <span className="mt-2 inline-flex items-center gap-1 text-xs text-text transition-transform duration-300 group-hover:translate-x-0.5">
+        <span className="mt-3 inline-flex items-center gap-1.5 text-sm text-white transition-transform duration-300 group-hover:translate-x-1">
           Explore
-          <ArrowRight className="h-3 w-3" strokeWidth={2.2} />
+          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.2} />
         </span>
       </div>
     </Link>

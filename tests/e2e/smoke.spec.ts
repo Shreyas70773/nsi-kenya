@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Phase 0 smoke", () => {
-  test("homepage loads with editorial H1 and East Africa positioning", async ({
+  test("homepage loads with editorial H1 — Kenya + East Africa positioning", async ({
     page,
   }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/North Star Impex Kenya/);
     const h1 = page.getByRole("heading", { level: 1 });
-    await expect(h1).toContainText(/tanks/i);
     await expect(h1).toContainText(/Kenya/i);
+    await expect(h1).toContainText(/East Africa/i);
     // Crywan must NOT be in the H1 per user instruction — it lives in the
     // dedicated reference-work section below the fold instead.
     await expect(h1).not.toContainText(/Crywan/i);

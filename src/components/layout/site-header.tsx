@@ -60,7 +60,7 @@ export function SiteHeader() {
             width={148}
             height={40}
             priority
-            className="h-8 w-auto md:h-9"
+            className="h-8 w-auto mix-blend-multiply md:h-9"
           />
         </Link>
 

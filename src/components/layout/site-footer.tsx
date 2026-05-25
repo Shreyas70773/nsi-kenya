@@ -56,7 +56,7 @@ export function SiteFooter() {
             alt={SITE_NAME}
             width={200}
             height={54}
-            className="h-12 w-auto md:h-14"
+            className="h-12 w-auto mix-blend-multiply md:h-14"
           />
           <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
             Industrial infrastructure,{" "}
