@@ -8,13 +8,30 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, type CtaCardData } from "@/components/primitives/cta-band";
 import { JsonLd } from "@/components/seo/json-ld";
-import { serviceLd } from "@/lib/seo";
+import { serviceLd, faqLd } from "@/lib/seo";
+import { FaqList } from "@/components/primitives/faq-list";
 
 export const metadata: Metadata = {
-  title: "ETP & Water Treatment",
+  title: "NEMA-Compliant ETP Equipment Kenya: Tanks & Analyzers",
   description:
-    "NEMA-compliant effluent treatment plant equipment for Kenya: stainless and epoxy-lined tanks, multi-parameter analyzers, flow meters. EMCA CAP 387 discharge parameters published below.",
+    "NEMA-compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. EMCA CAP 387 ready.",
   alternates: { canonical: "/industries/etp-water-treatment/" },
+  keywords: [
+    "NEMA compliant ETP Kenya",
+    "effluent treatment plant tanks Kenya",
+    "wastewater treatment equipment Nairobi",
+    "EMCA CAP 387 equipment",
+    "ETP supplier Kenya",
+    "multi-parameter water analyzer Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "NEMA-Compliant ETP Equipment Kenya: Tanks & Analyzers",
+    description:
+      "NEMA-compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. EMCA CAP 387 ready.",
+    url: "/industries/etp-water-treatment/",
+    images: [{ url: "/images/industries/etp-water-treatment-hero.png" }],
+  },
 };
 
 /**
@@ -131,6 +148,29 @@ const EQUIPMENT_TRAIN = [
   },
 ];
 
+const FAQS = [
+  {
+    question: "What are the NEMA discharge limits I have to meet in Kenya?",
+    answer:
+      "NEMA enforces two separate limit sets under EMCA CAP 387: a stricter set for direct environmental discharge (e.g. BOD 30 mg/L, COD 50 mg/L, TSS 30 mg/L, pH 6.5 to 8.5) and a looser set for discharge into a public sewer (BOD 500, COD 1000, TSS 250). The full table with all 10 parameters is published above on this page.",
+  },
+  {
+    question: "How long does an ETP retrofit usually take in Kenya?",
+    answer:
+      "From audit to commissioning: 4 to 6 weeks for an equipment-only retrofit (replacing analyzers, adding a polishing tank), 8 to 14 weeks for a stage replacement (new clarifier, new aeration loop). Expedited builds for NEMA inspection pressure can compress to 2 to 3 weeks on standard equipment.",
+  },
+  {
+    question: "What does an ETP equipment retrofit cost, roughly?",
+    answer:
+      "An equipment swap for a small to mid plant typically lands between KES 1.5M and KES 8M, depending on which stages need attention. A full ETP retrofit for a mid-size factory runs from KES 12M upward. We quote against your current baseline measurements; without measurements, we audit first.",
+  },
+  {
+    question: "Do you handle continuous compliance monitoring?",
+    answer:
+      "Yes, optionally. Every multi-parameter analyzer we install can stream pH, conductivity, DO, turbidity, flow, and temperature 24/7 to a dashboard you can hand to a NEMA inspector. Connectivity is Safaricom NB-IoT, LoRaWAN, or 4G LTE depending on site coverage.",
+  },
+] as const;
+
 const URGENT_CTA: readonly CtaCardData[] = [
   {
     href: "/request-quote/",
@@ -161,6 +201,11 @@ export default function ETPPage() {
           slug: "etp-water-treatment",
           name: "ETP & Water Treatment Equipment",
         })}
+      />
+      <JsonLd
+        data={faqLd(
+          FAQS.map((f) => ({ question: f.question, answer: f.answer })),
+        )}
       />
 
       <PageHero
@@ -368,6 +413,16 @@ export default function ETPPage() {
             </ul>
           </div>
         </div>
+      </Section>
+
+      <Section>
+        <div className="mb-8 flex flex-col gap-3">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
+            What plant managers ask before a NEMA inspection.
+          </h2>
+        </div>
+        <FaqList items={FAQS} />
       </Section>
 
       <CtaBand

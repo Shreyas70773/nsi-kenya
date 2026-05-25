@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Epoxy-Lined Tanks",
+  title: "Epoxy-Lined Tank Kenya: ETP & Chemical Dosing",
   description:
-    "Carbon steel tanks with chemical-resistant epoxy lining for ETP chemical dosing, acid storage, and corrosive media duty. Fabricated in Kenya.",
+    "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in Kenya, lining picked to the chemistry.",
   alternates: { canonical: "/products/tanks/epoxy-lined/" },
+  keywords: [
+    "epoxy lined tank Kenya",
+    "epoxy coated tank Nairobi",
+    "chemical dosing tank Kenya",
+    "ETP chemical tank Kenya",
+    "acid storage tank Kenya",
+    "corrosion resistant tank Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Epoxy-Lined Tank Kenya: ETP & Chemical Dosing",
+    description:
+      "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in Kenya, lining picked to the chemistry.",
+    url: "/products/tanks/epoxy-lined/",
+    images: [{ url: "/images/products/tanks-epoxy-lined-hero.png" }],
+  },
 };
 
 const SPECS = [

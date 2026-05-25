@@ -10,10 +10,25 @@ import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About: A Kenya-Based Tank Manufacturer",
   description:
-    "North Star Impex Kenya is a Kenya-based industrial infrastructure brand: tanks, silos, structural fabrication, process instruments, and optional cloud-ready monitoring.",
+    "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Built in East Africa for Kenya.",
   alternates: { canonical: "/about/" },
+  keywords: [
+    "tank manufacturer Kenya",
+    "industrial fabrication Kenya",
+    "Kenya-based tank supplier",
+    "Nairobi industrial brand",
+    "Built in East Africa",
+  ],
+  openGraph: {
+    type: "website",
+    title: "About: A Kenya-Based Tank Manufacturer",
+    description:
+      "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Built in East Africa for Kenya.",
+    url: "/about/",
+    images: [{ url: "/images/about/about-hero.png" }],
+  },
 };
 
 const PILLARS = [

@@ -10,10 +10,26 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Industrial Equipment Catalogue Kenya",
   description:
-    "Industrial tanks, silos, structural fabrication, process instruments, and optional cloud-ready monitoring. One supplier across the full infrastructure stack.",
+    "Industrial tanks, silos, structural works, process instruments, and cloud-ready monitoring. One Kenya supplier across the full infrastructure stack.",
   alternates: { canonical: "/products/" },
+  keywords: [
+    "industrial equipment Kenya",
+    "industrial tanks Kenya",
+    "industrial silos Kenya",
+    "process instruments Kenya",
+    "industrial supplier Nairobi",
+    "infrastructure supplier Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Equipment Catalogue Kenya",
+    description:
+      "Industrial tanks, silos, structural works, process instruments, and cloud-ready monitoring. One Kenya supplier across the full infrastructure stack.",
+    url: "/products/",
+    images: [{ url: "/images/products/products-overview-hero.png" }],
+  },
 };
 
 const CATEGORIES = [

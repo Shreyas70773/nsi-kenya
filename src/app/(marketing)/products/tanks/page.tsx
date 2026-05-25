@@ -9,10 +9,26 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "Industrial Tanks",
+  title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
   description:
-    "Stainless steel, epoxy-lined, and zinc-alum tanks fabricated in Kenya. Food-grade, chemical-grade, and bulk-water storage from 1 to 500 cubic metres.",
+    "Stainless 304/316L, epoxy-lined, and zinc-alum industrial tanks fabricated in Kenya. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
   alternates: { canonical: "/products/tanks/" },
+  keywords: [
+    "industrial tanks Kenya",
+    "stainless steel tank Kenya",
+    "zinc aluminum tank Kenya",
+    "epoxy lined tank Kenya",
+    "tank manufacturer Nairobi",
+    "food grade tank Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
+    description:
+      "Stainless 304/316L, epoxy-lined, and zinc-alum industrial tanks fabricated in Kenya. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
+    url: "/products/tanks/",
+    images: [{ url: "/images/products/tanks-overview-hero.png" }],
+  },
 };
 
 const TANK_TYPES = [

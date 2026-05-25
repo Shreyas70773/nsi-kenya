@@ -9,10 +9,26 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { localBusinessLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Nairobi",
+  title: "Tank Supplier Nairobi: 48-Hour Response, All Estates",
   description:
-    "Industrial tank, silo, instrument, and structural supply across Nairobi industrial estates: Athi River, Ruiru, Mlolongo, Industrial Area, Mombasa Road, Tatu City, Thika Road. 48-hour on-site response.",
+    "Industrial tank, silo, instrument, and structural supply across Nairobi industrial estates: Athi River, Ruiru, Mlolongo, Industrial Area, Mombasa Road, Tatu City, Thika Road.",
   alternates: { canonical: "/locations/nairobi/" },
+  keywords: [
+    "tank supplier Nairobi",
+    "Nairobi industrial estates supplier",
+    "Athi River tank supplier",
+    "Mombasa Road industrial",
+    "Tatu City fabrication",
+    "Ruiru industrial supply",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Tank Supplier Nairobi: 48-Hour Response, All Estates",
+    description:
+      "Industrial tank, silo, instrument, and structural supply across Nairobi industrial estates: Athi River, Ruiru, Mlolongo, Industrial Area, Mombasa Road, Tatu City, Thika Road.",
+    url: "/locations/nairobi/",
+    images: [{ url: "/images/locations/nairobi-hero.png" }],
+  },
 };
 
 const ESTATES = [

@@ -6,10 +6,24 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 
 export const metadata: Metadata = {
-  title: "Request a Site Audit",
+  title: "Request a Free Site Audit: Plants in Kenya",
   description:
-    "We come to your plant, measure, photograph, and leave you with a written brief. No commitment from either side, no charge for the audit.",
+    "We come to your Kenyan plant, measure, photograph, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
   alternates: { canonical: "/request-site-audit/" },
+  keywords: [
+    "request site audit Kenya",
+    "free industrial audit Nairobi",
+    "Kenya plant audit",
+    "ETP site audit Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Request a Free Site Audit: Plants in Kenya",
+    description:
+      "We come to your Kenyan plant, measure, photograph, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
+    url: "/request-site-audit/",
+    images: [{ url: "/images/conversion/request-site-audit-hero.png" }],
+  },
 };
 
 export default function RequestSiteAuditPage() {

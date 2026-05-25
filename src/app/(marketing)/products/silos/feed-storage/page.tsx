@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Feed Storage Silos",
+  title: "Feed Silo Kenya: 5 to 100 MT for Mills & Farms",
   description:
-    "Bulk feed storage silos for Kenyan feed mills, poultry operations, and dairy farms. 5 to 100 MT capacity, with hopper discharge and flexible-auger intake.",
+    "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
   alternates: { canonical: "/products/silos/feed-storage/" },
+  keywords: [
+    "feed silo Kenya",
+    "poultry feed silo Kenya",
+    "animal feed silo Nairobi",
+    "feed mill silo Kenya",
+    "dairy farm feed silo Kenya",
+    "hopper feed silo Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Feed Silo Kenya: 5 to 100 MT for Mills & Farms",
+    description:
+      "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
+    url: "/products/silos/feed-storage/",
+    images: [{ url: "/images/products/silos-feed-storage-hero.png" }],
+  },
 };
 
 const SPECS = [

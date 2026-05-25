@@ -7,10 +7,24 @@ import { InquiryForm } from "@/components/forms/inquiry-form";
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact: Email, Phone, or Form",
   description:
-    "Reach North Star Impex Kenya. Email, phone, or send a message via the form. We respond within 48 working hours.",
+    "Reach our Nairobi engineering team by email, phone, or the form below. 48-hour working response. Tank, silo, instrument, and ETP project inquiries welcome.",
   alternates: { canonical: "/contact/" },
+  keywords: [
+    "contact tank supplier Kenya",
+    "Nairobi engineering team contact",
+    "Kenya industrial supplier email",
+    "North Star Impex contact",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Contact: Email, Phone, or Form",
+    description:
+      "Reach our Nairobi engineering team by email, phone, or the form below. 48-hour working response. Tank, silo, instrument, and ETP project inquiries welcome.",
+    url: "/contact/",
+    images: [{ url: "/images/conversion/contact-hero.png" }],
+  },
 };
 
 export default function ContactPage() {

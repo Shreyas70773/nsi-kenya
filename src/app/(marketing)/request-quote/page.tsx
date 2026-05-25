@@ -8,10 +8,25 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { QuoteForm } from "@/components/forms/quote-form";
 
 export const metadata: Metadata = {
-  title: "Request a Quote",
+  title: "Request a Quote: Tanks, Silos, Instruments Kenya",
   description:
-    "Tell us what you're building. We'll come back with a specification, capacity, and lead time within 48 working hours.",
+    "Tell us what you're building. We come back with a specification, capacity, and lead time within 48 working hours for tanks, silos, structural, and instrument projects in Kenya.",
   alternates: { canonical: "/request-quote/" },
+  keywords: [
+    "request quote tank Kenya",
+    "Kenya silo quote",
+    "industrial equipment quote Kenya",
+    "Nairobi engineering quote",
+    "ETP project quote Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Request a Quote: Tanks, Silos, Instruments Kenya",
+    description:
+      "Tell us what you're building. We come back with a specification, capacity, and lead time within 48 working hours for tanks, silos, structural, and instrument projects in Kenya.",
+    url: "/request-quote/",
+    images: [{ url: "/images/conversion/request-quote-hero.png" }],
+  },
 };
 
 const INTENT_SHORTCUTS = [

@@ -9,10 +9,26 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { serviceLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Chemical Processing",
+  title: "Chemical Processing Tank Kenya: Epoxy & Stainless",
   description:
-    "Epoxy-lined and stainless storage tanks, structural fabrication, and pressure / temperature instrumentation for Kenyan chemical processing and dosing operations.",
+    "Epoxy-lined and stainless tanks, structural fabrication, and pressure/temperature instruments for Kenyan chemical processing, dosing, and corrosive media storage.",
   alternates: { canonical: "/industries/chemical-processing/" },
+  keywords: [
+    "chemical processing tank Kenya",
+    "chemical storage tank Nairobi",
+    "acid storage tank Kenya",
+    "alkali dosing tank Kenya",
+    "reactor support structure Kenya",
+    "corrosive media tank Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Chemical Processing Tank Kenya: Epoxy & Stainless",
+    description:
+      "Epoxy-lined and stainless tanks, structural fabrication, and pressure/temperature instruments for Kenyan chemical processing, dosing, and corrosive media storage.",
+    url: "/industries/chemical-processing/",
+    images: [{ url: "/images/industries/chemical-processing-hero.png" }],
+  },
 };
 
 const SUB_APPS = [

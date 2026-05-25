@@ -9,10 +9,25 @@ import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "Locations",
+  title: "Kenya Delivery & On-Site Supply",
   description:
-    "Workshop and team based in Nairobi. Nationwide flatbed delivery across Kenya with on-site install supervision.",
+    "Workshop in Nairobi, flatbed delivery across Kenya, install supervision included. 48-hour on-site response in Nairobi industrial estates.",
   alternates: { canonical: "/locations/" },
+  keywords: [
+    "tank supplier Kenya delivery",
+    "industrial delivery Kenya",
+    "Nairobi workshop",
+    "Kenya install supervision",
+    "Athi River Mombasa Road delivery",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Kenya Delivery & On-Site Supply",
+    description:
+      "Workshop in Nairobi, flatbed delivery across Kenya, install supervision included. 48-hour on-site response in Nairobi industrial estates.",
+    url: "/locations/",
+    images: [{ url: "/images/locations/locations-overview-hero.png" }],
+  },
 };
 
 export default function LocationsPage() {

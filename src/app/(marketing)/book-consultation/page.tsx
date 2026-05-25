@@ -6,10 +6,24 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 
 export const metadata: Metadata = {
-  title: "Book a Consultation",
+  title: "Book a Consultation with Our Engineering Team",
   description:
-    "A working call with our engineering team. Walk through what you need, see how we'd approach it, then decide whether to move to a quote.",
+    "A 30-minute working call with the engineer who would scope your Kenyan tank, silo, or instrument project. Bring your constraints; we bring our approach.",
   alternates: { canonical: "/book-consultation/" },
+  keywords: [
+    "book engineering consultation Kenya",
+    "Kenya tank engineering call",
+    "Nairobi industrial engineer consultation",
+    "free industrial consultation Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Book a Consultation with Our Engineering Team",
+    description:
+      "A 30-minute working call with the engineer who would scope your Kenyan tank, silo, or instrument project. Bring your constraints; we bring our approach.",
+    url: "/book-consultation/",
+    images: [{ url: "/images/conversion/book-consultation-hero.png" }],
+  },
 };
 
 export default function BookConsultationPage() {

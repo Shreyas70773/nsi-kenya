@@ -7,15 +7,34 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { RelatedProducts } from "@/components/primitives/related-products";
 import { JsonLd } from "@/components/seo/json-ld";
-import { productLd } from "@/lib/seo";
+import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import { FaqList } from "@/components/primitives/faq-list";
 
 export const metadata: Metadata = {
-  title: "Stainless Steel Tanks",
+  title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
   description:
-    "304 and 316L stainless steel tanks fabricated in Kenya for dairy, beverage, edible oils, ETP, and pharmaceutical-adjacent duty. Sanitary tri-clamp fittings, CIP-ready, optional cloud-ready monitoring.",
+    "304 and 316L stainless steel tanks fabricated in Kenya for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
   alternates: { canonical: "/products/tanks/stainless-steel/" },
+  keywords: [
+    "stainless steel tank Kenya",
+    "304 stainless steel tank Kenya",
+    "316L stainless steel tank Kenya",
+    "food grade tank Kenya",
+    "dairy tank Kenya",
+    "SS tank Nairobi",
+    "sanitary stainless tank Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
+    description:
+      "304 and 316L stainless steel tanks fabricated in Kenya for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
+    url: "/products/tanks/stainless-steel/",
+    images: [{ url: "/images/products/tanks-stainless-steel-hero.png" }],
+  },
 };
 
 const SPECS = [
@@ -29,6 +48,29 @@ const SPECS = [
   { label: "Standard fittings", value: "Tri-clamp manway, sanitary drain, CIP spray ball, sight glass, temperature port" },
   { label: "Instrumentation ports", value: "Pre-tapped for level, temperature, pressure, and pH" },
   { label: "Lead time, Kenya", value: "4 to 8 weeks ex-works, depending on capacity" },
+] as const;
+
+const FAQS = [
+  {
+    question: "When should I choose 316L over 304 for a stainless tank?",
+    answer:
+      "Switch from 304 to 316L when chlorides exceed roughly 200 ppm or when the duty involves repeated acid CIP cycles. The most common 316L triggers we see in Kenya are whey concentrates, acid wash chemistry in food plants, and any pharmaceutical-adjacent application. The low-carbon (L) variant resists weld-zone sensitisation during CIP cycling.",
+  },
+  {
+    question: "What is the typical lead time for a stainless tank in Kenya?",
+    answer:
+      "Standard lead time is 4 to 8 weeks ex-works from our Nairobi workshop, depending on capacity and finish. Smaller tanks (under 5 m³) usually land closer to 4 weeks; large jacketed vessels with mirror polish run toward 8.",
+  },
+  {
+    question: "What internal surface finish should I specify for food contact?",
+    answer:
+      "For food and beverage contact, target Ra ≤ 0.8 μm. For pharmaceutical-adjacent duty, target Ra ≤ 0.4 μm. Finer than that and you're paying for finish you don't need; coarser and bacterial harborage becomes a real CIP risk.",
+  },
+  {
+    question: "Are the tanks CIP-ready out of the box?",
+    answer:
+      "Yes. Every stainless tank ships with sanitary tri-clamp fittings, a CIP spray ball, sanitary drain, and pre-tapped instrument ports for level, temperature, pressure, and pH. CIP loop integration with your existing skid is part of the install supervision.",
+  },
 ] as const;
 
 const APPLICATIONS = [
@@ -62,6 +104,11 @@ export default function StainlessSteelTanksPage() {
             "Food-grade and chemical-grade stainless steel storage and processing tanks fabricated in Kenya.",
           url: `${SITE_URL}/products/tanks/stainless-steel/`,
         })}
+      />
+      <JsonLd
+        data={faqLd(
+          FAQS.map((f) => ({ question: f.question, answer: f.answer })),
+        )}
       />
 
       <PageHero
@@ -202,6 +249,43 @@ export default function StainlessSteelTanksPage() {
           </div>
         </div>
       </Section>
+
+      <Section>
+        <div className="mb-8 flex flex-col gap-3">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
+            What buyers ask before specifying a stainless tank.
+          </h2>
+        </div>
+        <FaqList items={FAQS} />
+      </Section>
+
+      <RelatedProducts
+        headline="What else you might be looking at."
+        items={[
+          {
+            href: "/products/tanks/epoxy-lined/",
+            title: "Epoxy-lined tanks",
+            copy: "Carbon-steel shells with chemistry-matched linings for ETP dosing and acid storage.",
+            imageSrc: "/images/products/tanks-epoxy-lined-hero.png",
+            imageAlt: "Epoxy-lined tank for chemical dosing",
+          },
+          {
+            href: "/industries/food-and-beverage/",
+            title: "Food & beverage equipment",
+            copy: "Where most of our 304 and 316L tanks land. Dairy, brewing, edible oils, bakery.",
+            imageSrc: "/images/industries/food-and-beverage-hero.png",
+            imageAlt: "Inside a Kenyan food and beverage processing plant",
+          },
+          {
+            href: "/products/iot/",
+            title: "Cloud-ready monitoring",
+            copy: "Wire level, temperature, pressure, and pH on any stainless install to a phone or browser.",
+            imageSrc: "/images/products/iot-hero.png",
+            imageAlt: "NB-IoT gateway box at a Kenyan tank site",
+          },
+        ]}
+      />
 
       <CtaBand
         headline="Need stainless on a deadline?"

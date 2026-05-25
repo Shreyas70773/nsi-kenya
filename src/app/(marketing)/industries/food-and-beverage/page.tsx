@@ -9,10 +9,26 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { serviceLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Food & Beverage",
+  title: "Food & Beverage Equipment Supplier Kenya",
   description:
-    "Stainless steel processing tanks, jacketed vessels, grain silos, and instrumentation for Kenyan dairies, beverage plants, edible oil refineries, breweries, and bakeries.",
+    "Stainless 304/316L processing tanks, jacketed vessels, grain silos, and instrumentation for Kenyan dairies, beverages, edible oils, brewing, and bakery operators.",
   alternates: { canonical: "/industries/food-and-beverage/" },
+  keywords: [
+    "food and beverage equipment supplier Kenya",
+    "dairy plant tanks Nairobi",
+    "food processing tanks Kenya",
+    "beverage plant equipment Kenya",
+    "edible oil tank Kenya",
+    "bakery silo Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Food & Beverage Equipment Supplier Kenya",
+    description:
+      "Stainless 304/316L processing tanks, jacketed vessels, grain silos, and instrumentation for Kenyan dairies, beverages, edible oils, brewing, and bakery operators.",
+    url: "/industries/food-and-beverage/",
+    images: [{ url: "/images/industries/food-and-beverage-hero.png" }],
+  },
 };
 
 const SUB_APPS = [

@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Structural Fabrication Works",
+  title: "Structural Fabrication Nairobi: Platforms, Pipe Racks",
   description:
-    "In-house structural steel fabrication for Kenyan industrial plants: platforms, walkways, tank supports, pipe racks, and plant structures. Carbon steel and galvanised finishes.",
+    "In-house structural steel fabrication in Nairobi for industrial plants. Platforms, walkways, tank supports, pipe racks, equipment skids. Eurocode 3, AWS D1.1.",
   alternates: { canonical: "/products/structural-works/" },
+  keywords: [
+    "structural fabrication Nairobi",
+    "industrial fabrication Kenya",
+    "steel fabrication Nairobi",
+    "tank support structure Kenya",
+    "pipe rack fabrication Kenya",
+    "equipment skid Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Structural Fabrication Nairobi: Platforms, Pipe Racks",
+    description:
+      "In-house structural steel fabrication in Nairobi for industrial plants. Platforms, walkways, tank supports, pipe racks, equipment skids. Eurocode 3, AWS D1.1.",
+    url: "/products/structural-works/",
+    images: [{ url: "/images/products/structural-works-hero.png" }],
+  },
 };
 
 const SCOPE = [

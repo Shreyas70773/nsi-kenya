@@ -9,10 +9,26 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { SpecTable } from "@/components/primitives/spec-table";
 
 export const metadata: Metadata = {
-  title: "Local Manufacturing",
+  title: "Industrial Fabrication Nairobi: Inside Our Workshop",
   description:
-    "Inside the North Star Impex Kenya fabrication workshop. TIG welding, rolling, finishing, dye-penetrant testing. Where every tank actually gets built.",
+    "Inside our Nairobi fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
   alternates: { canonical: "/about/local-manufacturing/" },
+  keywords: [
+    "industrial fabrication Nairobi",
+    "TIG welding Kenya",
+    "plate rolling Nairobi",
+    "dye penetrant testing Kenya",
+    "ASME AWS Nairobi",
+    "Kenyan fabrication workshop",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Fabrication Nairobi: Inside Our Workshop",
+    description:
+      "Inside our Nairobi fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
+    url: "/about/local-manufacturing/",
+    images: [{ url: "/images/about/local-manufacturing-hero.png" }],
+  },
 };
 
 const PROCESS_STEPS = [

@@ -1,13 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
-import {
-  PRODUCTS,
-  INDUSTRIES,
-  LOCATIONS,
-  COMPARE_PAGES,
-  BEST_PAGES,
-  COST_PAGES,
-} from "@/lib/content-map";
+import { PRODUCTS, INDUSTRIES, LOCATIONS } from "@/lib/content-map";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
@@ -156,31 +149,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Programmatic SEO surfaces
-  for (const c of COMPARE_PAGES) {
-    entries.push({
-      url: url(`/compare/${c.a}-vs-${c.b}/`),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
-  }
-  for (const b of BEST_PAGES) {
-    entries.push({
-      url: url(`/best/${b.product}-for-${b.useCase}/`),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
-  }
-  for (const c of COST_PAGES) {
-    entries.push({
-      url: url(`/cost/${c.solution}-in-${c.location}/`),
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    });
-  }
+  // Programmatic SEO surfaces (/compare/, /best/, /cost/) are listed in
+  // content-map but the pages are deferred per docs/seo-audit-2026-05-26.md.
+  // Re-include in sitemap when the routes ship.
 
   return entries;
 }

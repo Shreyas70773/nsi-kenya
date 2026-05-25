@@ -6,15 +6,33 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { RelatedProducts } from "@/components/primitives/related-products";
 import { JsonLd } from "@/components/seo/json-ld";
-import { productLd } from "@/lib/seo";
+import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import { FaqList } from "@/components/primitives/faq-list";
 
 export const metadata: Metadata = {
-  title: "Grain Storage Silos",
+  title: "Grain Storage Silo Kenya: Brewery & Feed Mill",
   description:
-    "Industrial grain storage silos for Kenyan breweries, feed mills, and food processors. 10 to 500 MT, with aeration, level instrumentation, and inventory hardware available on every install.",
+    "Industrial grain storage silos for Kenyan breweries, feed mills, and food processors. 10 to 500 MT galvanised, with aeration and radar level on every install.",
   alternates: { canonical: "/products/silos/grain-storage/" },
+  keywords: [
+    "grain storage silo Kenya",
+    "silo manufacturer Nairobi",
+    "brewery grain silo Kenya",
+    "feed mill silo Kenya",
+    "industrial grain silo East Africa",
+    "galvanised grain silo Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Grain Storage Silo Kenya: Brewery & Feed Mill",
+    description:
+      "Industrial grain storage silos for Kenyan breweries, feed mills, and food processors. 10 to 500 MT galvanised, with aeration and radar level on every install.",
+    url: "/products/silos/grain-storage/",
+    images: [{ url: "/images/products/silos-grain-storage-hero.png" }],
+  },
 };
 
 const SPECS = [
@@ -28,6 +46,29 @@ const SPECS = [
   { label: "Catwalk and access", value: "Galvanised catwalks between silos, OSHA-style cages on ladders" },
   { label: "Inventory tracking", value: "Optional, integrates with our remote monitoring app" },
   { label: "Lead time, Kenya", value: "8 to 12 weeks ex-works, plus on-site assembly" },
+] as const;
+
+const FAQS = [
+  {
+    question: "Do I really need aeration on a grain silo in Kenya?",
+    answer:
+      "On anything above 50 MT and any silo running in lowland or coastal humidity, yes. Tropical-climate grain silos without aeration eventually develop hot spots, condensation, and quality problems. Cross-flow fans with under-floor ducting are inexpensive to fit during fabrication and expensive to retrofit later.",
+  },
+  {
+    question: "What level instrument should I use on a grain silo?",
+    answer:
+      "Radar (26 GHz or 80 GHz) is the right answer for continuous level readout, including inventory tracking. Rotary paddle is the right answer for cheap high-level alarms or set-point detection only. Most of our brewery and feed-mill customers want both: paddle for hi/hi alarm, radar for inventory.",
+  },
+  {
+    question: "How do I size a silo array for a brewery or feed mill?",
+    answer:
+      "Per-silo capacity is driven by the upstream conveyor, not the plant. For craft breweries, 20 to 80 MT per malt silo is the typical range; for large industrial breweries, 100 to 300 MT. Feed mills cluster around 50 to 150 MT for raw grain intake. We design the array against your conveyor geometry and turnover rate.",
+  },
+  {
+    question: "How is a silo array delivered and assembled in Kenya?",
+    answer:
+      "Galvanised panels and the conical roof leave our Nairobi workshop on flatbed. On-site assembly is bolted, no field welding, with our supervisor on the crew. A 4-silo array on a prepared concrete pad typically erects in 3 to 5 weeks, with electrical, aeration ducting, and level instrumentation tied in during the same window.",
+  },
 ] as const;
 
 const APPLICATIONS = [
@@ -57,6 +98,11 @@ export default function GrainStorageSilosPage() {
             "Industrial grain storage silos from 10 to 500 MT for Kenyan breweries, feed mills, and food processors.",
           url: `${SITE_URL}/products/silos/grain-storage/`,
         })}
+      />
+      <JsonLd
+        data={faqLd(
+          FAQS.map((f) => ({ question: f.question, answer: f.answer })),
+        )}
       />
 
       <PageHero
@@ -154,6 +200,43 @@ export default function GrainStorageSilosPage() {
           ))}
         </div>
       </Section>
+
+      <Section bordered className="bg-surface-2/40">
+        <div className="mb-8 flex flex-col gap-3">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
+            What brewery and feed-mill operators ask first.
+          </h2>
+        </div>
+        <FaqList items={FAQS} />
+      </Section>
+
+      <RelatedProducts
+        headline="What sits around a grain silo."
+        items={[
+          {
+            href: "/products/silos/feed-storage/",
+            title: "Feed storage silos",
+            copy: "Smaller-format silos for finished-feed dispatch, poultry farms, and dairy operations.",
+            imageSrc: "/images/products/silos-feed-storage-hero.png",
+            imageAlt: "Galvanised feed storage silo at a Kenyan farm",
+          },
+          {
+            href: "/industries/alcohol-distilling/",
+            title: "Brewery & distillery",
+            copy: "Where most of our larger malt silos land. Mash, lauter, fermentation, and grain storage as a single package.",
+            imageSrc: "/images/industries/alcohol-distilling-hero.png",
+            imageAlt: "Stainless brewing vessels inside a Kenyan brewery",
+          },
+          {
+            href: "/products/instruments/level/",
+            title: "Level transmitters",
+            copy: "Radar level transmitters for continuous inventory readout, plus rotary paddle for high-level alarms.",
+            imageSrc: "/images/products/instruments-level-hero.png",
+            imageAlt: "Radar level transmitter mounted on a silo",
+          },
+        ]}
+      />
 
       <CtaBand
         headline="Designing a new grain bay?"

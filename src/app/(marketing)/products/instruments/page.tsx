@@ -9,10 +9,26 @@ import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "Process Instruments",
+  title: "Process Instruments Kenya: Flow, Level, pH, More",
   description:
-    "Flow, level, pressure, liquid analysis, temperature, and system instruments for Kenyan industrial plants. Full category depth, 4 to 20 mA, Modbus, HART out of the box.",
+    "Flow, level, pressure, liquid-analysis, temperature, and system instruments for Kenyan plants. 4-20mA, Modbus, HART. Six categories, one supplier.",
   alternates: { canonical: "/products/instruments/" },
+  keywords: [
+    "process instruments Kenya",
+    "industrial instrument supplier Kenya",
+    "flow meter Kenya",
+    "level transmitter Kenya",
+    "pressure transmitter Kenya",
+    "pH meter industrial Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Process Instruments Kenya: Flow, Level, pH, More",
+    description:
+      "Flow, level, pressure, liquid-analysis, temperature, and system instruments for Kenyan plants. 4-20mA, Modbus, HART. Six categories, one supplier.",
+    url: "/products/instruments/",
+    images: [{ url: "/images/products/instruments-overview-hero.png" }],
+  },
 };
 
 const CATEGORIES = [

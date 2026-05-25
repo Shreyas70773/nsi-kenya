@@ -8,10 +8,26 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Resources",
+  title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
   description:
-    "Spec sheets, technical guides, blog posts, and reference material for Kenyan industrial operators. The reading list we wish more customers had before they bought.",
+    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS, free and gate-free.",
   alternates: { canonical: "/resources/" },
+  keywords: [
+    "industrial resources Kenya",
+    "NEMA Kenya guide",
+    "EMCA CAP 387",
+    "KEBS food grade",
+    "tank spec sheet Kenya",
+    "ETP compliance Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
+    description:
+      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS, free and gate-free.",
+    url: "/resources/",
+    images: [{ url: "/images/about/workshop-tig-welding.png" }],
+  },
 };
 
 const SECTIONS = [

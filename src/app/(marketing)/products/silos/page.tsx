@@ -8,10 +8,26 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "Industrial Silos",
+  title: "Industrial Silos Kenya: Grain, Feed, Bulk",
   description:
-    "Grain, feed, and industrial bulk silos from 10 to 1000 MT for Kenyan breweries, feed mills, and bulk-material plants. Aeration, catwalks, and inventory hardware on request.",
+    "Galvanised steel silos for Kenyan breweries, feed mills, and bulk-handling plants. 10 to 1,000 MT with aeration, catwalks, and inventory hardware on request.",
   alternates: { canonical: "/products/silos/" },
+  keywords: [
+    "industrial silo Kenya",
+    "grain silo Kenya",
+    "feed silo Kenya",
+    "bulk silo Kenya",
+    "silo manufacturer Nairobi",
+    "galvanised silo Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Silos Kenya: Grain, Feed, Bulk",
+    description:
+      "Galvanised steel silos for Kenyan breweries, feed mills, and bulk-handling plants. 10 to 1,000 MT with aeration, catwalks, and inventory hardware on request.",
+    url: "/products/silos/",
+    images: [{ url: "/images/products/silos-overview-hero.png" }],
+  },
 };
 
 const SILO_TYPES = [

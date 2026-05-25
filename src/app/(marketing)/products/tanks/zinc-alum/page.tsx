@@ -6,15 +6,33 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { RelatedProducts } from "@/components/primitives/related-products";
 import { JsonLd } from "@/components/seo/json-ld";
-import { productLd } from "@/lib/seo";
+import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import { FaqList } from "@/components/primitives/faq-list";
 
 export const metadata: Metadata = {
-  title: "Zinc-Alum Tanks",
+  title: "Zinc-Alum Tank Kenya: 30-Year Water Storage",
   description:
-    "Bolted zinc-aluminium steel tanks for industrial water storage and ETP process tanks. 30-year service life in Kenyan humidity, modular panels, sized 50 to 5000 cubic metres.",
+    "Bolted zinc-aluminium water-storage tanks for Kenyan industrial sites. 50 to 5,000 m³, 30+ year service life, modular panels, no on-site welding.",
   alternates: { canonical: "/products/tanks/zinc-alum/" },
+  keywords: [
+    "zinc aluminum tank Kenya",
+    "zincalume tank Kenya",
+    "bolted water tank Kenya",
+    "industrial water tank Nairobi",
+    "long life water tank Kenya",
+    "carbon steel tank alternative Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Zinc-Alum Tank Kenya: 30-Year Water Storage",
+    description:
+      "Bolted zinc-aluminium water-storage tanks for Kenyan industrial sites. 50 to 5,000 m³, 30+ year service life, modular panels, no on-site welding.",
+    url: "/products/tanks/zinc-alum/",
+    images: [{ url: "/images/products/tanks-zinc-alum-hero.png" }],
+  },
 };
 
 const SPECS = [
@@ -28,6 +46,29 @@ const SPECS = [
   { label: "Service life, Kenya humidity", value: "30+", unit: "years" },
   { label: "Installation footprint", value: "Lower than welded-steel equivalent; modular delivery" },
   { label: "Lead time, Kenya", value: "6 to 10 weeks ex-works, plus on-site assembly" },
+] as const;
+
+const FAQS = [
+  {
+    question: "How long does a zinc-alum tank actually last in Kenya?",
+    answer:
+      "In unsheltered Kenyan humidity, design life is 30+ years with no recoating required during the design life. The 55% aluminium / 43.5% zinc barrier coating is self-healing: at any cut or scratch, the zinc sacrificially protects the steel underneath, so service life does not depend on perfect surface preservation.",
+  },
+  {
+    question: "How does zinc-alum compare to carbon steel over 30 years?",
+    answer:
+      "Carbon steel runs to 2 or 3 full replacement cycles over a 30-year horizon, plus 12 to 20 weeks of accumulated recoat/replacement downtime. Zinc-alum runs to one install, zero recoats, zero replacement downtime over the same horizon. The capital premium is 15 to 25 percent at our typical 200+ m³ sizes.",
+  },
+  {
+    question: "How long does on-site assembly take?",
+    answer:
+      "Modular bolted-panel assembly avoids on-site welding entirely. A 500 m³ tank typically erects in 2 to 3 weeks on a prepared concrete plinth, with our supervisor on the install crew. Larger tanks scale proportionally; foundation prep happens in parallel with panel manufacture in Nairobi.",
+  },
+  {
+    question: "Can the tank be expanded after installation?",
+    answer:
+      "Yes. Capacity can be grown in place by adding bolted ring courses to the existing shell, subject to a structural review of the foundation. This is one of the reasons utilities and large feed mills choose zinc-alum over welded steel.",
+  },
 ] as const;
 
 const VS_CS_ROWS = [
@@ -52,6 +93,11 @@ export default function ZincAlumTanksPage() {
             "Bolted zinc-aluminium steel tanks for industrial water storage and ETP. 30+ year service life in Kenyan humidity.",
           url: `${SITE_URL}/products/tanks/zinc-alum/`,
         })}
+      />
+      <JsonLd
+        data={faqLd(
+          FAQS.map((f) => ({ question: f.question, answer: f.answer })),
+        )}
       />
 
       <PageHero
@@ -148,6 +194,43 @@ export default function ZincAlumTanksPage() {
         </div>
         <SpecTable rows={VS_CS_ROWS} />
       </Section>
+
+      <Section bordered className="bg-surface-2/40">
+        <div className="mb-8 flex flex-col gap-3">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
+            What buyers ask before specifying zinc-alum.
+          </h2>
+        </div>
+        <FaqList items={FAQS} />
+      </Section>
+
+      <RelatedProducts
+        headline="Other tank metallurgies, and where they fit."
+        items={[
+          {
+            href: "/products/tanks/stainless-steel/",
+            title: "Stainless steel tanks",
+            copy: "304 and 316L for food, dairy, and chemical-resistant duty where corrosion matters more than initial cost.",
+            imageSrc: "/images/products/tanks-stainless-steel-hero.png",
+            imageAlt: "Polished stainless steel tank inside a Kenyan F&B plant",
+          },
+          {
+            href: "/industries/etp-water-treatment/",
+            title: "ETP & water treatment",
+            copy: "Where zinc-alum equalisation tanks earn their lifecycle math against NEMA inspection cycles.",
+            imageSrc: "/images/industries/etp-water-treatment-hero.png",
+            imageAlt: "Outdoor effluent treatment plant in Kenya",
+          },
+          {
+            href: "/products/iot/",
+            title: "Cloud-ready monitoring",
+            copy: "Inventory and level on every zinc-alum install. Safaricom NB-IoT for unattended water sites.",
+            imageSrc: "/images/products/iot-hero.png",
+            imageAlt: "NB-IoT gateway box mounted on a pole",
+          },
+        ]}
+      />
 
       <CtaBand
         headline="Sized your tank yet?"

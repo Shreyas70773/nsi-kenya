@@ -9,10 +9,26 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
-  title: "Industries",
+  title: "Industries We Equip in Kenya",
   description:
-    "Food and beverage, ETP and water treatment, alcohol and distilling, chemical processing. Four industries, four buying conversations, one supplier.",
+    "Food and beverage, ETP and water treatment, alcohol and distilling, chemical processing. Four industries, four buying conversations, one Kenya supplier.",
   alternates: { canonical: "/industries/" },
+  keywords: [
+    "industrial equipment supplier Kenya",
+    "food and beverage equipment Kenya",
+    "ETP equipment Kenya",
+    "brewery equipment Kenya",
+    "chemical processing equipment Kenya",
+    "industrial sectors Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industries We Equip in Kenya",
+    description:
+      "Food and beverage, ETP and water treatment, alcohol and distilling, chemical processing. Four industries, four buying conversations, one Kenya supplier.",
+    url: "/industries/",
+    images: [{ url: "/images/industries/industries-overview-hero.png" }],
+  },
 };
 
 const SECTORS = [

@@ -82,6 +82,56 @@ export function generateStaticParams() {
   return INTENTS.map((intent) => ({ intent }));
 }
 
+const INTENT_SEO: Record<
+  Intent,
+  { title: string; description: string; keywords: string[] }
+> = {
+  explore: {
+    title: "Quote: Exploring Options (Kenya)",
+    description:
+      "Early-stage scoping for a Kenyan industrial project. Directional spec, ballpark cost, ballpark lead time in 48 hours. No commitment.",
+    keywords: [
+      "exploratory quote Kenya",
+      "industrial scoping Kenya",
+      "ballpark tank quote Kenya",
+      "Nairobi project scoping",
+    ],
+  },
+  evaluate: {
+    title: "Quote: Technical Evaluation (Kenya)",
+    description:
+      "Detailed spec and pricing for a Kenyan industrial tank, silo, instrument, or structural project. Comparison-ready data in 48 hours.",
+    keywords: [
+      "technical evaluation quote Kenya",
+      "supplier comparison Kenya",
+      "tank spec sheet Kenya",
+      "industrial RFQ Kenya",
+    ],
+  },
+  purchase: {
+    title: "Quote: Ready to Purchase (Kenya)",
+    description:
+      "Approved budget, decision-maker ready. Same-day quotation, lead-time confirmation, and contract framework for a Kenyan industrial equipment purchase.",
+    keywords: [
+      "quote for purchase Kenya",
+      "industrial PO Kenya",
+      "tank purchase Kenya",
+      "Nairobi industrial supplier purchase",
+    ],
+  },
+  "urgent-etp": {
+    title: "Urgent ETP Quote: NEMA Compliance Pressure",
+    description:
+      "NEMA inspection deadline pressure? Expedited ETP equipment supply in Kenya, 2 to 3 weeks for epoxy-lined tanks and multi-parameter analyzers.",
+    keywords: [
+      "urgent NEMA ETP equipment Kenya",
+      "expedited ETP Kenya",
+      "NEMA inspection ETP Kenya",
+      "epoxy lined tank expedited Kenya",
+    ],
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -94,11 +144,21 @@ export async function generateMetadata({
       description: "Tell us what you're building.",
     };
   }
-  const meta = INTENT_META[intent as Intent];
+  const i = intent as Intent;
+  const seo = INTENT_SEO[i];
+  const hero = INTENT_META[i].hero;
   return {
-    title: `Request a Quote, ${meta.label}`,
-    description: meta.subtitle,
+    title: seo.title,
+    description: seo.description,
     alternates: { canonical: `/request-quote/${intent}/` },
+    keywords: seo.keywords,
+    openGraph: {
+      type: "website",
+      title: seo.title,
+      description: seo.description,
+      url: `/request-quote/${intent}/`,
+      images: [{ url: hero }],
+    },
   };
 }
 

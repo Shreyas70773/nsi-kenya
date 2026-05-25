@@ -46,6 +46,9 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/.playwright-mcp/
+/blog-index.png
+/stainless-steel.png
 
 # editor
 .idea/

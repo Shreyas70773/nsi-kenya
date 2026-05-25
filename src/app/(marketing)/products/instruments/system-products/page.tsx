@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "System Products",
+  title: "Paperless Recorder Kenya: Indicators, Isolators",
   description:
-    "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and signal generators for Kenyan industrial control panels.",
+    "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels.",
   alternates: { canonical: "/products/instruments/system-products/" },
+  keywords: [
+    "paperless recorder Kenya",
+    "process indicator Kenya",
+    "signal isolator Kenya",
+    "PID controller Kenya",
+    "totaliser Kenya",
+    "signal generator industrial Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Paperless Recorder Kenya: Indicators, Isolators",
+    description:
+      "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels.",
+    url: "/products/instruments/system-products/",
+    images: [{ url: "/images/products/instruments-system-products-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

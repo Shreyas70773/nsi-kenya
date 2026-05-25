@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Level Transmitters",
+  title: "Radar Level Transmitter Kenya: 26/60/80 GHz, Ultrasonic",
   description:
-    "Radar, ultrasonic, hydrostatic, and guided-wave level transmitters for tanks and silos in Kenyan industrial plants.",
+    "Radar (26, 60, 80 GHz), ultrasonic, hydrostatic, and guided-wave level transmitters for tanks and silos in Kenyan plants. 4-20mA, HART standard.",
   alternates: { canonical: "/products/instruments/level/" },
+  keywords: [
+    "radar level transmitter Kenya",
+    "ultrasonic level meter Kenya",
+    "tank level sensor Kenya",
+    "silo level sensor Kenya",
+    "hydrostatic level Kenya",
+    "guided wave radar Nairobi",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Radar Level Transmitter Kenya: 26/60/80 GHz, Ultrasonic",
+    description:
+      "Radar (26, 60, 80 GHz), ultrasonic, hydrostatic, and guided-wave level transmitters for tanks and silos in Kenyan plants. 4-20mA, HART standard.",
+    url: "/products/instruments/level/",
+    images: [{ url: "/images/products/instruments-level-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

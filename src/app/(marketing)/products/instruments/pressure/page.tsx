@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Pressure Transmitters",
+  title: "Pressure Transmitter Kenya: Gauge, Absolute, DP",
   description:
-    "Gauge, absolute, differential, and combined P+T pressure transmitters for Kenyan industrial process and utility loops.",
+    "Gauge, absolute, differential, and combined P+T pressure transmitters for Kenyan industrial process and utility loops. 4-20mA, HART. Vacuum to 1000 bar.",
   alternates: { canonical: "/products/instruments/pressure/" },
+  keywords: [
+    "pressure transmitter Kenya",
+    "differential pressure transmitter Nairobi",
+    "absolute pressure transmitter Kenya",
+    "DP transmitter Kenya",
+    "pressure sensor industrial Kenya",
+    "process pressure gauge Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Pressure Transmitter Kenya: Gauge, Absolute, DP",
+    description:
+      "Gauge, absolute, differential, and combined P+T pressure transmitters for Kenyan industrial process and utility loops. 4-20mA, HART. Vacuum to 1000 bar.",
+    url: "/products/instruments/pressure/",
+    images: [{ url: "/images/products/instruments-pressure-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

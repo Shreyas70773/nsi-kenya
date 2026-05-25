@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Flow Meters",
+  title: "Flow Meter Supplier Kenya: Electromagnetic, Vortex",
   description:
     "Electromagnetic, vortex, turbine, ultrasonic, Coriolis, and thermal-mass flow meters for Kenyan industrial plants. 4-20mA, Modbus, HART standard.",
   alternates: { canonical: "/products/instruments/flow/" },
+  keywords: [
+    "flow meter supplier Kenya",
+    "electromagnetic flow meter Kenya",
+    "ultrasonic flow meter Nairobi",
+    "vortex flow meter Kenya",
+    "Coriolis flow meter Kenya",
+    "thermal mass flow meter Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Flow Meter Supplier Kenya: Electromagnetic, Vortex",
+    description:
+      "Electromagnetic, vortex, turbine, ultrasonic, Coriolis, and thermal-mass flow meters for Kenyan industrial plants. 4-20mA, Modbus, HART standard.",
+    url: "/products/instruments/flow/",
+    images: [{ url: "/images/products/instruments-flow-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

@@ -9,10 +9,26 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { serviceLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Alcohol & Distilling",
+  title: "Brewery & Distillery Tank Kenya: 50 HL to 5,000 HL+",
   description:
-    "Stainless fermenters, mash and lauter tuns, distillation column supports, grain silos, and instrument loops for Kenyan craft and industrial breweries and distilleries.",
+    "Stainless fermenters, mash and lauter tuns, malt silos, distillation column supports, and instrumentation for Kenyan craft and industrial breweries and distilleries.",
   alternates: { canonical: "/industries/alcohol-distilling/" },
+  keywords: [
+    "brewery tank Kenya",
+    "distillery equipment Kenya",
+    "fermenter tank Kenya",
+    "mash tun Kenya",
+    "malt silo Kenya",
+    "craft brewery equipment Nairobi",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Brewery & Distillery Tank Kenya: 50 HL to 5,000 HL+",
+    description:
+      "Stainless fermenters, mash and lauter tuns, malt silos, distillation column supports, and instrumentation for Kenyan craft and industrial breweries and distilleries.",
+    url: "/industries/alcohol-distilling/",
+    images: [{ url: "/images/industries/alcohol-distilling-hero.png" }],
+  },
 };
 
 const SUB_APPS = [

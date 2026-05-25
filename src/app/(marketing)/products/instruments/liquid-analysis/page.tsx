@@ -12,10 +12,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Liquid Analysis Instruments",
+  title: "Multi-Parameter Water Analyzer Kenya: ETP & Process",
   description:
     "pH, ORP, conductivity, dissolved oxygen, turbidity, TSS, and multi-parameter analyzers for ETP compliance, process water, and boiler feedwater in Kenya.",
   alternates: { canonical: "/products/instruments/liquid-analysis/" },
+  keywords: [
+    "multi-parameter water analyzer Kenya",
+    "pH meter industrial Kenya",
+    "dissolved oxygen meter Kenya",
+    "turbidity meter Kenya",
+    "conductivity meter Kenya",
+    "ETP water quality analyzer Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Multi-Parameter Water Analyzer Kenya: ETP & Process",
+    description:
+      "pH, ORP, conductivity, dissolved oxygen, turbidity, TSS, and multi-parameter analyzers for ETP compliance, process water, and boiler feedwater in Kenya.",
+    url: "/products/instruments/liquid-analysis/",
+    images: [{ url: "/images/products/instruments-liquid-analysis-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
+    images: [{ url: "/images/home/hero-tank-farm.png" }],
   },
   robots: { index: true, follow: true },
 };

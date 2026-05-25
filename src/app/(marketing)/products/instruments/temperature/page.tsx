@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Temperature Instruments",
+  title: "RTD Temperature Sensor Kenya: Pt100, Thermocouples",
   description:
-    "RTD and thermocouple temperature sensors with programmable transmitters for Kenyan process loops, CIP/SIP, and heat exchangers.",
+    "RTD (Pt100, Pt1000) and thermocouple (K, J, T, N) temperature sensors with programmable transmitters for Kenyan process loops, CIP/SIP, and heat exchangers.",
   alternates: { canonical: "/products/instruments/temperature/" },
+  keywords: [
+    "RTD temperature sensor Kenya",
+    "Pt100 temperature sensor Kenya",
+    "thermocouple Kenya",
+    "temperature transmitter Nairobi",
+    "process temperature sensor Kenya",
+    "sanitary RTD Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "RTD Temperature Sensor Kenya: Pt100, Thermocouples",
+    description:
+      "RTD (Pt100, Pt1000) and thermocouple (K, J, T, N) temperature sensors with programmable transmitters for Kenyan process loops, CIP/SIP, and heat exchangers.",
+    url: "/products/instruments/temperature/",
+    images: [{ url: "/images/products/instruments-temperature-hero.png" }],
+  },
 };
 
 const SUBTYPES = [

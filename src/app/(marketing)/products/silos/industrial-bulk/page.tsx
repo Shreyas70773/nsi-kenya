@@ -11,10 +11,26 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Industrial Bulk Silos",
+  title: "Industrial Bulk Silo Kenya: Cement & Powder",
   description:
-    "Steel silos for cement, powder, and food-ingredient bulk storage at Kenyan industrial plants. 10 to 1000 MT, pneumatic conveying compatible.",
+    "Bulk steel silos for cement, powders, and food ingredients at Kenyan industrial plants. 10 to 1,000 MT, pneumatic conveying compatible, dust collector ready.",
   alternates: { canonical: "/products/silos/industrial-bulk/" },
+  keywords: [
+    "industrial bulk silo Kenya",
+    "cement silo Kenya",
+    "powder silo Nairobi",
+    "bulk material silo Kenya",
+    "pneumatic conveying silo Kenya",
+    "ready-mix cement silo Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Bulk Silo Kenya: Cement & Powder",
+    description:
+      "Bulk steel silos for cement, powders, and food ingredients at Kenyan industrial plants. 10 to 1,000 MT, pneumatic conveying compatible, dust collector ready.",
+    url: "/products/silos/industrial-bulk/",
+    images: [{ url: "/images/products/silos-industrial-bulk-hero.png" }],
+  },
 };
 
 const SPECS = [

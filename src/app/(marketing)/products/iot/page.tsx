@@ -7,16 +7,34 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { RelatedProducts } from "@/components/primitives/related-products";
 import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
 import { JsonLd } from "@/components/seo/json-ld";
-import { softwareApplicationLd } from "@/lib/seo";
+import { softwareApplicationLd, faqLd } from "@/lib/seo";
+import { FaqList } from "@/components/primitives/faq-list";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Remote Monitoring",
+  title: "Tank Monitoring Kenya: Safaricom NB-IoT, LoRa, 4G",
   description:
-    "Optional cloud-ready monitoring for every tank and instrument we install. View levels, flow, water quality, and alarms from any device. Safaricom NB-IoT, LoRaWAN, 4G, Ethernet.",
+    "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. Safaricom NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
   alternates: { canonical: "/products/iot/" },
+  keywords: [
+    "tank monitoring Kenya",
+    "remote tank level sensor Kenya",
+    "IoT industrial monitoring Nairobi",
+    "cloud connected tank Kenya",
+    "Safaricom NB-IoT industrial",
+    "remote water quality monitoring Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Tank Monitoring Kenya: Safaricom NB-IoT, LoRa, 4G",
+    description:
+      "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. Safaricom NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
+    url: "/products/iot/",
+    images: [{ url: "/images/products/iot-hero.png" }],
+  },
 };
 
 const FLOW_STEPS = [
@@ -68,6 +86,29 @@ const SUPPORTED = [
   { label: "Liquid analysis", value: "pH, ORP, conductivity, DO, turbidity, TSS, multi-parameter" },
   { label: "Temperature", value: "RTD, thermocouple, programmable transmitters" },
   { label: "System products", value: "Paperless recorders, indicators, signal isolators" },
+] as const;
+
+const FAQS = [
+  {
+    question: "Should I use Safaricom NB-IoT or LoRaWAN for tank monitoring?",
+    answer:
+      "NB-IoT is the default for single-tank or low-bandwidth sites in Kenya: nationwide Safaricom coverage, multi-year primary battery, low message overhead. LoRaWAN is the right answer for multi-tank plants where one yard gateway covers 20+ instruments at lower per-instrument operating cost. 4G LTE wins only when you need real-time streaming for SCADA.",
+  },
+  {
+    question: "Where does the data get hosted?",
+    answer:
+      "Your choice. Default is a Convex-managed time-series store inside our infrastructure with TLS 1.3 in transit and AES-256 at rest. If you have your own SCADA or historian, we push the data over Modbus-over-TCP, MQTT, or REST, depending on what suits your IT setup.",
+  },
+  {
+    question: "How long does the battery last on an NB-IoT sensor?",
+    answer:
+      "Three to five years on a primary lithium battery, reporting every 15 minutes. Reporting cadence is the biggest variable: every 60 minutes pushes battery life past 5 years; every 5 minutes pulls it under 2. We size the battery to the reporting interval the site actually needs.",
+  },
+  {
+    question: "Can I see live data on a phone, or only on a laptop?",
+    answer:
+      "Both. The dashboard is a responsive web app that works on iOS, Android, and any browser. Operators on the floor typically use the phone view for a single tank or pump; plant managers use the multi-site overview from a laptop. Alarm notifications route to whoever you nominate.",
+  },
 ] as const;
 
 const DATA_HANDLING = [
@@ -126,6 +167,11 @@ export default function IoTPage() {
   return (
     <>
       <JsonLd data={softwareApplicationLd()} />
+      <JsonLd
+        data={faqLd(
+          FAQS.map((f) => ({ question: f.question, answer: f.answer })),
+        )}
+      />
 
       <PageHero
         eyebrow="Products / Remote Monitoring"
@@ -297,6 +343,43 @@ export default function IoTPage() {
           </div>
         </div>
       </Section>
+
+      <Section bordered className="bg-surface-2/40">
+        <div className="mb-8 flex flex-col gap-3">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
+            What buyers ask about Kenya tank monitoring.
+          </h2>
+        </div>
+        <FaqList items={FAQS} />
+      </Section>
+
+      <RelatedProducts
+        headline="Instruments and tanks that wire to the app."
+        items={[
+          {
+            href: "/products/instruments/liquid-analysis/",
+            title: "Liquid analysis instruments",
+            copy: "pH, ORP, DO, conductivity, turbidity, multi-parameter analyzers. The instruments most ETP dashboards depend on.",
+            imageSrc: "/images/products/instruments-liquid-analysis-hero.png",
+            imageAlt: "Multi-parameter water quality analyzer at a Kenyan ETP",
+          },
+          {
+            href: "/products/instruments/level/",
+            title: "Level transmitters",
+            copy: "Radar, ultrasonic, hydrostatic. The level data that drives every tank-monitoring dashboard.",
+            imageSrc: "/images/products/instruments-level-hero.png",
+            imageAlt: "Radar level transmitter mounted on a tank",
+          },
+          {
+            href: "/industries/etp-water-treatment/",
+            title: "ETP & water treatment",
+            copy: "Where continuous compliance monitoring earns its keep. NEMA-aware streaming of every discharge parameter.",
+            imageSrc: "/images/industries/etp-water-treatment-hero.png",
+            imageAlt: "Effluent treatment plant clarifier at a Kenyan factory",
+          },
+        ]}
+      />
 
       <CtaBand
         headline="Want to see it on a real install?"
