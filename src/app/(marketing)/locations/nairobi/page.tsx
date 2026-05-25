@@ -62,7 +62,7 @@ export default function NairobiPage() {
         title="On-site within 48 hours,"
         titleAccent="across every industrial estate."
         subtitle="The workshop is in Nairobi. From there we serve Athi River, Ruiru, Mlolongo, Industrial Area, the Mombasa Road corridor, Tatu City, and Thika Road. Forty-eight hours from call to plant for non-urgent visits; sooner for urgent ones."
-        imageSrc="/images/home/structural-gantry.png"
+        imageSrc="/images/locations/nairobi-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-site-audit/", label: "Book a Nairobi site visit" }}
         secondaryCta={{ href: "/request-quote/", label: "Get a quote" }}

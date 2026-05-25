@@ -67,7 +67,7 @@ export default function ProductsPage() {
         title="Everything a Kenyan plant needs,"
         titleAccent="under one roof."
         subtitle="Single supplier across stainless, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication; the full instrument stack; and optional cloud-ready monitoring. No competitor in Kenya carries this breadth."
-        imageSrc="/images/home/hero-tank-farm.png"
+        imageSrc="/images/products/products-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         secondaryCta={{ href: "/industries/", label: "By industry" }}

@@ -53,7 +53,7 @@ export default function TanksOverviewPage() {
         title="Three metallurgies."
         titleAccent="Picked for the job, not the catalogue."
         subtitle="The right tank is the one that survives the medium it stores. We fabricate in stainless for the hygiene path, epoxy-lined for the corrosive path, and bolted zinc-alum for the long-cycle bulk-water path. Sized between one and five thousand cubic metres."
-        imageSrc="/images/home/tanks-weld-bead.png"
+        imageSrc="/images/products/tanks-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Spec a tank" }}
         secondaryCta={{ href: "/products/", label: "All products" }}

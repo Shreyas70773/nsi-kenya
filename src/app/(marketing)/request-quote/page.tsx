@@ -45,7 +45,7 @@ export default function RequestQuotePage() {
         title="Tell us what you're building."
         titleAccent="We'll come back in 48 hours."
         subtitle="Pick the intent that matches your stage; the form below adapts. If you're not sure which to pick, leave it on Exploring options; we'll figure out the rest from your brief."
-        imageSrc="/images/home/sector-fnb.png"
+        imageSrc="/images/conversion/request-quote-hero.png"
         imageAlt=""
         metaLeft="48-hour response"
         metaRight="Engineering team in Nairobi"

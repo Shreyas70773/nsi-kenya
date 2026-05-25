@@ -23,7 +23,7 @@ export default function LocationsPage() {
         title="Workshop in Nairobi."
         titleAccent="Delivery across Kenya."
         subtitle="The team and the workshop are in Nairobi. From there we ship to industrial sites anywhere in Kenya, with install supervision included."
-        imageSrc="/images/home/hero-tank-farm.png"
+        imageSrc="/images/locations/locations-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/locations/nairobi/", label: "About Nairobi" }}
         secondaryCta={{ href: "/request-quote/", label: "Get a quote" }}

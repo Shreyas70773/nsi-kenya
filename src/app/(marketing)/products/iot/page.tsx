@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
@@ -9,6 +10,7 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
 import { JsonLd } from "@/components/seo/json-ld";
 import { softwareApplicationLd } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Remote Monitoring",
@@ -77,34 +79,47 @@ const DATA_HANDLING = [
   { label: "Third-party sharing", value: "None" },
 ] as const;
 
-const SCREEN_SLOTS = [
+type ScreenSlot = {
+  title: string;
+  description: string;
+} & (
+  | { kind: "image"; src: string; aspect: string }
+  | {
+      kind: "placeholder";
+      role: "card" | "diagram";
+      prompt: string;
+    }
+);
+
+const SCREEN_SLOTS: readonly ScreenSlot[] = [
   {
     title: "Single-tank dashboard",
-    role: "card" as const,
     description: "Phone dashboard for one tank: level, 24h trend, alarm thresholds, last refresh",
-    prompt:
-      "Phone-frame UI mockup: a tank-monitoring dashboard for a single tank. Top: tank name and location. Middle: a level gauge showing 78%, plus a 24-hour trend line chart with two horizontal alarm threshold lines. Bottom: 'Updated 2 min ago', a small instrument-health indicator. Dark mode, monospace numerals, single accent red. 9:16 portrait phone frame visible. Editorial, not promo render.",
+    kind: "image",
+    src: "/images/iot/screen-single-tank.png",
+    aspect: "aspect-[9/16] md:aspect-[4/3]",
   },
   {
     title: "Multi-site overview",
-    role: "diagram" as const,
-    description: "Browser dashboard showing 5 Kenyan plant sites on a map with traffic-light status",
-    prompt:
-      "Browser-frame UI mockup: a Kenya map with 5 plant site pins. Each pin coloured green / amber / red for status. Side panel lists the same sites with status badges and recent-alarm counts. Dark mode interface, clean lines, single accent red. 16:9 landscape browser frame visible. Editorial, not promo render.",
+    description: "Browser dashboard showing Kenyan plant sites on a map with traffic-light status",
+    kind: "image",
+    src: "/images/iot/screen-multi-site.png",
+    aspect: "aspect-[16/9]",
   },
   {
     title: "Alarm log",
-    role: "diagram" as const,
     description: "Tabular alarm log with timestamps, sites, severity, acknowledgement state",
-    prompt:
-      "Browser-frame UI mockup: a tabular alarm log. Columns: timestamp, site, instrument, severity (icons), acknowledged-by, action-taken. Subtle row striping, dark theme, monospace timestamps. Filter chips at top. 16:9 landscape browser frame. Editorial, not promo render.",
+    kind: "image",
+    src: "/images/iot/screen-alarm-log.png",
+    aspect: "aspect-[16/9]",
   },
   {
     title: "Process trend chart",
-    role: "diagram" as const,
     description: "Time-series chart overlaying flow, temperature, and pH on one zoomable axis",
+    kind: "placeholder",
+    role: "diagram",
     prompt:
-      "Browser-frame UI mockup: a time-series chart with three overlaid lines (flow, temperature, pH). Zoomable axis, legend, hover tooltip frozen on one data point. Dark theme, single accent red, clean grid. 16:9 landscape browser frame. Editorial, not promo render.",
+      "Browser-frame UI mockup: a time-series chart with three overlaid lines (flow, temperature, pH). Zoomable axis, legend, hover tooltip frozen on one data point. Dark theme, single accent red, clean grid. 16:9 landscape browser frame.",
   },
 ];
 
@@ -118,8 +133,8 @@ export default function IoTPage() {
         title="Optional remote monitoring,"
         titleAccent="available on every install."
         subtitle="We don't bundle this into our tank quotes. Most of our customers don't need it on day one; many add it later as their operations scale. The capability sits behind every instrument we install, ready when you want it."
-        imageSrc="/images/home/iot-kisumu-plant.png"
-        imageAlt="Plant operator viewing a tank-monitoring dashboard on a phone outside a Kisumu plant"
+        imageSrc="/images/products/iot-hero.png"
+        imageAlt="An NB-IoT gateway box mounted on a pole at a remote Kenyan tank site"
         primaryCta={{ href: "/request-quote/", label: "Book an IoT demo" }}
         secondaryCta={{
           href: "/products/instruments/",
@@ -179,11 +194,28 @@ export default function IoTPage() {
               key={s.title}
               className="flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-5 md:p-6"
             >
-              <ImagePlaceholder
-                role={s.role}
-                description={s.description}
-                prompt={s.prompt}
-              />
+              {s.kind === "image" ? (
+                <div
+                  className={cn(
+                    "relative w-full overflow-hidden rounded-button",
+                    s.aspect,
+                  )}
+                >
+                  <Image
+                    src={s.src}
+                    alt={s.description}
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <ImagePlaceholder
+                  role={s.role}
+                  description={s.description}
+                  prompt={s.prompt}
+                />
+              )}
               <h3 className="font-display text-lg font-medium tracking-tight">
                 {s.title}
               </h3>

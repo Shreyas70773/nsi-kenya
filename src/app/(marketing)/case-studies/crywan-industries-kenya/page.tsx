@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
@@ -59,8 +58,8 @@ export default function CrywanCaseStudyPage() {
         title="Crywan Industries:"
         titleAccent="the Kenya reference."
         subtitle="An operating stainless tank install for a Kenyan food and beverage operator. The reference our customers check before they sign with us."
-        imageSrc="/images/home/crywan-reference-dusk.png"
-        imageAlt="Crywan Industries stainless processing tanks at dusk, plant operator silhouette walking past"
+        imageSrc="/images/cases/crywan-install-detail.png"
+        imageAlt="Close-distance view of two stainless processing tanks at Crywan with sanitary fittings and pressure gauge cluster"
         primaryCta={{ href: "/request-quote/", label: "Spec a similar project" }}
         secondaryCta={{ href: "/products/tanks/stainless-steel/", label: "Stainless tanks" }}
         metaLeft="Kenya · F&B"
@@ -149,20 +148,6 @@ export default function CrywanCaseStudyPage() {
                 ongoing support is on retainer.
               </p>
             </Prose>
-          </div>
-        </div>
-      </Section>
-
-      <Section bordered className="bg-surface-2/40">
-        <div className="overflow-hidden rounded-card border border-border/10">
-          <div className="relative aspect-[16/9]">
-            <Image
-              src="/images/home/crywan-reference-dusk.png"
-              alt="Crywan Industries stainless tank installation at dusk"
-              fill
-              sizes="(min-width: 1024px) 60rem, 100vw"
-              className="object-cover"
-            />
           </div>
         </div>
       </Section>

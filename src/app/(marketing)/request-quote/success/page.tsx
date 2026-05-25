@@ -20,7 +20,7 @@ export default function QuoteSuccessPage() {
         title="We've got it."
         titleAccent="Engineering takes it from here."
         subtitle="Your request landed with our team in Nairobi. We respond within 48 working hours, typically faster during business hours East African Time. Check your inbox; we'll reply to the email you gave us."
-        imageSrc="/images/home/crywan-reference-dusk.png"
+        imageSrc="/images/conversion/request-quote-success-hero.png"
         imageAlt=""
         primaryCta={{ href: "/", label: "Back to home" }}
         secondaryCta={{ href: "/products/", label: "Browse products" }}

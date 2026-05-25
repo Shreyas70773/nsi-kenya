@@ -64,8 +64,8 @@ export default function GrainStorageSilosPage() {
         title="Storage you fill"
         titleAccent="and storage you trust."
         subtitle="Galvanised grain silos for breweries, feed mills, and food processors. Aeration, level instrumentation, catwalks, and inventory hardware are all options on every install. Sized between 10 and 500 metric tonnes per silo."
-        imageSrc="/images/home/silos-corrugated.png"
-        imageAlt="Three galvanised grain storage silos with overhead catwalk"
+        imageSrc="/images/products/silos-grain-storage-hero.png"
+        imageAlt="Galvanised grain storage silos at a Kenyan brewery with conveyor and catwalk"
         primaryCta={{ href: "/request-quote/", label: "Spec a silo" }}
         secondaryCta={{
           href: "/products/silos/",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
@@ -7,7 +8,6 @@ import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
-import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
 
 export const metadata: Metadata = {
   title: "About",
@@ -47,7 +47,7 @@ export default function AboutPage() {
         title="A Kenyan industrial brand,"
         titleAccent="built for the operators who run this country."
         subtitle="Industrial infrastructure made for Kenyan plants, by a team based in Kenya. Stainless tanks for dairy, epoxy-lined for ETP, zinc-alum for water storage, silos for breweries, structural steel for plant builds, and instruments across the entire process stack."
-        imageSrc="/images/home/hero-tank-farm.png"
+        imageSrc="/images/about/about-hero.png"
         imageAlt=""
         primaryCta={{ href: "/about/local-manufacturing/", label: "Inside the workshop" }}
         secondaryCta={{ href: "/case-studies/", label: "Reference work" }}
@@ -161,11 +161,15 @@ export default function AboutPage() {
             </Link>
           </div>
           <div className="md:col-span-5">
-            <ImagePlaceholder
-              role="card"
-              description="Workshop interior at North Star Impex Kenya, TIG welding in progress"
-              prompt="Editorial photograph: interior of an industrial fabrication workshop in Kenya. Foreground: a TIG welder mid-strike on a stainless steel seam, sparks frozen, blue arc. Mid-frame: rolled steel cylinders and partial tank shells awaiting weld-up. Workshop overhead cranes barely visible at the top. Warm tungsten worklight, cool ambient. Documentary photojournalism, not stock. 4:3 landscape."
-            />
+            <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-border/10">
+              <Image
+                src="/images/about/about-workshop-card.png"
+                alt="Inside the North Star workshop: finishing bay with a polished stainless tank under inspection"
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Section>

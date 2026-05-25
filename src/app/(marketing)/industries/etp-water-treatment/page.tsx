@@ -168,8 +168,8 @@ export default function ETPPage() {
         title="NEMA standards have tightened."
         titleAccent="We supply equipment that passes."
         subtitle="Failing inspection halts production. Donor-funded projects gate on compliance. We supply the tanks, instruments, and analyzers that pass NEMA discharge standards under EMCA CAP 387. The parameters table is on this page; no other Kenya supplier publishes it."
-        imageSrc="/images/home/sector-etp.png"
-        imageAlt="Multiparameter water analyzer panel mounted over an ETP clarifier basin"
+        imageSrc="/images/industries/etp-water-treatment-hero.png"
+        imageAlt="A wide angle of an outdoor ETP at a Kenyan factory with clarifier, aeration basin and dosing tanks"
         primaryCta={{ href: "/request-quote/", label: "Urgent ETP quote" }}
         secondaryCta={{ href: "#nema-parameters", label: "See NEMA limits" }}
         metaLeft="EMCA CAP 387 aware"

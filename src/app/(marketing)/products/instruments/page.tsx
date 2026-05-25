@@ -69,8 +69,8 @@ export default function InstrumentsGatewayPage() {
         title="Six categories,"
         titleAccent="one supplier, full stack."
         subtitle="No competitor in Kenya carries this much instrument depth. We size, supply, install, and (if you want) connect to the cloud, across flow, level, pressure, liquid analysis, temperature, and system products."
-        imageSrc="/images/home/instruments-flow-meter.png"
-        imageAlt="Electromagnetic flow meter mounted on stainless steel pipework"
+        imageSrc="/images/products/instruments-overview-hero.png"
+        imageAlt="Instrument panel inside a Kenyan plant control room with process indicators and a paperless recorder"
         primaryCta={{ href: "/request-quote/", label: "Request a spec sheet" }}
         secondaryCta={{ href: "/products/iot/", label: "See cloud-ready options" }}
         metaLeft="Six categories"

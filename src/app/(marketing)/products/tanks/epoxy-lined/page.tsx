@@ -86,7 +86,7 @@ export default function EpoxyLinedTanksPage() {
         title="Carbon steel shell,"
         titleAccent="chemical-resistant epoxy inside."
         subtitle="The default tank for ETP chemical dosing and corrosive process water, where stainless is more cost than the duty needs and carbon steel alone will not survive the medium. Fabricated in Kenya, lined to the chemistry, cured before delivery."
-        imageSrc="/images/home/tanks-weld-bead.png"
+        imageSrc="/images/products/tanks-epoxy-lined-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Spec an epoxy tank" }}
         secondaryCta={{

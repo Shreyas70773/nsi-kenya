@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
-import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
 import { SpecTable } from "@/components/primitives/spec-table";
 
 export const metadata: Metadata = {
@@ -66,8 +66,8 @@ export default function LocalManufacturingPage() {
         title="The workshop, the process,"
         titleAccent="the people."
         subtitle="This is not an import operation. The tanks are built in Kenya, by Kenyan welders, on machines you can visit. The page below shows the workshop and the process we run on every order."
-        imageSrc="/images/home/structural-gantry.png"
-        imageAlt="Steel gantry framework mid-installation under workshop overhead lighting"
+        imageSrc="/images/about/local-manufacturing-hero.png"
+        imageAlt="The workshop entrance with a finished tank being loaded by overhead crane onto a flatbed"
         primaryCta={{ href: "/request-quote/", label: "Quote a project" }}
         secondaryCta={{ href: "/about/", label: "About us" }}
         metaLeft="Nairobi industrial belt"
@@ -114,27 +114,38 @@ export default function LocalManufacturingPage() {
       </Section>
 
       <Section bordered className="bg-surface-2/40">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-6">
-          <ImagePlaceholder
-            role="card"
-            description="Inside the cutting bay, CNC plasma table mid-cut"
-            prompt="Editorial photograph: industrial CNC plasma cutting table mid-cut on stainless steel plate. Sparks and slag visible, operator in welding mask in background. Workshop lighting overhead. 4:3 landscape, dramatic chiaroscuro lighting, documentary, not stock."
-          />
-          <ImagePlaceholder
-            role="card"
-            description="Three-roll plate rolling machine forming a shell radius"
-            prompt="Editorial photograph: heavy three-roll plate rolling machine in action, forming a curved stainless steel shell. Operator at the controls in safety gear. Workshop ambient lighting. 4:3 landscape, gritty industrial, documentary."
-          />
-          <ImagePlaceholder
-            role="card"
-            description="TIG welder mid-strike on a stainless steel weld seam"
-            prompt="Editorial photograph: close-up of a TIG welder mid-strike on a polished stainless steel tank seam, blue arc, sparks, blurred workshop background. Welder hand and torch in sharp focus. 4:3 landscape, dramatic, magazine quality."
-          />
-          <ImagePlaceholder
-            role="card"
-            description="Finished stainless tank loaded on a flatbed, ready for delivery"
-            prompt="Editorial photograph: a completed polished stainless steel tank strapped to a flatbed truck in the workshop yard, ready for delivery. Morning sun, workshop building in background. 4:3 landscape, clean and professional, documentary photojournalism."
-          />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+          {[
+            {
+              src: "/images/about/workshop-cutting.png",
+              alt: "Industrial CNC plasma cutting table mid-cut on stainless steel plate, sparks and slag visible, operator in welding mask in background",
+            },
+            {
+              src: "/images/about/workshop-rolling.png",
+              alt: "Heavy three-roll plate rolling machine in action, forming a curved stainless steel shell, operator at the controls",
+            },
+            {
+              src: "/images/about/workshop-tig-welding.png",
+              alt: "Close-up of a TIG welder mid-strike on a polished stainless steel tank seam, blue arc and sparks visible",
+            },
+            {
+              src: "/images/about/workshop-flatbed.png",
+              alt: "Completed polished stainless steel tank strapped to a flatbed truck in the workshop yard at sunrise",
+            },
+          ].map((shot) => (
+            <div
+              key={shot.src}
+              className="relative aspect-[4/3] overflow-hidden rounded-card border border-border/10"
+            >
+              <Image
+                src={shot.src}
+                alt={shot.alt}
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
       </Section>
 

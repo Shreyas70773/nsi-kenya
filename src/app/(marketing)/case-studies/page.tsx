@@ -38,7 +38,7 @@ export default function CaseStudiesPage() {
         title="The work answers the question"
         titleAccent="before the room asks it."
         subtitle="Reference clients in Kenya, photographed at the install, with consent. We publish what we supplied, what it cost in lead time, and what changed on the plant floor."
-        imageSrc="/images/home/crywan-reference-dusk.png"
+        imageSrc="/images/cases/case-studies-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         secondaryCta={{ href: "/about/", label: "About us" }}

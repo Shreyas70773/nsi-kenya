@@ -77,8 +77,8 @@ export default function FoodAndBeveragePage() {
         title="Equipment for the plants"
         titleAccent="that feed Kenya."
         subtitle="Dairy, beverage, edible oils, brewing, bakery. Single supplier across stainless processing tanks, jacketed vessels, grain silos, structural fabrication, and the full instrument stack. Sanitary tri-clamp, food-grade finishes, KEBS-aware sourcing."
-        imageSrc="/images/home/sector-fnb.png"
-        imageAlt="Operator inspecting jacketed stainless fermentation tanks at a Kenyan F&B plant"
+        imageSrc="/images/industries/food-and-beverage-hero.png"
+        imageAlt="Interior of a Kenyan beverage filling line with stainless filling heads and bottles on conveyor"
         primaryCta={{ href: "/request-quote/", label: "Spec an F&B project" }}
         secondaryCta={{ href: "/products/tanks/stainless-steel/", label: "Stainless tanks" }}
         metaLeft="Dairy · Beverage · Edible oils · Brewing · Bakery"

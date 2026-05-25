@@ -59,8 +59,8 @@ export default function ZincAlumTanksPage() {
         title="The bolted tank that"
         titleAccent="outlasts carbon steel by 20 years."
         subtitle="A 55% aluminium, 43.5% zinc barrier coating that self-heals at cuts and shrugs off Kenyan humidity. Modular panels mean we can drop a 50 to 5000 cubic metre tank on your site without on-location welding."
-        imageSrc="/images/home/silos-corrugated.png"
-        imageAlt="Bolted zinc-aluminium tank exterior showing vertical panel seams"
+        imageSrc="/images/products/tanks-zinc-alum-hero.png"
+        imageAlt="A large bolted zinc-aluminium water tank standing on a concrete plinth"
         primaryCta={{ href: "/request-quote/", label: "Spec a zinc-alum tank" }}
         secondaryCta={{
           href: "/products/tanks/",

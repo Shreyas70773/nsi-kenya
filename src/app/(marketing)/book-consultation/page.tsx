@@ -20,7 +20,7 @@ export default function BookConsultationPage() {
         title="A working call with"
         titleAccent="the engineer who would scope your project."
         subtitle="Thirty minutes, no slide deck. Bring your constraints, your plant layout if you have one, and the question you can't answer without an engineer. We'll come back with the approach we'd take."
-        imageSrc="/images/home/sector-fnb.png"
+        imageSrc="/images/conversion/book-consultation-hero.png"
         imageAlt=""
         metaLeft="30 minutes"
         metaRight="No commitment from either side"

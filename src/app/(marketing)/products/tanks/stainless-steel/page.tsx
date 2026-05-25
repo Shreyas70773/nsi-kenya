@@ -69,8 +69,8 @@ export default function StainlessSteelTanksPage() {
         title="304 and 316L stainless tanks,"
         titleAccent="fabricated in Kenya."
         subtitle="The default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
-        imageSrc="/images/home/sector-fnb.png"
-        imageAlt="Operator inspecting jacketed stainless fermentation tanks inside a Kenyan F&B plant"
+        imageSrc="/images/products/tanks-stainless-steel-hero.png"
+        imageAlt="A row of polished 304 stainless steel processing tanks inside a Kenyan F&B plant"
         primaryCta={{ href: "/request-quote/", label: "Spec a stainless tank" }}
         secondaryCta={{
           href: "/products/tanks/",

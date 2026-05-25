@@ -66,7 +66,7 @@ export default function IndustriesPage() {
         title="Four industries,"
         titleAccent="four different buying conversations."
         subtitle="Food and beverage scales by demand. ETP scales by regulation. Alcohol and distilling scales by brand growth. Chemical processing scales by containment. Each one shows up with a different brief, and each gets a different page."
-        imageSrc="/images/home/sector-fnb.png"
+        imageSrc="/images/industries/industries-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         secondaryCta={{ href: "/products/", label: "By product" }}

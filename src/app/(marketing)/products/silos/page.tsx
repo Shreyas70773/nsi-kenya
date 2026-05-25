@@ -43,7 +43,7 @@ export default function SilosOverviewPage() {
         title="Storage that"
         titleAccent="moves with your plant."
         subtitle="Galvanised steel silos for grain, feed, and bulk materials. Conveyor catwalks, aeration, level instrumentation, and inventory tracking are all options, not retrofits. Sized between ten and a thousand metric tonnes."
-        imageSrc="/images/home/silos-corrugated.png"
+        imageSrc="/images/products/silos-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Spec a silo" }}
         secondaryCta={{ href: "/products/", label: "All products" }}

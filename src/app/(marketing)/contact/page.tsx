@@ -21,7 +21,7 @@ export default function ContactPage() {
         title="The fastest path"
         titleAccent="is the phone."
         subtitle="If you'd rather talk than type, the number's below. Otherwise the form goes straight to our engineering team in Nairobi."
-        imageSrc="/images/home/sector-fnb.png"
+        imageSrc="/images/conversion/contact-hero.png"
         imageAlt=""
         primaryCta={{ href: `mailto:${CONTACT_EMAIL}`, label: "Email us" }}
         secondaryCta={{

@@ -20,7 +20,7 @@ export default function RequestSiteAuditPage() {
         title="Boots on the ground."
         titleAccent="Brief on your desk."
         subtitle="We walk your plant, measure, photograph the relevant zones, and leave you with a written brief. For Nairobi industrial estates, we can be on-site within 48 hours. No charge, no commitment from either side."
-        imageSrc="/images/home/structural-gantry.png"
+        imageSrc="/images/conversion/request-site-audit-hero.png"
         imageAlt=""
         metaLeft="48-hour response in Nairobi"
         metaRight="No charge for the audit"

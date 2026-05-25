@@ -73,8 +73,8 @@ export default function StructuralWorksPage() {
         title="Steel that holds"
         titleAccent="the rest of the plant up."
         subtitle="Platforms, walkways, tank supports, pipe racks, and equipment skids fabricated in our own workshop. Concept GA drawings inside a week, ex-works inside the month, on flatbed to your plant on the date we promised."
-        imageSrc="/images/home/structural-gantry.png"
-        imageAlt="Steel gantry framework and tank-support structure mid-installation"
+        imageSrc="/images/products/structural-works-hero.png"
+        imageAlt="A finished structural-steel platform around a process vessel, mid-installation"
         primaryCta={{ href: "/request-quote/", label: "Get a structural quote" }}
         secondaryCta={{ href: "/products/", label: "All products" }}
         metaLeft="In-house workshop"
