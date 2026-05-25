@@ -131,6 +131,49 @@ export default defineSchema({
     .index("by_email", ["email"]),
 
   // -----------------------------------------------------------------------
+  // General inquiries — Contact, Book a Consultation, Book a Site Audit.
+  // Distinct from quoteRequests (which is for the four quote intents);
+  // these three forms share a smaller payload and a different downstream
+  // workflow (no product specs, less urgent).
+  // -----------------------------------------------------------------------
+  inquiries: defineTable({
+    kind: v.union(
+      v.literal("contact"),
+      v.literal("consultation"),
+      v.literal("site-audit"),
+    ),
+    name: v.string(),
+    company: v.string(),
+    email: v.string(),
+    phone: v.optional(v.string()),
+    industry: v.optional(v.string()),
+    /** For site-audit: plant location / address. */
+    siteLocation: v.optional(v.string()),
+    /** For consultation: topic or scope they want to discuss. */
+    topic: v.optional(v.string()),
+    /** Freeform message. */
+    message: v.optional(v.string()),
+    metadata: v.optional(
+      v.object({
+        referrer: v.optional(v.string()),
+        utmSource: v.optional(v.string()),
+        utmMedium: v.optional(v.string()),
+        utmCampaign: v.optional(v.string()),
+        userAgent: v.optional(v.string()),
+      }),
+    ),
+    status: v.union(
+      v.literal("new"),
+      v.literal("contacted"),
+      v.literal("scheduled"),
+      v.literal("completed"),
+      v.literal("declined"),
+    ),
+  })
+    .index("by_kind_and_status", ["kind", "status"])
+    .index("by_email", ["email"]),
+
+  // -----------------------------------------------------------------------
   // Reference-call requests — the /talk-to-a-customer/ trust-gate handler.
   // -----------------------------------------------------------------------
   referenceCallRequests: defineTable({
