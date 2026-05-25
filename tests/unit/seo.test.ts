@@ -123,8 +123,8 @@ describe("JSON-LD generators", () => {
 
     it("produces an ordered ItemList", () => {
       expect(ld.itemListElement).toHaveLength(3);
-      expect(ld.itemListElement[0].position).toBe(1);
-      expect(ld.itemListElement[2].position).toBe(3);
+      expect(ld.itemListElement[0]?.position).toBe(1);
+      expect(ld.itemListElement[2]?.position).toBe(3);
     });
   });
 
@@ -138,8 +138,8 @@ describe("JSON-LD generators", () => {
 
     it("has @type FAQPage with Question items", () => {
       expect(ld["@type"]).toBe("FAQPage");
-      expect(ld.mainEntity[0]["@type"]).toBe("Question");
-      expect(ld.mainEntity[0].acceptedAnswer["@type"]).toBe("Answer");
+      expect(ld.mainEntity[0]?.["@type"]).toBe("Question");
+      expect(ld.mainEntity[0]?.acceptedAnswer["@type"]).toBe("Answer");
     });
   });
 
