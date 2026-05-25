@@ -49,10 +49,12 @@ const FOOTER_NAV = [
 export function SiteFooter() {
   return (
     <footer className="relative isolate mt-24 overflow-hidden border-t border-border/10 bg-surface text-sm">
-      {/* Brand star, anchored bottom-right and cropped off the edge.
-          Matches the IBS reference 1.3 footer triangle treatment. */}
+      {/* Brand star watermark. Outlined, barely visible, anchored
+          bottom-right and cropped off the edge. A faint geometric
+          watermark, not a dominant element. */}
       <BrandStar
-        className="pointer-events-none absolute -right-32 -bottom-40 -z-10 hidden h-[480px] w-auto text-accent/85 md:block lg:-right-24 lg:-bottom-44 lg:h-[560px]"
+        filled={false}
+        className="pointer-events-none absolute -right-24 -bottom-36 -z-10 hidden h-[420px] w-auto text-text/10 md:block lg:-right-16 lg:-bottom-40 lg:h-[500px]"
       />
       <div className="relative mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-12 flex flex-col gap-6 border-b border-border/8 pb-10 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">

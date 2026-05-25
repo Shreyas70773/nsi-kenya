@@ -23,8 +23,9 @@ const INDUSTRIES = [
     href: "/industries/food-and-beverage/",
     pillar: "Capacity expansion, new product line, audit-driven",
     products: "SS 304/316L · Epoxy · Silos · Flow + Level + Temp",
-    image: "/images/home/tanks-weld-bead.png",
-    imageAlt: "Stainless tank weld bead detail",
+    image: "/images/home/sector-fnb.png",
+    imageAlt:
+      "Plant operator in hygiene whites inspecting a stainless steel jacketed fermentation tank inside a food and beverage facility",
   },
   {
     n: "02",
@@ -32,8 +33,9 @@ const INDUSTRIES = [
     href: "/industries/etp-water-treatment/",
     pillar: "NEMA compliance, EMCA CAP 387, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
-    image: "/images/home/instruments-flow-meter.png",
-    imageAlt: "Electromagnetic flow meter on stainless pipework",
+    image: "/images/home/sector-etp.png",
+    imageAlt:
+      "Multiparameter water analyzer panel mounted over a clarifier basin at an effluent treatment plant",
   },
   {
     n: "03",
@@ -41,8 +43,9 @@ const INDUSTRIES = [
     href: "/industries/alcohol-distilling/",
     pillar: "Brewing scale-up, distillery containment, grain handling",
     products: "SS · Epoxy · Zinc-alum · Grain silos",
-    image: "/images/home/crywan-reference-dusk.png",
-    imageAlt: "Distillery-style processing tanks at dusk",
+    image: "/images/home/sector-alcohol.png",
+    imageAlt:
+      "Stainless steel fermenter tagged FV-03 with a copper still and brewer in the background of a craft brewery",
   },
   {
     n: "04",
@@ -50,8 +53,9 @@ const INDUSTRIES = [
     href: "/industries/chemical-processing/",
     pillar: "Corrosive media, containment, process integrity",
     products: "Epoxy · SS · Pressure + Temp instruments",
-    image: "/images/home/structural-gantry.png",
-    imageAlt: "Steel gantry and tank-support framework",
+    image: "/images/home/sector-chemical.png",
+    imageAlt:
+      "Epoxy reactor R-2501 with pressure gauge cluster and color-coded process piping (nitrogen, cooling water, steam, plant air, vent) in a chemical processing plant",
   },
 ] as const;
 
@@ -85,12 +89,12 @@ export default function Home() {
                 "linear-gradient(180deg, rgb(8 6 4 / 0.55) 0%, rgb(8 6 4 / 0.28) 35%, rgb(8 6 4 / 0.32) 70%, rgb(8 6 4 / 0.78) 100%)",
             }}
           />
-          {/* Brand star decoration. Solid red 5-point star, oversized,
-              anchored bottom-right and cropped off the edge (per IBS
-              reference 1.3 where they use an oversized triangle in the
-              footer). Desktop only. */}
+          {/* Brand star watermark. Outlined, barely visible. A faint
+              geometric watermark sitting behind the content, not a
+              dominant element. Desktop only. */}
           <BrandStar
-            className="pointer-events-none absolute -right-40 -bottom-48 -z-10 hidden h-[120%] w-auto text-accent/85 md:block"
+            filled={false}
+            className="pointer-events-none absolute -right-32 -bottom-40 -z-10 hidden h-[110%] w-auto text-white/12 md:block"
           />
 
           {/* Content grid: top-left headline + pills / top-right description + CTA */}
