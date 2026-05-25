@@ -17,6 +17,10 @@ const NAV = [
  * Floating-pill sticky header with the actual North Star Impex logo.
  * Translucent over the hero, condenses to a solid surface once the user
  * scrolls past 24px. Logo left, primary nav center, accent CTA right.
+ *
+ * Mobile sizing tuned for 390px viewport: tighter outer padding, tighter
+ * pill padding, shorter CTA label, slightly larger logo so the wordmark
+ * detail still reads.
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,20 +43,20 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4">
       <div
         className={cn(
-          "flex w-full max-w-6xl items-center justify-between gap-6 rounded-pill border px-4 py-2.5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500",
+          "flex w-full max-w-6xl items-center justify-between gap-3 rounded-pill border py-2 pl-3 pr-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:gap-6 sm:py-2.5 sm:pl-4 sm:pr-3",
           scrolled
             ? "border-border/15 bg-surface/90 shadow-[0_8px_32px_-12px_rgb(var(--ns-text)/0.18)] backdrop-blur-xl"
-            : "border-border/8 bg-surface/45 backdrop-blur-md",
+            : "border-border/8 bg-surface/55 backdrop-blur-md",
         )}
         style={{ transitionTimingFunction: "var(--ease-out)" }}
       >
         <Link
           href="/"
           aria-label="North Star Impex Kenya, home"
-          className="press flex items-center gap-2"
+          className="press flex shrink-0 items-center"
         >
           <Image
             src="/brand/logo.png"
@@ -60,7 +64,7 @@ export function SiteHeader() {
             width={215}
             height={94}
             priority
-            className="h-9 w-auto md:h-10"
+            className="h-10 w-auto md:h-10"
           />
         </Link>
 
@@ -79,7 +83,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href="/contact/"
             className="press hidden text-sm text-muted transition-colors duration-200 hover:text-text lg:inline"
@@ -88,9 +92,10 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/request-quote/"
-            className="press inline-flex items-center gap-1.5 rounded-pill bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong"
+            className="press inline-flex items-center gap-1.5 rounded-pill bg-accent px-3.5 py-2 text-xs font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong sm:px-4 sm:text-sm"
           >
-            Get a quote
+            <span className="hidden sm:inline">Get a quote</span>
+            <span className="sm:hidden">Quote</span>
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
           </Link>
         </div>
