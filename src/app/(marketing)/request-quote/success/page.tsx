@@ -75,7 +75,7 @@ export default function QuoteSuccessPage() {
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2">
           <Link
             href="/products/"
-            className="press group flex items-center justify-between gap-4 rounded-card border border-border/15 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+            className="press group flex items-center justify-between gap-4 rounded-card border border-border/15 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
           >
             <div className="flex flex-col gap-1">
               <span className="font-mono-label text-[10px] text-accent">
@@ -92,7 +92,7 @@ export default function QuoteSuccessPage() {
           </Link>
           <Link
             href="/about/local-manufacturing/"
-            className="press group flex items-center justify-between gap-4 rounded-card border border-border/15 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+            className="press group flex items-center justify-between gap-4 rounded-card border border-border/15 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
           >
             <div className="flex flex-col gap-1">
               <span className="font-mono-label text-[10px] text-accent">

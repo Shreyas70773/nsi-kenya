@@ -131,7 +131,7 @@ export default function BlogIndexPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}/`}
-                className="press group flex flex-col overflow-hidden rounded-card border border-border/10 bg-surface transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                className="press group flex flex-col overflow-hidden rounded-card border border-border/10 bg-surface transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image

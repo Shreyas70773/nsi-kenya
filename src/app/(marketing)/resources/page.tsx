@@ -10,7 +10,7 @@ import { BLOG_POSTS } from "@/lib/blog-posts";
 export const metadata: Metadata = {
   title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
   description:
-    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS, free and gate-free.",
+    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS standards. Free, gate-free, no signup.",
   alternates: { canonical: "/resources/" },
   keywords: [
     "industrial resources Kenya",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
     description:
-      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS, free and gate-free.",
+      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS standards. Free, gate-free, no signup.",
     url: "/resources/",
     images: [{ url: "/images/about/workshop-tig-welding.png" }],
   },
@@ -109,7 +109,7 @@ export default function ResourcesPage() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="press group flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                className="press group flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
               >
                 <span
                   className="grid h-10 w-10 place-items-center rounded-button bg-accent/12 text-accent"

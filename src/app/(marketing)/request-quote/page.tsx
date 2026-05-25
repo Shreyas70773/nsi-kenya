@@ -88,7 +88,7 @@ export default function RequestQuotePage() {
             <Link
               key={s.href}
               href={s.href}
-              className="press group flex flex-col gap-2 rounded-card border border-border/10 bg-surface p-6 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+              className="press group flex flex-col gap-2 rounded-card border border-border/10 bg-surface p-6 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
             >
               <span className="font-mono-label text-[10px] text-accent">
                 Intent

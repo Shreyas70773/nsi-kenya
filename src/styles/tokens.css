@@ -16,43 +16,57 @@
  *   - healthcare teal-and-white
  *   - crypto neon-on-black
  *
- * No gradients. No glassmorphism as default. RGB triplets so @theme inline
- * in globals.css can compose them with <alpha-value>.
+ * No gradients. No glassmorphism as default. Full CSS color values so
+ * Tailwind 4 utilities consume them directly via @theme in globals.css.
+ * Bare triplets (kept under -rgb suffix) remain available where existing
+ * code uses rgb(var(--ns-X-rgb) / 0.x) for alpha-tinted surfaces.
  */
 
 :root {
   /* Light: warm cream (logo background) + deep iron text + brand red */
-  --ns-bg:                250 247 240;  /* warm cream — matches logo paper */
-  --ns-surface:           255 253 248;  /* slightly warmer card surface */
-  --ns-surface-2:         240 235 226;  /* recessed/inset cards */
-  --ns-border:             18  16  14;  /* near-black; consumed with low alpha */
-  --ns-text:               18  16  14;  /* near-black — matches logo wordmark */
-  --ns-muted:              94  88  82;  /* warm gray for secondary text */
-  --ns-faint:             140 132 122;  /* tertiary copy + metadata */
-  --ns-accent:            218  32  35;  /* brand red — the logo star */
-  --ns-accent-strong:     188  22  26;  /* hover / pressed state */
-  --ns-on-accent:         255 253 248;  /* text on red surfaces */
+  --ns-bg:                rgb(250 247 240); /* warm cream — matches logo paper */
+  --ns-surface:           rgb(255 253 248); /* slightly warmer card surface */
+  --ns-surface-2:         rgb(240 235 226); /* recessed/inset cards */
+  --ns-border:            rgb( 18  16  14); /* near-black; consumed with low alpha */
+  --ns-text:              rgb( 18  16  14); /* near-black — matches logo wordmark */
+  --ns-muted:             rgb( 94  88  82); /* warm gray for secondary text */
+  --ns-faint:             rgb(140 132 122); /* tertiary copy + metadata */
+  --ns-accent:            rgb(218  32  35); /* brand red — the logo star */
+  --ns-accent-strong:     rgb(188  22  26); /* hover / pressed state */
+  --ns-on-accent:         rgb(255 253 248); /* text on red surfaces */
+
+  /* Raw triplets kept for the rgb(var(--ns-X-rgb) / 0.x) inline-alpha
+     patterns used throughout the design system (rings, washes, washes
+     over hero photography, etc.). */
+  --ns-text-rgb:           18  16  14;
+  --ns-border-rgb:         18  16  14;
+  --ns-faint-rgb:         140 132 122;
+  --ns-accent-rgb:        218  32  35;
 
   /* Placeholder visual (used when an ImagePlaceholder is still pending) */
-  --ns-placeholder-bg:    236 230 220;
-  --ns-placeholder-border: 18  16  14;
-  --ns-placeholder-label: 140 132 122;
+  --ns-placeholder-bg:    rgb(236 230 220);
+  --ns-placeholder-border: rgb( 18  16  14);
+  --ns-placeholder-label: rgb(140 132 122);
 }
 
 [data-theme="dark"] {
-  --ns-bg:                 14  12  10;  /* deepest iron */
-  --ns-surface:            22  20  17;
-  --ns-surface-2:          32  28  24;
-  --ns-border:            240 232 218;
-  --ns-text:              244 238 226;
-  --ns-muted:             172 162 148;
-  --ns-faint:             120 112 100;
-  --ns-accent:            232  50  56;  /* brand red, brightened for dark */
-  --ns-accent-strong:     250  78  84;
-  --ns-on-accent:         255 253 248;
-  --ns-placeholder-bg:     28  25  21;
-  --ns-placeholder-border: 64  58  50;
-  --ns-placeholder-label: 156 148 132;
+  --ns-bg:                rgb( 14  12  10); /* deepest iron */
+  --ns-surface:           rgb( 22  20  17);
+  --ns-surface-2:         rgb( 32  28  24);
+  --ns-border:            rgb(240 232 218);
+  --ns-text:              rgb(244 238 226);
+  --ns-muted:             rgb(172 162 148);
+  --ns-faint:             rgb(120 112 100);
+  --ns-accent:            rgb(232  50  56); /* brand red, brightened for dark */
+  --ns-accent-strong:     rgb(250  78  84);
+  --ns-on-accent:         rgb(255 253 248);
+  --ns-text-rgb:          244 238 226;
+  --ns-border-rgb:        240 232 218;
+  --ns-faint-rgb:         120 112 100;
+  --ns-accent-rgb:        232  50  56;
+  --ns-placeholder-bg:    rgb( 28  25  21);
+  --ns-placeholder-border: rgb( 64  58  50);
+  --ns-placeholder-label: rgb(156 148 132);
 }
 
 /*

@@ -49,7 +49,7 @@ export function SiteHeader() {
         className={cn(
           "flex w-full max-w-6xl items-center justify-between gap-3 rounded-pill border py-2 pl-3 pr-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:gap-6 sm:py-2.5 sm:pl-4 sm:pr-3",
           scrolled
-            ? "border-border/15 bg-surface/90 shadow-[0_8px_32px_-12px_rgb(var(--ns-text)/0.18)] backdrop-blur-xl"
+            ? "border-border/15 bg-surface/90 shadow-[0_8px_32px_-12px_rgb(var(--ns-text-rgb)/0.18)] backdrop-blur-xl"
             : "border-border/8 bg-surface/55 backdrop-blur-md",
         )}
         style={{ transitionTimingFunction: "var(--ease-out)" }}

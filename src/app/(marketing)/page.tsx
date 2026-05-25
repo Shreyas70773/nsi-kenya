@@ -175,14 +175,14 @@ export default function Home() {
             className="pointer-events-none absolute inset-y-0 left-0 w-32"
             style={{
               background:
-                "linear-gradient(to right, rgb(var(--ns-bg)), transparent)",
+                "linear-gradient(to right, var(--ns-bg), transparent)",
             }}
           />
           <div
             className="pointer-events-none absolute inset-y-0 right-0 w-32"
             style={{
               background:
-                "linear-gradient(to left, rgb(var(--ns-bg)), transparent)",
+                "linear-gradient(to left, var(--ns-bg), transparent)",
             }}
           />
         </div>
@@ -312,7 +312,7 @@ export default function Home() {
               >
                 <Link
                   href="/about/local-manufacturing/"
-                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
                 >
                   <span className="font-mono-label text-[10px] text-accent">
                     Inside the workshop
@@ -331,7 +331,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/about/"
-                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
                 >
                   <span className="font-mono-label text-[10px] text-accent">
                     How we work
@@ -351,7 +351,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/blog/"
-                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
                 >
                   <span className="font-mono-label text-[10px] text-accent">
                     Field notes
@@ -530,7 +530,7 @@ function BentoCard({
         feature
           ? "min-h-[520px] md:min-h-[600px]"
           : "min-h-[300px] md:min-h-[280px]",
-        "hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.35)]",
+        "hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.35)]",
         className,
       )}
       {...rest}

@@ -2,19 +2,19 @@
 @import "../styles/tokens.css";
 
 @theme inline {
-  --color-bg: rgb(var(--ns-bg) / <alpha-value>);
-  --color-surface: rgb(var(--ns-surface) / <alpha-value>);
-  --color-surface-2: rgb(var(--ns-surface-2) / <alpha-value>);
-  --color-border: rgb(var(--ns-border) / <alpha-value>);
-  --color-text: rgb(var(--ns-text) / <alpha-value>);
-  --color-muted: rgb(var(--ns-muted) / <alpha-value>);
-  --color-faint: rgb(var(--ns-faint) / <alpha-value>);
-  --color-accent: rgb(var(--ns-accent) / <alpha-value>);
-  --color-accent-strong: rgb(var(--ns-accent-strong) / <alpha-value>);
-  --color-on-accent: rgb(var(--ns-on-accent) / <alpha-value>);
-  --color-placeholder-bg: rgb(var(--ns-placeholder-bg) / <alpha-value>);
-  --color-placeholder-border: rgb(var(--ns-placeholder-border) / <alpha-value>);
-  --color-placeholder-label: rgb(var(--ns-placeholder-label) / <alpha-value>);
+  --color-bg: var(--ns-bg);
+  --color-surface: var(--ns-surface);
+  --color-surface-2: var(--ns-surface-2);
+  --color-border: var(--ns-border);
+  --color-text: var(--ns-text);
+  --color-muted: var(--ns-muted);
+  --color-faint: var(--ns-faint);
+  --color-accent: var(--ns-accent);
+  --color-accent-strong: var(--ns-accent-strong);
+  --color-on-accent: var(--ns-on-accent);
+  --color-placeholder-bg: var(--ns-placeholder-bg);
+  --color-placeholder-border: var(--ns-placeholder-border);
+  --color-placeholder-label: var(--ns-placeholder-label);
 
   --font-body: var(--font-body), system-ui, sans-serif;
   --font-display: var(--font-display, var(--font-body)), system-ui, sans-serif;
@@ -26,8 +26,8 @@
 }
 
 html {
-  background: rgb(var(--ns-bg));
-  color: rgb(var(--ns-text));
+  background: var(--ns-bg);
+  color: var(--ns-text);
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -40,12 +40,12 @@ body {
   background-image:
     radial-gradient(
       circle at 0% 0%,
-      rgb(var(--ns-accent) / 0.025),
+      rgb(var(--ns-accent-rgb) / 0.025),
       transparent 60%
     ),
     radial-gradient(
       circle at 100% 100%,
-      rgb(var(--ns-accent) / 0.018),
+      rgb(var(--ns-accent-rgb) / 0.018),
       transparent 55%
     );
   background-attachment: fixed;
@@ -99,4 +99,18 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+}
+
+/* Site-wide page-entry fade. Pure CSS so SSR content paints immediately
+   even before hydration; the keyframe just polishes the entry. */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translate3d(0, 6px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.page-fade-in {
+  animation: page-fade-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-in { animation: none; }
 }
