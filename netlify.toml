@@ -1,0 +1,46 @@
+# Netlify deployment config for North Star Impex Kenya.
+# The @netlify/plugin-nextjs adapter handles the Next.js 16 App Router build
+# (RSC, route handlers, ISR, Image Optimization) end-to-end.
+#
+# Convex is deployed separately via `npx convex deploy` — see README.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION = "10"
+  # Surface NEXT_PUBLIC_* vars at build time. Real values set in the Netlify UI:
+  #   NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_CONVEX_URL, NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Force https; redirect the .com / .net / www variants once domain is live.
+[[redirects]]
+  from = "https://www.northstarimpex.co.ke/*"
+  to = "https://northstarimpex.co.ke/:splat"
+  status = 301
+  force = true
+
+# Long-cache fingerprinted Next.js assets.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Short-cache sitemap.xml so search engines pick up changes within a day.
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, s-maxage=86400"
+
+# Security baseline.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
