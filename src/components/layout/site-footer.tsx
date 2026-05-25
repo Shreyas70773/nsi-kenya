@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
+import { BrandStar } from "@/components/brand/brand-star";
 
 const FOOTER_NAV = [
   {
@@ -47,15 +48,20 @@ const FOOTER_NAV = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border/10 bg-surface text-sm">
-      <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+    <footer className="relative isolate mt-24 overflow-hidden border-t border-border/10 bg-surface text-sm">
+      {/* Brand star, anchored bottom-right and cropped off the edge.
+          Matches the IBS reference 1.3 footer triangle treatment. */}
+      <BrandStar
+        className="pointer-events-none absolute -right-32 -bottom-40 -z-10 hidden h-[480px] w-auto text-accent/85 md:block lg:-right-24 lg:-bottom-44 lg:h-[560px]"
+      />
+      <div className="relative mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
         <div className="mb-12 flex flex-col gap-6 border-b border-border/8 pb-10 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
           <Image
-            src="/brand/logo.jpg"
+            src="/brand/logo.png"
             alt={SITE_NAME}
-            width={200}
-            height={54}
-            className="h-12 w-auto mix-blend-multiply md:h-14"
+            width={215}
+            height={94}
+            className="h-12 w-auto md:h-14"
           />
           <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
             Industrial infrastructure,{" "}

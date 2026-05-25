@@ -4,6 +4,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
 import { webSiteLd } from "@/lib/seo";
 import { Reveal } from "@/components/motion/reveal";
+import { BrandStar } from "@/components/brand/brand-star";
 import { cn } from "@/lib/utils";
 
 const TRUST_TOKENS = [
@@ -64,7 +65,7 @@ export default function Home() {
         aria-label="Hero"
         className="px-3 pt-24 sm:px-4 md:pt-28 lg:px-6"
       >
-        <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
+        <div className="relative isolate min-h-[90vh] overflow-hidden rounded-[28px] md:min-h-[calc(100vh-6rem)] md:rounded-[36px]">
           {/* Background photo */}
           <Image
             src="/images/home/hero-tank-farm.png"
@@ -84,78 +85,64 @@ export default function Home() {
                 "linear-gradient(180deg, rgb(8 6 4 / 0.55) 0%, rgb(8 6 4 / 0.28) 35%, rgb(8 6 4 / 0.32) 70%, rgb(8 6 4 / 0.78) 100%)",
             }}
           />
-          {/* Subtle geometric overlay (per IBS reference). Sits behind the
-              content but in front of the wash; outlined triangle, very low
-              opacity. */}
-          <svg
-            aria-hidden
-            viewBox="0 0 600 600"
-            preserveAspectRatio="xMaxYMid meet"
-            className="pointer-events-none absolute -right-20 -bottom-40 -z-10 hidden h-[110%] w-auto text-white/12 md:block"
-          >
-            <polygon
-              points="300,40 560,520 40,520"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <polygon
-              points="300,120 480,460 120,460"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              opacity="0.55"
-            />
-          </svg>
+          {/* Brand star decoration. Solid red 5-point star, oversized,
+              anchored bottom-right and cropped off the edge (per IBS
+              reference 1.3 where they use an oversized triangle in the
+              footer). Desktop only. */}
+          <BrandStar
+            className="pointer-events-none absolute -right-40 -bottom-48 -z-10 hidden h-[120%] w-auto text-accent/85 md:block"
+          />
 
           {/* Content grid: top-left headline + pills / top-right description + CTA */}
-          <div className="relative grid min-h-[640px] grid-cols-1 gap-8 p-7 sm:p-10 md:min-h-[680px] md:grid-cols-12 md:gap-10 md:p-14 lg:p-16">
-            {/* TOP-LEFT: headline + pills */}
-            <div className="flex flex-col gap-7 md:col-span-7">
-              <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
-                <span className="h-px w-8 bg-white/30" aria-hidden />
-                <span>Nairobi · Kenya</span>
+          <div className="relative flex h-full min-h-[90vh] flex-col gap-8 p-7 sm:p-10 md:min-h-[calc(100vh-6rem)] md:gap-10 md:p-14 lg:p-16">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10">
+              {/* TOP-LEFT: headline + pills */}
+              <div className="flex flex-col gap-7 md:col-span-7">
+                <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
+                  <span className="h-px w-8 bg-white/30" aria-hidden />
+                  <span>Nairobi · Kenya</span>
+                </div>
+                <h1 className="font-display text-balance text-[clamp(2.5rem,5.5vw,5.5rem)] font-medium leading-[0.98] tracking-tight text-white">
+                  Made in East Africa.{" "}
+                  <br className="hidden sm:block" />
+                  <span className="text-accent">Built for Kenya.</span>
+                </h1>
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  {["Tanks", "Silos", "Structural", "Instruments", "Monitoring"].map(
+                    (tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-pill border border-white/20 bg-white/8 px-3.5 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md"
+                      >
+                        {tag}
+                      </span>
+                    ),
+                  )}
+                </div>
               </div>
-              <h1 className="font-display text-balance text-[clamp(2.5rem,5vw,5rem)] font-medium leading-[0.98] tracking-tight text-white">
-                Made in East Africa.{" "}
-                <br className="hidden sm:block" />
-                <span className="text-accent">Built for Kenya.</span>
-              </h1>
-              <div className="flex flex-wrap items-center gap-2 pt-1">
-                {["Tanks", "Silos", "Structural", "Instruments", "Monitoring"].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-pill border border-white/20 bg-white/8 px-3.5 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md"
-                    >
-                      {tag}
-                    </span>
-                  ),
-                )}
-              </div>
-            </div>
 
-            {/* TOP-RIGHT: body + dark CTA */}
-            <div className="flex flex-col items-start gap-5 md:col-span-5 md:items-end md:text-right">
-              <p className="max-w-sm text-sm leading-relaxed text-white/85 md:text-base">
-                One supplier across stainless, epoxy-lined, and zinc-alum
-                tanks; silos and grain storage; structural fabrication; and
-                the full instrument stack.
-              </p>
-              <Link
-                href="/request-quote/"
-                className="press group inline-flex items-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-medium text-text transition-colors duration-200 hover:bg-accent hover:text-on-accent"
-              >
-                Tell us what you need
-                <ArrowUpRight
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={2.2}
-                />
-              </Link>
+              {/* TOP-RIGHT: body + dark CTA */}
+              <div className="flex flex-col items-start gap-5 md:col-span-5 md:items-end md:text-right">
+                <p className="max-w-sm text-sm leading-relaxed text-white/85 md:text-base">
+                  One supplier across stainless, epoxy-lined, and zinc-alum
+                  tanks; silos and grain storage; structural fabrication;
+                  and the full instrument stack.
+                </p>
+                <Link
+                  href="/request-quote/"
+                  className="press group inline-flex items-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-medium text-text transition-colors duration-200 hover:bg-accent hover:text-on-accent"
+                >
+                  Tell us what you need
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    strokeWidth={2.2}
+                  />
+                </Link>
+              </div>
             </div>
 
             {/* BOTTOM credential strip */}
-            <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:col-span-12 md:flex-row md:items-end md:justify-between">
+            <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:flex-row md:items-end md:justify-between">
               <span>Serving Kenya, every county.</span>
               <span>NEMA-aware · KEBS-fluent · Safaricom NB-IoT capable</span>
             </div>
@@ -379,17 +366,18 @@ export default function Home() {
             >
               <div className="flex flex-col gap-3">
                 <span className="font-mono-label text-[10px] text-faint">
-                  ⟶ Our sectors
+                  ⟶ Industries
                 </span>
                 <h2 className="font-display max-w-3xl text-balance text-4xl font-medium leading-tight tracking-tight md:text-5xl">
-                  Four industries, four
+                  We span across the
                   <br />
-                  different buying conversations.
+                  following industries.
                 </h2>
               </div>
               <p className="max-w-sm text-sm text-muted">
                 Each sector has its own buying triggers and equipment fit.
-                Pick yours; the page tells you exactly what we install.
+                Select yours to see the equipment we install and the
+                compliance posture we maintain.
               </p>
             </div>
 

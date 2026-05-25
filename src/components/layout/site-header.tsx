@@ -55,12 +55,12 @@ export function SiteHeader() {
           className="press flex items-center gap-2"
         >
           <Image
-            src="/brand/logo.jpg"
+            src="/brand/logo.png"
             alt="North Star Impex Kenya"
             width={215}
             height={94}
             priority
-            className="h-9 w-auto mix-blend-multiply md:h-10"
+            className="h-9 w-auto md:h-10"
           />
         </Link>
 
