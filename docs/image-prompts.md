@@ -200,12 +200,6 @@ document is the prompts for the unique replacements.
 - **Prompt:**
 > An aerial-style wide shot of a flatbed truck on a Kenyan highway between Nairobi and Mombasa carrying a wrapped industrial tank: the truck small-to-mid scale in the frame, the road snaking through arid landscape, distant hills, warm late-afternoon light. Composition: ultra-wide, road as a leading line through the frame, sky above. The "nationwide reach" emotional register. Editorial.
 
-#### LOC-KE-01 — `/locations/kenya/` hero
-- **Path:** `public/images/locations/kenya-hero.png`
-- **Aspect:** 21:9 cinematic landscape
-- **Prompt:**
-> A wide horizon shot of the Great Rift Valley with a distant industrial site visible at the foot of the escarpment: tanks and a stack of silos in tiny scale, suggesting industrial presence in a vast Kenyan landscape. Late afternoon golden light. Composition: ultra-wide, landscape dominating, industrial detail small and intentional. Editorial.
-
 #### LOC-NBO-01 — `/locations/nairobi/` hero
 - **Path:** `public/images/locations/nairobi-hero.png`
 - **Aspect:** 21:9 cinematic landscape
@@ -391,57 +385,10 @@ ship.
 - **Prompt:**
 > A wide view of a chemical processing bay with an epoxy-lined reactor in the centre, surrounded by structural steel platforms, colour-coded process piping (yellow, red, green) entering from multiple sides. PPE-equipped operator small in the background. Cool industrial lighting. Composition: ultra-wide, reactor centred, piping geometry surrounding. Editorial. (Different from the sector-chemical shot, which is the closer R-2501 close-up.)
 
-### Tier 2 location pages
-
-#### T2-MOMBASA-01 — `/locations/mombasa/` hero
-- **Path:** `public/images/locations/mombasa-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of the Mombasa industrial port area: cargo cranes, a few factory buildings, warm coastal light with the Indian Ocean visible in the distance. Composition: ultra-wide, port infrastructure centre, water on the right. Editorial.
-
-#### T2-KISUMU-01 — `/locations/kisumu/` hero
-- **Path:** `public/images/locations/kisumu-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of a Kisumu lakeside industrial site with Lake Victoria visible: factory buildings, a couple of storage tanks, the lake horizon in the background. Late afternoon golden light. Composition: ultra-wide, industrial site left, lake right. Editorial.
-
-#### T2-NAKURU-01 — `/locations/nakuru/` hero
-- **Path:** `public/images/locations/nakuru-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide Rift Valley industrial estate near Nakuru: silos and tanks in a flat agricultural belt, distant escarpment to one side, warm afternoon. Composition: ultra-wide, industrial detail centre, escarpment as landscape backdrop. Editorial.
-
-#### T2-ELDORET-01 — `/locations/eldoret/` hero
-- **Path:** `public/images/locations/eldoret-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide North Rift agricultural-industrial scene near Eldoret: large grain silos in the foreground, wheat or maize fields stretching to the horizon, warm late-afternoon light. Composition: ultra-wide, silos right-of-centre, fields extending. Editorial.
-
-#### T2-THIKA-01 — `/locations/thika/` hero
-- **Path:** `public/images/locations/thika-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of the Thika light-industrial corridor: factory roofs, the Thika superhighway visible cutting through the frame with afternoon traffic, manufacturing buildings on both sides. Composition: ultra-wide, road as a leading line. Editorial.
-
-### Tier 2 East Africa country pages
-
-#### T2-UGANDA-01 — `/locations/uganda/` hero
-- **Path:** `public/images/locations/uganda-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of a Ugandan industrial plant near Kampala or Jinja: a few cylindrical tanks, a small refinery, warm afternoon light, distant Lake Victoria or hills visible. Composition: ultra-wide, plant centred. Editorial. (Use sparingly: we serve Uganda but our identity is Kenya-first.)
-
-#### T2-TANZANIA-01 — `/locations/tanzania/` hero
-- **Path:** `public/images/locations/tanzania-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of a Tanzanian coastal industrial site near Dar es Salaam: cargo infrastructure, a few tanks, palm trees and coastal light. Composition: ultra-wide, industrial detail centre, coastal context surrounding. Editorial.
-
-#### T2-ETHIOPIA-01 — `/locations/ethiopia/` hero
-- **Path:** `public/images/locations/ethiopia-hero.png`
-- **Aspect:** 21:9
-- **Prompt:**
-> A wide view of an Ethiopian highland industrial site near Addis Ababa: tanks and silos against a backdrop of the Ethiopian highlands, cool morning light, distinctive landscape contrast vs the Kenyan shots. Composition: ultra-wide, plant centre, mountains beyond. Editorial.
+> **No other location pages.** Per user instruction: Nairobi is the only
+> location page. No Mombasa, Kisumu, Nakuru, Eldoret, Thika. No Uganda,
+> Tanzania, Ethiopia. The /locations/ overview page exists, but it points
+> at Nairobi only.
 
 ---
 
@@ -466,8 +413,8 @@ until last.
 ## Summary count
 
 - **Already in use (no change):** 11 images
-- **Phase 1 hero swaps (this doc, Part 2):** 31 unique hero slots
+- **Phase 1 hero swaps (this doc, Part 2):** 30 unique hero slots (LOC-KE removed)
 - **Phase 1 inline slots (Part 3):** 4 IoT screens + 1 Crywan inline + 5 about/workshop inline = 10 slots
-- **Tier 2 page heroes (Part 4):** 18 unique hero slots
+- **Tier 2 page heroes (Part 4):** 10 unique hero slots (8 location/country slots removed per user)
 
-**Total unique images for full site:** ~70 images.
+**Total unique images for full site:** ~61 images.

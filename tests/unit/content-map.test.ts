@@ -85,15 +85,10 @@ describe("content-map", () => {
   });
 
   describe("LOCATIONS", () => {
-    it("contains Kenya country page and all six Kenya cities", () => {
+    it("contains Nairobi as the only location", () => {
       const slugs = LOCATIONS.map((l) => l.slug);
-      expect(slugs).toContain("kenya");
       expect(slugs).toContain("nairobi");
-      expect(slugs).toContain("mombasa");
-      expect(slugs).toContain("kisumu");
-      expect(slugs).toContain("nakuru");
-      expect(slugs).toContain("eldoret");
-      expect(slugs).toContain("thika");
+      expect(slugs.length).toBe(1);
     });
 
     it("Nairobi names industrial estates", () => {
@@ -103,11 +98,13 @@ describe("content-map", () => {
       expect(nairobi?.industrialEstates).toContain("Athi River");
     });
 
-    it("includes East African neighbors at country scope", () => {
-      const eaCountries = LOCATIONS.filter(
-        (l) => l.scope === "country" && l.country !== "Kenya",
-      );
-      expect(eaCountries.length).toBeGreaterThanOrEqual(3);
+    it("does NOT include East African neighbors or other Kenyan cities", () => {
+      const slugs = LOCATIONS.map((l) => l.slug);
+      expect(slugs).not.toContain("uganda");
+      expect(slugs).not.toContain("tanzania");
+      expect(slugs).not.toContain("ethiopia");
+      expect(slugs).not.toContain("mombasa");
+      expect(slugs).not.toContain("kisumu");
     });
   });
 

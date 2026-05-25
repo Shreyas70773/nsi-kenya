@@ -352,7 +352,6 @@ export type Location = {
 };
 
 export const LOCATIONS: readonly Location[] = [
-  { slug: "kenya", name: "Kenya", scope: "country", country: "Kenya", tier: 1 },
   {
     slug: "nairobi",
     name: "Nairobi",
@@ -368,32 +367,6 @@ export const LOCATIONS: readonly Location[] = [
       "Thika Road",
     ],
     tier: 1,
-  },
-  { slug: "mombasa", name: "Mombasa", scope: "city", country: "Kenya", tier: 2 },
-  { slug: "kisumu", name: "Kisumu", scope: "city", country: "Kenya", tier: 2 },
-  { slug: "nakuru", name: "Nakuru", scope: "city", country: "Kenya", tier: 2 },
-  { slug: "eldoret", name: "Eldoret", scope: "city", country: "Kenya", tier: 2 },
-  { slug: "thika", name: "Thika", scope: "city", country: "Kenya", tier: 2 },
-  {
-    slug: "uganda",
-    name: "Uganda",
-    scope: "country",
-    country: "Uganda",
-    tier: 2,
-  },
-  {
-    slug: "tanzania",
-    name: "Tanzania",
-    scope: "country",
-    country: "Tanzania",
-    tier: 2,
-  },
-  {
-    slug: "ethiopia",
-    name: "Ethiopia",
-    scope: "country",
-    country: "Ethiopia",
-    tier: 2,
   },
 ] as const;
 

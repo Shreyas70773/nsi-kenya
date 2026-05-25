@@ -30,9 +30,10 @@ describe("sitemap", () => {
     expect(urls).toContain(`${SITE_URL}/industries/chemical-processing/`);
   });
 
-  it("contains Kenya and Nairobi location pages", () => {
-    expect(urls).toContain(`${SITE_URL}/locations/kenya/`);
+  it("contains the Nairobi location page (the only location)", () => {
     expect(urls).toContain(`${SITE_URL}/locations/nairobi/`);
+    expect(urls.some((u) => u.includes("/locations/kenya/"))).toBe(false);
+    expect(urls.some((u) => u.includes("/locations/mombasa/"))).toBe(false);
   });
 
   it("contains the Crywan case study", () => {

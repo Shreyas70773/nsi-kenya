@@ -65,7 +65,7 @@ export default function NairobiPage() {
         imageSrc="/images/home/structural-gantry.png"
         imageAlt=""
         primaryCta={{ href: "/request-site-audit/", label: "Book a Nairobi site visit" }}
-        secondaryCta={{ href: "/locations/kenya/", label: "Other Kenya cities" }}
+        secondaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         metaLeft="48-hour response"
         metaRight="All major industrial estates"
       />

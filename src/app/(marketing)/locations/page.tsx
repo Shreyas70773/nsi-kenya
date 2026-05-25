@@ -1,43 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
+import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 
 export const metadata: Metadata = {
   title: "Locations",
   description:
-    "We supply across Kenya, with the workshop in Nairobi. Nationwide flatbed delivery, on-site install supervision included.",
+    "Workshop and team based in Nairobi. Nationwide flatbed delivery across Kenya with on-site install supervision.",
   alternates: { canonical: "/locations/" },
 };
-
-const LOCATIONS = [
-  { slug: "kenya", name: "Kenya", scope: "Country page", tier: 1 },
-  { slug: "nairobi", name: "Nairobi", scope: "Primary city, 48-hour response", tier: 1 },
-  { slug: "mombasa", name: "Mombasa", scope: "Coast region", tier: 2 },
-  { slug: "kisumu", name: "Kisumu", scope: "Western Kenya", tier: 2 },
-  { slug: "nakuru", name: "Nakuru", scope: "Rift Valley", tier: 2 },
-  { slug: "eldoret", name: "Eldoret", scope: "North Rift", tier: 2 },
-  { slug: "thika", name: "Thika", scope: "Light industrial corridor", tier: 2 },
-];
 
 export default function LocationsPage() {
   return (
     <>
       <PageHero
         eyebrow="Locations"
-        title="One country,"
-        titleAccent="every industrial estate."
-        subtitle="Built in Nairobi. Delivered across Kenya. The locations page exists so the geo-pack shows we're physically present in the major industrial cities."
+        title="Workshop in Nairobi."
+        titleAccent="Delivery across Kenya."
+        subtitle="The team and the workshop are in Nairobi. From there we ship to industrial sites anywhere in Kenya, with install supervision included."
         imageSrc="/images/home/hero-tank-farm.png"
         imageAlt=""
-        primaryCta={{ href: "/locations/nairobi/", label: "Nairobi specifics" }}
+        primaryCta={{ href: "/locations/nairobi/", label: "About Nairobi" }}
         secondaryCta={{ href: "/request-quote/", label: "Get a quote" }}
-        metaLeft="Nationwide delivery"
-        metaRight="Workshop in Nairobi"
+        metaLeft="Nairobi base"
+        metaRight="Nationwide delivery"
       />
 
       <Section size="compact">
@@ -50,40 +41,42 @@ export default function LocationsPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Where we operate</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Kenya-deep coverage.
-          </h2>
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
+          <div className="md:col-span-5">
+            <Eyebrow>Where we are</Eyebrow>
+            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+              Nairobi, with the country in delivery range.
+            </h2>
+          </div>
+          <div className="md:col-span-7">
+            <Prose>
+              <p>
+                Our workshop and engineering team sit in the Nairobi
+                industrial belt. We deliver across Kenya by flatbed, and
+                install supervision is part of every project.
+              </p>
+              <p>
+                For Nairobi industrial estates the typical response time
+                is 48 hours from call to site. For the rest of Kenya it
+                depends on the route and the project scope, and is
+                usually a few days for delivery and the same for
+                supervision arrival.
+              </p>
+            </Prose>
+            <Link
+              href="/locations/nairobi/"
+              className="press mt-6 inline-flex items-center gap-2 rounded-pill bg-accent px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-accent-strong"
+            >
+              See the Nairobi page
+              <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
+            </Link>
+          </div>
         </div>
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {LOCATIONS.map((loc, i) => (
-            <li key={loc.slug}>
-              <Link
-                href={`/locations/${loc.slug}/`}
-                className="group grid grid-cols-12 items-center gap-4 py-6 transition-colors hover:bg-surface/40 md:gap-6 md:py-8"
-              >
-                <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-display col-span-10 text-xl font-medium tracking-tight md:col-span-3 md:text-2xl">
-                  {loc.name}
-                </h3>
-                <p className="col-span-12 text-sm text-muted md:col-span-7">
-                  {loc.scope}
-                </p>
-                <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent md:col-span-1">
-                  <ArrowUpRight className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
       </Section>
 
       <CtaBand
-        headline="In a city not on the list?"
-        headlineAccent="We still deliver there."
+        headline="Site anywhere in Kenya?"
+        headlineAccent="Tell us where and we'll come."
         cards={DEFAULT_CTA_CARDS}
       />
     </>
