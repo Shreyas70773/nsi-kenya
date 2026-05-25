@@ -20,29 +20,37 @@ const INDUSTRIES = [
     n: "01",
     name: "Food & Beverage",
     href: "/industries/food-and-beverage/",
-    pillar: "Capacity expansion · New product line · Audit-driven",
+    pillar: "Capacity expansion, new product line, audit-driven",
     products: "SS 304/316L · Epoxy · Silos · Flow + Level + Temp",
+    image: "/images/home/tanks-weld-bead.png",
+    imageAlt: "Stainless tank weld bead detail",
   },
   {
     n: "02",
     name: "ETP & Water Treatment",
     href: "/industries/etp-water-treatment/",
-    pillar: "NEMA compliance · EMCA CAP 387 · Discharge parameters",
+    pillar: "NEMA compliance, EMCA CAP 387, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
+    image: "/images/home/instruments-flow-meter.png",
+    imageAlt: "Electromagnetic flow meter on stainless pipework",
   },
   {
     n: "03",
     name: "Alcohol & Distilling",
     href: "/industries/alcohol-distilling/",
-    pillar: "Brewing scale-up · Distillery containment · Grain handling",
+    pillar: "Brewing scale-up, distillery containment, grain handling",
     products: "SS · Epoxy · Zinc-alum · Grain silos",
+    image: "/images/home/crywan-reference-dusk.png",
+    imageAlt: "Distillery-style processing tanks at dusk",
   },
   {
     n: "04",
     name: "Chemical Processing",
     href: "/industries/chemical-processing/",
-    pillar: "Corrosive media · Containment · Process integrity",
+    pillar: "Corrosive media, containment, process integrity",
     products: "Epoxy · SS · Pressure + Temp instruments",
+    image: "/images/home/structural-gantry.png",
+    imageAlt: "Steel gantry and tank-support framework",
   },
 ] as const;
 
@@ -51,74 +59,107 @@ export default function Home() {
     <>
       <JsonLd data={webSiteLd()} />
 
-      {/* ─── HERO ─────────────────────────────────────────────────────── */}
+      {/* ─── HERO (IBS-style framed card) ─────────────────────────────── */}
       <section
         aria-label="Hero"
-        className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-20"
+        className="px-3 pt-24 sm:px-4 md:pt-28 lg:px-6"
       >
-        <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="relative isolate overflow-hidden rounded-[28px] md:rounded-[36px]">
+          {/* Background photo */}
           <Image
             src="/images/home/hero-tank-farm.png"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="-z-20 object-cover object-center"
           />
-          {/* Warm cream wash for H1 legibility. */}
+          {/* Cinematic wash: darker bottom for the credential strip, gentler
+              top so the headline reads clearly without killing the photo. */}
           <div
-            className="absolute inset-0"
+            aria-hidden
+            className="absolute inset-0 -z-10"
             style={{
               background:
-                "radial-gradient(ellipse 80% 70% at 50% 55%, rgb(var(--ns-bg) / 0.82) 25%, rgb(var(--ns-bg) / 0.55) 65%, rgb(var(--ns-bg) / 0.93) 100%)",
+                "linear-gradient(180deg, rgb(8 6 4 / 0.55) 0%, rgb(8 6 4 / 0.28) 35%, rgb(8 6 4 / 0.32) 70%, rgb(8 6 4 / 0.78) 100%)",
             }}
           />
-        </div>
+          {/* Subtle geometric overlay (per IBS reference). Sits behind the
+              content but in front of the wash; outlined triangle, very low
+              opacity. */}
+          <svg
+            aria-hidden
+            viewBox="0 0 600 600"
+            preserveAspectRatio="xMaxYMid meet"
+            className="pointer-events-none absolute -right-20 -bottom-40 -z-10 hidden h-[110%] w-auto text-white/12 md:block"
+          >
+            <polygon
+              points="300,40 560,520 40,520"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <polygon
+              points="300,120 480,460 120,460"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              opacity="0.55"
+            />
+          </svg>
 
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 text-center">
-          <div className="font-mono-label flex items-center gap-3 text-[11px] text-faint">
-            <span className="h-px w-8 bg-faint/60" aria-hidden />
-            <span>Nairobi · Kenya</span>
-            <span className="h-px w-8 bg-faint/60" aria-hidden />
+          {/* Content grid: top-left headline + pills / top-right description + CTA */}
+          <div className="relative grid min-h-[640px] grid-cols-1 gap-8 p-7 sm:p-10 md:min-h-[680px] md:grid-cols-12 md:gap-10 md:p-14 lg:p-16">
+            {/* TOP-LEFT: headline + pills */}
+            <div className="flex flex-col gap-7 md:col-span-7">
+              <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
+                <span className="h-px w-8 bg-white/30" aria-hidden />
+                <span>Nairobi · Kenya</span>
+              </div>
+              <h1 className="font-display text-balance text-[clamp(2.5rem,5vw,5rem)] font-medium leading-[0.98] tracking-tight text-white">
+                Made in East Africa.{" "}
+                <br className="hidden sm:block" />
+                <span className="text-accent">Built for Kenya.</span>
+              </h1>
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                {["Tanks", "Silos", "Structural", "Instruments", "Monitoring"].map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-pill border border-white/20 bg-white/8 px-3.5 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md"
+                    >
+                      {tag}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
+
+            {/* TOP-RIGHT: body + dark CTA */}
+            <div className="flex flex-col items-start gap-5 md:col-span-5 md:items-end md:text-right">
+              <p className="max-w-sm text-sm leading-relaxed text-white/85 md:text-base">
+                One supplier across stainless, epoxy-lined, and zinc-alum
+                tanks; silos and grain storage; structural fabrication; and
+                the full instrument stack.
+              </p>
+              <Link
+                href="/request-quote/"
+                className="press group inline-flex items-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-medium text-text transition-colors duration-200 hover:bg-accent hover:text-on-accent"
+              >
+                Tell us what you need
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  strokeWidth={2.2}
+                />
+              </Link>
+            </div>
+
+            {/* BOTTOM credential strip */}
+            <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:col-span-12 md:flex-row md:items-end md:justify-between">
+              <span>Serving Kenya, every county.</span>
+              <span>NEMA-aware · KEBS-fluent · Safaricom NB-IoT capable</span>
+            </div>
           </div>
-
-          <h1 className="font-display max-w-4xl text-balance text-[clamp(2.25rem,4.5vw,4.25rem)] font-medium leading-[1.02] tracking-tight">
-            Made in East Africa.{" "}
-            <span className="text-accent">Built for Kenya.</span>
-          </h1>
-
-          <p className="max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            Tanks, silos, structural works, and process instruments. One
-            supplier across the full infrastructure stack, with optional
-            cloud-ready monitoring on every install.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <Link
-              href="/request-quote/"
-              className="press group inline-flex items-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong"
-            >
-              Get a quote
-              <ArrowUpRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                strokeWidth={2.2}
-              />
-            </Link>
-            <Link
-              href="/products/"
-              className="press inline-flex items-center gap-2 rounded-pill border border-border/15 bg-surface/70 px-6 py-3.5 text-sm font-medium text-text backdrop-blur-md transition-colors duration-200 hover:bg-surface"
-            >
-              Explore products
-              <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="font-mono-label absolute inset-x-0 bottom-6 mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 text-[10px] text-faint">
-          <span>Serving Kenya, every county.</span>
-          <span className="hidden md:inline">
-            NEMA-aware · KEBS-fluent · Safaricom NB-IoT capable
-          </span>
         </div>
       </section>
 
@@ -328,47 +369,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── INDUSTRIES ─────────────────────────────────────────────────── */}
+      {/* ─── INDUSTRIES (IBS-style image cards) ─────────────────────────── */}
       <section aria-label="Industries served" className="px-6 py-28 md:py-36">
         <div className="mx-auto max-w-6xl">
           <Reveal stagger={0.06}>
-            <div data-reveal-item className="mb-12 flex flex-col gap-3 md:mb-16">
-              <span className="font-mono-label text-[10px] text-faint">
-                ⟶ Where we work
-              </span>
-              <h2 className="font-display max-w-3xl text-balance text-4xl font-medium leading-tight tracking-tight md:text-5xl">
-                Four industries. Four entirely
-                <br />
-                different buying conversations.
-              </h2>
+            <div
+              data-reveal-item
+              className="mb-12 flex flex-col items-start gap-4 md:mb-16 md:flex-row md:items-end md:justify-between"
+            >
+              <div className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  ⟶ Our sectors
+                </span>
+                <h2 className="font-display max-w-3xl text-balance text-4xl font-medium leading-tight tracking-tight md:text-5xl">
+                  Four industries, four
+                  <br />
+                  different buying conversations.
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm text-muted">
+                Each sector has its own buying triggers and equipment fit.
+                Pick yours; the page tells you exactly what we install.
+              </p>
             </div>
 
-            <ol className="divide-y divide-border/10 border-y border-border/10">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
               {INDUSTRIES.map((ind) => (
-                <li key={ind.href} data-reveal-item>
-                  <Link
-                    href={ind.href}
-                    className="group grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-surface/40 md:gap-6 md:py-9"
-                  >
-                    <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                      {ind.n}
+                <Link
+                  key={ind.href}
+                  href={ind.href}
+                  data-reveal-item
+                  className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
+                >
+                  <Image
+                    src={ind.image}
+                    alt={ind.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 -z-10"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
+                    }}
+                  />
+                  <div className="absolute left-5 top-5">
+                    <span className="font-mono-label rounded-pill border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] text-white/85 backdrop-blur-md">
+                      Sector {ind.n}
                     </span>
-                    <h3 className="font-display col-span-10 text-2xl font-medium tracking-tight md:col-span-3 md:text-3xl">
+                  </div>
+                  <div className="relative flex flex-col gap-2 p-5 md:p-6">
+                    <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-white md:text-3xl">
                       {ind.name}
                     </h3>
-                    <p className="col-span-12 text-sm text-muted md:col-span-4">
+                    <p className="text-xs leading-relaxed text-white/70">
                       {ind.pillar}
                     </p>
-                    <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-3">
-                      {ind.products}
-                    </p>
-                    <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent md:col-span-1">
-                      <ArrowUpRight className="h-5 w-5" strokeWidth={1.8} />
+                    <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
+                      Open sector
+                      <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
                     </span>
-                  </Link>
-                </li>
+                  </div>
+                </Link>
               ))}
-            </ol>
+            </div>
           </Reveal>
         </div>
       </section>
