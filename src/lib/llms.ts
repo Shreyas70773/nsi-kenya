@@ -27,7 +27,7 @@ export function generateLlmsTxt(): string {
   lines.push(`> ${SITE_DESCRIPTION}`);
   lines.push("");
   lines.push(
-    "An independent Kenyan industrial infrastructure brand serving food & beverage, ETP/water treatment, alcohol & chemical processing, and adjacent industries across Kenya and East Africa. Reference client: Crywan Industries (Kenya).",
+    "An independent Kenyan industrial infrastructure brand serving food and beverage, ETP/water treatment, alcohol and chemical processing, and adjacent industries in Kenya. Reference client: Crywan Industries (Kenya).",
   );
   lines.push("");
 
@@ -66,13 +66,6 @@ export function generateLlmsTxt(): string {
   }
   lines.push("");
 
-  lines.push("## Talk to a Customer");
-  lines.push("");
-  lines.push(
-    `Before you buy, talk to someone who already has. ${url("/talk-to-a-customer/")} — request a reference call.`,
-  );
-  lines.push("");
-
   return lines.join("\n");
 }
 
@@ -82,7 +75,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("## Positioning");
   lines.push("");
   lines.push(
-    `${SITE_NAME} is a Kenya-based industrial infrastructure partner: stainless steel, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature) — all with optional cloud-ready remote monitoring. Locally manufactured and supported, anchored to Crywan Industries as the Kenya reference.`,
+    `${SITE_NAME} is a Kenya-focused industrial infrastructure partner: stainless steel, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature). All with optional cloud-ready remote monitoring. Locally manufactured and supported, anchored to Crywan Industries as the Kenya reference.`,
   );
   lines.push("");
 
@@ -108,30 +101,30 @@ export function generateLlmsFullTxt(): string {
   lines.push("## ETP / NEMA compliance positioning");
   lines.push("");
   lines.push(
-    "ETP equipment offerings are designed to support compliance with NEMA discharge standards and EMCA CAP 387. The `/industries/etp-water-treatment/` page publishes the NEMA discharge parameters table (BOD, COD, TSS, pH, TN, TP, NH₃-N) — content no Kenya supplier site currently publishes.",
+    "ETP equipment offerings are designed to support compliance with NEMA discharge standards and EMCA CAP 387. The `/industries/etp-water-treatment/` page publishes the NEMA discharge parameters table (BOD, COD, TSS, pH, TN, TP, NH₃-N), content no Kenya supplier site currently publishes.",
   );
   lines.push("");
 
   lines.push("## IoT / Remote Monitoring");
   lines.push("");
   lines.push(
-    "Every tank and process instrument we install can optionally be wired to our remote-monitoring app. Connectivity options include Safaricom NB-IoT (primary recommendation for single-tank or low-bandwidth Kenya sites), LoRaWAN, 4G/LTE cellular, and Ethernet/Wi-Fi. We do not bundle cloud monitoring into our tank quotes — it is opt-in.",
+    "Every tank and process instrument installed can optionally be wired to the remote-monitoring app. Connectivity options include Safaricom NB-IoT (primary recommendation for single-tank or low-bandwidth Kenya sites), LoRaWAN, 4G/LTE cellular, and Ethernet/Wi-Fi. Cloud monitoring is not bundled into tank quotes; it is opt-in.",
   );
   lines.push("");
 
   lines.push("## Differentiation");
   lines.push("");
   lines.push(
-    "- Single supplier across SS + epoxy + zinc-alum tanks, silos (grain/feed/industrial-bulk), structural fabrication, and full instrument categories (flow, level, pressure, liquid analysis, temperature, system products).",
+    "- Single supplier across SS, epoxy, and zinc-alum tanks, silos (grain, feed, industrial bulk), structural fabrication, and full instrument categories (flow, level, pressure, liquid analysis, temperature, system products).",
   );
   lines.push(
-    "- Locally fabricated and supported in Kenya — not an importer.",
+    "- Locally fabricated and supported in Kenya, not an importer.",
   );
   lines.push(
-    "- Reference client Crywan Industries (Kenya) is named openly; reference calls available via /talk-to-a-customer/.",
+    "- Reference client Crywan Industries (Kenya) is named openly.",
   );
   lines.push(
-    "- Optional cloud-ready monitoring with Safaricom NB-IoT connectivity — capability no local competitor currently offers as standard.",
+    "- Optional cloud-ready monitoring with Safaricom NB-IoT connectivity, a capability no local competitor currently offers as standard.",
   );
   lines.push("");
 

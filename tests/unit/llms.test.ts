@@ -22,10 +22,6 @@ describe("llms.txt", () => {
     expect(txt).toContain("Crywan Industries");
   });
 
-  it("references /talk-to-a-customer/ trust gate", () => {
-    expect(txt).toContain("/talk-to-a-customer/");
-  });
-
   it("uses llmstxt.org standard top-level H1", () => {
     const firstLine = txt.split("\n")[0];
     expect(firstLine).toMatch(/^# /);

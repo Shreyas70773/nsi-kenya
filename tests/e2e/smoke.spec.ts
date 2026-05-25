@@ -28,13 +28,13 @@ test.describe("Phase 0 smoke", () => {
     await expect(cta).toHaveAttribute("href", "/request-quote/");
   });
 
-  test("trust-gate /talk-to-a-customer/ is linked from the homepage", async ({
+  test("'Talk to a customer' is NOT present anywhere on the homepage", async ({
     page,
   }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("link", { name: /Talk to a customer/i }).first(),
-    ).toBeVisible();
+      page.getByRole("link", { name: /Talk to a customer/i }),
+    ).toHaveCount(0);
   });
 
   test("sitemap.xml is reachable and contains the Crywan case study", async ({

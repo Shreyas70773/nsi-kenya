@@ -67,7 +67,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Zinc-Alum Tanks",
     category: "tanks",
     shortDescription:
-      "Bolted zinc-aluminum steel tanks — corrosion-resistant alternative to carbon steel with multi-decade lifespan.",
+      "Bolted zinc-aluminum steel tanks. A corrosion-resistant alternative to carbon steel with multi-decade lifespan.",
     applications: ["Water storage", "Industrial process water", "Brewing", "ETP"],
     primaryQueries: [
       "zinc aluminum tank Kenya",
@@ -104,7 +104,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Industrial Bulk Silos",
     category: "silos",
     shortDescription:
-      "Steel silos for industrial bulk material storage — capacities 10–1000MT.",
+      "Steel silos for industrial bulk material storage. Capacities 10 to 1000MT.",
     applications: ["Cement", "Powder handling", "Food ingredients"],
     primaryQueries: [
       "industrial silo Kenya",
@@ -117,7 +117,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Structural Fabrication Works",
     category: "structural",
     shortDescription:
-      "Structural steel fabrication for industrial plants — platforms, walkways, tank supports, plant structures.",
+      "Structural steel fabrication for industrial plants. Platforms, walkways, tank supports, plant structures.",
     applications: [
       "Plant construction",
       "Tank platforms",
@@ -221,7 +221,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Cloud-Ready Remote Monitoring",
     category: "iot",
     shortDescription:
-      "Optional cloud-connected monitoring for tanks and process instruments — view levels, flow, water quality, and alarms from any device.",
+      "Optional cloud-connected monitoring for tanks and process instruments. View levels, flow, water quality, and alarms from any device.",
     applications: [
       "Tank level monitoring",
       "ETP continuous compliance",

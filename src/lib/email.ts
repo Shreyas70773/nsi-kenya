@@ -40,7 +40,7 @@ function describeIntent(
     case "purchase":
       return "Ready to purchase";
     case "urgent-etp":
-      return "URGENT — ETP compliance deadline";
+      return "URGENT (ETP compliance deadline)";
   }
 }
 
@@ -61,11 +61,11 @@ export async function sendQuoteNotification(
   const c = client();
   if (!c) {
     console.warn(
-      "[email] RESEND_API_KEY not set — skipping quote notification",
+      "[email] RESEND_API_KEY not set, skipping quote notification",
     );
     return { ok: true, skipped: true };
   }
-  const subject = `New quote request — ${describeIntent(quote.intent)} — ${quote.company}`;
+  const subject = `New quote request (${describeIntent(quote.intent)}): ${quote.company}`;
   const body = [
     `Intent:    ${describeIntent(quote.intent)}`,
     `Name:      ${quote.name}`,
@@ -79,7 +79,7 @@ export async function sendQuoteNotification(
     "",
     quote.message ? `Message:\n${quote.message}` : null,
     "",
-    "—",
+    "---",
     `Reply at ${quote.email}`,
     `Source: ${SITE_URL}`,
   ]
@@ -112,11 +112,11 @@ export async function sendReferenceCallNotification(
   const c = client();
   if (!c) {
     console.warn(
-      "[email] RESEND_API_KEY not set — skipping reference-call notification",
+      "[email] RESEND_API_KEY not set, skipping reference-call notification",
     );
     return { ok: true, skipped: true };
   }
-  const subject = `Reference-call request — ${req.company}`;
+  const subject = `Reference-call request: ${req.company}`;
   const body = [
     `A prospect wants to talk to an existing customer before they buy.`,
     "",
@@ -126,7 +126,7 @@ export async function sendReferenceCallNotification(
     req.industry ? `Industry:    ${req.industry}` : null,
     req.considering ? `Considering: ${req.considering}` : null,
     "",
-    "—",
+    "---",
     "Next step: review industry/scale within 4 working hours, identify the most",
     "relevant existing reference (initially Crywan Industries), confirm with the",
     "reference, and facilitate the introduction.",

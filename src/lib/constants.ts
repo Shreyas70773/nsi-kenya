@@ -2,7 +2,7 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://northstarimpex.co.ke";
 export const SITE_NAME = "North Star Impex Kenya";
 export const SITE_DESCRIPTION =
-  "Industrial tanks, silos, structural works, and process instruments. Made in Kenya. Trusted by Crywan Industries.";
+  "Industrial tanks, silos, structural works, and process instruments. Made in East Africa, built for Kenya.";
 export const CONTACT_EMAIL =
   process.env.CONTACT_EMAIL ?? "hello@northstarimpex.co.ke";
 export const CONTACT_PHONE = process.env.CONTACT_PHONE ?? "+254-XXX-XXXXXX";

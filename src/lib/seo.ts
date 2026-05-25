@@ -75,7 +75,7 @@ export function localBusinessLd(location: LocationInput) {
     "@context": SCHEMA,
     "@type": "LocalBusiness" as const,
     "@id": `${SITE_URL}/locations/${location.slug}/#business`,
-    name: `${SITE_NAME} — ${location.name}`,
+    name: `${SITE_NAME}, ${location.name}`,
     url: `${SITE_URL}/locations/${location.slug}/`,
     address: {
       "@type": "PostalAddress" as const,
@@ -186,7 +186,7 @@ export function softwareApplicationLd() {
   return {
     "@context": SCHEMA,
     "@type": "SoftwareApplication" as const,
-    name: `${SITE_NAME} — Remote Monitoring`,
+    name: `${SITE_NAME}, Remote Monitoring`,
     url: `${SITE_URL}/products/iot/`,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",

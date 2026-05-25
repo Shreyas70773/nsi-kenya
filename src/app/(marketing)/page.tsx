@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 
 const TRUST_TOKENS = [
   "Fabricated in Kenya",
-  "Stainless · Epoxy · Zinc-alum",
+  "Stainless, epoxy, zinc-alum",
   "NEMA-aware ETP equipment",
   "Optional cloud-ready monitoring",
-  "On-site within 48 hours · Nairobi",
-  "Reference work across East Africa",
+  "On-site within 48 hours, Nairobi",
+  "Reference work across Kenya",
 ] as const;
 
 const INDUSTRIES = [
@@ -78,18 +78,18 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 text-center">
           <div className="font-mono-label flex items-center gap-3 text-[11px] text-faint">
             <span className="h-px w-8 bg-faint/60" aria-hidden />
-            <span>Nairobi · est. for East Africa</span>
+            <span>Nairobi · Kenya</span>
             <span className="h-px w-8 bg-faint/60" aria-hidden />
           </div>
 
           <h1 className="font-display max-w-4xl text-balance text-[clamp(2.25rem,4.5vw,4.25rem)] font-medium leading-[1.02] tracking-tight">
-            Made in Kenya.{" "}
-            <span className="text-accent">Built for East Africa.</span>
+            Made in East Africa.{" "}
+            <span className="text-accent">Built for Kenya.</span>
           </h1>
 
           <p className="max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            Tanks, silos, structural works, and process instruments — one
-            supplier across the full infrastructure stack. Optional
+            Tanks, silos, structural works, and process instruments. One
+            supplier across the full infrastructure stack, with optional
             cloud-ready monitoring on every install.
           </p>
 
@@ -115,7 +115,7 @@ export default function Home() {
         </div>
 
         <div className="font-mono-label absolute inset-x-0 bottom-6 mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 text-[10px] text-faint">
-          <span>Kenya · Uganda · Tanzania · Ethiopia · Rwanda</span>
+          <span>Serving Kenya, every county.</span>
           <span className="hidden md:inline">
             NEMA-aware · KEBS-fluent · Safaricom NB-IoT capable
           </span>
@@ -171,11 +171,11 @@ export default function Home() {
                 <h2 className="font-display max-w-2xl text-balance text-4xl font-medium tracking-tight md:text-5xl">
                   Built for the plants
                   <br />
-                  that build East Africa.
+                  that build Kenya.
                 </h2>
               </div>
               <p className="max-w-sm text-sm text-muted">
-                Single supplier across the entire infrastructure stack — no
+                Single supplier across the entire infrastructure stack. No
                 competitor in Kenya carries this breadth. Every category is
                 locally fabricated or locally stocked.
               </p>
@@ -189,7 +189,7 @@ export default function Home() {
                 title="Tanks"
                 tagline="Stainless · Epoxy-lined · Zinc-alum"
                 copy="304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted zinc-alum for multi-decade water storage."
-                stat="3 metallurgies · 1–500m³"
+                stat="3 metallurgies, 1 to 500m³"
                 className="col-span-6 row-span-2 md:col-span-4"
                 imageSrc="/images/home/tanks-weld-bead.png"
                 imageAlt="Macro detail of a stainless steel tank weld bead"
@@ -201,8 +201,8 @@ export default function Home() {
                 href="/products/silos/"
                 title="Silos"
                 tagline="Grain · Feed · Industrial bulk"
-                copy="10–500MT capacity for breweries, feed mills, and bulk-handling plants."
-                stat="10–1000 MT"
+                copy="10 to 500MT capacity for breweries, feed mills, and bulk-handling plants."
+                stat="10 to 1000 MT"
                 className="col-span-6 row-span-1 md:col-span-2"
                 imageSrc="/images/home/silos-corrugated.png"
                 imageAlt="Three corrugated steel silos with overhead catwalk at a Kenyan plant"
@@ -213,8 +213,8 @@ export default function Home() {
                 href="/products/instruments/"
                 title="Process Instruments"
                 tagline="Flow · Level · Pressure · pH · Temp"
-                copy="Full instrument categories with 4–20mA, Modbus, HART out of the box."
-                stat="6 categories · 154 SKUs"
+                copy="Full instrument categories with 4 to 20mA, Modbus, and HART out of the box."
+                stat="6 categories, 154 SKUs"
                 className="col-span-6 row-span-1 md:col-span-2"
                 imageSrc="/images/home/instruments-flow-meter.png"
                 imageAlt="Electromagnetic flow meter on a stainless steel pipe with red display head"
@@ -237,7 +237,7 @@ export default function Home() {
                 href="/products/iot/"
                 title="Remote Monitoring"
                 tagline="Optional · Safaricom NB-IoT capable"
-                copy="Cloud-connected oversight on every install — tank levels, flow, water quality, alarms from any device. Not bundled; ask for it when you want it."
+                copy="Cloud-connected oversight on every install: tank levels, flow, water quality, alarms from any device. Not bundled; ask for it when you want it."
                 stat="LoRa · NB-IoT · LTE · Ethernet"
                 className="col-span-6 row-span-1 md:col-span-3"
                 imageSrc="/images/home/iot-kisumu-plant.png"
@@ -277,7 +277,7 @@ export default function Home() {
                   <div className="relative aspect-[16/10] overflow-hidden md:col-span-3 md:aspect-auto">
                     <Image
                       src="/images/home/crywan-reference-dusk.png"
-                      alt="Crywan Industries — stainless processing tanks at dusk, plant operator silhouette walking past"
+                      alt="Crywan Industries: stainless processing tanks at dusk, plant operator silhouette walking past"
                       fill
                       sizes="(min-width: 768px) 60vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
@@ -291,7 +291,7 @@ export default function Home() {
                     </div>
                     <p className="text-xl leading-snug text-text md:text-2xl">
                       A long-running stainless tank installation for a Kenyan
-                      food and beverage operator — the reference our customers
+                      food and beverage operator. The reference our customers
                       check before they sign.
                     </p>
                     <div className="mt-auto flex items-center justify-between gap-4 text-sm">
@@ -312,15 +312,14 @@ export default function Home() {
                 className="flex flex-col items-start gap-4 border-t border-border/10 pt-8 md:flex-row md:items-center md:justify-between"
               >
                 <p className="max-w-xl text-sm text-muted">
-                  Building toward a reference network — every closed deal
-                  becomes a named case study with consent. In the meantime,
-                  we&apos;ll put you on the phone with the customers we have.
+                  Building a reference network. Every closed deal becomes a
+                  named case study with consent.
                 </p>
                 <Link
-                  href="/talk-to-a-customer/"
+                  href="/case-studies/"
                   className="press inline-flex items-center gap-2 rounded-pill border border-border/20 bg-surface px-5 py-3 text-sm font-medium text-text transition-colors hover:bg-bg"
                 >
-                  Talk to a customer
+                  Browse case studies
                   <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
                 </Link>
               </div>
@@ -402,17 +401,17 @@ export default function Home() {
                 data-reveal-item
               />
               <CtaCard
-                href="/talk-to-a-customer/"
-                kicker="02 / Want to verify"
-                title="Talk to a customer"
-                copy="We'll put you on the phone with someone we've installed for before you commit a shilling. Honest about who's in the network."
+                href="/book-consultation/"
+                kicker="02 / Want to talk first"
+                title="Book a consultation"
+                copy="A working call with our engineering team. Walk through what you need, see how we'd approach it, then decide."
                 data-reveal-item
               />
               <CtaCard
                 href="/request-site-audit/"
                 kicker="03 / Still scoping"
                 title="Book a site audit"
-                copy="A field visit to your plant. We measure, photograph, and leave you with a written brief — no commitment from either side."
+                copy="A field visit to your plant. We measure, photograph, and leave you with a written brief, no commitment from either side."
                 data-reveal-item
               />
             </div>

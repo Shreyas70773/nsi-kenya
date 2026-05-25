@@ -41,7 +41,6 @@ const FOOTER_NAV = [
       { href: "/request-quote/", label: "Request a Quote" },
       { href: "/book-consultation/", label: "Book a Consultation" },
       { href: "/request-site-audit/", label: "Request a Site Audit" },
-      { href: "/talk-to-a-customer/", label: "Talk to a Customer" },
     ],
   },
 ] as const;
@@ -60,7 +59,7 @@ export function SiteFooter() {
           />
           <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
             Industrial infrastructure,{" "}
-            <span className="text-accent">fabricated in Kenya</span>.
+            <span className="text-accent">built for Kenya</span>.
           </p>
         </div>
 

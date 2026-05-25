@@ -41,8 +41,8 @@ describe("sitemap", () => {
     );
   });
 
-  it("contains the /talk-to-a-customer/ trust-gate URL", () => {
-    expect(urls).toContain(`${SITE_URL}/talk-to-a-customer/`);
+  it("does NOT contain /talk-to-a-customer/ (removed per user instruction)", () => {
+    expect(urls.some((u) => u.includes("/talk-to-a-customer/"))).toBe(false);
   });
 
   it("excludes admin routes", () => {
