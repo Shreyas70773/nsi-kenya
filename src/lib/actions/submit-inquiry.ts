@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
 import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
+import { appendToSheets } from "@/lib/sheets";
 
 const KIND_SCHEMA = z.enum(["contact", "consultation", "site-audit"]);
 
@@ -77,6 +78,20 @@ export async function submitInquiry(
           : "Could not submit your request.",
     };
   }
+
+  void appendToSheets({
+    form_type: "inquiry",
+    submitted_at: new Date().toISOString(),
+    kind: data.kind,
+    name: data.name,
+    company: data.company,
+    email: data.email,
+    phone: data.phone || undefined,
+    industry: data.industry || undefined,
+    site_location: data.siteLocation || undefined,
+    topic: data.topic || undefined,
+    message: data.message || undefined,
+  });
 
   redirect("/request-quote/success/");
 }

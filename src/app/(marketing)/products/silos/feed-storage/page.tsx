@@ -11,7 +11,7 @@ import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Feed Silo Kenya: 5 to 100 MT for Mills & Farms",
+  title: "Feed Silo Kenya: 5 to 100 MT for Mills and Farms",
   description:
     "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
   alternates: { canonical: "/products/silos/feed-storage/" },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Feed Silo Kenya: 5 to 100 MT for Mills & Farms",
+    title: "Feed Silo Kenya: 5 to 100 MT for Mills and Farms",
     description:
       "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
     url: "/products/silos/feed-storage/",

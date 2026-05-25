@@ -5,6 +5,7 @@ import { fetchMutation } from "convex/nextjs";
 import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
+import { appendToSheets } from "@/lib/sheets";
 
 const INTENT_SCHEMA = z.enum(["explore", "evaluate", "purchase", "urgent-etp"]);
 
@@ -89,6 +90,20 @@ export async function submitQuote(
     message: data.message || undefined,
   }).catch((err) => {
     console.error("[submitQuote] email failed", err);
+  });
+
+  // Also mirror to Google Sheets for the sales team's working spreadsheet.
+  void appendToSheets({
+    form_type: "quote",
+    submitted_at: new Date().toISOString(),
+    intent: data.intent,
+    name: data.name,
+    company: data.company,
+    email: data.email,
+    phone: data.phone || undefined,
+    industry: data.industry || undefined,
+    product_slugs: productSlugs.join(", "),
+    message: data.message || undefined,
   });
 
   redirect("/request-quote/success/");

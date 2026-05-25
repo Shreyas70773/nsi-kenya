@@ -8,7 +8,7 @@ import { InquiryForm } from "@/components/forms/inquiry-form";
 export const metadata: Metadata = {
   title: "Request a Free Site Audit: Plants in Kenya",
   description:
-    "We come to your Kenyan plant, measure, photograph, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
+    "We come to your Kenyan plant, measure, photograph the zones we care about, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
   alternates: { canonical: "/request-site-audit/" },
   keywords: [
     "request site audit Kenya",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Request a Free Site Audit: Plants in Kenya",
     description:
-      "We come to your Kenyan plant, measure, photograph, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
+      "We come to your Kenyan plant, measure, photograph the zones we care about, and leave you with a written brief. Five days to delivery. No charge, no commitment.",
     url: "/request-site-audit/",
     images: [{ url: "/images/conversion/request-site-audit-hero.png" }],
   },

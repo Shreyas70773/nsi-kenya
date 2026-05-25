@@ -11,7 +11,7 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 export const metadata: Metadata = {
   title: "Kenya Delivery & On-Site Supply",
   description:
-    "Workshop in Nairobi, flatbed delivery across Kenya, install supervision included. 48-hour on-site response in Nairobi industrial estates.",
+    "Workshop in Nairobi, flatbed delivery across all of Kenya, with install supervision included. 48-hour on-site response across Nairobi industrial estates.",
   alternates: { canonical: "/locations/" },
   keywords: [
     "tank supplier Kenya delivery",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Kenya Delivery & On-Site Supply",
     description:
-      "Workshop in Nairobi, flatbed delivery across Kenya, install supervision included. 48-hour on-site response in Nairobi industrial estates.",
+      "Workshop in Nairobi, flatbed delivery across all of Kenya, with install supervision included. 48-hour on-site response across Nairobi industrial estates.",
     url: "/locations/",
     images: [{ url: "/images/locations/locations-overview-hero.png" }],
   },

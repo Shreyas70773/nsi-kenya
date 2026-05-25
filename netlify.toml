@@ -17,9 +17,24 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Force https; redirect the .com / .net / www variants once domain is live.
+# Force https; redirect the www subdomain to the apex of .co.ke.
 [[redirects]]
   from = "https://www.northstarimpex.co.ke/*"
+  to = "https://northstarimpex.co.ke/:splat"
+  status = 301
+  force = true
+
+# 301 the .ke alias domain (apex and www) to the canonical .co.ke origin.
+# Both .ke and .co.ke must be added as custom domains in Netlify so the
+# adapter can issue a Let's Encrypt cert for each before the redirect fires.
+[[redirects]]
+  from = "https://northstarimpex.ke/*"
+  to = "https://northstarimpex.co.ke/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.northstarimpex.ke/*"
   to = "https://northstarimpex.co.ke/:splat"
   status = 301
   force = true

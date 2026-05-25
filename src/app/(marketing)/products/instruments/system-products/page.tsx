@@ -13,7 +13,7 @@ import { SITE_URL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Paperless Recorder Kenya: Indicators, Isolators",
   description:
-    "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels.",
+    "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels. DIN-rail ready.",
   alternates: { canonical: "/products/instruments/system-products/" },
   keywords: [
     "paperless recorder Kenya",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Paperless Recorder Kenya: Indicators, Isolators",
     description:
-      "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels.",
+      "Paperless recorders, process indicators, totalisers, controllers, signal isolators, and generators for Kenyan industrial control panels. DIN-rail ready.",
     url: "/products/instruments/system-products/",
     images: [{ url: "/images/products/instruments-system-products-hero.png" }],
   },
