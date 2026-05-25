@@ -4,21 +4,99 @@
 @theme inline {
   --color-bg: rgb(var(--ns-bg) / <alpha-value>);
   --color-surface: rgb(var(--ns-surface) / <alpha-value>);
+  --color-surface-2: rgb(var(--ns-surface-2) / <alpha-value>);
   --color-border: rgb(var(--ns-border) / <alpha-value>);
   --color-text: rgb(var(--ns-text) / <alpha-value>);
   --color-muted: rgb(var(--ns-muted) / <alpha-value>);
+  --color-faint: rgb(var(--ns-faint) / <alpha-value>);
   --color-accent: rgb(var(--ns-accent) / <alpha-value>);
+  --color-accent-strong: rgb(var(--ns-accent-strong) / <alpha-value>);
+  --color-on-accent: rgb(var(--ns-on-accent) / <alpha-value>);
   --color-placeholder-bg: rgb(var(--ns-placeholder-bg) / <alpha-value>);
   --color-placeholder-border: rgb(var(--ns-placeholder-border) / <alpha-value>);
   --color-placeholder-label: rgb(var(--ns-placeholder-label) / <alpha-value>);
 
   --font-body: var(--font-body), system-ui, sans-serif;
   --font-display: var(--font-display, var(--font-body)), system-ui, sans-serif;
+  --font-mono: var(--font-mono, ui-monospace, "SF Mono"), monospace;
 
   --radius-card: 1.5rem;
-  --radius-button: 0.5rem;
+  --radius-button: 0.6rem;
+  --radius-pill: 999px;
+}
+
+html {
+  background: rgb(var(--ns-bg));
+  color: rgb(var(--ns-text));
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
+  /* Subtle paper-grain texture for depth without decoration noise. */
+  background-image:
+    radial-gradient(
+      circle at 0% 0%,
+      rgb(var(--ns-accent) / 0.025),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgb(var(--ns-accent) / 0.018),
+      transparent 55%
+    );
+  background-attachment: fixed;
+}
+
+/* Editorial display utility — used on big headlines. Tight tracking, weighty,
+   line-height 0.95 for the "magazine" feel. */
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "ss02", "cv11";
+  letter-spacing: -0.025em;
+}
+
+/* Industrial spec labels — uppercase mono with wide tracking. */
+.font-mono-label {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "ss01";
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Press feedback per emil-design-eng: subtle scale on :active. */
+.press {
+  transition: transform 160ms var(--ease-out);
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+/* prefers-reduced-motion: kill movement, keep opacity transitions for
+   comprehension. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Marquee — used in the hero trust strip and partners section. Pure CSS,
+   hardware-accelerated (transform only). */
+@keyframes marquee-x {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  animation: marquee-x 60s linear infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
 }

@@ -1,35 +1,66 @@
 /*
  * North Star Impex Kenya — design tokens
  *
- * Stable variable NAMES — values are provisional. User defines the real palette in Figma;
- * swapping values here updates the entire site. No gradients. Solid colors only.
+ * Light-mode primary. Warm-parchment surface + deep-iron text + burnt-sienna
+ * ochre accent. Calibrated against the following scene sentence per the
+ * impeccable scene-driven theme rule:
  *
- * Token values are RGB triplets (no rgb() wrapper) so they compose with <alpha-value>
- * via the @theme inline block in globals.css.
+ *   "Plant Manager standing on the gantry of an Athi River industrial estate
+ *    at 3pm, Nairobi sun glare bouncing off a 304 stainless tank wall, phone
+ *    in hand ordering replacement parts — the brand must feel materially
+ *    weighty, locally accountable, and unmistakably non-SaaS."
+ *
+ * Reflex rejects:
+ *   - GCC bronze/cream (the Pumea inheritance trap)
+ *   - SaaS navy + cyan (the "industrial-but-cold" trap)
+ *   - healthcare teal-and-white
+ *   - crypto neon-on-black
+ *
+ * No gradients. No glassmorphism as default. RGB triplets so @theme inline
+ * in globals.css can compose them with <alpha-value>.
  */
 
 :root {
-  /* Light surface palette — provisional. Replace from Figma. */
-  --ns-bg: 246 244 240;
-  --ns-surface: 255 255 255;
-  --ns-border: 232 229 223;
-  --ns-text: 14 13 11;
-  --ns-muted: 122 119 115;
-  --ns-accent: 196 154 78;
+  /* Light: warm parchment + iron */
+  --ns-bg:                246 240 230;  /* warm parchment */
+  --ns-surface:           253 248 240;  /* slightly warmer card surface */
+  --ns-surface-2:         239 232 220;  /* recessed/inset cards */
+  --ns-border:             28  26  22;  /* dark; consumed with low alpha */
+  --ns-text:               16  14  10;  /* deep iron — warmth, not pure black */
+  --ns-muted:              90  82  72;  /* warm gray-brown for secondary text */
+  --ns-faint:             140 130 116;  /* tertiary copy + metadata */
+  --ns-accent:            188  84  36;  /* burnt sienna — earth, industrial */
+  --ns-accent-strong:     154  64  22;  /* hover / pressed state */
+  --ns-on-accent:         253 248 240;  /* text on accent surfaces */
 
-  /* Placeholder visual — for ImagePlaceholder slots awaiting user-generated imagery */
-  --ns-placeholder-bg: 240 237 232;
-  --ns-placeholder-border: 200 196 188;
-  --ns-placeholder-label: 122 119 115;
+  /* Placeholder visual */
+  --ns-placeholder-bg:    234 226 212;
+  --ns-placeholder-border: 28  26  22;
+  --ns-placeholder-label: 140 130 116;
 }
 
 [data-theme="dark"] {
-  --ns-bg: 14 13 11;
-  --ns-surface: 24 23 20;
-  --ns-border: 37 35 32;
-  --ns-text: 246 244 240;
-  --ns-muted: 154 151 147;
-  --ns-placeholder-bg: 24 23 20;
-  --ns-placeholder-border: 50 48 44;
-  --ns-placeholder-label: 154 151 147;
+  --ns-bg:                 14  12   8;  /* deepest warm-iron */
+  --ns-surface:            24  22  18;
+  --ns-surface-2:          36  32  26;
+  --ns-border:            240 232 218;
+  --ns-text:              242 236 224;
+  --ns-muted:             170 160 144;
+  --ns-faint:             120 112 100;
+  --ns-accent:            232 124  70;  /* brighter ochre for dark contrast */
+  --ns-accent-strong:     250 156  98;
+  --ns-on-accent:          14  12   8;
+  --ns-placeholder-bg:     30  27  22;
+  --ns-placeholder-border: 64  58  50;
+  --ns-placeholder-label: 156 148 132;
+}
+
+/*
+ * Stronger easing curves than the CSS defaults (per emil-design-eng).
+ * ease-out for entrances; ease-in-out for on-screen motion; never ease-in.
+ */
+:root {
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }

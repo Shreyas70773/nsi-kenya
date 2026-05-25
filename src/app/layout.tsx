@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationLd } from "@/lib/seo";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
 const bodyFont = Geist({
   variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const monoFont = Geist_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,11 +45,11 @@ export default function RootLayout({
   return (
     <html
       lang="en-KE"
-      className={`${bodyFont.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${monoFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-text">
+      <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent/20 selection:text-text">
         <JsonLd data={organizationLd()} />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
