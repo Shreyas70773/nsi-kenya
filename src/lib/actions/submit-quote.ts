@@ -88,7 +88,6 @@ export async function submitQuote(
     productSlugs,
     message: data.message || undefined,
   }).catch((err) => {
-    // eslint-disable-next-line no-console
     console.error("[submitQuote] email failed", err);
   });
 

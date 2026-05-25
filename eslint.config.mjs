@@ -25,6 +25,9 @@ export default [
       ],
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "jsx-a11y/alt-text": "error",
+      // Modern React + Next.js handle straight apostrophes fine; the rule
+      // is more noise than value for our copy-heavy pages.
+      "react/no-unescaped-entities": "off",
     },
   },
   {
