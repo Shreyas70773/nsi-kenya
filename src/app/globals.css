@@ -1,26 +1,24 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../styles/tokens.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-bg: rgb(var(--ns-bg) / <alpha-value>);
+  --color-surface: rgb(var(--ns-surface) / <alpha-value>);
+  --color-border: rgb(var(--ns-border) / <alpha-value>);
+  --color-text: rgb(var(--ns-text) / <alpha-value>);
+  --color-muted: rgb(var(--ns-muted) / <alpha-value>);
+  --color-accent: rgb(var(--ns-accent) / <alpha-value>);
+  --color-placeholder-bg: rgb(var(--ns-placeholder-bg) / <alpha-value>);
+  --color-placeholder-border: rgb(var(--ns-placeholder-border) / <alpha-value>);
+  --color-placeholder-label: rgb(var(--ns-placeholder-label) / <alpha-value>);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-body: var(--font-body), system-ui, sans-serif;
+  --font-display: var(--font-display, var(--font-body)), system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-button: 0.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }

@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# North Star Impex Kenya — Website
 
-## Getting Started
+Marketing + sales website for **North Star Impex Kenya LTD** — industrial tanks, silos, structural fabrication works, process instruments, and optional cloud-ready remote monitoring. Kenya-focused, East Africa expansion.
 
-First, run the development server:
+> **First time here?** Read `docs/NORTHSTAR-KENYA-START-HERE.md`, then the four foundation docs under `docs/superpowers/`. See `CLAUDE.md` for the working instructions.
+
+## Stack
+
+- **Next.js 16** App Router (RSC by default) · **React 19** · **TypeScript** strict · **Tailwind 4** (CSS `@theme` tokens)
+- **Convex** — database, file storage, server functions
+- **NextAuth.js** with Convex adapter — admin auth
+- **Resend** — transactional email (quote requests, reference-call requests)
+- **Netlify** — deploy via `@netlify/plugin-nextjs`
+- **Vitest** + **Playwright** + **Lighthouse CI**
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local      # then fill in real values
+npm run dev                     # Next.js at http://localhost:3000
+npx convex dev                  # Convex backend (separate terminal)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Next.js dev server |
+| `npm run build` | Production build |
+| `npm run start` | Run production build |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
+| `npm test` | Vitest in watch mode |
+| `npm run test:run` | Vitest CI run |
+| `npm run test:e2e` | Playwright end-to-end |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+Single source of truth in `src/lib/content-map.ts` drives the sitemap, nav, breadcrumbs, JSON-LD generators, and `llms.txt`. Convex schema in `convex/schema.ts` backs the admin surface (case studies, blog, media, quote requests, reference-call requests).
 
-To learn more about Next.js, take a look at the following resources:
+## Hard constraints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+See `CLAUDE.md`. No mention of partner brands in user-facing copy. No gradients. No fabricated image URLs. No e-commerce. English only. One taxonomy: Products × Industries.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Proprietary — North Star Impex Kenya LTD.

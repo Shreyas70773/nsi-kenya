@@ -1,0 +1,35 @@
+/*
+ * North Star Impex Kenya — design tokens
+ *
+ * Stable variable NAMES — values are provisional. User defines the real palette in Figma;
+ * swapping values here updates the entire site. No gradients. Solid colors only.
+ *
+ * Token values are RGB triplets (no rgb() wrapper) so they compose with <alpha-value>
+ * via the @theme inline block in globals.css.
+ */
+
+:root {
+  /* Light surface palette — provisional. Replace from Figma. */
+  --ns-bg: 246 244 240;
+  --ns-surface: 255 255 255;
+  --ns-border: 232 229 223;
+  --ns-text: 14 13 11;
+  --ns-muted: 122 119 115;
+  --ns-accent: 196 154 78;
+
+  /* Placeholder visual — for ImagePlaceholder slots awaiting user-generated imagery */
+  --ns-placeholder-bg: 240 237 232;
+  --ns-placeholder-border: 200 196 188;
+  --ns-placeholder-label: 122 119 115;
+}
+
+[data-theme="dark"] {
+  --ns-bg: 14 13 11;
+  --ns-surface: 24 23 20;
+  --ns-border: 37 35 32;
+  --ns-text: 246 244 240;
+  --ns-muted: 154 151 147;
+  --ns-placeholder-bg: 24 23 20;
+  --ns-placeholder-border: 50 48 44;
+  --ns-placeholder-label: 154 151 147;
+}
