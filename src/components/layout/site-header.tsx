@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,13 +14,9 @@ const NAV = [
 ] as const;
 
 /**
- * Floating-pill sticky header. Translucent on the hero; condenses to a solid
- * surface once the user scrolls past the first viewport. Logo left, nav
- * center, accent CTA right.
- *
- * Per gpt-taste: avoid the default "full-width bordered bar". Per
- * emil-design-eng: scroll handler is throttled to rAF; transitions specify
- * exact properties (no `all`).
+ * Floating-pill sticky header with the actual North Star Impex logo.
+ * Translucent over the hero, condenses to a solid surface once the user
+ * scrolls past 24px. Logo left, primary nav center, accent CTA right.
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,36 +44,24 @@ export function SiteHeader() {
         className={cn(
           "flex w-full max-w-6xl items-center justify-between gap-6 rounded-pill border px-4 py-2.5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500",
           scrolled
-            ? "border-border/15 bg-surface/85 shadow-[0_8px_32px_-12px_rgb(var(--ns-text)/0.18)] backdrop-blur-xl"
-            : "border-border/8 bg-surface/40 backdrop-blur-md",
+            ? "border-border/15 bg-surface/90 shadow-[0_8px_32px_-12px_rgb(var(--ns-text)/0.18)] backdrop-blur-xl"
+            : "border-border/8 bg-surface/45 backdrop-blur-md",
         )}
         style={{ transitionTimingFunction: "var(--ease-out)" }}
       >
         <Link
           href="/"
           aria-label="North Star Impex Kenya — home"
-          className="press flex items-center gap-2 text-sm font-semibold tracking-tight"
+          className="press flex items-center gap-2"
         >
-          <span
-            className="grid h-7 w-7 place-items-center rounded-md bg-text text-on-accent"
-            aria-hidden
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              className="h-3.5 w-3.5"
-              stroke="currentColor"
-              strokeWidth={2.4}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2 L14.2 9.5 L22 12 L14.2 14.5 L12 22 L9.8 14.5 L2 12 L9.8 9.5 Z" />
-            </svg>
-          </span>
-          <span className="hidden sm:inline">North Star</span>
-          <span className="font-mono-label hidden text-[10px] text-faint md:inline">
-            KENYA
-          </span>
+          <Image
+            src="/brand/logo.jpg"
+            alt="North Star Impex Kenya"
+            width={148}
+            height={40}
+            priority
+            className="h-8 w-auto md:h-9"
+          />
         </Link>
 
         <nav
@@ -103,7 +88,7 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/request-quote/"
-            className="press inline-flex items-center gap-1.5 rounded-pill bg-text px-4 py-2 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent"
+            className="press inline-flex items-center gap-1.5 rounded-pill bg-accent px-4 py-2 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong"
           >
             Get a quote
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />

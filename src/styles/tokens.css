@@ -1,18 +1,18 @@
 /*
  * North Star Impex Kenya — design tokens
  *
- * Light-mode primary. Warm-parchment surface + deep-iron text + burnt-sienna
- * ochre accent. Calibrated against the following scene sentence per the
- * impeccable scene-driven theme rule:
+ * Calibrated to the company logo (red star + black wordmark on warm cream).
+ * Light-mode primary. The accent IS the brand red — not an interpretive
+ * choice, the literal logo color sampled and quieted at scale for body use.
  *
+ * Scene sentence:
  *   "Plant Manager standing on the gantry of an Athi River industrial estate
  *    at 3pm, Nairobi sun glare bouncing off a 304 stainless tank wall, phone
- *    in hand ordering replacement parts — the brand must feel materially
- *    weighty, locally accountable, and unmistakably non-SaaS."
+ *    in hand ordering replacement parts."
  *
  * Reflex rejects:
- *   - GCC bronze/cream (the Pumea inheritance trap)
- *   - SaaS navy + cyan (the "industrial-but-cold" trap)
+ *   - SaaS navy + cyan (industrial-but-cold trap)
+ *   - GCC bronze/cream (Pumea inheritance trap)
  *   - healthcare teal-and-white
  *   - crypto neon-on-black
  *
@@ -21,36 +21,36 @@
  */
 
 :root {
-  /* Light: warm parchment + iron */
-  --ns-bg:                246 240 230;  /* warm parchment */
-  --ns-surface:           253 248 240;  /* slightly warmer card surface */
-  --ns-surface-2:         239 232 220;  /* recessed/inset cards */
-  --ns-border:             28  26  22;  /* dark; consumed with low alpha */
-  --ns-text:               16  14  10;  /* deep iron — warmth, not pure black */
-  --ns-muted:              90  82  72;  /* warm gray-brown for secondary text */
-  --ns-faint:             140 130 116;  /* tertiary copy + metadata */
-  --ns-accent:            188  84  36;  /* burnt sienna — earth, industrial */
-  --ns-accent-strong:     154  64  22;  /* hover / pressed state */
-  --ns-on-accent:         253 248 240;  /* text on accent surfaces */
+  /* Light: warm cream (logo background) + deep iron text + brand red */
+  --ns-bg:                250 247 240;  /* warm cream — matches logo paper */
+  --ns-surface:           255 253 248;  /* slightly warmer card surface */
+  --ns-surface-2:         240 235 226;  /* recessed/inset cards */
+  --ns-border:             18  16  14;  /* near-black; consumed with low alpha */
+  --ns-text:               18  16  14;  /* near-black — matches logo wordmark */
+  --ns-muted:              94  88  82;  /* warm gray for secondary text */
+  --ns-faint:             140 132 122;  /* tertiary copy + metadata */
+  --ns-accent:            218  32  35;  /* brand red — the logo star */
+  --ns-accent-strong:     188  22  26;  /* hover / pressed state */
+  --ns-on-accent:         255 253 248;  /* text on red surfaces */
 
-  /* Placeholder visual */
-  --ns-placeholder-bg:    234 226 212;
-  --ns-placeholder-border: 28  26  22;
-  --ns-placeholder-label: 140 130 116;
+  /* Placeholder visual (used when an ImagePlaceholder is still pending) */
+  --ns-placeholder-bg:    236 230 220;
+  --ns-placeholder-border: 18  16  14;
+  --ns-placeholder-label: 140 132 122;
 }
 
 [data-theme="dark"] {
-  --ns-bg:                 14  12   8;  /* deepest warm-iron */
-  --ns-surface:            24  22  18;
-  --ns-surface-2:          36  32  26;
+  --ns-bg:                 14  12  10;  /* deepest iron */
+  --ns-surface:            22  20  17;
+  --ns-surface-2:          32  28  24;
   --ns-border:            240 232 218;
-  --ns-text:              242 236 224;
-  --ns-muted:             170 160 144;
+  --ns-text:              244 238 226;
+  --ns-muted:             172 162 148;
   --ns-faint:             120 112 100;
-  --ns-accent:            232 124  70;  /* brighter ochre for dark contrast */
-  --ns-accent-strong:     250 156  98;
-  --ns-on-accent:          14  12   8;
-  --ns-placeholder-bg:     30  27  22;
+  --ns-accent:            232  50  56;  /* brand red, brightened for dark */
+  --ns-accent-strong:     250  78  84;
+  --ns-on-accent:         255 253 248;
+  --ns-placeholder-bg:     28  25  21;
   --ns-placeholder-border: 64  58  50;
   --ns-placeholder-label: 156 148 132;
 }

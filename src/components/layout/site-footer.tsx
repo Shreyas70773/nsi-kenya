@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
 
 const FOOTER_NAV = [
@@ -47,20 +48,34 @@ const FOOTER_NAV = [
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border bg-surface text-sm">
-      <div className="mx-auto w-full max-w-6xl px-6 py-12">
+    <footer className="mt-24 border-t border-border/10 bg-surface text-sm">
+      <div className="mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+        <div className="mb-12 flex flex-col gap-6 border-b border-border/8 pb-10 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
+          <Image
+            src="/brand/logo.jpg"
+            alt={SITE_NAME}
+            width={200}
+            height={54}
+            className="h-12 w-auto md:h-14"
+          />
+          <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
+            Industrial infrastructure,{" "}
+            <span className="text-accent">fabricated in Kenya</span>.
+          </p>
+        </div>
+
         <div className="grid gap-10 md:grid-cols-4">
           {FOOTER_NAV.map((col) => (
             <div key={col.heading} className="flex flex-col gap-3">
-              <h3 className="font-display text-xs uppercase tracking-[0.18em] text-muted">
+              <h3 className="font-mono-label text-[10px] text-faint">
                 {col.heading}
               </h3>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-text/80 transition-colors hover:text-text"
+                      className="text-text/85 transition-colors hover:text-accent"
                     >
                       {link.label}
                     </Link>
@@ -70,7 +85,8 @@ export function SiteFooter() {
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-border/10 pt-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE_NAME} LTD. Fabricated in Kenya.
           </p>

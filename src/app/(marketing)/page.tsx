@@ -1,12 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
 import { JsonLd } from "@/components/seo/json-ld";
 import { webSiteLd } from "@/lib/seo";
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 
-// Trust strip — repeated for the marquee.
 const TRUST_TOKENS = [
   "Fabricated in Kenya",
   "Stainless · Epoxy · Zinc-alum",
@@ -52,28 +51,26 @@ export default function Home() {
     <>
       <JsonLd data={webSiteLd()} />
 
-      {/* ─── HERO ───────────────────────────────────────────────────────────
-          Cinematic center. H1 ultra-wide, two lines. No Crywan, no badges,
-          no stat-pills. Background image lives behind everything with a
-          warm darkroom wash for legibility.                                 */}
+      {/* ─── HERO ─────────────────────────────────────────────────────── */}
       <section
         aria-label="Hero"
         className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-20"
       >
-        {/* Background image slot */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <ImagePlaceholder
-            role="hero"
-            description="Full-bleed dawn shot of a Kenyan industrial plant — stainless tanks foreground, gantry silhouette, warm sun raking across welded seams"
-            prompt="Editorial photograph: dawn at a Kenyan industrial processing plant. Multiple polished 304 stainless steel tanks foreground, weld seams catching warm low sun. Gantry walkways and a single Plant Manager silhouette mid-distance. Atmosphere: dignified, weighty, materially specific. Color grade: warm parchment highlights, deep iron shadows. NO logos, NO text, NO people in focus. Subtle dust haze. Composition leaves a clean horizontal band in the middle third for an overlay. 21:9 aspect, ultra-wide cinematic. NOT stock-photo, NOT AI-generic — looks shot on a Phase One medium format."
-            className="!aspect-auto !rounded-none h-full w-full !border-0"
+          <Image
+            src="/images/home/hero-tank-farm.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
-          {/* Warm darkroom wash — keeps the type legible without killing the image. */}
+          {/* Warm cream wash for H1 legibility. */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 80% 70% at 50% 60%, rgb(var(--ns-bg) / 0.86) 30%, rgb(var(--ns-bg) / 0.55) 70%, rgb(var(--ns-bg) / 0.92) 100%)",
+                "radial-gradient(ellipse 80% 70% at 50% 55%, rgb(var(--ns-bg) / 0.82) 25%, rgb(var(--ns-bg) / 0.55) 65%, rgb(var(--ns-bg) / 0.93) 100%)",
             }}
           />
         </div>
@@ -101,7 +98,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               href="/request-quote/"
-              className="press group inline-flex items-center gap-2 rounded-pill bg-text px-6 py-3.5 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent"
+              className="press group inline-flex items-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong"
             >
               Get a quote
               <ArrowUpRight
@@ -111,7 +108,7 @@ export default function Home() {
             </Link>
             <Link
               href="/products/"
-              className="press inline-flex items-center gap-2 rounded-pill border border-border/15 bg-surface/60 px-6 py-3.5 text-sm font-medium text-text backdrop-blur-md transition-colors duration-200 hover:bg-surface"
+              className="press inline-flex items-center gap-2 rounded-pill border border-border/15 bg-surface/70 px-6 py-3.5 text-sm font-medium text-text backdrop-blur-md transition-colors duration-200 hover:bg-surface"
             >
               Explore products
               <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
@@ -119,7 +116,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom-of-hero credential strip — small mono. */}
         <div className="font-mono-label absolute inset-x-0 bottom-6 mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 text-[10px] text-faint">
           <span>Kenya · Uganda · Tanzania · Ethiopia · Rwanda</span>
           <span className="hidden md:inline">
@@ -131,7 +127,7 @@ export default function Home() {
       {/* ─── TRUST MARQUEE ─────────────────────────────────────────────── */}
       <section
         aria-label="Trust marquee"
-        className="border-y border-border/10 bg-surface/40 py-5"
+        className="border-y border-border/10 bg-surface/60 py-5"
       >
         <div className="relative overflow-hidden">
           <div className="marquee-track flex w-max items-center gap-12 whitespace-nowrap">
@@ -145,7 +141,6 @@ export default function Home() {
               </span>
             ))}
           </div>
-          {/* Edge fades */}
           <div
             className="pointer-events-none absolute inset-y-0 left-0 w-32"
             style={{
@@ -163,14 +158,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── BENTO (Interest) ──────────────────────────────────────────────
-          6-col × 3-row asymmetric grid, grid-flow-dense, gapless.
-          Tanks(4×2=8) + Silos(2×1=2) + Instruments(2×1=2) + Structural(3×1=3)
-          + IoT(3×1=3) = 18 cells, zero voids.                              */}
-      <section
-        aria-label="What we supply"
-        className="px-6 py-28 md:py-36"
-      >
+      {/* ─── BENTO ─────────────────────────────────────────────────────── */}
+      <section aria-label="What we supply" className="px-6 py-28 md:py-36">
         <div className="mx-auto flex max-w-6xl flex-col gap-12">
           <Reveal>
             <div
@@ -197,7 +186,6 @@ export default function Home() {
 
           <Reveal stagger={0.08}>
             <div className="grid grid-flow-dense auto-rows-fr grid-cols-6 gap-3 md:gap-4">
-              {/* Tanks — big feature card. */}
               <BentoCard
                 href="/products/tanks/"
                 title="Tanks"
@@ -205,14 +193,12 @@ export default function Home() {
                 copy="304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted zinc-alum for multi-decade water storage."
                 stat="3 metallurgies · 1–500m³"
                 className="col-span-6 row-span-2 md:col-span-4"
-                imageRole="hero"
-                imageDescription="304 stainless tank, partial weld bead in macro detail"
-                imagePrompt="Macro photograph: section of polished 304 stainless steel tank wall. Single weld seam running diagonally with a perfect TIG bead pattern. Subtle reflection of factory light overhead. Texture-heavy, deeply detailed surface. Grade: warm tungsten highlights, neutral steel midtones. Composition: 3:2 landscape, intentional negative space upper-left for text overlay. Editorial, not stock."
+                imageSrc="/images/home/tanks-weld-bead.png"
+                imageAlt="Macro detail of a stainless steel tank weld bead"
                 feature
                 data-reveal-item
               />
 
-              {/* Silos */}
               <BentoCard
                 href="/products/silos/"
                 title="Silos"
@@ -220,13 +206,11 @@ export default function Home() {
                 copy="10–500MT capacity for breweries, feed mills, and bulk-handling plants."
                 stat="10–1000 MT"
                 className="col-span-6 row-span-1 md:col-span-2"
-                imageRole="card"
-                imageDescription="Three-silo array outside a Kenyan brewery, midday sky"
-                imagePrompt="Wide editorial shot: three industrial steel silos in a row outside a brewery in central Kenya. Midday warm light, deep blue sky, conveyor catwalk connecting them. Capacities visible if any markings. No people. Composition: 3:2, silos occupying the lower two-thirds. Grade: warm parchment highlights, deep teal sky shadows. Not stock."
+                imageSrc="/images/home/silos-corrugated.png"
+                imageAlt="Three corrugated steel silos with overhead catwalk at a Kenyan plant"
                 data-reveal-item
               />
 
-              {/* Instruments */}
               <BentoCard
                 href="/products/instruments/"
                 title="Process Instruments"
@@ -234,13 +218,11 @@ export default function Home() {
                 copy="Full instrument categories with 4–20mA, Modbus, HART out of the box."
                 stat="6 categories · 154 SKUs"
                 className="col-span-6 row-span-1 md:col-span-2"
-                imageRole="card"
-                imageDescription="Mounted electromagnetic flow meter on a stainless pipe, isolation valves in frame"
-                imagePrompt="Close detail photograph of an electromagnetic flow meter mounted on a 4-inch polished stainless steel pipe. Adjacent ball valves and a digital display showing a flow value. Surroundings hint at an industrial plant — soft out-of-focus pipework background. Light: cool tungsten with one warm rim. Composition: 3:2 landscape, meter centered. Editorial, not catalog."
+                imageSrc="/images/home/instruments-flow-meter.png"
+                imageAlt="Electromagnetic flow meter on a stainless steel pipe with red display head"
                 data-reveal-item
               />
 
-              {/* Structural Works */}
               <BentoCard
                 href="/products/structural-works/"
                 title="Structural Works"
@@ -248,13 +230,11 @@ export default function Home() {
                 copy="In-house structural fabrication for plant builds and retrofits."
                 stat="Plant-scale fabrication"
                 className="col-span-6 row-span-1 md:col-span-3"
-                imageRole="inline"
-                imageDescription="Steel walkway grating and tank-support framework mid-install on a Nairobi plant floor"
-                imagePrompt="Overhead photograph of a half-finished industrial plant floor — galvanized steel walkway grating laid across a structural framework, two cylindrical tank bases below. Welding sparks frozen mid-strike at the corner. Warm task-light, cool ambient. Composition: 3:2, top-down 70-degree angle. Looks like a Magnum Photos industrial portfolio piece."
+                imageSrc="/images/home/structural-gantry.png"
+                imageAlt="Steel gantry and tank-support framework mid-installation at night, weld arc visible"
                 data-reveal-item
               />
 
-              {/* IoT — wide bottom card. */}
               <BentoCard
                 href="/products/iot/"
                 title="Remote Monitoring"
@@ -262,9 +242,8 @@ export default function Home() {
                 copy="Cloud-connected oversight on every install — tank levels, flow, water quality, alarms from any device. Not bundled; ask for it when you want it."
                 stat="LoRa · NB-IoT · LTE · Ethernet"
                 className="col-span-6 row-span-1 md:col-span-3"
-                imageRole="inline"
-                imageDescription="Smartphone over-the-shoulder view of a tank-monitoring dashboard, plant gantry slightly blurred behind"
-                imagePrompt="Over-the-shoulder photograph: a Plant Manager's hand holding a phone displaying a clean tank-monitoring dashboard — 4 tank-level gauges, one trend line, alarm-status badges. The background is a blurred Kenyan plant gantry with stainless tanks. Light: golden hour warm. Phone screen UI shown legibly. Composition: 3:2 landscape, phone in lower-right third. Editorial photojournalism style, not promo render."
+                imageSrc="/images/home/iot-kisumu-plant.png"
+                imageAlt="Plant operator holding a phone displaying a tank-monitoring dashboard outside a Kisumu plant"
                 data-reveal-item
               />
             </div>
@@ -272,7 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── REFERENCE WORK (Desire) — Crywan editorial card ──────────── */}
+      {/* ─── REFERENCE WORK ─────────────────────────────────────────────── */}
       <section
         aria-label="Reference work"
         className="border-y border-border/8 bg-surface-2/40 px-6 py-28 md:py-36"
@@ -280,10 +259,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl">
           <Reveal stagger={0.1}>
             <div className="flex flex-col gap-12 md:gap-16">
-              <div
-                data-reveal-item
-                className="flex flex-col gap-3"
-              >
+              <div data-reveal-item className="flex flex-col gap-3">
                 <span className="font-mono-label text-[10px] text-faint">
                   ⟶ Reference work
                 </span>
@@ -300,15 +276,14 @@ export default function Home() {
                 className="press group block overflow-hidden rounded-card border border-border/10 bg-surface transition-colors hover:bg-surface/80"
               >
                 <div className="grid grid-cols-1 md:grid-cols-5">
-                  <div className="md:col-span-3">
-                    <div className="overflow-hidden">
-                      <ImagePlaceholder
-                        role="hero"
-                        description="Crywan Industries plant — stainless tank install wide shot at dusk"
-                        prompt="Editorial wide shot: dusk at Crywan Industries in Kenya — a cluster of polished 304 stainless processing tanks, gantry catwalks above, single Plant Manager silhouette walking past in the mid-distance. Warm tungsten plant lights, deep blue dusk sky. Authentic industrial documentary photograph, not a render, not a stock shot. 16:9 cinematic. Phase One medium-format quality."
-                        className="!rounded-none !border-0 transition-transform duration-700 group-hover:scale-[1.02]"
-                      />
-                    </div>
+                  <div className="relative aspect-[16/10] overflow-hidden md:col-span-3 md:aspect-auto">
+                    <Image
+                      src="/images/home/crywan-reference-dusk.png"
+                      alt="Crywan Industries — stainless processing tanks at dusk, plant operator silhouette walking past"
+                      fill
+                      sizes="(min-width: 768px) 60vw, 100vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
                   <div className="flex flex-col gap-6 p-8 md:col-span-2 md:p-12">
                     <div className="font-mono-label flex items-center gap-3 text-[10px] text-faint">
@@ -357,16 +332,10 @@ export default function Home() {
       </section>
 
       {/* ─── INDUSTRIES ─────────────────────────────────────────────────── */}
-      <section
-        aria-label="Industries served"
-        className="px-6 py-28 md:py-36"
-      >
+      <section aria-label="Industries served" className="px-6 py-28 md:py-36">
         <div className="mx-auto max-w-6xl">
           <Reveal stagger={0.06}>
-            <div
-              data-reveal-item
-              className="mb-12 flex flex-col gap-3 md:mb-16"
-            >
+            <div data-reveal-item className="mb-12 flex flex-col gap-3 md:mb-16">
               <span className="font-mono-label text-[10px] text-faint">
                 ⟶ Where we work
               </span>
@@ -396,7 +365,7 @@ export default function Home() {
                     <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-3">
                       {ind.products}
                     </p>
-                    <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-text md:col-span-1">
+                    <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent md:col-span-1">
                       <ArrowUpRight className="h-5 w-5" strokeWidth={1.8} />
                     </span>
                   </Link>
@@ -407,95 +376,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TCO TEASER — editorial moment ─────────────────────────────── */}
-      <section
-        aria-label="The carbon-steel comparison"
-        className="px-6 py-28 md:py-36"
-      >
-        <div className="mx-auto max-w-6xl">
-          <Reveal stagger={0.08}>
-            <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-              <div
-                data-reveal-item
-                className="md:col-span-5"
-              >
-                <span className="font-mono-label text-[10px] text-faint">
-                  ⟶ The conversation that closes
-                </span>
-                <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-                  What carbon steel actually costs you.
-                </h2>
-                <p className="mt-6 text-base leading-relaxed text-muted">
-                  In Kenya&apos;s humidity, untreated carbon steel rusts to
-                  unusable within 8–12 years. Zinc-alum holds for 30+. We
-                  publish the math — replacement-cycle costs, downtime,
-                  reinstallation labor — because nobody else does, and
-                  because the math is the argument.
-                </p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link
-                    href="/compare/zinc-alum-vs-carbon-steel/"
-                    className="press inline-flex items-center gap-2 rounded-pill bg-text px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-accent"
-                  >
-                    See the comparison
-                    <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
-                  </Link>
-                  <Link
-                    href="/tools/lifecycle-tco/"
-                    className="press inline-flex items-center gap-2 rounded-pill border border-border/20 px-5 py-3 text-sm text-text transition-colors hover:bg-surface"
-                  >
-                    TCO calculator
-                  </Link>
-                </div>
-              </div>
-
-              <div
-                data-reveal-item
-                className="md:col-span-7"
-              >
-                <div className="grid grid-cols-2 gap-3 md:gap-4">
-                  <StatBlock
-                    label="Carbon steel"
-                    value="8–12 yrs"
-                    sub="To unusable in Kenya humidity"
-                    accent={false}
-                  />
-                  <StatBlock
-                    label="Zinc-alum"
-                    value="30+ yrs"
-                    sub="Service life · same install cost"
-                    accent
-                  />
-                  <StatBlock
-                    label="Replacement cycles"
-                    value="3 vs 1"
-                    sub="Over a 30-year horizon"
-                    accent={false}
-                  />
-                  <StatBlock
-                    label="Downtime saved"
-                    value="~14 weeks"
-                    sub="Over the same horizon"
-                    accent={false}
-                  />
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ─── CTA SECTION (Action) ──────────────────────────────────────── */}
+      {/* ─── CTA SECTION ────────────────────────────────────────────────── */}
       <section
         aria-label="Three ways in"
         className="border-t border-border/10 bg-text px-6 py-28 text-on-accent md:py-36"
       >
         <div className="mx-auto max-w-6xl">
           <Reveal stagger={0.07}>
-            <div
-              data-reveal-item
-              className="flex flex-col gap-3 md:mb-16"
-            >
+            <div data-reveal-item className="flex flex-col gap-3 md:mb-16">
               <span className="font-mono-label text-[10px] text-on-accent/55">
                 ⟶ Three ways in
               </span>
@@ -546,9 +434,8 @@ type BentoCardProps = {
   copy: string;
   stat: string;
   className?: string;
-  imageRole: "hero" | "card" | "inline";
-  imageDescription: string;
-  imagePrompt: string;
+  imageSrc: string;
+  imageAlt: string;
   feature?: boolean;
 } & React.HTMLAttributes<HTMLAnchorElement>;
 
@@ -559,9 +446,8 @@ function BentoCard({
   copy,
   stat,
   className,
-  imageRole,
-  imageDescription,
-  imagePrompt,
+  imageSrc,
+  imageAlt,
   feature = false,
   ...rest
 }: BentoCardProps) {
@@ -575,13 +461,13 @@ function BentoCard({
       {...rest}
     >
       <div className="relative flex-1 overflow-hidden">
-        <ImagePlaceholder
-          role={imageRole}
-          description={imageDescription}
-          prompt={imagePrompt}
-          className="!h-full !w-full !aspect-auto !rounded-none !border-0 transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          sizes={feature ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
-        {/* Subtle bottom wash for text legibility once real photo is in. */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
           style={{
@@ -605,9 +491,7 @@ function BentoCard({
           >
             {title}
           </h3>
-          <span className="font-mono-label text-[10px] text-faint">
-            {stat}
-          </span>
+          <span className="font-mono-label text-[10px] text-faint">{stat}</span>
         </div>
         <p className="font-mono-label text-[10px] text-accent">{tagline}</p>
         <p className={cn("text-sm leading-relaxed text-muted", feature && "md:text-base")}>
@@ -619,47 +503,6 @@ function BentoCard({
         </span>
       </div>
     </Link>
-  );
-}
-
-function StatBlock({
-  label,
-  value,
-  sub,
-  accent,
-}: {
-  label: string;
-  value: string;
-  sub: string;
-  accent: boolean;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-2 rounded-card border p-6 md:p-7",
-        accent
-          ? "border-accent/30 bg-accent/8 text-text"
-          : "border-border/10 bg-surface text-text",
-      )}
-    >
-      <span
-        className={cn(
-          "font-mono-label text-[10px]",
-          accent ? "text-accent" : "text-faint",
-        )}
-      >
-        {label}
-      </span>
-      <span
-        className={cn(
-          "font-display text-4xl font-medium leading-none tracking-tight md:text-5xl",
-          accent && "text-accent-strong",
-        )}
-      >
-        {value}
-      </span>
-      <span className="text-xs text-muted">{sub}</span>
-    </div>
   );
 }
 
