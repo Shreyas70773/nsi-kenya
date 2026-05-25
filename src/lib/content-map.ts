@@ -8,7 +8,6 @@
  * (keyword strategy), section 9 (trust constraint plan).
  */
 
-import { ANCHOR_CLIENT } from "./constants";
 
 // ───────────────────────────────────────────────────────────────────────────────
 // PRODUCTS
@@ -367,34 +366,6 @@ export const LOCATIONS: readonly Location[] = [
       "Thika Road",
     ],
     tier: 1,
-  },
-] as const;
-
-// ───────────────────────────────────────────────────────────────────────────────
-// CASE STUDIES
-// ───────────────────────────────────────────────────────────────────────────────
-
-export type CaseStudy = {
-  slug: string;
-  clientName: string;
-  country: string;
-  /** Must match an INDUSTRIES slug */
-  industry: string;
-  /** Must match PRODUCTS slugs */
-  productsInstalled: readonly string[];
-  published: boolean;
-  publishedAt: string;
-};
-
-export const CASE_STUDIES: readonly CaseStudy[] = [
-  {
-    slug: ANCHOR_CLIENT.slug,
-    clientName: ANCHOR_CLIENT.name,
-    country: ANCHOR_CLIENT.country,
-    industry: "food-and-beverage",
-    productsInstalled: ["tanks/stainless-steel"],
-    published: true,
-    publishedAt: "2026-05-25",
   },
 ] as const;
 

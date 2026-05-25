@@ -66,7 +66,7 @@ const INTENT_META: Record<
       "NEMA inspection on the horizon or discharge parameters out of spec. We expedite ETP equipment, including epoxy-lined tanks and multi-parameter analyzers, in 2 to 3 weeks where possible.",
     metaLeft: "Intent: urgent ETP",
     metaRight: "2 to 3 week expedited delivery",
-    hero: "/images/home/sector-etp.png",
+    hero: "/images/conversion/request-quote-urgent-etp-hero.png",
     breadcrumb: "Urgent ETP",
   },
 };

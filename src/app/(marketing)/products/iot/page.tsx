@@ -115,11 +115,10 @@ const SCREEN_SLOTS: readonly ScreenSlot[] = [
   },
   {
     title: "Process trend chart",
-    description: "Time-series chart overlaying flow, temperature, and pH on one zoomable axis",
-    kind: "placeholder",
-    role: "diagram",
-    prompt:
-      "Browser-frame UI mockup: a time-series chart with three overlaid lines (flow, temperature, pH). Zoomable axis, legend, hover tooltip frozen on one data point. Dark theme, single accent red, clean grid. 16:9 landscape browser frame.",
+    description: "Time-series chart of process flow rate with rolling 24-hour view and zoom-to-range",
+    kind: "image",
+    src: "/images/iot/screen-process-trend.webp",
+    aspect: "aspect-[16/9]",
   },
 ];
 

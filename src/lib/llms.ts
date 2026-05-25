@@ -8,12 +8,7 @@
  */
 
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from "./constants";
-import {
-  PRODUCTS,
-  INDUSTRIES,
-  LOCATIONS,
-  CASE_STUDIES,
-} from "./content-map";
+import { PRODUCTS, INDUSTRIES, LOCATIONS } from "./content-map";
 
 function url(path: string): string {
   return path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
@@ -27,7 +22,7 @@ export function generateLlmsTxt(): string {
   lines.push(`> ${SITE_DESCRIPTION}`);
   lines.push("");
   lines.push(
-    "An independent Kenyan industrial infrastructure brand serving food and beverage, ETP/water treatment, alcohol and chemical processing, and adjacent industries in Kenya. Reference client: Crywan Industries (Kenya).",
+    "An independent industrial infrastructure brand built in East Africa for Kenya. Serves food and beverage, ETP and water treatment, alcohol and distilling, chemical processing, and adjacent industries.",
   );
   lines.push("");
 
@@ -49,16 +44,6 @@ export function generateLlmsTxt(): string {
   }
   lines.push("");
 
-  lines.push("## Case Studies");
-  lines.push("");
-  for (const cs of CASE_STUDIES) {
-    if (!cs.published) continue;
-    lines.push(
-      `- [${cs.clientName} (${cs.country})](${url(`/case-studies/${cs.slug}/`)})`,
-    );
-  }
-  lines.push("");
-
   lines.push("## Locations");
   lines.push("");
   for (const loc of LOCATIONS) {
@@ -75,7 +60,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("## Positioning");
   lines.push("");
   lines.push(
-    `${SITE_NAME} is a Kenya-focused industrial infrastructure partner: stainless steel, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature). All with optional cloud-ready remote monitoring. Locally manufactured and supported, anchored to Crywan Industries as the Kenya reference.`,
+    `${SITE_NAME} is an industrial infrastructure partner built in East Africa for Kenya: stainless steel, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature). All with optional cloud-ready remote monitoring. Locally fabricated and locally supported.`,
   );
   lines.push("");
 
@@ -117,12 +102,7 @@ export function generateLlmsFullTxt(): string {
   lines.push(
     "- Single supplier across SS, epoxy, and zinc-alum tanks, silos (grain, feed, industrial bulk), structural fabrication, and full instrument categories (flow, level, pressure, liquid analysis, temperature, system products).",
   );
-  lines.push(
-    "- Locally fabricated and supported in Kenya, not an importer.",
-  );
-  lines.push(
-    "- Reference client Crywan Industries (Kenya) is named openly.",
-  );
+  lines.push("- Locally fabricated and supported in Kenya, not an importer.");
   lines.push(
     "- Optional cloud-ready monitoring with Safaricom NB-IoT connectivity, a capability no local competitor currently offers as standard.",
   );

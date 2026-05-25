@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
@@ -18,15 +17,26 @@ const UPDATED = "2026-05-25";
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Legal"
-        title="Privacy Policy."
-        subtitle="What we collect when you reach out through this site, how we use it, and how to ask us to delete it."
-        imageSrc="/images/home/hero-tank-farm.png"
-        imageAlt=""
-        metaLeft={`Last updated ${UPDATED}`}
-        metaRight="Kenya Data Protection Act, 2019"
-      />
+      <section
+        aria-label="Page header"
+        className="bg-surface-2/40 px-6 pt-32 pb-12 md:pt-40 md:pb-16"
+      >
+        <div className="mx-auto max-w-6xl">
+          <span className="font-mono-label text-[10px] text-faint">
+            Legal
+          </span>
+          <h1 className="font-display mt-3 max-w-3xl text-balance text-[clamp(2rem,4vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
+            Privacy Policy.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base text-muted md:text-lg">
+            What we collect when you reach out through this site, how we
+            use it, and how to ask us to delete it.
+          </p>
+          <p className="font-mono-label mt-6 text-[10px] text-faint">
+            Last updated {UPDATED} · Kenya Data Protection Act, 2019
+          </p>
+        </div>
+      </section>
 
       <Section size="compact">
         <Breadcrumbs

@@ -132,7 +132,7 @@ describe("JSON-LD generators", () => {
     const ld = faqLd([
       {
         question: "Have you done this in Kenya?",
-        answer: "Yes — see the Crywan Industries case study.",
+        answer: "Yes; most installs are behind customer NDAs.",
       },
     ]);
 

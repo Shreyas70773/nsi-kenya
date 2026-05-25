@@ -3,7 +3,6 @@ import {
   PRODUCTS,
   INDUSTRIES,
   LOCATIONS,
-  CASE_STUDIES,
   COMPARE_PAGES,
   BEST_PAGES,
   COST_PAGES,
@@ -105,26 +104,6 @@ describe("content-map", () => {
       expect(slugs).not.toContain("ethiopia");
       expect(slugs).not.toContain("mombasa");
       expect(slugs).not.toContain("kisumu");
-    });
-  });
-
-  describe("CASE_STUDIES", () => {
-    it("Crywan case study exists and is published", () => {
-      const crywan = CASE_STUDIES.find(
-        (c) => c.slug === "crywan-industries-kenya",
-      );
-      expect(crywan).toBeDefined();
-      expect(crywan?.published).toBe(true);
-      expect(crywan?.country).toBe("Kenya");
-    });
-
-    it("each case study references valid product slugs", () => {
-      const productSlugs = new Set(PRODUCTS.map((p) => p.slug));
-      for (const c of CASE_STUDIES) {
-        for (const slug of c.productsInstalled) {
-          expect(productSlugs.has(slug)).toBe(true);
-        }
-      }
     });
   });
 

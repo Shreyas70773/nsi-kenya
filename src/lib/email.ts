@@ -17,8 +17,6 @@ import {
 const FROM = `${SITE_NAME} <${CONTACT_EMAIL}>`;
 
 const QUOTE_TO = process.env.QUOTE_NOTIFICATION_EMAIL ?? CONTACT_EMAIL;
-const REFERENCE_TO =
-  process.env.REFERENCE_CALL_NOTIFICATION_EMAIL ?? CONTACT_EMAIL;
 
 let cached: Resend | null = null;
 function client(): Resend | null {
@@ -98,52 +96,3 @@ export async function sendQuoteNotification(
   return { ok: true };
 }
 
-export type ReferenceCallNotificationInput = {
-  name: string;
-  company: string;
-  email: string;
-  industry?: string;
-  considering?: string;
-};
-
-export async function sendReferenceCallNotification(
-  req: ReferenceCallNotificationInput,
-): Promise<{ ok: boolean; skipped?: true; error?: string }> {
-  const c = client();
-  if (!c) {
-    console.warn(
-      "[email] RESEND_API_KEY not set, skipping reference-call notification",
-    );
-    return { ok: true, skipped: true };
-  }
-  const subject = `Reference-call request: ${req.company}`;
-  const body = [
-    `A prospect wants to talk to an existing customer before they buy.`,
-    "",
-    `Name:        ${req.name}`,
-    `Company:     ${req.company}`,
-    `Email:       ${req.email}`,
-    req.industry ? `Industry:    ${req.industry}` : null,
-    req.considering ? `Considering: ${req.considering}` : null,
-    "",
-    "---",
-    "Next step: review industry/scale within 4 working hours, identify the most",
-    "relevant existing reference (initially Crywan Industries), confirm with the",
-    "reference, and facilitate the introduction.",
-    "",
-    `Source: ${SITE_URL}/talk-to-a-customer/`,
-  ]
-    .filter(Boolean)
-    .join("\n");
-  const res = await c.emails.send({
-    from: FROM,
-    to: [REFERENCE_TO],
-    replyTo: req.email,
-    subject,
-    text: body,
-  });
-  if (res.error) {
-    return { ok: false, error: res.error.message };
-  }
-  return { ok: true };
-}

@@ -281,9 +281,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── REFERENCE WORK ─────────────────────────────────────────────── */}
+      {/* ─── REFERENCE WORK (removed; client references private at launch) */}
       <section
-        aria-label="Reference work"
+        aria-label="Where the work lives"
         className="border-y border-border/8 bg-surface-2/40 px-6 py-28 md:py-36"
       >
         <div className="mx-auto max-w-6xl">
@@ -291,68 +291,83 @@ export default function Home() {
             <div className="flex flex-col gap-12 md:gap-16">
               <div data-reveal-item className="flex flex-col gap-3">
                 <span className="font-mono-label text-[10px] text-faint">
-                  ⟶ Reference work
+                  ⟶ How we work
                 </span>
                 <h2 className="font-display max-w-3xl text-balance text-4xl font-medium leading-tight tracking-tight md:text-5xl">
-                  The work answers the question
+                  Locally fabricated.
                   <br />
-                  before the room asks it.
+                  Locally supported.
                 </h2>
+                <p className="mt-3 max-w-2xl text-base text-muted md:text-lg">
+                  We work in confidence with our customers, and most of
+                  our installs live behind their NDAs. What we can share
+                  publicly: the workshop, the process, and the standards
+                  we hold ourselves to on every project.
+                </p>
               </div>
-
-              <Link
-                href="/case-studies/crywan-industries-kenya/"
-                data-reveal-item
-                className="press group block overflow-hidden rounded-card border border-border/10 bg-surface transition-colors hover:bg-surface/80"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-5">
-                  <div className="relative aspect-[16/10] overflow-hidden md:col-span-3 md:aspect-auto">
-                    <Image
-                      src="/images/home/crywan-reference-dusk.png"
-                      alt="Crywan Industries: stainless processing tanks at dusk, plant operator silhouette walking past"
-                      fill
-                      sizes="(min-width: 768px) 60vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-6 p-8 md:col-span-2 md:p-12">
-                    <div className="font-mono-label flex items-center gap-3 text-[10px] text-faint">
-                      <span>Crywan Industries</span>
-                      <span className="h-px flex-1 bg-faint/40" />
-                      <span>Kenya</span>
-                    </div>
-                    <p className="text-xl leading-snug text-text md:text-2xl">
-                      A long-running stainless tank installation for a Kenyan
-                      food and beverage operator. The reference our customers
-                      check before they sign.
-                    </p>
-                    <div className="mt-auto flex items-center justify-between gap-4 text-sm">
-                      <span className="text-muted">
-                        Equipment · Install · Ongoing support
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-accent transition-transform duration-300 group-hover:translate-x-1">
-                        Read the case study
-                        <ArrowUpRight className="h-4 w-4" strokeWidth={2.2} />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
 
               <div
                 data-reveal-item
-                className="flex flex-col items-start gap-4 border-t border-border/10 pt-8 md:flex-row md:items-center md:justify-between"
+                className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4"
               >
-                <p className="max-w-xl text-sm text-muted">
-                  Building a reference network. Every closed deal becomes a
-                  named case study with consent.
-                </p>
                 <Link
-                  href="/case-studies/"
-                  className="press inline-flex items-center gap-2 rounded-pill border border-border/20 bg-surface px-5 py-3 text-sm font-medium text-text transition-colors hover:bg-bg"
+                  href="/about/local-manufacturing/"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
                 >
-                  Browse case studies
-                  <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
+                  <span className="font-mono-label text-[10px] text-accent">
+                    Inside the workshop
+                  </span>
+                  <h3 className="font-display text-2xl font-medium leading-tight tracking-tight">
+                    Where the tanks get built.
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted">
+                    Cutting, rolling, TIG welding, dye-penetrant, and
+                    finishing, all in our Nairobi workshop.
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
+                    Local manufacturing
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
+                </Link>
+                <Link
+                  href="/about/"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                >
+                  <span className="font-mono-label text-[10px] text-accent">
+                    How we work
+                  </span>
+                  <h3 className="font-display text-2xl font-medium leading-tight tracking-tight">
+                    The model and the standards.
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted">
+                    Why we fabricate locally, what we source globally,
+                    and the engineering standards we hold every project
+                    to.
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
+                    About us
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
+                </Link>
+                <Link
+                  href="/blog/"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text)/0.18)]"
+                >
+                  <span className="font-mono-label text-[10px] text-accent">
+                    Field notes
+                  </span>
+                  <h3 className="font-display text-2xl font-medium leading-tight tracking-tight">
+                    What we've learned.
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted">
+                    Practical writing on tank metallurgy, ETP
+                    compliance, instrument selection, and the work of
+                    running a Kenyan industrial plant.
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
+                    Read the blog
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
                 </Link>
               </div>
             </div>

@@ -4,11 +4,11 @@ import {
   PRODUCTS,
   INDUSTRIES,
   LOCATIONS,
-  CASE_STUDIES,
   COMPARE_PAGES,
   BEST_PAGES,
   COST_PAGES,
 } from "@/lib/content-map";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
@@ -50,12 +50,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.9,
-  });
-  entries.push({
-    url: url("/case-studies/"),
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.8,
   });
   entries.push({
     url: url("/about/"),
@@ -152,14 +146,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Case studies (published only)
-  for (const cs of CASE_STUDIES) {
-    if (!cs.published) continue;
+  // Blog posts
+  for (const post of BLOG_POSTS) {
     entries.push({
-      url: url(`/case-studies/${cs.slug}/`),
-      lastModified: new Date(cs.publishedAt),
+      url: url(`/blog/${post.slug}/`),
+      lastModified: new Date(post.publishedAt),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.5,
     });
   }
 

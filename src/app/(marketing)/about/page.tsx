@@ -35,7 +35,7 @@ const PILLARS = [
   },
   {
     title: "Reference-grade work",
-    copy: "Anchored to Crywan Industries (Kenya), with ongoing track record. Trust is the gate; named references open it.",
+    copy: "Operating installs across the country, most of them behind customer NDAs. The work is the proof; the workshop and process pages are where we show it.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
         imageSrc="/images/about/about-hero.png"
         imageAlt=""
         primaryCta={{ href: "/about/local-manufacturing/", label: "Inside the workshop" }}
-        secondaryCta={{ href: "/case-studies/", label: "Reference work" }}
+        secondaryCta={{ href: "/products/", label: "What we ship" }}
         metaLeft="Nairobi · Kenya"
         metaRight="Locally fabricated and supported"
       />
@@ -90,15 +90,12 @@ export default function AboutPage() {
                 and deliver in weeks rather than months.
               </p>
               <p>
-                Our anchor reference is{" "}
-                <Link href="/case-studies/crywan-industries-kenya/">
-                  Crywan Industries
-                </Link>
-                , a Kenyan food and beverage operator. It is an
-                operating install with an ongoing engagement, named
-                openly because they agreed to be named, and it is the
-                relationship our newer customers usually ask about
-                first.
+                Most of our installed projects sit behind customer
+                NDAs, so the work shows up in the catalogue and the
+                workshop rather than in named case studies. If you
+                want to verify, we are happy to talk you through what
+                we have shipped, what we are shipping right now, and
+                where the work lives.
               </p>
             </Prose>
           </div>

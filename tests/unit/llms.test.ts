@@ -18,8 +18,13 @@ describe("llms.txt", () => {
     expect(txt).toContain("Grain Storage Silos");
   });
 
-  it("lists Crywan as the reference client", () => {
-    expect(txt).toContain("Crywan Industries");
+  it("uses the 'Built in East Africa for Kenya' positioning", () => {
+    expect(txt).toContain("East Africa");
+    expect(txt).toContain("Kenya");
+  });
+
+  it("does NOT name customer references (NDA)", () => {
+    expect(txt).not.toMatch(/Crywan/i);
   });
 
   it("uses llmstxt.org standard top-level H1", () => {
@@ -41,8 +46,8 @@ describe("llms-full.txt", () => {
     expect(full).toContain("ETP");
   });
 
-  it("contains the Crywan case study reference", () => {
-    expect(full).toContain("Crywan");
+  it("does NOT name customer references (NDA)", () => {
+    expect(full).not.toMatch(/Crywan/i);
   });
 
   it("mentions NEMA / EMCA CAP 387 (ETP compliance signal)", () => {

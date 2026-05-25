@@ -29,7 +29,6 @@ const FOOTER_NAV = [
     links: [
       { href: "/about/", label: "About" },
       { href: "/about/local-manufacturing/", label: "Local Manufacturing" },
-      { href: "/case-studies/", label: "Case Studies" },
       { href: "/locations/", label: "Locations" },
       { href: "/blog/", label: "Blog" },
       { href: "/resources/", label: "Resources" },
@@ -66,8 +65,8 @@ export function SiteFooter() {
             className="h-12 w-auto md:h-14"
           />
           <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-            Industrial infrastructure,{" "}
-            <span className="text-accent">built for Kenya</span>.
+            Built in East Africa{" "}
+            <span className="text-accent">for Kenya</span>.
           </p>
         </div>
 

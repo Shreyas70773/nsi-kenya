@@ -36,10 +36,8 @@ describe("sitemap", () => {
     expect(urls.some((u) => u.includes("/locations/mombasa/"))).toBe(false);
   });
 
-  it("contains the Crywan case study", () => {
-    expect(urls).toContain(
-      `${SITE_URL}/case-studies/crywan-industries-kenya/`,
-    );
+  it("does NOT contain /case-studies/ routes (Case Studies section removed)", () => {
+    expect(urls.some((u) => u.includes("/case-studies"))).toBe(false);
   });
 
   it("does NOT contain /talk-to-a-customer/ (removed per user instruction)", () => {

@@ -9,17 +9,9 @@ test.describe("Phase 0 smoke", () => {
     const h1 = page.getByRole("heading", { level: 1 });
     await expect(h1).toContainText(/Kenya/i);
     await expect(h1).toContainText(/East Africa/i);
-    // Crywan must NOT be in the H1 per user instruction — it lives in the
-    // dedicated reference-work section below the fold instead.
-    await expect(h1).not.toContainText(/Crywan/i);
-  });
-
-  test("Crywan is referenced below the fold in the reference-work section", async ({
-    page,
-  }) => {
-    await page.goto("/");
-    // The whole page must mention Crywan somewhere (case-study card, etc.)
-    await expect(page.locator("body")).toContainText("Crywan");
+    // Customer references (Crywan) must NOT appear anywhere on the homepage
+    // per the NDA they have asked us to honour.
+    await expect(page.locator("body")).not.toContainText(/Crywan/i);
   });
 
   test("primary CTA links to /request-quote/", async ({ page }) => {
@@ -37,17 +29,17 @@ test.describe("Phase 0 smoke", () => {
     ).toHaveCount(0);
   });
 
-  test("sitemap.xml is reachable and contains the Crywan case study", async ({
+  test("sitemap.xml is reachable and does NOT contain /case-studies/", async ({
     request,
   }) => {
     const res = await request.get("/sitemap.xml");
     expect(res.status()).toBe(200);
     expect(res.headers()["content-type"]).toContain("xml");
     const body = await res.text();
-    expect(body).toContain("/case-studies/crywan-industries-kenya/");
+    expect(body).not.toContain("/case-studies/");
   });
 
-  test("llms.txt is reachable and names North Star + Crywan", async ({
+  test("llms.txt is reachable and does NOT name customer references", async ({
     request,
   }) => {
     const res = await request.get("/llms.txt");
@@ -55,7 +47,7 @@ test.describe("Phase 0 smoke", () => {
     expect(res.headers()["content-type"]).toContain("text/plain");
     const body = await res.text();
     expect(body).toContain("North Star Impex Kenya");
-    expect(body).toContain("Crywan Industries");
+    expect(body).not.toMatch(/Crywan/i);
   });
 
   test("llms-full.txt mentions Safaricom NB-IoT and NEMA", async ({
