@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run check:alt-text && npm run check:meta",
     "build": "next build",
     "start": "next start",
+    "check:alt-text": "tsx scripts/check-alt-text.ts",
+    "check:meta": "tsx scripts/check-meta.ts",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "vitest",

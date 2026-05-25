@@ -8,6 +8,7 @@ import { signIn } from "@/lib/auth";
 
 export const metadata = {
   title: "Admin sign in",
+  description: "Restricted admin sign-in for North Star Impex Kenya staff.",
   robots: { index: false, follow: false },
 };
 
