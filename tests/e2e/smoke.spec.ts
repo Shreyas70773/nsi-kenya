@@ -1,17 +1,30 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Phase 0 smoke", () => {
-  test("homepage loads with Crywan above the fold", async ({ page }) => {
+  test("homepage loads with editorial H1 and East Africa positioning", async ({
+    page,
+  }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/North Star Impex Kenya/);
-    await expect(
-      page.getByRole("heading", { level: 1 }),
-    ).toContainText("Crywan Industries");
+    const h1 = page.getByRole("heading", { level: 1 });
+    await expect(h1).toContainText(/tanks/i);
+    await expect(h1).toContainText(/Kenya/i);
+    // Crywan must NOT be in the H1 per user instruction — it lives in the
+    // dedicated reference-work section below the fold instead.
+    await expect(h1).not.toContainText(/Crywan/i);
+  });
+
+  test("Crywan is referenced below the fold in the reference-work section", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    // The whole page must mention Crywan somewhere (case-study card, etc.)
+    await expect(page.locator("body")).toContainText("Crywan");
   });
 
   test("primary CTA links to /request-quote/", async ({ page }) => {
     await page.goto("/");
-    const cta = page.getByRole("link", { name: /Get a Quote/i }).first();
+    const cta = page.getByRole("link", { name: /Get a quote/i }).first();
     await expect(cta).toHaveAttribute("href", "/request-quote/");
   });
 
@@ -20,7 +33,7 @@ test.describe("Phase 0 smoke", () => {
   }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("link", { name: /Talk to one of our customers/i }),
+      page.getByRole("link", { name: /Talk to a customer/i }).first(),
     ).toBeVisible();
   });
 
@@ -34,7 +47,9 @@ test.describe("Phase 0 smoke", () => {
     expect(body).toContain("/case-studies/crywan-industries-kenya/");
   });
 
-  test("llms.txt is reachable and names North Star", async ({ request }) => {
+  test("llms.txt is reachable and names North Star + Crywan", async ({
+    request,
+  }) => {
     const res = await request.get("/llms.txt");
     expect(res.status()).toBe(200);
     expect(res.headers()["content-type"]).toContain("text/plain");
