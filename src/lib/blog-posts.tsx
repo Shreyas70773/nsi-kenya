@@ -6,8 +6,8 @@ import Link from "next/link";
  * appear in /blog/ and at /blog/[slug]/. To add a new post, append to the
  * `BLOG_POSTS` array.
  *
- * Images: hosted on picsum.photos with a stable seed per post until
- * art-directed photography lands.
+ * Images: local PNGs from `/public/images/...` re-used from the
+ * corresponding product / industry / workshop page.
  */
 
 export type BlogPost = {
@@ -27,6 +27,204 @@ export type BlogPost = {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "flow-meter-selection-kenya-industrial",
+    title: "Choosing a flow meter for a Kenyan industrial loop",
+    excerpt:
+      "Electromagnetic, vortex, ultrasonic, Coriolis, or thermal-mass? The medium, the pipe size, and the accuracy you actually need decide which one belongs on the line.",
+    publishedAt: "2026-05-26",
+    readingMinutes: 7,
+    tags: ["Instruments", "Flow"],
+    heroImage: "/images/products/instruments-flow-hero.png",
+    heroImageAlt:
+      "Electromagnetic flow meter installed on a stainless process line at a Kenyan plant",
+    body: (
+      <>
+        <p>
+          A flow meter looks like a one-line item on the BOM. It isn&apos;t.
+          The wrong technology on the wrong medium produces readings that
+          drift, that lie about totalised volume, or that simply stop
+          working after the third cleaning cycle. Here is the conversation
+          we have with most buyers, in the order we have it.
+        </p>
+
+        <h2>Electromagnetic: the default for conductive liquids</h2>
+        <p>
+          If the medium is water-like and electrically conductive (above
+          roughly 5 µS/cm), electromagnetic is the right answer. No moving
+          parts in the flow stream, no pressure drop, accuracy to ±0.2%
+          of rate with proper sizing. Use it for raw water, ETP effluent,
+          beverage base, dairy, and anything with even mild
+          conductivity.
+        </p>
+        <p>
+          The two failure modes to know: empty-pipe readings (solved with
+          empty-pipe detection on the transmitter) and ground-loop noise
+          (solved with proper grounding rings on plastic pipe). Both are
+          install-quality problems, not meter problems.
+        </p>
+
+        <h2>Vortex: steam, gas, and the hot liquids electromagnetic won&apos;t handle</h2>
+        <p>
+          Vortex meters work on the principle of vortex shedding behind a
+          bluff body in the flow stream. They handle steam, dry gas, and
+          superheated liquids where electromagnetic can&apos;t. Accuracy
+          is typically ±1% of rate, which is good enough for utility
+          metering but not for custody transfer.
+        </p>
+        <p>
+          The catch: a vortex meter has a minimum flow below which the
+          shedding becomes unstable. Sized too generously, the meter
+          spends much of its operating range below this threshold and
+          reports zero. Size against the minimum flow, not the maximum.
+        </p>
+
+        <h2>Ultrasonic: clean liquids, no contact with the medium</h2>
+        <p>
+          Ultrasonic transit-time meters work for clean liquids in metal
+          pipes and are non-invasive: the transducers clamp onto the
+          outside of the pipe. Use them for utility water metering on
+          large pipe sizes (above DN300, where the cost of an inline
+          electromagnetic becomes punishing), and for retrofits where
+          cutting into an existing line isn&apos;t practical.
+        </p>
+        <p>
+          Doppler ultrasonics, on the other hand, work for dirty liquids
+          but with worse accuracy. They&apos;re a niche tool, not the
+          default.
+        </p>
+
+        <h2>Coriolis: when you need mass, not volume</h2>
+        <p>
+          Coriolis meters measure mass flow directly by detecting the
+          deflection of a vibrating tube under flow. Accuracy is ±0.1%
+          of rate, the highest of any technology in the lineup. Use them
+          for custody-transfer applications, edible-oil blending,
+          chemical dosing where mass balance is the metric, and any
+          process where density also matters.
+        </p>
+        <p>
+          They are also the most expensive technology by a wide margin
+          and the most pressure-drop-heavy. Specify Coriolis only when
+          mass-flow accuracy is actually the requirement.
+        </p>
+
+        <h2>Thermal mass: for low-flow gas</h2>
+        <p>
+          Thermal mass meters work by measuring the heat carried away
+          from a heated element by the flowing gas. Use them for low-
+          flow gas metering (compressed air consumption, nitrogen blanket
+          flow, biogas) where the volumetric flow is too small for a
+          vortex to resolve.
+        </p>
+
+        <h2>The questions we wish more buyers asked us</h2>
+        <p>
+          Medium, conductivity if it&apos;s a liquid, pipe size,
+          temperature, pressure, accuracy requirement, and turndown ratio.
+          From those seven answers, the right technology falls out
+          mechanically. The full instrument range is on the{" "}
+          <Link href="/products/instruments/flow/">flow meter page</Link>;
+          for a wider context on how flow integrates with the rest of
+          your monitoring, see the{" "}
+          <Link href="/products/iot/">remote monitoring page</Link>.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "structural-fabrication-nairobi-pipe-racks",
+    title: "Structural fabrication in Nairobi: pipe racks, tank supports, walkways",
+    excerpt:
+      "Tanks and silos don't stand alone. The platforms, racks, and supports around them are usually the load-bearing schedule risk. Here is how we approach the rest of the steel.",
+    publishedAt: "2026-05-26",
+    readingMinutes: 6,
+    tags: ["Structural", "Workshop"],
+    heroImage: "/images/products/structural-works-hero.png",
+    heroImageAlt:
+      "Galvanised structural steel pipe rack at a Kenyan industrial plant",
+    body: (
+      <>
+        <p>
+          A new tank doesn&apos;t arrive on a flatbed and stand itself up.
+          Behind every install there is a foundation, a support frame, a
+          walkway to the manway, and a pipe rack threading the new vessel
+          into your existing utilities. The rest of the steel is usually
+          two to three times the weight of the tank itself. Here is how
+          we approach it.
+        </p>
+
+        <h2>Pipe racks come first</h2>
+        <p>
+          A pipe rack is the spine of an industrial plant. Get it right
+          and every future addition has somewhere to land; get it wrong
+          and every future utility goes overhead on its own bespoke
+          support. We design pipe racks per Eurocode 3 with realistic
+          future-capacity allowances, typically 30 to 50 percent
+          headroom on the original utility count.
+        </p>
+        <p>
+          On heat: insulated lines carry surface temperatures the rest
+          of the rack does not. We hold dissimilar utilities apart with
+          spacer rings and we hot-dip galvanise the entire rack so the
+          coating survives the steam-trap drips that always end up
+          falling onto the structural members below.
+        </p>
+
+        <h2>Tank supports: skirts, saddles, legs</h2>
+        <p>
+          For vertical tanks above 5 m³, a welded skirt is the right
+          answer; below that, three or four leg supports work fine.
+          Horizontal tanks ride on saddles, sized so the contact stress
+          stays within the shell&apos;s allowable. Where the tank carries
+          jacketed heating, we leave thermal expansion clearance at one
+          end of the saddle so the shell can grow without dragging the
+          support frame.
+        </p>
+        <p>
+          The trick most fabricators miss: tank supports need a
+          dye-penetrant inspection on every gusset weld. The shell weld
+          gets inspected because everyone remembers it; the support
+          gusset gets inspected because we have a checklist that does
+          not.
+        </p>
+
+        <h2>Walkways and access</h2>
+        <p>
+          Every tank above 3 m in height gets a walkway around the top
+          for sample ports, manways, and instrumentation maintenance.
+          Standard: galvanised grating decking with toe-board and
+          handrail per OSHA-style geometry, ladder access with caged
+          fall protection above 6 m, and a rest platform every 6 m of
+          vertical climb.
+        </p>
+        <p>
+          We design walkways with the operator&apos;s actual workflow in
+          mind. The most common mistake is to drop the access ladder on
+          the far side of the tank from the instrument panel, which
+          means the operator carries his tools around the platform every
+          time. Place the ladder where the work is.
+        </p>
+
+        <h2>Where structural sits in our scope</h2>
+        <p>
+          Most of our customers buy structural alongside the tank or
+          silo. A single workshop turnaround is faster, the structural
+          steel arrives with the right coating already on it, and the
+          tank-to-support interface fit is checked in the workshop, not
+          on the install site. The{" "}
+          <Link href="/products/structural-works/">
+            structural fabrication page
+          </Link>{" "}
+          carries the full scope; see the{" "}
+          <Link href="/about/local-manufacturing/">
+            local manufacturing page
+          </Link>{" "}
+          for the workshop process behind it.
+        </p>
+      </>
+    ),
+  },
+  {
     slug: "specifying-stainless-tank-kenya-fnb",
     title: "How to specify a stainless tank for a Kenyan F&B plant",
     excerpt:
@@ -34,7 +232,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-26",
     readingMinutes: 7,
     tags: ["Tanks", "Food & Beverage"],
-    heroImage: "https://picsum.photos/seed/stainless-tank-fnb/1920/1080",
+    heroImage: "/images/products/tanks-stainless-steel-hero.png",
     heroImageAlt:
       "Polished stainless steel processing tank inside a Kenyan F&B plant",
     body: (
@@ -114,7 +312,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-22",
     readingMinutes: 9,
     tags: ["ETP", "Compliance"],
-    heroImage: "https://picsum.photos/seed/nema-etp-compliance/1920/1080",
+    heroImage: "/images/industries/etp-water-treatment-hero.png",
     heroImageAlt:
       "Outdoor effluent treatment plant clarifier with surface ripple at a Kenyan factory",
     body: (
@@ -212,7 +410,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-19",
     readingMinutes: 6,
     tags: ["Tanks", "Lifecycle"],
-    heroImage: "https://picsum.photos/seed/zinc-alum-carbon-steel/1920/1080",
+    heroImage: "/images/products/tanks-zinc-alum-hero.png",
     heroImageAlt:
       "Side-by-side comparison of zinc-alum and carbon-steel tank construction",
     body: (
@@ -290,7 +488,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-15",
     readingMinutes: 5,
     tags: ["IoT", "Monitoring"],
-    heroImage: "https://picsum.photos/seed/nbiot-kenya-monitoring/1920/1080",
+    heroImage: "/images/products/iot-hero.png",
     heroImageAlt:
       "Remote NB-IoT gateway box mounted on a pole at a Kenyan tank site",
     body: (
@@ -361,7 +559,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-10",
     readingMinutes: 6,
     tags: ["Workshop", "Process"],
-    heroImage: "https://picsum.photos/seed/tig-weld-workshop/1920/1080",
+    heroImage: "/images/about/workshop-tig-welding.png",
     heroImageAlt:
       "TIG welder mid-strike on a polished stainless steel tank seam",
     body: (

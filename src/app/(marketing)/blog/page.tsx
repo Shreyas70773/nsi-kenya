@@ -9,10 +9,26 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Industrial Field Notes: Tank, ETP, IoT, Kenya",
   description:
-    "Field notes from North Star Impex Kenya on tank metallurgy, ETP compliance, instrument selection, IoT monitoring, and the work of running a Kenyan industrial plant.",
+    "Practical writing for Kenyan plant managers and engineering teams. Tank metallurgy, ETP compliance, instrument selection, IoT monitoring, workshop process.",
   alternates: { canonical: "/blog/" },
+  keywords: [
+    "industrial blog Kenya",
+    "tank manufacturing Kenya blog",
+    "ETP compliance Kenya",
+    "NEMA discharge Kenya",
+    "industrial IoT Kenya",
+    "process instruments Kenya",
+  ],
+  openGraph: {
+    type: "website",
+    title: "Industrial Field Notes: Tank, ETP, IoT, Kenya",
+    description:
+      "Practical writing for Kenyan plant managers and engineering teams. Tank metallurgy, ETP compliance, instrument selection, IoT monitoring, workshop process.",
+    url: "/blog/",
+    images: [{ url: "/images/about/workshop-tig-welding.png" }],
+  },
 };
 
 function formatDate(iso: string): string {
