@@ -8,23 +8,23 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
+  title: "Industrial Resources: Spec Sheets, Compliance, Field Notes",
   description:
-    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS standards. Free, gate-free, no signup.",
+    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. KEBS and Kenyan environmental standards. Free, gate-free, no signup.",
   alternates: { canonical: "/resources/" },
   keywords: [
     "industrial resources Kenya",
-    "NEMA Kenya guide",
-    "EMCA CAP 387",
+    "Kenya environmental guide",
+    "Kenya water quality regulations",
     "KEBS food grade",
     "tank spec sheet Kenya",
     "ETP compliance Kenya",
   ],
   openGraph: {
     type: "website",
-    title: "Industrial Resources: Spec Sheets, NEMA, Field Notes",
+    title: "Industrial Resources: Spec Sheets, Compliance, Field Notes",
     description:
-      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. NEMA, EMCA, KEBS standards. Free, gate-free, no signup.",
+      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. KEBS and Kenyan environmental standards. Free, gate-free, no signup.",
     url: "/resources/",
     images: [{ url: "/images/about/workshop-tig-welding.png" }],
   },
@@ -48,9 +48,9 @@ const SECTIONS = [
   {
     icon: Wrench,
     title: "Regulatory references",
-    copy: "NEMA discharge limits, EMCA CAP 387 summary, KEBS food-grade standards, and the standards we work to on every install.",
+    copy: "Kenyan discharge limits, Kenyan water-quality summary, KEBS food-grade standards, and the standards we work to on every install.",
     href: "/industries/etp-water-treatment/#nema-parameters",
-    label: "NEMA parameters table",
+    label: "Discharge parameters table",
   },
 ];
 

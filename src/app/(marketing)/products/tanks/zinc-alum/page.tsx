@@ -218,14 +218,14 @@ export default function ZincAlumTanksPage() {
           {
             href: "/industries/etp-water-treatment/",
             title: "ETP & water treatment",
-            copy: "Where zinc-alum equalisation tanks earn their lifecycle math against NEMA inspection cycles.",
+            copy: "Where zinc-alum equalisation tanks earn their lifecycle math against regulator inspection cycles.",
             imageSrc: "/images/industries/etp-water-treatment-hero.png",
             imageAlt: "Outdoor effluent treatment plant in Kenya",
           },
           {
             href: "/products/iot/",
             title: "Cloud-ready monitoring",
-            copy: "Inventory and level on every zinc-alum install. Safaricom NB-IoT for unattended water sites.",
+            copy: "Inventory and level on every zinc-alum install. NB-IoT for unattended water sites.",
             imageSrc: "/images/products/iot-hero.png",
             imageAlt: "NB-IoT gateway box mounted on a pole",
           },

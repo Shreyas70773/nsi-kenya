@@ -296,7 +296,7 @@ export const INDUSTRIES: readonly Industry[] = [
       { slug: "municipal-water", name: "Municipal Water" },
     ],
     primaryQueries: [
-      "NEMA compliant ETP Kenya",
+      "compliant ETP Kenya",
       "effluent treatment plant tanks Kenya",
       "wastewater treatment equipment Nairobi",
     ],

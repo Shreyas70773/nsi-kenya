@@ -30,10 +30,10 @@ const PAGES = [
   ["/products/instruments/liquid-analysis/", "Multi-Parameter Water Analyzer Kenya: ETP & Process"],
   ["/products/instruments/temperature/", "RTD Temperature Sensor Kenya: Pt100, Thermocouples"],
   ["/products/instruments/system-products/", "Paperless Recorder Kenya: Indicators, Isolators"],
-  ["/products/iot/", "Tank Monitoring Kenya: Safaricom NB-IoT, LoRa, 4G"],
+  ["/products/iot/", "Tank Monitoring Kenya: NB-IoT, LoRa, 4G"],
   ["/industries/", "Industries We Equip in Kenya"],
   ["/industries/food-and-beverage/", "Food & Beverage Equipment Supplier Kenya"],
-  ["/industries/etp-water-treatment/", "NEMA-Compliant ETP Equipment Kenya: Tanks & Analyzers"],
+  ["/industries/etp-water-treatment/", "Compliant ETP Equipment Kenya: Tanks & Analyzers"],
   ["/industries/alcohol-distilling/", "Brewery & Distillery Tank Kenya: 50 HL to 5,000 HL+"],
   ["/industries/chemical-processing/", "Chemical Processing Tank Kenya: Epoxy & Stainless"],
   ["/locations/", "Kenya Delivery & On-Site Supply"],
@@ -44,7 +44,7 @@ const PAGES = [
   ["/request-quote/", "Request a Quote: Tanks, Silos, Instruments Kenya"],
   ["/book-consultation/", "Book a Consultation with Our Engineering Team"],
   ["/request-site-audit/", "Request a Free Site Audit: Plants in Kenya"],
-  ["/resources/", "Industrial Resources: Spec Sheets, NEMA, Field Notes"],
+  ["/resources/", "Industrial Resources: Spec Sheets, Compliance, Field Notes"],
   ["/blog/", "Industrial Field Notes: Tank, ETP, IoT, Kenya"],
 ];
 

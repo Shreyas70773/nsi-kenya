@@ -93,7 +93,7 @@ export default function LiquidAnalysisInstrumentsPage() {
         eyebrow="Instruments / Liquid Analysis"
         title="Six water-quality parameters,"
         titleAccent="or all of them in one panel."
-        subtitle="pH for control. Conductivity for water quality. DO for aeration. Turbidity for clarity. TSS for solids. Multi-parameter for compliance reporting. We supply individual instruments and the multi-parameter analyzers that NEMA discharge compliance often requires."
+        subtitle="pH for control. Conductivity for water quality. DO for aeration. Turbidity for clarity. TSS for solids. Multi-parameter for compliance reporting. We supply individual instruments and the multi-parameter analyzers that Kenyan discharge compliance often requires."
         imageSrc="/images/products/instruments-liquid-analysis-hero.png"
         imageAlt="A multi-parameter water analyzer panel mounted above a water-treatment basin"
         primaryCta={{ href: "/request-quote/", label: "Spec a water-quality loop" }}
@@ -102,7 +102,7 @@ export default function LiquidAnalysisInstrumentsPage() {
           label: "ETP applications",
         }}
         metaLeft="6 parameters"
-        metaRight="ETP-ready · NEMA-aware"
+        metaRight="ETP-ready · compliance-aware"
       />
 
       <Section size="compact">
@@ -129,7 +129,7 @@ export default function LiquidAnalysisInstrumentsPage() {
             <Prose>
               <p>
                 Liquid analysis is the instrumentation category that
-                most directly touches compliance. The NEMA discharge
+                most directly touches compliance. The Kenyan discharge
                 parameters table on the{" "}
                 <Link href="/industries/etp-water-treatment/#nema-parameters">
                   ETP page

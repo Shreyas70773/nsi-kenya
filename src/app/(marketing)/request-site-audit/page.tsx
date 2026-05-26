@@ -61,7 +61,7 @@ export default function RequestSiteAuditPage() {
               <li>· Dimensional measurements of equipment zones</li>
               <li>· Photographs (we leave a redacted set with you)</li>
               <li>· Utility hook-up review (steam, CIP, drains, power)</li>
-              <li>· Compliance gap check (NEMA, KEBS, fire, OSHA-style)</li>
+              <li>· Compliance gap check (KEBS, fire, OSHA-style)</li>
               <li>· Written brief, delivered within 5 working days</li>
             </ul>
           </aside>

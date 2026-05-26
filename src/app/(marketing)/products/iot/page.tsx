@@ -15,23 +15,23 @@ import { FaqList } from "@/components/primitives/faq-list";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Tank Monitoring Kenya: Safaricom NB-IoT, LoRa, 4G",
+  title: "Tank Monitoring Kenya: NB-IoT, LoRa, 4G",
   description:
-    "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. Safaricom NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
+    "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
   alternates: { canonical: "/products/iot/" },
   keywords: [
     "tank monitoring Kenya",
     "remote tank level sensor Kenya",
     "IoT industrial monitoring Nairobi",
     "cloud connected tank Kenya",
-    "Safaricom NB-IoT industrial",
+    "NB-IoT industrial monitoring Kenya",
     "remote water quality monitoring Kenya",
   ],
   openGraph: {
     type: "website",
-    title: "Tank Monitoring Kenya: Safaricom NB-IoT, LoRa, 4G",
+    title: "Tank Monitoring Kenya: NB-IoT, LoRa, 4G",
     description:
-      "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. Safaricom NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
+      "Cloud-ready tank, flow, and water-quality monitoring on every Kenyan install. NB-IoT, LoRaWAN, 4G LTE, Ethernet. Live dashboards from any device.",
     url: "/products/iot/",
     images: [{ url: "/images/products/iot-hero.png" }],
   },
@@ -62,7 +62,7 @@ const FLOW_STEPS = [
 
 const CONNECTIVITY = [
   {
-    label: "Safaricom NB-IoT",
+    label: "NB-IoT",
     note: "Primary recommendation for single-tank or low-bandwidth Kenya sites. Low power, multi-year battery.",
   },
   {
@@ -90,9 +90,9 @@ const SUPPORTED = [
 
 const FAQS = [
   {
-    question: "Should I use Safaricom NB-IoT or LoRaWAN for tank monitoring?",
+    question: "Should I use NB-IoT or LoRaWAN for tank monitoring?",
     answer:
-      "NB-IoT is the default for single-tank or low-bandwidth sites in Kenya: nationwide Safaricom coverage, multi-year primary battery, low message overhead. LoRaWAN is the right answer for multi-tank plants where one yard gateway covers 20+ instruments at lower per-instrument operating cost. 4G LTE wins only when you need real-time streaming for SCADA.",
+      "NB-IoT is the default for single-tank or low-bandwidth sites in Kenya: nationwide cellular coverage, multi-year primary battery, low message overhead. LoRaWAN is the right answer for multi-tank plants where one yard gateway covers 20+ instruments at lower per-instrument operating cost. 4G LTE wins only when you need real-time streaming for SCADA.",
   },
   {
     question: "Where does the data get hosted?",
@@ -186,7 +186,7 @@ export default function IoTPage() {
           label: "See the instruments",
         }}
         metaLeft="LoRa · NB-IoT · LTE · Ethernet"
-        metaRight="Safaricom NB-IoT capable"
+        metaRight="NB-IoT capable"
       />
 
       <Section size="compact">
@@ -281,7 +281,7 @@ export default function IoTPage() {
             </h2>
             <Prose className="mt-5" size="sm">
               <p>
-                Single tank in a remote location? Safaricom NB-IoT, multi-
+                Single tank in a remote location? NB-IoT, multi-
                 year battery. Multi-tank brewery with on-prem IT? LoRaWAN
                 with a yard gateway. Plant with existing fibre? Ethernet.
                 We size the radio, not the other way round.
@@ -374,7 +374,7 @@ export default function IoTPage() {
           {
             href: "/industries/etp-water-treatment/",
             title: "ETP & water treatment",
-            copy: "Where continuous compliance monitoring earns its keep. NEMA-aware streaming of every discharge parameter.",
+            copy: "Where continuous compliance monitoring earns its keep. compliance-aware streaming of every discharge parameter.",
             imageSrc: "/images/industries/etp-water-treatment-hero.png",
             imageAlt: "Effluent treatment plant clarifier at a Kenyan factory",
           },

@@ -61,7 +61,7 @@ export default function BookConsultationPage() {
               <li>· Material selection (304 vs 316L vs epoxy vs zinc-alum)</li>
               <li>· Instrument loop topology</li>
               <li>· Lead-time scenario planning</li>
-              <li>· Compliance posture (NEMA, KEBS, ASME, AWS)</li>
+              <li>· Compliance posture (KEBS, ASME, AWS)</li>
               <li>· Optional remote monitoring scope</li>
             </ul>
           </aside>

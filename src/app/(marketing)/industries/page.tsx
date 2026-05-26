@@ -46,7 +46,7 @@ const SECTORS = [
     n: "02",
     href: "/industries/etp-water-treatment/",
     name: "ETP & Water Treatment",
-    pillar: "NEMA compliance, EMCA CAP 387, discharge parameters",
+    pillar: "Kenyan environmental compliance, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
     image: "/images/home/sector-etp.png",
     imageAlt:

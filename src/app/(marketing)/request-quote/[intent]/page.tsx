@@ -63,7 +63,7 @@ const INTENT_META: Record<
 ,
     titleAccent: "Expedited ETP supply.",
     subtitle:
-      "NEMA inspection on the horizon or discharge parameters out of spec. We expedite ETP equipment, including epoxy-lined tanks and multi-parameter analyzers, in 2 to 3 weeks where possible.",
+      "Regulator inspection on the horizon or discharge parameters out of spec. We expedite ETP equipment, including epoxy-lined tanks and multi-parameter analyzers, in 2 to 3 weeks where possible.",
     metaLeft: "Intent: urgent ETP",
     metaRight: "2 to 3 week expedited delivery",
     hero: "/images/conversion/request-quote-urgent-etp-hero.png",
@@ -120,13 +120,13 @@ const INTENT_SEO: Record<
     ],
   },
   "urgent-etp": {
-    title: "Urgent ETP Quote: NEMA Compliance Pressure",
+    title: "Urgent ETP Quote: Compliance Pressure",
     description:
-      "NEMA inspection deadline pressure? Expedited ETP equipment supply in Kenya, 2 to 3 weeks for epoxy-lined tanks and multi-parameter analyzers.",
+      "Regulator inspection deadline pressure? Expedited ETP equipment supply in Kenya, 2 to 3 weeks for epoxy-lined tanks and multi-parameter analyzers.",
     keywords: [
-      "urgent NEMA ETP equipment Kenya",
+      "urgent expedited ETP equipment Kenya",
       "expedited ETP Kenya",
-      "NEMA inspection ETP Kenya",
+      "regulator inspection ETP Kenya",
       "epoxy lined tank expedited Kenya",
     ],
   },

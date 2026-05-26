@@ -50,11 +50,11 @@ describe("llms-full.txt", () => {
     expect(full).not.toMatch(/Crywan/i);
   });
 
-  it("mentions NEMA / EMCA CAP 387 (ETP compliance signal)", () => {
-    expect(full).toMatch(/NEMA|EMCA/);
+  it("carries an ETP compliance signal (Kenyan environmental regulations)", () => {
+    expect(full).toMatch(/Kenyan environmental|water-quality|water quality/i);
   });
 
-  it("mentions Safaricom NB-IoT (IoT connectivity signal)", () => {
-    expect(full).toContain("Safaricom NB-IoT");
+  it("carries an IoT connectivity signal (NB-IoT)", () => {
+    expect(full).toContain("NB-IoT");
   });
 });

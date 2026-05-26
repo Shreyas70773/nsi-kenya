@@ -12,42 +12,36 @@ import { serviceLd, faqLd } from "@/lib/seo";
 import { FaqList } from "@/components/primitives/faq-list";
 
 export const metadata: Metadata = {
-  title: "NEMA-Compliant ETP Equipment Kenya: Tanks & Analyzers",
+  title: "Compliant ETP Equipment Kenya: Tanks & Analyzers",
   description:
-    "NEMA-compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. EMCA CAP 387 ready.",
+    "Compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. Built for Kenyan discharge regulations.",
   alternates: { canonical: "/industries/etp-water-treatment/" },
   keywords: [
-    "NEMA compliant ETP Kenya",
+    "compliant ETP Kenya",
     "effluent treatment plant tanks Kenya",
     "wastewater treatment equipment Nairobi",
-    "EMCA CAP 387 equipment",
+    "Kenya discharge regulations equipment",
     "ETP supplier Kenya",
     "multi-parameter water analyzer Kenya",
   ],
   openGraph: {
     type: "website",
-    title: "NEMA-Compliant ETP Equipment Kenya: Tanks & Analyzers",
+    title: "Compliant ETP Equipment Kenya: Tanks & Analyzers",
     description:
-      "NEMA-compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. EMCA CAP 387 ready.",
+      "Compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. Built for Kenyan discharge regulations.",
     url: "/industries/etp-water-treatment/",
     images: [{ url: "/images/industries/etp-water-treatment-hero.png" }],
   },
 };
 
 /**
- * NEMA discharge standards for industrial effluent in Kenya per
- * EMCA CAP 387 / NEMA Water Quality Regulations. These are the maximum
- * permissible levels for discharge into the environment or public sewers.
+ * Kenya environmental discharge standards for industrial effluent per the
+ * national water-quality regulations. These are the maximum permissible
+ * levels for discharge into the environment or public sewers.
  *
- * Published here because no other Kenya tank/equipment supplier site
- * does (per spec section 5 SERP analysis). This is the page's load-
- * bearing SEO moat: own the NEMA-compliance query lane by being the
- * supplier site that gives the answer.
- *
- * Source: NEMA-Kenya Environmental Management and Coordination Act,
- * Water Quality Regulations (2006, as amended).
+ * Published here because few Kenya tank/equipment supplier sites do.
  */
-const NEMA_PARAMETERS = [
+const DISCHARGE_PARAMETERS = [
   {
     parameter: "Biochemical Oxygen Demand (BOD₅)",
     discharge: "30",
@@ -143,21 +137,21 @@ const EQUIPMENT_TRAIN = [
   },
   {
     title: "Discharge & monitoring",
-    copy: "Electromagnetic flow meter on the discharge line, continuous logging for NEMA reporting.",
+    copy: "Electromagnetic flow meter on the discharge line, continuous logging for compliance reporting.",
     products: ["instruments/flow"],
   },
 ];
 
 const FAQS = [
   {
-    question: "What are the NEMA discharge limits I have to meet in Kenya?",
+    question: "What are the Kenyan industrial discharge limits I have to meet?",
     answer:
-      "NEMA enforces two separate limit sets under EMCA CAP 387: a stricter set for direct environmental discharge (e.g. BOD 30 mg/L, COD 50 mg/L, TSS 30 mg/L, pH 6.5 to 8.5) and a looser set for discharge into a public sewer (BOD 500, COD 1000, TSS 250). The full table with all 10 parameters is published above on this page.",
+      "The Kenyan regulator enforces two separate limit sets under Kenyan water quality regulations: a stricter set for direct environmental discharge (e.g. BOD 30 mg/L, COD 50 mg/L, TSS 30 mg/L, pH 6.5 to 8.5) and a looser set for discharge into a public sewer (BOD 500, COD 1000, TSS 250). The full table with all 10 parameters is published above on this page.",
   },
   {
     question: "How long does an ETP retrofit usually take in Kenya?",
     answer:
-      "From audit to commissioning: 4 to 6 weeks for an equipment-only retrofit (replacing analyzers, adding a polishing tank), 8 to 14 weeks for a stage replacement (new clarifier, new aeration loop). Expedited builds for NEMA inspection pressure can compress to 2 to 3 weeks on standard equipment.",
+      "From audit to commissioning: 4 to 6 weeks for an equipment-only retrofit (replacing analyzers, adding a polishing tank), 8 to 14 weeks for a stage replacement (new clarifier, new aeration loop). Expedited builds for regulator inspection pressure can compress to 2 to 3 weeks on standard equipment.",
   },
   {
     question: "What does an ETP equipment retrofit cost, roughly?",
@@ -167,7 +161,7 @@ const FAQS = [
   {
     question: "Do you handle continuous compliance monitoring?",
     answer:
-      "Yes, optionally. Every multi-parameter analyzer we install can stream pH, conductivity, DO, turbidity, flow, and temperature 24/7 to a dashboard you can hand to a NEMA inspector. Connectivity is Safaricom NB-IoT, LoRaWAN, or 4G LTE depending on site coverage.",
+      "Yes, optionally. Every multi-parameter analyzer we install can stream pH, conductivity, DO, turbidity, flow, and temperature 24/7 to a dashboard you can hand to a regulator inspector. Connectivity is NB-IoT, LoRaWAN, or 4G LTE depending on site coverage.",
   },
 ] as const;
 
@@ -176,14 +170,14 @@ const URGENT_CTA: readonly CtaCardData[] = [
     href: "/request-quote/",
     kicker: "01 / Compliance deadline",
     title: "Urgent ETP quote",
-    copy: "Tell us your inspection date and what NEMA flagged. Expedited delivery available, 2 to 3 weeks for standard equipment.",
+    copy: "Tell us your inspection date and what the regulator flagged. Expedited delivery available, 2 to 3 weeks for standard equipment.",
     accent: true,
   },
   {
     href: "/request-site-audit/",
     kicker: "02 / Pre-inspection assessment",
     title: "Book an ETP audit",
-    copy: "We walk your plant, check current discharge against NEMA limits, write a remediation brief. No commitment.",
+    copy: "We walk your plant, check current discharge against discharge limits, write a remediation brief. No commitment.",
   },
   {
     href: "/book-consultation/",
@@ -210,14 +204,14 @@ export default function ETPPage() {
 
       <PageHero
         eyebrow="Industries / ETP & Water Treatment"
-        title="NEMA standards have tightened."
+        title="Discharge standards have tightened."
         titleAccent="We supply equipment that passes."
-        subtitle="Failing inspection halts production. Donor-funded projects gate on compliance. We supply the tanks, instruments, and analyzers that pass NEMA discharge standards under EMCA CAP 387. The parameters table is on this page; no other Kenya supplier publishes it."
+        subtitle="Failing inspection halts production. Donor-funded projects gate on compliance. We supply the tanks, instruments, and analyzers that pass Kenyan discharge standards under Kenyan water quality regulations. The parameters table is on this page; no other Kenya supplier publishes it."
         imageSrc="/images/industries/etp-water-treatment-hero.png"
         imageAlt="A wide angle of an outdoor ETP at a Kenyan factory with clarifier, aeration basin and dosing tanks"
         primaryCta={{ href: "/request-quote/", label: "Urgent ETP quote" }}
-        secondaryCta={{ href: "#nema-parameters", label: "See NEMA limits" }}
-        metaLeft="EMCA CAP 387 aware"
+        secondaryCta={{ href: "#discharge-parameters", label: "See discharge limits" }}
+        metaLeft="Kenya water quality regulations aware"
         metaRight="2 to 3 week expedited delivery"
       />
 
@@ -247,7 +241,7 @@ export default function ETPPage() {
               <p>
                 The other industries buy infrastructure because they're
                 growing. ETP buyers buy infrastructure because they have to.
-                The trigger is almost always external: a NEMA inspection
+                The trigger is almost always external: a regulator inspection
                 that flagged a parameter, a discharge deadline, a donor
                 project that gates on compliance, or a new effluent standard
                 from a sector-specific regulation.
@@ -270,12 +264,12 @@ export default function ETPPage() {
       >
         <div id="nema-parameters" className="flex flex-col gap-6 md:gap-10">
           <div className="flex flex-col gap-3">
-            <Eyebrow>NEMA discharge parameters</Eyebrow>
+            <Eyebrow>Kenyan discharge parameters</Eyebrow>
             <h2 className="font-display max-w-3xl text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Maximum permissible levels per EMCA CAP 387.
+              Maximum permissible levels per Kenya water quality regulations.
             </h2>
             <p className="max-w-prose text-sm text-muted">
-              Designed for the operator preparing for a NEMA inspection.
+              Designed for the operator preparing for a regulator inspection.
               First column: parameter. Second: limit for direct
               environmental discharge. Third: limit for discharge into a
               public sewer. The two limit sets are different; the right one
@@ -302,7 +296,7 @@ export default function ETPPage() {
                 </tr>
               </thead>
               <tbody>
-                {NEMA_PARAMETERS.map((p) => (
+                {DISCHARGE_PARAMETERS.map((p) => (
                   <tr
                     key={p.parameter}
                     className="border-b border-border/8 last:border-b-0"
@@ -325,11 +319,10 @@ export default function ETPPage() {
           </div>
 
           <p className="text-xs text-faint">
-            Source: National Environment Management Authority (NEMA),
-            Environmental Management and Coordination Act, Water Quality
-            Regulations. Limits shown are representative; consult NEMA
-            directly for your sector-specific requirements before
-            construction or commissioning.
+            Source: Kenya environmental management regulations on water
+            quality. Limits shown are representative; consult the
+            relevant Kenyan regulator directly for your sector-specific
+            requirements before construction or commissioning.
           </p>
         </div>
       </Section>
@@ -389,7 +382,7 @@ export default function ETPPage() {
             <p className="mt-4 max-w-prose text-sm text-muted">
               Live pH, conductivity, DO, turbidity, and flow rate, with
               alarm logs you can hand to the regulator on demand. Hosted
-              by us, or pushed into your existing systems. Safaricom NB-
+              by us, or pushed into your existing systems. NB-
               IoT for low-bandwidth sites.
             </p>
             <Link
@@ -419,7 +412,7 @@ export default function ETPPage() {
         <div className="mb-8 flex flex-col gap-3">
           <Eyebrow>Common questions</Eyebrow>
           <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What plant managers ask before a NEMA inspection.
+            What plant managers ask before a regulator inspection.
           </h2>
         </div>
         <FaqList items={FAQS} />

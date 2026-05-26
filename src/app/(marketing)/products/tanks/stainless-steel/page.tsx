@@ -224,9 +224,9 @@ export default function StainlessSteelTanksPage() {
             </h2>
             <p className="mt-4 max-w-prose text-sm text-muted">
               Level, temperature, pressure, and pH read out to a phone or
-              browser, with alarms routed to whoever you nominate. Safaricom
-              NB-IoT, LoRaWAN, 4G, or Ethernet. Not bundled into the tank
-              quote; ask for it if you want it.
+              browser, with alarms routed to whoever you nominate. NB-IoT,
+              LoRaWAN, 4G, or Ethernet. Not bundled into the tank quote;
+              ask for it if you want it.
             </p>
             <Link
               href="/products/iot/"

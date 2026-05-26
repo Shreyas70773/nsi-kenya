@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "industrial blog Kenya",
     "tank manufacturing Kenya blog",
     "ETP compliance Kenya",
-    "NEMA discharge Kenya",
+    "Kenyan discharge Kenya",
     "industrial IoT Kenya",
     "process instruments Kenya",
   ],

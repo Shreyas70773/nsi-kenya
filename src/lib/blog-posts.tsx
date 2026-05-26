@@ -305,8 +305,8 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     ),
   },
   {
-    slug: "nema-discharge-parameters-explained",
-    title: "Reading the NEMA discharge parameters table, for plants that need to pass",
+    slug: "kenya-discharge-parameters-explained",
+    title: "Reading the Kenyan discharge parameters table, for plants that need to pass",
     excerpt:
       "The 10 parameters that decide whether your effluent enters a public sewer or an environmental discharge route, what each one means, and what equipment hits each target.",
     publishedAt: "2026-05-22",
@@ -318,11 +318,10 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     body: (
       <>
         <p>
-          NEMA inspections in Kenya turn on a small set of parameters
-          drawn from the Environmental Management and Coordination Act,
-          Water Quality Regulations. The same parameter list appears on
-          our{" "}
-          <Link href="/industries/etp-water-treatment/#nema-parameters">
+          Environmental discharge inspections in Kenya turn on a small
+          set of parameters drawn from the national water-quality
+          regulations. The same parameter list appears on our{" "}
+          <Link href="/industries/etp-water-treatment/#discharge-parameters">
             ETP page
           </Link>
           ; this article walks through what each parameter actually
@@ -339,7 +338,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           between them tells you how biodegradable your effluent is.
         </p>
         <p>
-          The NEMA discharge limit for BOD is 30 mg/L (environment) or
+          The Kenyan discharge limit for BOD is 30 mg/L (environment) or
           500 mg/L (public sewer); for COD it is 50 mg/L (environment)
           or 1000 mg/L (public sewer). The equipment that hits these
           limits is the biological treatment stage of your ETP: aeration
@@ -350,26 +349,27 @@ export const BLOG_POSTS: readonly BlogPost[] = [
         <h2>TSS: the suspended solids</h2>
         <p>
           Total Suspended Solids (TSS) measures particulates that do not
-          settle quickly. NEMA limits: 30 mg/L (environment), 250 mg/L
-          (public sewer). Controlled at the clarifier (gravity
+          settle quickly. The Kenyan limits: 30 mg/L (environment), 250
+          mg/L (public sewer). Controlled at the clarifier (gravity
           settling), DAF unit (dissolved-air flotation), or the
           tertiary-stage filter.
         </p>
 
         <h2>pH: the acidity / alkalinity</h2>
         <p>
-          NEMA expects 6.5 to 8.5 for environmental discharge, 6.0 to
-          9.0 for sewer discharge. Controlled via dosing of caustic
-          (sodium hydroxide) or acid (sulphuric or hydrochloric) at the
-          neutralisation stage. The right instrument is a continuous pH
-          sensor with PID-controlled dosing pumps.
+          The Kenyan regulator expects 6.5 to 8.5 for environmental
+          discharge, 6.0 to 9.0 for sewer discharge. Controlled via
+          dosing of caustic (sodium hydroxide) or acid (sulphuric or
+          hydrochloric) at the neutralisation stage. The right
+          instrument is a continuous pH sensor with PID-controlled
+          dosing pumps.
         </p>
 
         <h2>Nutrients: TN, TP, and NH₃-N</h2>
         <p>
           Total Nitrogen, Total Phosphorus, and Ammonia Nitrogen are
           nutrient parameters. Excess nutrients in a receiving water
-          body drive algal blooms. NEMA limits sit in the low
+          body drive algal blooms. The Kenyan limits sit in the low
           single-digits to low-tens of mg/L. Controlled via biological
           nutrient removal (BNR) stages, which is to say, longer
           retention times and specific aerobic / anoxic zoning in the
@@ -382,7 +382,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           useful instrument on an ETP is the multi-parameter analyzer
           at the discharge point: pH, conductivity, DO, turbidity, and
           temperature in one panel, logged continuously, exportable for
-          NEMA reporting. We supply these on every ETP project we touch.
+          compliance reporting. We supply these on every ETP project we touch.
           See the{" "}
           <Link href="/products/instruments/liquid-analysis/">
             liquid analysis instruments page
@@ -482,7 +482,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "safaricom-nb-iot-tank-monitoring-kenya",
-    title: "Safaricom NB-IoT for industrial tank monitoring in Kenya",
+    title: "NB-IoT for industrial tank monitoring in Kenya",
     excerpt:
       "The connectivity choice that actually works for low-bandwidth, multi-year-battery tank monitoring across Kenya, and why we recommend it as the default for single-tank sites.",
     publishedAt: "2026-05-15",
@@ -494,7 +494,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     body: (
       <>
         <p>
-          We recommend Safaricom NB-IoT as the default connectivity
+          We recommend NB-IoT as the default connectivity
           option for single-tank monitoring sites in Kenya. Here is what
           drives that choice.
         </p>
@@ -512,7 +512,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
 
         <h2>Why Kenya specifically</h2>
         <p>
-          Safaricom rolled out NB-IoT coverage across most of the
+          Kenyan carriers rolled out NB-IoT coverage across most of the
           country between 2020 and 2023. The base-station coverage
           reaches sites where 4G LTE signal is patchy or non-existent.
           For a tank installed at an off-grid water-treatment site,
@@ -529,7 +529,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
         </p>
         <p>
           Data: the gateway packages each reading into a small message
-          and sends it over the Safaricom NB-IoT network to a cloud
+          and sends it over the NB-IoT network to a cloud
           ingestion endpoint. We host that endpoint and run the
           monitoring app, or we push the data into your existing SCADA
           system, depending on what suits your IT setup.

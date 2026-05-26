@@ -191,7 +191,7 @@ export function softwareApplicationLd() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
     description:
-      "Optional cloud-ready monitoring for tanks and process instruments. View levels, flow, water quality, and alarms from any device. Safaricom NB-IoT, LoRaWAN, 4G/LTE, Ethernet/Wi-Fi connectivity.",
+      "Optional cloud-ready monitoring for tanks and process instruments. View levels, flow, water quality, and alarms from any device. NB-IoT, LoRaWAN, 4G/LTE, Ethernet/Wi-Fi connectivity.",
     publisher: organizationRef(),
   };
 }
