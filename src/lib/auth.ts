@@ -13,6 +13,31 @@ import Credentials from "next-auth/providers/credentials";
 import { fetchAction } from "convex/nextjs";
 import { api } from "@/../convex/_generated/api";
 
+/**
+ * Parses ADMIN_EMAIL_ALLOWLIST. Entries are comma-separated and can be
+ * either a full email ("user@example.com") or a bare domain ("example.com").
+ * Bare domains match any address at that domain. Returns true if the
+ * allowlist is empty/unset (no filter) or if the email matches an entry.
+ */
+function isEmailAllowed(email: string): boolean {
+  const raw = process.env.ADMIN_EMAIL_ALLOWLIST?.trim();
+  if (!raw) return true;
+  const lower = email.toLowerCase();
+  const domain = lower.split("@")[1] ?? "";
+  const entries = raw
+    .split(",")
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean);
+  for (const entry of entries) {
+    if (entry.includes("@")) {
+      if (entry === lower) return true;
+    } else {
+      if (entry === domain) return true;
+    }
+  }
+  return false;
+}
+
 const config = {
   providers: [
     Credentials({
@@ -25,6 +50,7 @@ const config = {
         if (!creds?.email || !creds.password) return null;
         const email = String(creds.email);
         const password = String(creds.password);
+        if (!isEmailAllowed(email)) return null;
         const result = await fetchAction(api.adminCredentials.verifyCredentials, {
           email,
           password,
