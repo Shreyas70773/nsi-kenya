@@ -114,6 +114,20 @@ export function SiteFooter() {
             </Link>
           </p>
         </div>
+
+        <div className="mt-4 flex justify-end border-t border-border/8 pt-4 text-[11px] text-faint">
+          <p>
+            Website made by{" "}
+            <a
+              href="https://www.pixelpunch.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+            >
+              Pixel Punch
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
