@@ -114,3 +114,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .page-fade-in { animation: none; }
 }
+
+/* Mobile-nav drawer + backdrop. */
+@keyframes slide-in-right {
+  from { transform: translate3d(100%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
