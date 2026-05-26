@@ -124,7 +124,7 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className="font-medium text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
-              Pixel Punch
+              Pixel and Punch
             </a>
           </p>
         </div>
