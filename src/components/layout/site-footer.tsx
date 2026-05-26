@@ -55,33 +55,33 @@ export function SiteFooter() {
         filled={false}
         className="pointer-events-none absolute -right-24 -bottom-36 -z-10 hidden h-[420px] w-auto text-text/10 md:block lg:-right-16 lg:-bottom-40 lg:h-[500px]"
       />
-      <div className="relative mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
-        <div className="mb-12 flex flex-col gap-6 border-b border-border/8 pb-10 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
+      <div className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 md:py-20">
+        <div className="mb-8 flex flex-col gap-5 border-b border-border/8 pb-8 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
           <Image
             src="/brand/logo.png"
             alt={SITE_NAME}
             width={215}
             height={94}
-            className="h-12 w-auto md:h-14"
+            className="h-10 w-auto sm:h-12 md:h-14"
           />
-          <p className="font-display max-w-md text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
+          <p className="font-display max-w-md text-balance text-xl font-medium leading-tight tracking-tight sm:text-2xl md:text-3xl">
             Built in East Africa{" "}
             <span className="text-accent">for Kenya</span>.
           </p>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-4 md:gap-10">
           {FOOTER_NAV.map((col) => (
-            <div key={col.heading} className="flex flex-col gap-3">
+            <div key={col.heading} className="flex flex-col gap-2.5 md:gap-3">
               <h3 className="font-mono-label text-[10px] text-faint">
                 {col.heading}
               </h3>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col gap-2 md:gap-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-text/85 transition-colors hover:text-accent"
+                      className="text-sm text-text/85 transition-colors hover:text-accent md:text-base"
                     >
                       {link.label}
                     </Link>
