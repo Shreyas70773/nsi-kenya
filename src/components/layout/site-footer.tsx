@@ -119,7 +119,7 @@ export function SiteFooter() {
           <p>
             Website made by{" "}
             <a
-              href="https://www.pixelpunch.com"
+              href="https://www.pixelandpunch.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
