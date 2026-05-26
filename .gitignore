@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# Production env paste-buffer — kept locally with real secrets, never committed.
+NETLIFY-ENV.txt
+
 # netlify
 .netlify
 
