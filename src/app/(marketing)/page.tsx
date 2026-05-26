@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const TRUST_TOKENS = [
   "Fabricated in Kenya",
   "Stainless, epoxy, zinc-alum",
-  "NEMA-aware ETP equipment",
+  "compliance-aware ETP equipment",
   "Optional cloud-ready monitoring",
   "On-site within 48 hours, Nairobi",
   "Reference work across Kenya",
@@ -31,7 +31,7 @@ const INDUSTRIES = [
     n: "02",
     name: "ETP & Water Treatment",
     href: "/industries/etp-water-treatment/",
-    pillar: "NEMA compliance, EMCA CAP 387, discharge parameters",
+    pillar: "Kenyan environmental compliance, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
     image: "/images/home/sector-etp.png",
     imageAlt:
@@ -107,9 +107,9 @@ export default function Home() {
                   <span>Nairobi · Kenya</span>
                 </div>
                 <h1 className="font-display text-balance text-[clamp(2.5rem,5.5vw,5.5rem)] font-medium leading-[0.98] tracking-tight text-white">
-                  Made in East Africa.{" "}
+                  Made in Kenya,{" "}
                   <br className="hidden sm:block" />
-                  <span className="text-accent">Built for Kenya.</span>
+                  <span className="text-accent">made for East Africa.</span>
                 </h1>
                 <div className="flex flex-wrap items-center gap-2 pt-1">
                   {["Tanks", "Silos", "Structural", "Instruments", "Monitoring"].map(
@@ -148,7 +148,7 @@ export default function Home() {
             {/* BOTTOM credential strip */}
             <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:flex-row md:items-end md:justify-between">
               <span>Serving Kenya, every county.</span>
-              <span>NEMA-aware · KEBS-fluent · Safaricom NB-IoT capable</span>
+              <span>compliance-aware · KEBS-fluent · NB-IoT capable</span>
             </div>
           </div>
         </div>
@@ -268,12 +268,12 @@ export default function Home() {
               <BentoCard
                 href="/products/iot/"
                 title="Remote Monitoring"
-                tagline="Optional · Safaricom NB-IoT capable"
+                tagline="Optional · NB-IoT capable"
                 copy="Cloud-connected oversight on every install: tank levels, flow, water quality, alarms from any device. Not bundled; ask for it when you want it."
                 stat="LoRa · NB-IoT · LTE · Ethernet"
                 className="col-span-6 row-span-1 md:col-span-3"
                 imageSrc="/images/home/iot-kisumu-plant.png"
-                imageAlt="Plant operator holding a phone displaying a tank-monitoring dashboard outside a Kisumu plant"
+                imageAlt="Plant manager reviewing a live tank-monitoring dashboard on a tablet outside a Kenyan industrial plant"
                 data-reveal-item
               />
             </div>

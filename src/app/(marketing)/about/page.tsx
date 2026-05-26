@@ -12,20 +12,20 @@ import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 export const metadata: Metadata = {
   title: "About: A Kenya-Based Tank Manufacturer",
   description:
-    "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Built in East Africa for Kenya.",
+    "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Made in Kenya, made for East Africa.",
   alternates: { canonical: "/about/" },
   keywords: [
     "tank manufacturer Kenya",
     "industrial fabrication Kenya",
     "Kenya-based tank supplier",
     "Nairobi industrial brand",
-    "Built in East Africa",
+    "Made in Kenya",
   ],
   openGraph: {
     type: "website",
     title: "About: A Kenya-Based Tank Manufacturer",
     description:
-      "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Built in East Africa for Kenya.",
+      "A Kenya-based industrial infrastructure brand fabricating tanks, silos, structural steel, and process instruments locally. Made in Kenya, made for East Africa.",
     url: "/about/",
     images: [{ url: "/images/about/about-hero.png" }],
   },

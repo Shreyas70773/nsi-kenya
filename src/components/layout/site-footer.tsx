@@ -62,11 +62,11 @@ export function SiteFooter() {
             alt={SITE_NAME}
             width={215}
             height={94}
-            className="h-10 w-auto sm:h-12 md:h-14"
+            className=""
           />
           <p className="font-display max-w-md text-balance text-xl font-medium leading-tight tracking-tight sm:text-2xl md:text-3xl">
-            Built in East Africa{" "}
-            <span className="text-accent">for Kenya</span>.
+            Made in Kenya,{" "}
+            <span className="text-accent">made for East Africa</span>.
           </p>
         </div>
 

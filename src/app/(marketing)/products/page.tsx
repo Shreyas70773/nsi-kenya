@@ -68,10 +68,10 @@ const CATEGORIES = [
   {
     href: "/products/iot/",
     title: "Remote Monitoring",
-    tagline: "Optional · Safaricom NB-IoT capable",
+    tagline: "Optional · NB-IoT capable",
     copy: "Cloud-connected oversight on any tank or instrument we install. Levels, flow, water quality, and alarms from any device.",
     imageSrc: "/images/home/iot-kisumu-plant.png",
-    imageAlt: "Plant operator viewing a tank-monitoring dashboard on a phone",
+    imageAlt: "Plant manager reviewing a live tank-monitoring dashboard on a tablet at a Kenyan industrial plant",
   },
 ];
 
