@@ -52,11 +52,79 @@ body {
 }
 
 /* Editorial display utility — used on big headlines. Tight tracking, weighty,
-   line-height 0.95 for the "magazine" feel. */
+   line-height 0.95 for the "magazine" feel. Archivo variable carries the
+   display register since the redesign; Geist remains the body voice. */
 .font-display {
   font-family: var(--font-display);
   font-feature-settings: "ss01", "ss02", "cv11";
   letter-spacing: -0.025em;
+}
+
+/* Wide industrial display cut — Archivo's width axis stretched. Reserved for
+   statement headlines and the footer wordmark. */
+.font-display-wide {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125;
+  letter-spacing: -0.01em;
+}
+
+/* Condensed cut for towering numerals and vertical labels. */
+.font-display-condensed {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 75;
+  letter-spacing: 0;
+}
+
+/* Outlined display text — stroke only, fills on hover or via GSAP. Used on
+   the footer wordmark and statement-section backdrops. */
+.text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-fill-color: transparent;
+  paint-order: stroke fill;
+}
+
+/* Film-grain overlay. SVG turbulence (not a gradient) at whisper opacity to
+   break digital flatness; pointer-events disabled, sits over statement
+   sections and photography. */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* Hairline rule — the document-grid line weight used across the system. */
+.hairline { background-color: var(--ns-hairline); }
+.hairline-b { border-bottom: 1px solid var(--ns-hairline); }
+.hairline-t { border-top: 1px solid var(--ns-hairline); }
+
+/* Link underline that draws itself in from the left on hover. */
+.link-draw {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 360ms var(--ease-expo);
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Visible keyboard focus, flat and on-brand. */
+:focus-visible {
+  outline: 2px solid var(--ns-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Industrial spec labels — uppercase mono with wide tracking. */
@@ -123,4 +191,111 @@ body {
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ── Experience layer ─────────────────────────────────────────────────── */
+
+/* Custom cursor: native cursor is hidden only while the experience cursor
+   is active (fine pointer + motion allowed), and restored over text inputs
+   where the I-beam matters. */
+html[data-cursor="on"],
+html[data-cursor="on"] a,
+html[data-cursor="on"] button,
+html[data-cursor="on"] [role="button"],
+html[data-cursor="on"] summary,
+html[data-cursor="on"] label {
+  cursor: none;
+}
+html[data-cursor="on"] input,
+html[data-cursor="on"] textarea,
+html[data-cursor="on"] select {
+  cursor: auto;
+}
+
+.ns-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  will-change: transform;
+}
+.ns-cursor__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ns-accent);
+}
+.ns-cursor__ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: -18px;
+  border: 1px solid rgb(var(--ns-accent-rgb) / 0.55);
+  border-radius: 999px;
+  transition:
+    width 320ms var(--ease-expo),
+    height 320ms var(--ease-expo),
+    margin 320ms var(--ease-expo),
+    background-color 320ms var(--ease-expo),
+    border-color 320ms var(--ease-expo);
+}
+.ns-cursor--view .ns-cursor__ring {
+  width: 72px;
+  height: 72px;
+  margin: -36px;
+  background: var(--ns-accent);
+  border-color: var(--ns-accent);
+}
+.ns-cursor__label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ns-on-accent);
+  opacity: 0;
+  transition: opacity 240ms var(--ease-expo);
+}
+.ns-cursor--view .ns-cursor__label { opacity: 1; }
+
+/* Route-transition wipe panels. Flat surfaces only — an iron panel with a
+   red leading hairline sweeps the viewport between routes. */
+.ns-transition {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-transition);
+  pointer-events: none;
+  display: grid;
+}
+.ns-transition__panel {
+  grid-area: 1 / 1;
+  background: rgb(14 12 10);
+  transform: translateY(101%);
+  will-change: transform;
+}
+.ns-transition__edge {
+  grid-area: 1 / 1;
+  align-self: start;
+  height: 2px;
+  background: var(--ns-accent);
+  transform: translateY(-2px) scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* Smooth <details> open/close where the platform supports it. */
+details.ns-details {
+  interpolate-size: allow-keywords;
+}
+details.ns-details::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    content-visibility 420ms allow-discrete,
+    block-size 420ms var(--ease-expo);
+}
+details.ns-details[open]::details-content {
+  block-size: auto;
 }
