@@ -170,14 +170,16 @@ body {
 }
 
 /* Site-wide page-entry fade. Pure CSS so SSR content paints immediately
-   even before hydration; the keyframe just polishes the entry. */
+   even before hydration; the keyframe just polishes the entry.
+   Opacity ONLY — a retained transform (or will-change: transform) on this
+   wrapper would make it the containing block for every position:fixed
+   descendant, silently breaking the header and all ScrollTrigger pins. */
 @keyframes page-fade-in {
-  from { opacity: 0; transform: translate3d(0, 6px, 0); }
-  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .page-fade-in {
   animation: page-fade-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  will-change: opacity, transform;
 }
 @media (prefers-reduced-motion: reduce) {
   .page-fade-in { animation: none; }
