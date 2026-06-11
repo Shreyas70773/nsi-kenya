@@ -101,7 +101,7 @@ export function IndustriesGallery({
             <Eyebrow index="03">Industries</Eyebrow>
             <TextReveal
               as="h2"
-              className="font-display max-w-3xl text-balance text-4xl font-semibold leading-[1.02] tracking-tight md:text-5xl"
+              className="font-display max-w-4xl text-balance text-[clamp(2.5rem,5.2vw,4.75rem)] font-semibold leading-[0.96] tracking-tight"
             >
               <>
                 Four sectors,

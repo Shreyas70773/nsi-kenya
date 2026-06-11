@@ -160,14 +160,32 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Stamped wordmark, cropped off the bottom edge. */}
+      {/* Stamped wordmark, cropped off the bottom edge. SVG textLength pins
+          the full company name edge-to-edge at every viewport width. */}
       <div
         aria-hidden
-        className="pointer-events-none relative z-[1] -mb-[0.23em] flex justify-center overflow-hidden"
+        className="pointer-events-none relative z-[1] w-full overflow-hidden"
       >
-        <span className="font-display-wide text-outline whitespace-nowrap text-[11.5vw] font-black leading-none text-text/25 select-none md:text-[9.5vw]">
-          NORTH&nbsp;STAR&nbsp;IMPEX
-        </span>
+        <svg
+          viewBox="0 0 1200 132"
+          preserveAspectRatio="none"
+          className="block h-auto w-full translate-y-[24%] text-text/25"
+        >
+          <text
+            x="600"
+            y="118"
+            textAnchor="middle"
+            textLength="1184"
+            lengthAdjust="spacingAndGlyphs"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="font-display-wide select-none"
+            style={{ fontSize: 118, fontWeight: 900 }}
+          >
+            NORTH STAR IMPEX
+          </text>
+        </svg>
       </div>
     </footer>
   );
