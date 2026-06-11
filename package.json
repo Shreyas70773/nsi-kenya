@@ -9,7 +9,7 @@
     "start": "next start",
     "check:alt-text": "tsx scripts/check-alt-text.ts",
     "check:meta": "tsx scripts/check-meta.ts",
-    "lint": "next lint",
+    "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",

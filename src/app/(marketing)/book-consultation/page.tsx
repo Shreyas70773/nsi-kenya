@@ -3,6 +3,8 @@ import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 
 export const metadata: Metadata = {
@@ -52,24 +54,49 @@ export default function BookConsultationPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <aside className="md:col-span-4">
-            <Eyebrow>What we cover</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+            <Eyebrow index="01">What we cover</Eyebrow>
+            <TextReveal
+              as="h2"
+              className="font-display mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl"
+            >
               Working call, not sales call.
-            </h2>
-            <ul className="mt-8 flex flex-col gap-4 text-sm text-muted">
-              <li>· Plant layout review (if you can share one)</li>
-              <li>· Material selection (304 vs 316L vs epoxy vs zinc-alum)</li>
-              <li>· Instrument loop topology</li>
-              <li>· Lead-time scenario planning</li>
-              <li>· Compliance posture (KEBS, ASME, AWS)</li>
-              <li>· Optional remote monitoring scope</li>
-            </ul>
+            </TextReveal>
+            <Reveal stagger={0.05} yFrom={14}>
+              <ul className="mt-8 flex flex-col text-sm text-muted">
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Plant layout review (if you can share one)
+                </li>
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Material selection (304 vs 316L vs epoxy vs zinc-alum)
+                </li>
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Instrument loop topology
+                </li>
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Lead-time scenario planning
+                </li>
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Compliance posture (KEBS, ASME, AWS)
+                </li>
+                <li data-reveal-item className="hairline-b py-3.5">
+                  Optional remote monitoring scope
+                </li>
+              </ul>
+            </Reveal>
           </aside>
           <div className="md:col-span-8">
-            <Eyebrow>Schedule the call</Eyebrow>
-            <h2 className="font-display mt-3 mb-8 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Tell us what you'd like to work through.
-            </h2>
+            <Eyebrow index="02">Schedule the call</Eyebrow>
+            <TextReveal
+              as="h2"
+              className="font-display mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl"
+            >
+              Tell us what you&apos;d like to work through.
+            </TextReveal>
+            <div className="font-mono-label mt-6 mb-8 flex flex-wrap items-center gap-3 text-[10px] text-faint">
+              <span>30 minutes</span>
+              <span aria-hidden className="hairline h-px min-w-8 flex-1" />
+              <span>No commitment from either side</span>
+            </div>
             <InquiryForm
               kind="consultation"
               submitLabel="Request consultation"

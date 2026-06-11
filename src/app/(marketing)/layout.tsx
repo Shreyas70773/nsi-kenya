@@ -7,7 +7,9 @@ export default function MarketingLayout({
   return (
     <>
       <SiteHeader />
-      <div className="flex flex-1 flex-col">{children}</div>
+      {/* Block wrapper (not flex): ScrollTrigger pin-spacing can't reserve
+          scroll distance inside a flex parent, which breaks pinned sections. */}
+      <div className="flex-1">{children}</div>
       <SiteFooter />
     </>
   );

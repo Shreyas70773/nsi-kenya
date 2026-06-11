@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
@@ -12,6 +14,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { FaqList } from "@/components/primitives/faq-list";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 
 export const metadata: Metadata = {
   title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
@@ -144,10 +150,13 @@ export default function StainlessSteelTanksPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>What it is</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The right grade for the medium you store.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="What it is"
+              title="The right grade for the medium you store."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-7">
             <Prose>
@@ -174,13 +183,39 @@ export default function StainlessSteelTanksPage() {
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      {/* Full-bleed fabrication strip — hero photograph recropped, breaking
+          the container rhythm between the grade brief and the datasheet. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0">
+          <Image
+            src="/images/products/tanks-stainless-steel-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_80%]"
+          />
+        </ParallaxImage>
+        <p className="font-mono-label absolute bottom-6 left-6 z-[1] text-[10px] text-white/75 md:bottom-8 md:left-8">
+          TIG, argon-backed · dye-penetrant tested on every seam
+        </p>
+      </div>
+
+      <Section bordered theme="paper">
+        {/* Datasheet header strip — document-style meta row. */}
+        <div className="font-mono-label hairline-t hairline-b mb-10 flex flex-col gap-2 py-3 text-[10px] text-faint md:mb-14 md:flex-row md:items-center md:justify-between">
+          <span>NS-TK-SS · 304 / 316L</span>
+          <span className="hidden md:block">Specification</span>
+          <span>TIG · argon-backed · ex-works 4–8 wk</span>
+        </div>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The numbers that matter on procurement.
-            </h2>
+            <SectionHeader
+              index="02"
+              eyebrow="Specifications"
+              title="The numbers that matter on procurement."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
             <p className="mt-4 text-sm text-muted">
               Every spec below is the standard. Anything outside the range
               is doable; tell us what you need and we'll quote it.
@@ -193,35 +228,105 @@ export default function StainlessSteelTanksPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Applications</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Where stainless earns its premium.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
-          {APPLICATIONS.map((a) => (
-            <div
-              key={a.title}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
-            >
-              <h3 className="font-display text-xl font-medium tracking-tight">
-                {a.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
+        <SectionHeader
+          index="03"
+          eyebrow="Applications"
+          title="Where stainless earns its premium."
+        />
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
+            {APPLICATIONS.map((a) => (
+              <div
+                key={a.title}
+                data-reveal-item
+                className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
+              >
+                <h3 className="font-display text-xl font-semibold tracking-tight">
+                  {a.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Iron statement — the build standard, in the page's own numbers. */}
+      <Section theme="iron" size="spacious" ariaLabel="Build standard">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="04">The build standard</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              Every seam TIG-welded with argon backing,{" "}
+              <span className="text-accent">
+                dye-penetrant tested before passivation.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Capacity ceiling
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={500} suffix=" m³" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  From 1 m³ dosing vessels to 500 m³ storage.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Design pressure
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={6} suffix=" bar" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Atmospheric to 6 bar, to the duty on the brief.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Chloride-duty grade
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={316} suffix="L" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  304 for general duty; 316L past ~200 ppm chlorides.
+                </p>
+              </div>
             </div>
-          ))}
+          </Reveal>
+
+          <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+            <span>304 · 316L · 1 to 500 m³</span>
+            <span>Fabricated locally · Nairobi workshop</span>
+            <span>Ex-works 4 to 8 weeks</span>
+          </div>
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
-            <Eyebrow>Cloud-ready, when you want it</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-              Every stainless tank we install can be wired to our remote
-              monitoring app.
-            </h2>
+            <SectionHeader
+              index="05"
+              eyebrow="Cloud-ready, when you want it"
+              title="Every stainless tank we install can be wired to our remote monitoring app."
+              className="mb-0"
+              headlineClassName="text-2xl leading-tight md:text-3xl"
+            />
             <p className="mt-4 max-w-prose text-sm text-muted">
               Level, temperature, pressure, and pH read out to a phone or
               browser, with alarms routed to whoever you nominate. NB-IoT,
@@ -235,28 +340,52 @@ export default function StainlessSteelTanksPage() {
               See how remote monitoring works →
             </Link>
           </div>
-          <div className="rounded-card border border-border/15 bg-surface p-7 md:col-span-5">
+          <Reveal className="md:col-span-5">
+            <div
+              data-reveal-item
+              className="rounded-card border border-border/15 bg-surface p-7"
+            >
+              <p className="font-mono-label text-[10px] text-faint">
+                Read-out coverage
+              </p>
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
+                <li>· Tank level (radar, ultrasonic, hydrostatic)</li>
+                <li>· Temperature (RTD or thermocouple)</li>
+                <li>· Pressure (gauge or absolute)</li>
+                <li>· pH and conductivity</li>
+                <li>· CIP cycle timing and verification</li>
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Pull quote — the page's sharpest sentence on finish economics. */}
+      <Section size="compact" ariaLabel="Surface finish guidance">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="flex flex-col gap-4 md:col-span-5">
+            <span aria-hidden className="hairline h-px w-12" />
             <p className="font-mono-label text-[10px] text-faint">
-              Read-out coverage
+              Ra finish guidance · food-contact duty
             </p>
-            <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
-              <li>· Tank level (radar, ultrasonic, hydrostatic)</li>
-              <li>· Temperature (RTD or thermocouple)</li>
-              <li>· Pressure (gauge or absolute)</li>
-              <li>· pH and conductivity</li>
-              <li>· CIP cycle timing and verification</li>
-            </ul>
           </div>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            “Finer than that and you&rsquo;re paying for finish you
+            don&rsquo;t need; coarser and bacterial harborage becomes a real
+            CIP risk.”
+          </TextReveal>
         </div>
       </Section>
 
       <Section>
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What buyers ask before specifying a stainless tank.
-          </h2>
-        </div>
+        <SectionHeader
+          index="06"
+          eyebrow="Common questions"
+          title="What buyers ask before specifying a stainless tank."
+        />
         <FaqList items={FAQS} />
       </Section>
 

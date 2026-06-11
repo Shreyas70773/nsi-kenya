@@ -1,17 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationLd } from "@/lib/seo";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { PageFade } from "@/components/motion/page-fade";
-import { IntroOverlay } from "@/components/motion/intro-overlay";
+import { ExperienceProvider } from "@/components/experience/experience-context";
+import { IntroSequence } from "@/components/experience/intro-sequence";
 
 const bodyFont = Geist({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
+});
+
+/* Display voice of the redesign: Archivo variable with its width axis, so
+   headlines can run from condensed numerals to wide statement cuts. */
+const displayFont = Archivo({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["wdth"],
 });
 
 const monoFont = Geist_Mono({
@@ -56,14 +66,16 @@ export default function RootLayout({
   return (
     <html
       lang="en-KE"
-      className={`${bodyFont.variable} ${monoFont.variable} h-full antialiased`}
+      className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent/20 selection:text-text">
         <JsonLd data={organizationLd()} />
-        <IntroOverlay />
-        <SmoothScroll>
-          <PageFade>{children}</PageFade>
-        </SmoothScroll>
+        <ExperienceProvider>
+          <IntroSequence />
+          <SmoothScroll>
+            <PageFade>{children}</PageFade>
+          </SmoothScroll>
+        </ExperienceProvider>
       </body>
     </html>
   );

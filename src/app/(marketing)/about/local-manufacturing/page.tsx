@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
-import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { SpecTable } from "@/components/primitives/spec-table";
+import { Reveal } from "@/components/motion/reveal";
+import { ParallaxImage } from "@/components/motion/parallax";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Industrial Fabrication Nairobi: Inside Our Workshop",
@@ -100,105 +102,130 @@ export default function LocalManufacturingPage() {
         />
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <Eyebrow>What you walk into</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              An actual fabrication workshop, not a marketing claim.
-            </h2>
+      {/* ─── 01 · WHAT YOU WALK INTO (iron statement) ──────────────────── */}
+      <Section theme="iron" ariaLabel="What you walk into">
+        <SectionHeader
+          index="01"
+          eyebrow="What you walk into"
+          title="An actual fabrication workshop,"
+          titleAccent="not a marketing claim."
+        />
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal stagger={0.08}>
+              <div className="flex flex-col gap-5">
+                <p
+                  data-reveal-item
+                  className="text-sm leading-relaxed text-muted md:text-base"
+                >
+                  The workshop is in the Nairobi industrial belt. Plate
+                  rolling machines, TIG and MIG welding bays, dye-
+                  penetrant test stations, finishing bays, and a flatbed-
+                  accessible loading yard. Overhead cranes for vessel
+                  handling.
+                </p>
+                <p
+                  data-reveal-item
+                  className="text-sm leading-relaxed text-muted md:text-base"
+                >
+                  We work to ASME and AWS standards where the spec
+                  requires it, and to KEBS and client-specific standards
+                  where it doesn&apos;t. Welder certification is current;
+                  test records on every weld; vessel commissioning
+                  supervised on-site.
+                </p>
+              </div>
+            </Reveal>
           </div>
-          <div className="md:col-span-7">
-            <Prose>
-              <p>
-                The workshop is in the Nairobi industrial belt. Plate
-                rolling machines, TIG and MIG welding bays, dye-
-                penetrant test stations, finishing bays, and a flatbed-
-                accessible loading yard. Overhead cranes for vessel
-                handling.
-              </p>
-              <p>
-                We work to ASME and AWS standards where the spec
-                requires it, and to KEBS and client-specific standards
-                where it doesn&apos;t. Welder certification is current;
-                test records on every weld; vessel commissioning
-                supervised on-site.
-              </p>
-            </Prose>
+        </div>
+      </Section>
+
+      {/* ─── WORKSHOP FLOOR (photography) ───────────────────────────────── */}
+      <Section theme="paper" bordered ariaLabel="Workshop photography">
+        <Reveal effect="scale-in" stagger={0.08}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+            {[
+              {
+                src: "/images/about/workshop-cutting.png",
+                alt: "Industrial CNC plasma cutting table mid-cut on stainless steel plate, sparks and slag visible, operator in welding mask in background",
+              },
+              {
+                src: "/images/about/workshop-rolling.png",
+                alt: "Heavy three-roll plate rolling machine in action, forming a curved stainless steel shell, operator at the controls",
+              },
+              {
+                src: "/images/about/workshop-tig-welding.png",
+                alt: "Close-up of a TIG welder mid-strike on a polished stainless steel tank seam, blue arc and sparks visible",
+              },
+              {
+                src: "/images/about/workshop-flatbed.png",
+                alt: "Completed polished stainless steel tank strapped to a flatbed truck in the workshop yard at sunrise",
+              },
+            ].map((shot) => (
+              <div key={shot.src} data-reveal-item>
+                <ParallaxImage
+                  amount={8}
+                  className="relative aspect-[4/3] overflow-hidden rounded-card border border-border/10"
+                >
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    fill
+                    sizes="(min-width: 768px) 45vw, 100vw"
+                    className="object-cover"
+                  />
+                </ParallaxImage>
+              </div>
+            ))}
           </div>
-        </div>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          {[
-            {
-              src: "/images/about/workshop-cutting.png",
-              alt: "Industrial CNC plasma cutting table mid-cut on stainless steel plate, sparks and slag visible, operator in welding mask in background",
-            },
-            {
-              src: "/images/about/workshop-rolling.png",
-              alt: "Heavy three-roll plate rolling machine in action, forming a curved stainless steel shell, operator at the controls",
-            },
-            {
-              src: "/images/about/workshop-tig-welding.png",
-              alt: "Close-up of a TIG welder mid-strike on a polished stainless steel tank seam, blue arc and sparks visible",
-            },
-            {
-              src: "/images/about/workshop-flatbed.png",
-              alt: "Completed polished stainless steel tank strapped to a flatbed truck in the workshop yard at sunrise",
-            },
-          ].map((shot) => (
-            <div
-              key={shot.src}
-              className="relative aspect-[4/3] overflow-hidden rounded-card border border-border/10"
-            >
-              <Image
-                src={shot.src}
-                alt={shot.alt}
-                fill
-                sizes="(min-width: 768px) 45vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
+      {/* ─── 02 · PROCESS (numbered editorial blocks) ───────────────────── */}
+      <Section ariaLabel="Process">
+        <SectionHeader
+          index="02"
+          eyebrow="Process"
+          title="Every tank goes through"
+          titleAccent="six steps."
+        />
+        <Reveal stagger={0.07}>
+          <ol className="flex flex-col">
+            {PROCESS_STEPS.map((s, i) => (
+              <li
+                key={s.n}
+                data-reveal-item
+                className={cn(
+                  "hairline-t grid grid-cols-12 items-start gap-4 py-6 md:gap-6 md:py-8",
+                  i === PROCESS_STEPS.length - 1 && "hairline-b",
+                )}
+              >
+                <span className="font-display-condensed col-span-2 text-4xl font-black leading-[0.85] tracking-tight text-faint/50 md:col-span-1 md:text-5xl">
+                  {s.n}
+                </span>
+                <h3 className="font-display col-span-10 text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+                  {s.title}
+                </h3>
+                <p className="col-span-12 text-sm text-muted md:col-span-8">
+                  {s.copy}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </Section>
 
-      <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Process</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Every tank goes through six steps.
-          </h2>
-        </div>
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {PROCESS_STEPS.map((s) => (
-            <li
-              key={s.n}
-              className="grid grid-cols-12 gap-4 py-6 md:gap-6 md:py-8"
-            >
-              <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                {s.n}
-              </span>
-              <h3 className="font-display col-span-10 text-xl font-medium tracking-tight md:col-span-3 md:text-2xl">
-                {s.title}
-              </h3>
-              <p className="col-span-12 text-sm text-muted md:col-span-8">
-                {s.copy}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section bordered className="bg-surface-2/40">
+      {/* ─── 03 · WORKSHOP FACTS ────────────────────────────────────────── */}
+      <Section theme="paper" bordered ariaLabel="Workshop facts">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Workshop facts</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The capacity, in numbers.
-            </h2>
+            <SectionHeader
+              index="03"
+              eyebrow="Workshop facts"
+              title="The capacity, in numbers."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-8">
             <SpecTable rows={WORKSHOP_FACTS} />

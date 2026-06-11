@@ -2,17 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { BrandStar } from "@/components/brand/brand-star";
-import { Eyebrow } from "./eyebrow";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { ParallaxImage } from "@/components/motion/parallax";
+import { Magnetic } from "@/components/motion/magnetic";
 import { cn } from "@/lib/utils";
 
 /**
- * Inner-page hero. Same framed-card pattern as the homepage but shorter
- * (min-h-[58vh] / md:min-h-[64vh]), with the breadcrumb-style eyebrow on
- * top-left, headline + subhead below, and optional CTA + meta strip in the
- * bottom row.
- *
- * Background image + warm wash + faint outlined brand star, consistent with
- * the homepage register.
+ * Inner-page hero. Framed-card pattern carried from the homepage, elevated
+ * for the redesign: the photograph drifts on scroll (parallax), the headline
+ * rises in masked lines, corner register marks frame the card like a
+ * fabrication drawing, and the meta strip reads as document metadata.
  */
 export function PageHero({
   eyebrow,
@@ -46,14 +45,16 @@ export function PageHero({
       className={cn("px-3 pt-24 sm:px-4 md:pt-28 lg:px-6", className)}
     >
       <div className="relative isolate min-h-[58vh] overflow-hidden rounded-[28px] md:min-h-[64vh] md:rounded-[36px]">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="-z-20 object-cover object-center"
-        />
+        <ParallaxImage className="absolute inset-0 -z-20" amount={10}>
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </ParallaxImage>
         <div
           aria-hidden
           className="absolute inset-0 -z-10"
@@ -66,6 +67,8 @@ export function PageHero({
           filled={false}
           className="pointer-events-none absolute -right-28 -bottom-32 -z-10 hidden h-[100%] w-auto text-white/12 md:block"
         />
+        {/* Register marks — drawing-sheet corners. */}
+        <CornerMarks />
 
         <div className="relative flex min-h-[58vh] flex-col gap-8 p-7 sm:p-10 md:min-h-[64vh] md:gap-10 md:p-14 lg:p-16">
           <div className="flex flex-col gap-5 md:max-w-4xl">
@@ -73,15 +76,21 @@ export function PageHero({
               <span className="h-px w-8 bg-white/30" aria-hidden />
               <span>{eyebrow}</span>
             </div>
-            <h1 className="font-display text-balance text-[clamp(2rem,4.4vw,4rem)] font-medium leading-[1.02] tracking-tight text-white">
-              {title}
-              {titleAccent ? (
-                <>
-                  {" "}
-                  <span className="text-accent">{titleAccent}</span>
-                </>
-              ) : null}
-            </h1>
+            <TextReveal
+              as="h1"
+              mode="mount"
+              className="font-display text-balance text-[clamp(2rem,4.4vw,4rem)] font-semibold leading-[1.02] tracking-tight text-white"
+            >
+              <>
+                {title}
+                {titleAccent ? (
+                  <>
+                    {" "}
+                    <span className="text-accent">{titleAccent}</span>
+                  </>
+                ) : null}
+              </>
+            </TextReveal>
             {subtitle ? (
               <p className="max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
                 {subtitle}
@@ -90,16 +99,18 @@ export function PageHero({
             {(primaryCta || secondaryCta) && (
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 {primaryCta ? (
-                  <Link
-                    href={primaryCta.href}
-                    className="press group inline-flex items-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-medium text-text transition-colors duration-200 hover:bg-accent hover:text-on-accent"
-                  >
-                    {primaryCta.label}
-                    <ArrowUpRight
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      strokeWidth={2.2}
-                    />
-                  </Link>
+                  <Magnetic strength={0.2}>
+                    <Link
+                      href={primaryCta.href}
+                      className="press group inline-flex items-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-medium text-text transition-colors duration-200 hover:bg-accent hover:text-on-accent"
+                    >
+                      {primaryCta.label}
+                      <ArrowUpRight
+                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        strokeWidth={2.2}
+                      />
+                    </Link>
+                  </Magnetic>
                 ) : null}
                 {secondaryCta ? (
                   <Link
@@ -121,14 +132,18 @@ export function PageHero({
           )}
         </div>
       </div>
-      <_EyebrowImportSilencer />
     </section>
   );
 }
 
-// Eyebrow is re-exported via primitives/eyebrow.tsx; reference it here so the
-// barrel export doesn't tree-shake unused (kept for future use in this file).
-function _EyebrowImportSilencer() {
-  void Eyebrow;
-  return null;
+/** Drawing-sheet corner register marks, top-left and bottom-right. */
+function CornerMarks() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-4 z-[1] hidden md:block">
+      <span className="absolute top-0 left-0 h-4 w-px bg-white/30" />
+      <span className="absolute top-0 left-0 h-px w-4 bg-white/30" />
+      <span className="absolute right-0 bottom-0 h-4 w-px bg-white/30" />
+      <span className="absolute right-0 bottom-0 h-px w-4 bg-white/30" />
+    </div>
+  );
 }

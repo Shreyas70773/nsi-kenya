@@ -8,6 +8,9 @@ import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { ParallaxImage } from "@/components/motion/parallax";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articleLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -76,18 +79,25 @@ export default async function BlogPostPage({
 
       <section
         aria-label="Article header"
-        className="bg-surface-2/40 px-6 pt-32 pb-12 md:pt-36 md:pb-16"
+        className="hairline-b bg-surface-2/40 px-6 pt-32 pb-12 md:pt-36 md:pb-16"
       >
         <div className="mx-auto max-w-3xl">
-          <Eyebrow>Field notes</Eyebrow>
-          <h1 className="font-display mt-3 text-balance text-[clamp(1.85rem,3.6vw,3.25rem)] font-medium leading-[1.08] tracking-tight">
+          <span className="font-mono-label flex items-center gap-3 text-[10px] text-faint">
+            <span aria-hidden className="hairline h-px w-8" />
+            Field notes
+          </span>
+          <TextReveal
+            as="h1"
+            mode="mount"
+            className="font-display mt-4 text-balance text-[clamp(1.85rem,3.6vw,3.25rem)] font-semibold leading-[1.08] tracking-tight"
+          >
             {post.title}
-          </h1>
+          </TextReveal>
           <div className="font-mono-label mt-6 flex flex-wrap items-center gap-3 text-[10px] text-faint">
             <span>{formatDate(post.publishedAt)}</span>
             <span aria-hidden>·</span>
             <span>{post.readingMinutes} min read</span>
-            <span className="h-px flex-1 bg-faint/40" aria-hidden />
+            <span className="hairline h-px flex-1" aria-hidden />
             <div className="flex flex-wrap gap-1.5">
               {post.tags.map((t) => (
                 <span
@@ -113,7 +123,10 @@ export default async function BlogPostPage({
       </Section>
 
       <Section size="compact" innerClassName="!max-w-4xl">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-card border border-border/10">
+        <ParallaxImage
+          amount={10}
+          className="aspect-[16/9] rounded-card border border-border/10"
+        >
           <Image
             src={post.heroImage}
             alt={post.heroImageAlt}
@@ -122,13 +135,13 @@ export default async function BlogPostPage({
             className="object-cover"
             priority
           />
-        </div>
+        </ParallaxImage>
       </Section>
 
       <Section innerClassName="!max-w-3xl">
         <Prose size="lg">{post.body}</Prose>
 
-        <div className="mt-16 border-t border-border/10 pt-8">
+        <div className="hairline-t mt-16 pt-8">
           <Link
             href="/blog/"
             className="press inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-text"
@@ -140,31 +153,37 @@ export default async function BlogPostPage({
       </Section>
 
       {otherPosts.length > 0 ? (
-        <Section bordered className="bg-surface-2/40">
-          <Eyebrow className="mb-8">Keep reading</Eyebrow>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {otherPosts.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/blog/${p.slug}/`}
-                className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
-              >
-                <span className="font-mono-label text-[10px] text-accent">
-                  {formatDate(p.publishedAt)}
-                </span>
-                <h3 className="font-display text-lg font-medium leading-tight tracking-tight">
-                  {p.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted">
-                  {p.excerpt}
-                </p>
-                <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
-                  Read
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-                </span>
-              </Link>
-            ))}
-          </div>
+        <Section theme="paper" bordered>
+          <Eyebrow index="01" className="mb-8">
+            Keep reading
+          </Eyebrow>
+          <Reveal effect="scale-in" stagger={0.08}>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {otherPosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}/`}
+                  data-reveal-item
+                  data-cursor="view"
+                  className="press group flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
+                >
+                  <span className="font-mono-label text-[10px] text-accent">
+                    {formatDate(p.publishedAt)}
+                  </span>
+                  <h3 className="font-display text-lg font-semibold leading-tight tracking-tight">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted">
+                    {p.excerpt}
+                  </p>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
+                    Read
+                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Reveal>
         </Section>
       ) : null}
 

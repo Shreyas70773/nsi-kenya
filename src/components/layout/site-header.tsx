@@ -24,7 +24,11 @@ const SECONDARY = [
 /**
  * Floating-pill sticky header with the actual North Star Impex logo.
  * Translucent over the hero, condenses to a solid surface once the user
- * scrolls past 24px. Logo left, primary nav center, accent CTA right.
+ * scrolls past 24px, retreats off-screen while scrolling down and glides
+ * back the moment the user scrolls up — content gets the full viewport,
+ * navigation is never more than a flick away.
+ *
+ * The active route carries a red register dot under its nav label.
  *
  * Mobile (<md): the primary nav collapses behind a hamburger button which
  * opens a full-bleed drawer with the same nav links plus the secondary
@@ -33,15 +37,21 @@ const SECONDARY = [
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     let frame: number | null = null;
+    let lastY = window.scrollY;
     const onScroll = () => {
       if (frame !== null) return;
       frame = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 24);
+        const y = window.scrollY;
+        setScrolled(y > 24);
+        // Retreat after 160px when scrolling down; return on any scroll-up.
+        setHidden(y > 160 && y > lastY + 2);
+        lastY = y;
         frame = null;
       });
     };
@@ -55,7 +65,8 @@ export function SiteHeader() {
 
   // Close drawer on route change.
   useEffect(() => {
-    setMenuOpen(false);
+    const frame = requestAnimationFrame(() => setMenuOpen(false));
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   // Close drawer on Escape; lock body scroll while open.
@@ -75,7 +86,13 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-4 sm:pt-4">
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 transition-transform duration-500 sm:px-4 sm:pt-4",
+          hidden && !menuOpen && "-translate-y-[120%]",
+        )}
+        style={{ transitionTimingFunction: "var(--ease-expo)" }}
+      >
         <div
           className={cn(
             "flex w-full max-w-6xl items-center justify-between gap-3 rounded-pill border py-2 pl-3 pr-2 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 sm:gap-6 sm:py-2.5 sm:pl-4 sm:pr-3",
@@ -104,15 +121,28 @@ export function SiteHeader() {
             aria-label="Primary"
             className="hidden items-center gap-7 text-sm md:flex"
           >
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-muted transition-colors duration-200 hover:text-text"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV.map((item) => {
+              const active = pathname?.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "link-draw relative py-1 transition-colors duration-200",
+                    active ? "text-text" : "text-muted hover:text-text",
+                  )}
+                >
+                  {item.label}
+                  {active ? (
+                    <span
+                      aria-hidden
+                      className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-accent"
+                    />
+                  ) : null}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">

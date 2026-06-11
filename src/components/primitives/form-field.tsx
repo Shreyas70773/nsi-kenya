@@ -24,10 +24,10 @@ export function FormField({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
+    <div className={cn("group flex flex-col gap-1.5", className)}>
       <label
         htmlFor={htmlFor}
-        className="font-mono-label flex items-center gap-2 text-[10px] text-faint"
+        className="font-mono-label flex items-center gap-2 text-[10px] text-faint transition-colors duration-300 group-focus-within:text-accent"
       >
         {label}
         {required ? <span className="text-accent">*</span> : null}
@@ -50,10 +50,10 @@ export function FormField({
  * Use inside <FormField>.
  */
 export const fieldInputClass =
-  "w-full rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text placeholder:text-faint focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 transition-colors";
+  "w-full rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text placeholder:text-faint transition-[border-color,box-shadow] duration-300 hover:border-border/30 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
 
 export const fieldTextareaClass =
-  "w-full min-h-32 rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text placeholder:text-faint focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 transition-colors";
+  "w-full min-h-32 rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text placeholder:text-faint transition-[border-color,box-shadow] duration-300 hover:border-border/30 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";
 
 export const fieldSelectClass =
-  "w-full rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30 transition-colors";
+  "w-full rounded-button border border-border/15 bg-surface px-4 py-3 text-sm text-text transition-[border-color,box-shadow] duration-300 hover:border-border/30 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30";

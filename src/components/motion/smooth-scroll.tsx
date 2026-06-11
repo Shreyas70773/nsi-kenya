@@ -5,12 +5,18 @@
  * prefers-reduced-motion: if reduced, Lenis is not initialized and native
  * scroll behavior is preserved.
  *
- * Lenis is intentionally subtle here — no exaggerated easing, no parallax
- * pyrotechnics. The goal is the imperceptible "expensive-feeling" smoothness
- * that elevates the overall experience without registering as a feature.
+ * Driven by the GSAP ticker and wired into ScrollTrigger (the canonical
+ * integration) so pinned/scrubbed sections — the fabrication sequence, the
+ * industries gallery — stay frame-accurate with the smoothed scroll.
  */
 import { useEffect } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function SmoothScroll({
   children,
@@ -32,15 +38,15 @@ export function SmoothScroll({
       touchMultiplier: 1.6,
     });
 
-    let frame: number;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => {
+      lenis.raf(time * 1000);
     };
-    frame = requestAnimationFrame(raf);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(frame);
+      gsap.ticker.remove(tick);
       lenis.destroy();
     };
   }, []);

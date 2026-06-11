@@ -3,9 +3,10 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Industrial Silos Kenya: Grain, Feed, Bulk",
@@ -78,37 +79,39 @@ export default function SilosOverviewPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Three classes</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Pick by what you store and how often you cycle it.
-          </h2>
-        </div>
+        <SectionHeader
+          index="01"
+          eyebrow="Three classes"
+          title="Pick by what you store and how often you cycle it."
+        />
 
-        <div className="grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-3">
-          {SILO_TYPES.map((s) => (
-            <Link
-              key={s.href}
-              href={s.href}
-              className="press group flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
-            >
-              <span className="font-mono-label text-[10px] text-accent">
-                {s.capacity}
-              </span>
-              <h3 className="font-display text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-                {s.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">
-                Best for {s.best.toLowerCase()}. Carbon or galvanised steel,
-                with aeration and inventory hardware on request.
-              </p>
-              <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
-                Open
-                <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-              </span>
-            </Link>
-          ))}
-        </div>
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-3">
+            {SILO_TYPES.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                data-reveal-item
+                className="press group flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-7 transition-shadow duration-500 hover:shadow-[0_24px_60px_-24px_rgb(var(--ns-text-rgb)/0.18)]"
+              >
+                <span className="font-mono-label text-[10px] text-accent">
+                  {s.capacity}
+                </span>
+                <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">
+                  Best for {s.best.toLowerCase()}. Carbon or galvanised steel,
+                  with aeration and inventory hardware on request.
+                </p>
+                <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm text-text transition-transform duration-300 group-hover:translate-x-1">
+                  Open
+                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand

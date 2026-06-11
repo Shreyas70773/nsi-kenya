@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
-import { BrandStar } from "@/components/brand/brand-star";
+import { Marquee } from "@/components/motion/marquee";
 
 const FOOTER_NAV = [
   {
@@ -45,26 +46,55 @@ const FOOTER_NAV = [
   },
 ] as const;
 
+/**
+ * Iron big-type footer. A conversion marquee leads, the link grid sits on
+ * the dark field, and an outlined NORTH STAR wordmark crops off the bottom
+ * edge — the site signs off like a stamped fabrication plate.
+ */
 export function SiteFooter() {
   return (
-    <footer className="relative isolate mt-24 overflow-hidden border-t border-border/10 bg-surface text-sm">
-      {/* Brand star watermark. Outlined, barely visible, anchored
-          bottom-right and cropped off the edge. A faint geometric
-          watermark, not a dominant element. */}
-      <BrandStar
-        filled={false}
-        className="pointer-events-none absolute -right-24 -bottom-36 -z-10 hidden h-[420px] w-auto text-text/10 md:block lg:-right-16 lg:-bottom-40 lg:h-[500px]"
-      />
-      <div className="relative mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 md:py-20">
-        <div className="mb-8 flex flex-col gap-5 border-b border-border/8 pb-8 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
+    <footer
+      data-theme="dark"
+      className="grain relative isolate mt-24 overflow-hidden bg-bg text-sm text-text"
+    >
+      {/* Conversion marquee — the whole strip is one big door. */}
+      <Link
+        href="/request-quote/"
+        aria-label="Request a quote"
+        data-cursor="view"
+        data-cursor-label="Quote"
+        className="group relative z-[2] block border-b border-border/15 py-7 transition-colors duration-500 hover:bg-accent md:py-9"
+      >
+        <Marquee duration={26}>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span
+              key={i}
+              className="font-display mx-6 flex items-center gap-6 text-3xl font-semibold tracking-tight whitespace-nowrap text-text transition-colors duration-500 group-hover:text-on-accent md:text-5xl"
+            >
+              Have a project in mind?
+              <span className="text-accent transition-colors duration-500 group-hover:text-on-accent">
+                Let&apos;s fabricate it
+              </span>
+              <ArrowUpRight
+                className="h-7 w-7 text-accent transition-colors duration-500 group-hover:text-on-accent md:h-10 md:w-10"
+                strokeWidth={2}
+                aria-hidden
+              />
+            </span>
+          ))}
+        </Marquee>
+      </Link>
+
+      <div className="relative z-[2] mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 md:py-20">
+        <div className="mb-8 flex flex-col gap-5 border-b border-border/15 pb-8 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
           <Image
             src="/brand/logo.png"
             alt={SITE_NAME}
             width={215}
             height={94}
-            className=""
+            className="h-10 w-auto md:h-14"
           />
-          <p className="font-display max-w-md text-balance text-xl font-medium leading-tight tracking-tight sm:text-2xl md:text-3xl">
+          <p className="font-display max-w-md text-balance text-xl font-semibold leading-tight tracking-tight sm:text-2xl md:text-3xl">
             Made in Kenya,{" "}
             <span className="text-accent">made for East Africa</span>.
           </p>
@@ -81,7 +111,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-text/85 transition-colors hover:text-accent md:text-base"
+                      className="link-draw text-sm text-text/85 transition-colors hover:text-text md:text-base"
                     >
                       {link.label}
                     </Link>
@@ -92,30 +122,30 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border/10 pt-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-border/15 pt-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE_NAME} LTD. Fabricated in Kenya.
           </p>
           <p className="flex flex-wrap gap-x-4 gap-y-1">
-            <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-text">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="link-draw hover:text-text">
               {CONTACT_EMAIL}
             </a>
             <a
               href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}
-              className="hover:text-text"
+              className="link-draw hover:text-text"
             >
               {CONTACT_PHONE}
             </a>
-            <Link href="/privacy/" className="hover:text-text">
+            <Link href="/privacy/" className="link-draw hover:text-text">
               Privacy
             </Link>
-            <Link href="/terms/" className="hover:text-text">
+            <Link href="/terms/" className="link-draw hover:text-text">
               Terms
             </Link>
           </p>
         </div>
 
-        <div className="mt-4 flex justify-end border-t border-border/8 pt-4 text-[11px] text-faint">
+        <div className="mt-4 flex justify-end border-t border-border/15 pt-4 text-[11px] text-faint">
           <p>
             Website made by{" "}
             <a
@@ -128,6 +158,34 @@ export function SiteFooter() {
             </a>
           </p>
         </div>
+      </div>
+
+      {/* Stamped wordmark, cropped off the bottom edge. SVG textLength pins
+          the full company name edge-to-edge at every viewport width. */}
+      <div
+        aria-hidden
+        className="pointer-events-none relative z-[1] w-full overflow-hidden"
+      >
+        <svg
+          viewBox="0 0 1200 132"
+          preserveAspectRatio="none"
+          className="block h-auto w-full translate-y-[24%] text-text/25"
+        >
+          <text
+            x="600"
+            y="118"
+            textAnchor="middle"
+            textLength="1184"
+            lengthAdjust="spacingAndGlyphs"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="font-display-wide select-none"
+            style={{ fontSize: 118, fontWeight: 900 }}
+          >
+            NORTH STAR IMPEX
+          </text>
+        </svg>
       </div>
     </footer>
   );

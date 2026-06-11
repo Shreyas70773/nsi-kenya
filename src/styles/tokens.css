@@ -77,4 +77,39 @@
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  /* Redesign additions — the "Forged Editorial" motion vocabulary. */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);   /* hero reveals, panel wipes */
+  --ease-snap:   cubic-bezier(0.6, 0, 0.2, 1);    /* short UI snaps */
+  --dur-fast:    180ms;
+  --dur-base:    420ms;
+  --dur-slow:    900ms;
+}
+
+/*
+ * Z-index scale. Never hand-roll a z-index above content level — pick from
+ * the scale so stacked experience layers (cursor > intro > transition >
+ * header) stay coherent.
+ */
+:root {
+  --z-header:     50;
+  --z-drawer:     100;
+  --z-transition: 180;
+  --z-intro:      200;
+  --z-cursor:     300;
+}
+
+/*
+ * Iron statement sections.
+ *
+ * The redesign's dark "statement" moments reuse the existing dark-mode
+ * remap: any element with [data-theme="dark"] re-scopes the semantic
+ * custom properties for its subtree, so every existing utility
+ * (bg-bg, text-text, border-border/10 …) recolors automatically.
+ * These two extras only exist in iron scope:
+ */
+[data-theme="dark"] {
+  --ns-hairline: rgb(244 238 226 / 0.14); /* rules on iron */
+}
+:root {
+  --ns-hairline: rgb(18 16 14 / 0.12);    /* rules on cream */
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
+import { Reveal } from "@/components/motion/reveal";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
@@ -114,67 +115,71 @@ export default function LevelInstrumentsPage() {
       </Section>
 
       <Section>
+        <SectionHeader
+          index="01"
+          eyebrow="What we mean by level"
+          title="The right technology depends on the vessel as much as the medium."
+        />
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <Eyebrow>What we mean by level</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The right technology depends on the vessel as much as the
-              medium.
-            </h2>
-          </div>
-          <div className="md:col-span-7">
-            <Prose>
-              <p>
-                A tank-level reading sounds like one problem. In
-                practice it is at least four: clear-liquid in a large
-                open-top tank, foamy liquid in a process vessel, slurry
-                in an open sump, and pressurised condensate in a
-                boiler. Each one wants a different sensor.
-              </p>
-              <p>
-                We size against the geometry as well as the medium.
-                Vessel diameter, nozzle dimensions, agitator presence,
-                vapour conditions, and required accuracy all narrow the
-                technology choice. The recommendation comes with the
-                quote.
-              </p>
-            </Prose>
-          </div>
+          <Reveal className="md:col-span-7 md:col-start-6" yFrom={18}>
+            <div data-reveal-item>
+              <Prose>
+                <p>
+                  A tank-level reading sounds like one problem. In
+                  practice it is at least four: clear-liquid in a large
+                  open-top tank, foamy liquid in a process vessel, slurry
+                  in an open sump, and pressurised condensate in a
+                  boiler. Each one wants a different sensor.
+                </p>
+                <p>
+                  We size against the geometry as well as the medium.
+                  Vessel diameter, nozzle dimensions, agitator presence,
+                  vapour conditions, and required accuracy all narrow the
+                  technology choice. The recommendation comes with the
+                  quote.
+                </p>
+              </Prose>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Sub-types</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Six technologies, when to use each.
-          </h2>
-        </div>
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {SUBTYPES.map((s, i) => (
-            <li key={s.name} className="grid grid-cols-12 gap-4 py-6 md:gap-6 md:py-7">
-              <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-display col-span-10 text-xl font-medium tracking-tight md:col-span-3 md:text-2xl">
-                {s.name}
-              </h3>
-              <p className="col-span-12 text-sm text-muted md:col-span-5">{s.use}</p>
-              <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-3">{s.note}</p>
-            </li>
-          ))}
-        </ol>
+      <Section theme="paper" bordered>
+        <SectionHeader
+          index="02"
+          eyebrow="Sub-types"
+          title="Six technologies, when to use each."
+        />
+        <Reveal stagger={0.07} yFrom={18}>
+          <ol className="divide-y divide-border/10 border-y border-border/10">
+            {SUBTYPES.map((s, i) => (
+              <li
+                key={s.name}
+                data-reveal-item
+                className="grid grid-cols-12 gap-4 py-6 md:gap-6 md:py-7"
+              >
+                <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display col-span-10 text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+                  {s.name}
+                </h3>
+                <p className="col-span-12 text-sm text-muted md:col-span-5">{s.use}</p>
+                <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-3">{s.note}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </Section>
 
       <Section>
+        <SectionHeader
+          index="03"
+          eyebrow="Specifications"
+          title="The shared spec floor."
+        />
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The shared spec floor.
-            </h2>
-          </div>
-          <div className="md:col-span-8">
+          <div className="md:col-span-8 md:col-start-5">
             <SpecTable rows={SPECS} />
           </div>
         </div>

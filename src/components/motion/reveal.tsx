@@ -32,6 +32,13 @@ type Props = {
   /** Selector for the children to animate. Default `[data-reveal-item]`,
    *  falls back to direct children if no matches. */
   selector?: string;
+  /**
+   * Entrance flavor:
+   *  - "fade-up"  — opacity + rise (default, the original behavior)
+   *  - "mask"     — clip-path wipe from the bottom; for imagery and panels
+   *  - "scale-in" — settle from 1.04× with fade; for cards and media tiles
+   */
+  effect?: "fade-up" | "mask" | "scale-in";
   className?: string;
 };
 
@@ -42,6 +49,7 @@ export function Reveal({
   duration = 0.7,
   yFrom = 24,
   selector = "[data-reveal-item]",
+  effect = "fade-up",
   className,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,22 +68,33 @@ export function Reveal({
       const items = root.querySelectorAll<HTMLElement>(selector);
       const targets = items.length > 0 ? items : (root.children as unknown as HTMLElement[]);
 
-      gsap.fromTo(
-        targets,
-        { opacity: 0, y: yFrom },
-        {
-          opacity: 1,
-          y: 0,
-          duration,
-          ease: "expo.out",
-          stagger,
-          scrollTrigger: {
-            trigger: root,
-            start,
-            toggleActions: "play none none none",
-          },
+      const variants = {
+        "fade-up": {
+          from: { opacity: 0, y: yFrom },
+          to: { opacity: 1, y: 0 },
         },
-      );
+        mask: {
+          from: { clipPath: "inset(100% 0% 0% 0%)", y: yFrom / 2 },
+          to: { clipPath: "inset(0% 0% 0% 0%)", y: 0 },
+        },
+        "scale-in": {
+          from: { opacity: 0, scale: 1.04, y: yFrom / 2 },
+          to: { opacity: 1, scale: 1, y: 0 },
+        },
+      } as const;
+      const { from, to } = variants[effect];
+
+      gsap.fromTo(targets, from, {
+        ...to,
+        duration: effect === "mask" ? Math.max(duration, 0.9) : duration,
+        ease: "expo.out",
+        stagger,
+        scrollTrigger: {
+          trigger: root,
+          start,
+          toggleActions: "play none none none",
+        },
+      });
     },
     { scope: ref },
   );

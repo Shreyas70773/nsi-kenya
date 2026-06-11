@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, type CtaCardData } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 import { JsonLd } from "@/components/seo/json-ld";
 import { serviceLd, faqLd } from "@/lib/seo";
 import { FaqList } from "@/components/primitives/faq-list";
@@ -231,53 +237,64 @@ export default function ETPPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>The buying frame</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              ETP is the one industry where compliance is the brief.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="The buying frame"
+              title="ETP is the one industry where compliance is the brief."
+              className="mb-0 md:mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
-          <div className="md:col-span-7">
-            <Prose>
-              <p>
-                The other industries buy infrastructure because they're
-                growing. ETP buyers buy infrastructure because they have to.
-                The trigger is almost always external: a regulator inspection
-                that flagged a parameter, a discharge deadline, a donor
-                project that gates on compliance, or a new effluent standard
-                from a sector-specific regulation.
-              </p>
-              <p>
-                Speed matters more than anywhere else on the catalogue. So
-                does the answer to one question: <em>will this equipment
-                pass the next inspection?</em> Everything on this page is
-                designed to make that answer yes.
-              </p>
-            </Prose>
-          </div>
+          <Reveal className="md:col-span-7">
+            <div data-reveal-item>
+              <Prose>
+                <p>
+                  The other industries buy infrastructure because they're
+                  growing. ETP buyers buy infrastructure because they have to.
+                  The trigger is almost always external: a regulator inspection
+                  that flagged a parameter, a discharge deadline, a donor
+                  project that gates on compliance, or a new effluent standard
+                  from a sector-specific regulation.
+                </p>
+                <p>
+                  Speed matters more than anywhere else on the catalogue. So
+                  does the answer to one question: <em>will this equipment
+                  pass the next inspection?</em> Everything on this page is
+                  designed to make that answer yes.
+                </p>
+              </Prose>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
-      <Section
-        bordered
-        className="bg-surface-2/40"
-        innerClassName="scroll-mt-24"
-      >
-        <div id="nema-parameters" className="flex flex-col gap-6 md:gap-10">
-          <div className="flex flex-col gap-3">
-            <Eyebrow>Kenyan discharge parameters</Eyebrow>
-            <h2 className="font-display max-w-3xl text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Maximum permissible levels per Kenya water quality regulations.
-            </h2>
-            <p className="max-w-prose text-sm text-muted">
-              Designed for the operator preparing for a regulator inspection.
-              First column: parameter. Second: limit for direct
-              environmental discharge. Third: limit for discharge into a
-              public sewer. The two limit sets are different; the right one
-              depends on your discharge route.
-            </p>
-          </div>
+      <Section bordered theme="paper">
+        <div
+          id="discharge-parameters"
+          className="flex flex-col gap-6 scroll-mt-24 md:gap-10"
+        >
+          <SectionHeader
+            index="02"
+            eyebrow="Kenyan discharge parameters"
+            title="Maximum permissible levels per Kenya water quality regulations."
+            className="mb-0 md:mb-0"
+            headlineClassName="text-3xl leading-tight md:text-4xl"
+            side={
+              <p>
+                Designed for the operator preparing for a regulator inspection.
+                First column: parameter. Second: limit for direct
+                environmental discharge. Third: limit for discharge into a
+                public sewer. The two limit sets are different; the right one
+                depends on your discharge route.
+              </p>
+            }
+          />
 
-          <div className="overflow-x-auto rounded-card border border-border/10 bg-surface">
+          <Reveal yFrom={16}>
+            <div
+              data-reveal-item
+              className="overflow-x-auto rounded-card border border-border/10 bg-surface"
+            >
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-border/10 bg-surface-2/60">
@@ -316,7 +333,8 @@ export default function ETPPage() {
                 ))}
               </tbody>
             </table>
-          </div>
+            </div>
+          </Reveal>
 
           <p className="text-xs text-faint">
             Source: Kenya environmental management regulations on water
@@ -327,58 +345,153 @@ export default function ETPPage() {
         </div>
       </Section>
 
-      <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>The equipment train</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What sits between your effluent and the discharge point.
-          </h2>
-          <p className="max-w-prose text-sm text-muted">
-            We supply equipment inside the ETP scope. For full-plant
-            design, we work alongside ETP designers; for retrofits and
-            equipment swaps, we work directly with the plant.
-          </p>
+      {/* Full-bleed media band — the outdoor ETP at a wider crop, breaking
+          the container rhythm between the limits table and the train. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0" amount={14}>
+          <Image
+            src="/images/industries/etp-water-treatment-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[center_65%]"
+          />
+        </ParallaxImage>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              "linear-gradient(to top, rgb(8 6 4 / 0.72) 0%, rgb(8 6 4 / 0.25) 32%, rgb(8 6 4 / 0) 58%)",
+          }}
+        />
+        <div className="font-mono-label absolute inset-x-0 bottom-0 z-[2] flex flex-col gap-2 px-6 pb-6 text-[10px] text-white/75 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8">
+          <span>Clarifier · aeration basin · dosing tanks</span>
+          <span>Expedited delivery: 2 to 3 weeks on standard equipment</span>
         </div>
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {EQUIPMENT_TRAIN.map((stage, i) => (
-            <li
-              key={stage.title}
-              className="grid grid-cols-12 gap-4 py-7 md:gap-6 md:py-9"
-            >
-              <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-display col-span-10 text-xl font-medium tracking-tight md:col-span-3 md:text-2xl">
-                {stage.title}
-              </h3>
-              <p className="col-span-12 text-sm text-muted md:col-span-5">
-                {stage.copy}
-              </p>
-              <div className="col-span-12 flex flex-wrap gap-2 md:col-span-3 md:justify-end">
-                {stage.products.map((slug) => (
-                  <Link
-                    key={slug}
-                    href={`/products/${slug}/`}
-                    className="press inline-flex items-center gap-1 rounded-pill border border-border/15 px-2.5 py-1 text-[10px] text-text transition-colors hover:bg-surface"
-                  >
-                    {slug.split("/").pop()?.replace(/-/g, " ")}
-                    <ArrowRight className="h-3 w-3" strokeWidth={2.2} />
-                  </Link>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ol>
+      </div>
+
+      <Section>
+        <SectionHeader
+          index="03"
+          eyebrow="The equipment train"
+          title="What sits between your effluent and the discharge point."
+          side={
+            <p>
+              We supply equipment inside the ETP scope. For full-plant
+              design, we work alongside ETP designers; for retrofits and
+              equipment swaps, we work directly with the plant.
+            </p>
+          }
+        />
+        <Reveal stagger={0.08} yFrom={16}>
+          <ol className="divide-y divide-border/10 border-y border-border/10">
+            {EQUIPMENT_TRAIN.map((stage, i) => (
+              <li
+                key={stage.title}
+                data-reveal-item
+                className="grid grid-cols-12 gap-4 py-7 md:gap-6 md:py-9"
+              >
+                <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display col-span-10 text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+                  {stage.title}
+                </h3>
+                <p className="col-span-12 text-sm text-muted md:col-span-5">
+                  {stage.copy}
+                </p>
+                <div className="col-span-12 flex flex-wrap gap-2 md:col-span-3 md:justify-end">
+                  {stage.products.map((slug) => (
+                    <Link
+                      key={slug}
+                      href={`/products/${slug}/`}
+                      className="press inline-flex items-center gap-1 rounded-pill border border-border/15 px-2.5 py-1 text-[10px] text-text transition-colors hover:bg-surface"
+                    >
+                      {slug.split("/").pop()?.replace(/-/g, " ")}
+                      <ArrowRight className="h-3 w-3" strokeWidth={2.2} />
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      {/* Iron statement — the page's compliance stance, elevated. */}
+      <Section theme="iron" size="spacious" ariaLabel="The compliance stance">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="04">The compliance stance</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              Discharge standards have tightened.{" "}
+              <span className="text-accent">
+                We supply equipment that passes.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <p className="font-mono-label text-[10px] text-faint">
+                  Parameters published
+                </p>
+                <span className="font-display-condensed text-6xl font-black leading-none tracking-tight md:text-7xl">
+                  <CountUp value={10} />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  The full discharge limits table is on this page; no other
+                  Kenya supplier publishes it.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <p className="font-mono-label text-[10px] text-faint">
+                  Expedited ceiling
+                </p>
+                <span className="font-display-condensed text-6xl font-black leading-none tracking-tight md:text-7xl">
+                  <CountUp value={3} suffix=" wk" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  2 to 3 weeks on standard equipment under regulator
+                  inspection pressure.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <p className="font-mono-label text-[10px] text-faint">
+                  Continuous monitoring
+                </p>
+                <span className="font-display-condensed text-6xl font-black leading-none tracking-tight md:text-7xl">
+                  <CountUp value={24} suffix="/7" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Every analyzer we install can stream parameter data to a
+                  dashboard, around the clock.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
-            <Eyebrow>Continuous compliance, optional</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-              For plants under continuous monitoring obligations, every
-              analyzer we install can stream parameter data 24/7.
-            </h2>
+            <SectionHeader
+              index="05"
+              eyebrow="Continuous compliance, optional"
+              title="For plants under continuous monitoring obligations, every analyzer we install can stream parameter data 24/7."
+              className="mb-0 md:mb-0"
+              headlineClassName="text-2xl leading-tight md:text-3xl"
+            />
             <p className="mt-4 max-w-prose text-sm text-muted">
               Live pH, conductivity, DO, turbidity, and flow rate, with
               alarm logs you can hand to the regulator on demand. Hosted
@@ -392,34 +505,54 @@ export default function ETPPage() {
               See how remote monitoring works →
             </Link>
           </div>
-          <div className="rounded-card border border-border/15 bg-surface p-7 md:col-span-5">
-            <p className="font-mono-label text-[10px] text-faint">
-              Streamable parameters
-            </p>
-            <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
-              <li>· pH, ORP</li>
-              <li>· Dissolved oxygen</li>
-              <li>· Conductivity</li>
-              <li>· Turbidity, TSS</li>
-              <li>· Ammonia, residual chlorine</li>
-              <li>· Flow rate and totaliser</li>
-            </ul>
-          </div>
+          <Reveal effect="scale-in" className="md:col-span-5">
+            <div
+              data-reveal-item
+              className="rounded-card border border-border/15 bg-surface p-7"
+            >
+              <p className="font-mono-label text-[10px] text-faint">
+                Streamable parameters
+              </p>
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
+                <li>· pH, ORP</li>
+                <li>· Dissolved oxygen</li>
+                <li>· Conductivity</li>
+                <li>· Turbidity, TSS</li>
+                <li>· Ammonia, residual chlorine</li>
+                <li>· Flow rate and totaliser</li>
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section>
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What plant managers ask before a regulator inspection.
-          </h2>
-        </div>
+        <SectionHeader
+          index="06"
+          eyebrow="Common questions"
+          title="What plant managers ask before a regulator inspection."
+        />
         <FaqList items={FAQS} />
       </Section>
 
+      {/* Pull quote — the page's most persuasive line, set asymmetrically. */}
+      <Section size="compact" ariaLabel="In one line">
+        <div className="hairline-t grid grid-cols-1 gap-6 pt-8 md:grid-cols-12 md:gap-10 md:pt-12">
+          <p className="font-mono-label text-[10px] text-faint md:col-span-5">
+            The buying frame · ETP &amp; Water Treatment
+          </p>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            &ldquo;Will this equipment pass the next inspection? Everything on
+            this page is designed to make that answer yes.&rdquo;
+          </TextReveal>
+        </div>
+      </Section>
+
       <CtaBand
-        eyebrow="⟶ ETP-specific paths"
+        eyebrow="ETP-specific paths"
         headline="Inspection coming?"
         headlineAccent="Pick the door that matches."
         cards={URGENT_CTA}

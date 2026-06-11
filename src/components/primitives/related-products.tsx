@@ -3,6 +3,8 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "./section";
 import { Eyebrow } from "./eyebrow";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
 
 type Item = {
   href: string;
@@ -30,15 +32,24 @@ export function RelatedProducts({
     <Section ariaLabel="Related products">
       <div className="mb-10 flex flex-col gap-3">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="font-display max-w-2xl text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+        <TextReveal
+          as="h2"
+          className="font-display max-w-2xl text-balance text-3xl font-semibold leading-tight tracking-tight md:text-4xl"
+        >
           {headline}
-        </h2>
+        </TextReveal>
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+      <Reveal
+        stagger={0.08}
+        effect="scale-in"
+        className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3"
+      >
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
+            data-reveal-item
+            data-cursor="view"
             className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
           >
             <Image
@@ -70,7 +81,7 @@ export function RelatedProducts({
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </Section>
   );
 }
