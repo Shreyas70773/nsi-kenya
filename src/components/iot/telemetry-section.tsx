@@ -3,20 +3,20 @@
 /**
  * "Sensor to cloud, rendered live" — the IoT page's iron statement moment.
  *
- * The WebGL telemetry scene (sensor readings rising off a wireframe tank
- * toward a floating data plane) sits in an 8-column frame; beside it a
- * hairline progress rule fills as the section scrolls and four mono-label
- * stat callouts tick up — every figure drawn from the page's own copy.
+ * A cinematic telemetry film (sensor pulse rising off a night-lit tank,
+ * generated in-house) sits in an 8-column frame; beside it a hairline
+ * progress rule fills as the section scrolls and four mono-label stat
+ * callouts tick up — every figure drawn from the page's own copy.
  *
- * Lite tier / reduced motion / no-JS: SceneFrame swaps to the existing
- * gateway photograph and the numerals render at their final values.
+ * Reduced motion / save-data / no-JS: the film never loads and the existing
+ * gateway photograph stands in; numerals render at their final values.
  */
 import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SceneFrame } from "@/components/scenes/scene-frame";
+import { AmbientVideo } from "@/components/motion/ambient-video";
 import { Section } from "@/components/primitives/section";
 import { SectionHeader } from "@/components/primitives/section-header";
 import { Reveal } from "@/components/motion/reveal";
@@ -107,11 +107,11 @@ export function TelemetrySection() {
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-8">
-            <SceneFrame
-              scene="telemetry"
-              className="h-[60vh] w-full md:h-[70vh]"
-              fallback={
-                <div className="relative h-full w-full overflow-hidden rounded-card border border-border/15">
+            <div className="grain relative h-[60vh] w-full overflow-hidden rounded-card border border-border/15 md:h-[70vh]">
+              <AmbientVideo
+                src="/videos/iot-telemetry.mp4"
+                className="absolute inset-0"
+                poster={
                   <Image
                     src="/images/products/iot-hero.png"
                     alt="An NB-IoT gateway box mounted on a pole at a remote Kenyan tank site"
@@ -119,9 +119,12 @@ export function TelemetrySection() {
                     sizes="100vw"
                     className="object-cover"
                   />
-                </div>
-              }
-            />
+                }
+              />
+              <span className="font-mono-label absolute bottom-4 left-4 z-[2] text-[10px] text-white/70">
+                Sensor pulse · field night shot
+              </span>
+            </div>
           </div>
 
           {/* Stat rail — hairline progress rule + counted callouts */}

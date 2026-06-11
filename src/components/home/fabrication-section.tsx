@@ -3,20 +3,20 @@
 /**
  * "How a tank gets built" — the homepage's iron statement moment.
  *
- * Desktop: the section pins for ~2.6 viewport-heights while the CAD tank
- * assembles course-by-course in the WebGL frame; four fabrication-step
- * captions crossfade in sync and a red progress hairline tracks the build.
+ * Desktop: the section pins for ~2.6 viewport-heights over a cinematic
+ * fabrication film (macro TIG weld, generated in-house); four
+ * fabrication-step captions crossfade in sync and a red progress hairline
+ * tracks the sequence. The film loads lazily, plays only on screen, and
+ * falls back to the weld photograph for reduced motion / save-data.
  *
- * Mobile / lite tier: no pin — captions stack as a readable list beside the
- * scene (or its photographic fallback). Reduced motion sees the finished
- * tank and all four steps.
+ * Mobile: no pin — captions stack as a readable list beside the film.
  */
 import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SceneFrame } from "@/components/scenes/scene-frame";
+import { AmbientVideo } from "@/components/motion/ambient-video";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 
 if (typeof window !== "undefined") {
@@ -52,16 +52,12 @@ const STEPS = [
 
 export function FabricationSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const progress = useRef(0);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
       if (!section) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        progress.current = 1;
-        return;
-      }
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       const mm = gsap.matchMedia();
 
@@ -70,6 +66,7 @@ export function FabricationSection() {
           section.querySelectorAll("[data-step]"),
         );
         const bar = section.querySelector<HTMLElement>("[data-progress-bar]");
+        const film = section.querySelector<HTMLElement>("[data-film]");
 
         gsap.set(captions.slice(1), { autoAlpha: 0, y: 28 });
 
@@ -77,12 +74,9 @@ export function FabricationSection() {
           scrollTrigger: {
             trigger: section,
             start: "top top",
-            end: "+=260%",
+            end: "+=220%",
             pin: true,
             scrub: 0.6,
-            onUpdate: (self) => {
-              progress.current = self.progress;
-            },
           },
         });
 
@@ -107,24 +101,29 @@ export function FabricationSection() {
             scrollTrigger: {
               trigger: section,
               start: "top top",
-              end: "+=260%",
+              end: "+=220%",
               scrub: true,
             },
           });
         }
-      });
 
-      mm.add("(max-width: 767px)", () => {
-        // No pin on mobile — drive assembly by section visibility instead.
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top 70%",
-          end: "bottom 80%",
-          scrub: 0.5,
-          onUpdate: (self) => {
-            progress.current = self.progress;
-          },
-        });
+        // The film frame eases through a slow zoom across the whole pin.
+        if (film) {
+          gsap.fromTo(
+            film,
+            { scale: 1.08 },
+            {
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "+=220%",
+                scrub: true,
+              },
+            },
+          );
+        }
       });
 
       return () => mm.revert();
@@ -176,7 +175,7 @@ export function FabricationSection() {
             </div>
           </div>
 
-          {/* Scene + progress hairline */}
+          {/* Fabrication film + progress hairline */}
           <div className="order-1 flex items-stretch gap-5 md:order-2 md:col-span-7">
             <div
               aria-hidden
@@ -188,27 +187,31 @@ export function FabricationSection() {
                 style={{ transform: "scaleY(0)" }}
               />
             </div>
-            <SceneFrame
-              scene="tank"
-              progress={progress}
-              className="h-[46vh] w-full md:h-[68vh]"
-              fallback={
-                <div className="relative h-full w-full overflow-hidden rounded-card border border-border/15">
-                  <Image
-                    src="/images/home/tanks-weld-bead.png"
-                    alt="Continuous TIG weld bead on a stainless steel tank course"
-                    fill
-                    sizes="(min-width: 768px) 58vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              }
-            />
+            <div className="grain relative h-[46vh] w-full overflow-hidden rounded-card border border-border/15 md:h-[68vh]">
+              <div data-film className="absolute inset-0 will-change-transform">
+                <AmbientVideo
+                  src="/videos/fabrication-weld.mp4"
+                  className="absolute inset-0"
+                  poster={
+                    <Image
+                      src="/images/home/tanks-weld-bead.png"
+                      alt="Continuous TIG weld bead on a stainless steel tank course"
+                      fill
+                      sizes="(min-width: 768px) 58vw, 100vw"
+                      className="object-cover"
+                    />
+                  }
+                />
+              </div>
+              <span className="font-mono-label absolute bottom-4 left-4 z-[2] text-[10px] text-white/70">
+                Workshop film · Nairobi
+              </span>
+            </div>
           </div>
         </div>
 
         <p className="font-mono-label text-[10px] text-faint">
-          Sequence: plate → courses → weld → test → install · rendered live
+          Sequence: plate → courses → weld → test → install
         </p>
       </div>
     </section>

@@ -2,18 +2,20 @@
 
 /**
  * Route-transition choreography. A flat iron panel led by a 2px red hairline
- * wipes up over the viewport, the route changes underneath it, then the
- * panel exits upward — so 41 pages feel like one continuous surface.
+ * sweeps the viewport, the brand star pulses at center while the next route
+ * commits, then the panel exits upward — 41 pages, one continuous surface.
+ *
+ * Designed to feel fast: cover in ~0.45s, navigation starts at 70% coverage,
+ * exit begins the moment the new route paints. Total dead time on a warm
+ * route is under a second.
  *
  * Implementation notes:
  *  - One capture-phase click listener instead of a custom Link wrapper, so
  *    every existing <Link> on the site participates with zero churn.
  *  - External links, hash jumps, modified clicks (cmd/ctrl/shift/alt),
  *    target="_blank", and downloads are left alone.
- *  - Back/forward navigation skips the wipe (no click to intercept) and the
- *    page's own scroll reveals handle the entrance.
- *  - A failsafe retracts the panel if a navigation stalls, so the UI can
- *    never be left covered.
+ *  - Back/forward navigation skips the wipe (no click to intercept).
+ *  - A failsafe retracts the panel if a navigation stalls.
  *  - When `enabled` is false (reduced motion) this renders nothing and
  *    navigation behaves natively.
  */
@@ -22,9 +24,10 @@ import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 
 export function PageTransition({ enabled }: { enabled: boolean }) {
-  const rootRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const edgeRef = useRef<HTMLDivElement>(null);
+  const brandRef = useRef<HTMLDivElement>(null);
+  const starRef = useRef<SVGPolygonElement>(null);
   const coveredRef = useRef(false);
   const failsafeRef = useRef<number | null>(null);
   const router = useRouter();
@@ -33,6 +36,21 @@ export function PageTransition({ enabled }: { enabled: boolean }) {
   // Intercept internal link clicks → wipe in → navigate.
   useEffect(() => {
     if (!enabled) return;
+
+    const uncover = () => {
+      const panel = panelRef.current;
+      const edge = edgeRef.current;
+      const brand = brandRef.current;
+      coveredRef.current = false;
+      if (!panel || !edge || !brand) return;
+      gsap
+        .timeline()
+        .to(brand, { opacity: 0, y: -14, duration: 0.18, ease: "power2.in" })
+        .to(panel, { y: "-101%", duration: 0.5, ease: "expo.inOut" }, "<")
+        .set(edge, { y: "-2px", scaleX: 0 })
+        .set(panel, { clearProps: "transform" })
+        .set(panel, { y: "101%" });
+    };
 
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0) return;
@@ -47,17 +65,18 @@ export function PageTransition({ enabled }: { enabled: boolean }) {
       if (!href || !href.startsWith("/")) return;
 
       const url = new URL(href, window.location.origin);
-      const samePath = url.pathname === window.location.pathname;
-      if (samePath) return; // hash jumps and self-links stay native
+      if (url.pathname === window.location.pathname) return;
 
       if (coveredRef.current) {
         e.preventDefault();
-        return; // already transitioning
+        return;
       }
 
       const panel = panelRef.current;
       const edge = edgeRef.current;
-      if (!panel || !edge) return;
+      const brand = brandRef.current;
+      const star = starRef.current;
+      if (!panel || !edge || !brand) return;
 
       e.preventDefault();
       coveredRef.current = true;
@@ -65,44 +84,31 @@ export function PageTransition({ enabled }: { enabled: boolean }) {
       gsap
         .timeline()
         .set(edge, { scaleX: 0, y: "100vh" })
-        .to(edge, {
-          scaleX: 1,
-          duration: 0.28,
-          ease: "power3.in",
-        })
-        .to(
-          [edge, panel],
-          {
-            y: 0,
-            duration: 0.52,
-            ease: "expo.inOut",
-            onComplete: () => {
+        .set(brand, { opacity: 0, y: 14 })
+        .set(star, { strokeDashoffset: 1 })
+        .to(edge, { scaleX: 1, duration: 0.16, ease: "power2.in" })
+        .to([edge, panel], {
+          y: 0,
+          duration: 0.42,
+          ease: "expo.inOut",
+          // Start the navigation at ~70% coverage — the route loads while
+          // the panel finishes, instead of after.
+          onUpdate() {
+            if (this.progress() > 0.7 && coveredRef.current && !failsafeRef.current) {
               router.push(href);
-              // Failsafe: never leave the viewport covered.
               failsafeRef.current = window.setTimeout(() => {
+                failsafeRef.current = null;
                 if (coveredRef.current) uncover();
-              }, 5000);
-            },
+              }, 4000);
+            }
           },
-          "<+0.05",
-        );
-    };
-
-    const uncover = () => {
-      const panel = panelRef.current;
-      const edge = edgeRef.current;
-      coveredRef.current = false;
-      if (!panel || !edge) return;
-      gsap
-        .timeline()
-        .to(panel, { y: "-101%", duration: 0.6, ease: "expo.inOut" })
+        })
+        .to(brand, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, "-=0.3")
         .to(
-          edge,
-          { y: "-2px", scaleX: 0, duration: 0.3, ease: "power2.out" },
-          "<+0.2",
-        )
-        .set([panel, edge], { clearProps: "transform" })
-        .set(panel, { y: "101%" });
+          star,
+          { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" },
+          "<",
+        );
     };
 
     document.addEventListener("click", onClick, true);
@@ -119,34 +125,48 @@ export function PageTransition({ enabled }: { enabled: boolean }) {
 
     const panel = panelRef.current;
     const edge = edgeRef.current;
+    const brand = brandRef.current;
     coveredRef.current = false;
-    if (!panel || !edge) return;
+    if (!panel || !edge || !brand) return;
 
     window.scrollTo(0, 0);
     window.dispatchEvent(new CustomEvent("ns:page-enter"));
 
     gsap
-      .timeline({ delay: 0.1 })
-      .to(panel, { y: "-101%", duration: 0.62, ease: "expo.inOut" })
-      .to(
-        edge,
-        { y: "-2px", scaleX: 0, duration: 0.3, ease: "power2.out" },
-        "<+0.22",
-      )
-      .set([panel, edge], { clearProps: "transform" })
+      .timeline({ delay: 0.05 })
+      .to(brand, { opacity: 0, y: -14, duration: 0.18, ease: "power2.in" })
+      .to(panel, { y: "-101%", duration: 0.52, ease: "expo.inOut" }, "<+0.05")
+      .set(edge, { y: "-2px", scaleX: 0 })
+      .set(panel, { clearProps: "transform" })
       .set(panel, { y: "101%" });
   }, [pathname]);
 
   if (!enabled) return null;
 
   return (
-    <div ref={rootRef} aria-hidden className="ns-transition">
+    <div aria-hidden className="ns-transition">
       <div
         ref={panelRef}
         className="ns-transition__panel"
         style={{ transform: "translateY(101%)" }}
       />
       <div ref={edgeRef} className="ns-transition__edge" />
+      <div ref={brandRef} className="ns-transition__brand">
+        <svg viewBox="0 0 100 100">
+          <polygon
+            ref={starRef}
+            points="50,4 60.4,38.5 96,38.5 67.3,60 78,94 50,72.5 22,94 32.7,60 4,38.5 39.6,38.5"
+            fill="none"
+            stroke="#da2023"
+            strokeWidth={2}
+            strokeLinejoin="round"
+            pathLength={1}
+            strokeDasharray={1}
+            strokeDashoffset={1}
+          />
+        </svg>
+        <span>North Star Impex</span>
+      </div>
     </div>
   );
 }
