@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import { serviceLd } from "@/lib/seo";
 
@@ -115,83 +116,94 @@ export default function ChemicalProcessingPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>The buying frame</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The spec is the chemistry. Everything else follows.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="The buying frame"
+              title="The spec is the chemistry. Everything else follows."
+              className="mb-0 md:mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
-          <div className="md:col-span-7">
-            <Prose>
-              <p>
-                Chemical processing buyers care less about brand and
-                more about whether the tank will survive the medium for
-                its full design life. The conversation usually starts
-                with chemistry: medium, concentration, temperature,
-                cycle frequency, and contamination tolerance.
-              </p>
-              <p>
-                From there the equipment decision is structured. Most
-                of the dilute-acid and alkali duty lands in epoxy-lined
-                steel, with the lining grade picked to the specific
-                medium. The exceptions go to stainless 316L. Hastelloy
-                or other exotics come up rarely and we source those for
-                the specific brief.
-              </p>
-            </Prose>
-          </div>
+          <Reveal className="md:col-span-7">
+            <div data-reveal-item>
+              <Prose>
+                <p>
+                  Chemical processing buyers care less about brand and
+                  more about whether the tank will survive the medium for
+                  its full design life. The conversation usually starts
+                  with chemistry: medium, concentration, temperature,
+                  cycle frequency, and contamination tolerance.
+                </p>
+                <p>
+                  From there the equipment decision is structured. Most
+                  of the dilute-acid and alkali duty lands in epoxy-lined
+                  steel, with the lining grade picked to the specific
+                  medium. The exceptions go to stainless 316L. Hastelloy
+                  or other exotics come up rarely and we source those for
+                  the specific brief.
+                </p>
+              </Prose>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Sub-applications</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Four scope buckets.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
-          {SUB_APPS.map((s) => (
-            <div
-              key={s.title}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
-            >
-              <h3 className="font-display text-xl font-medium tracking-tight">
-                {s.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{s.copy}</p>
-              <p className="font-mono-label mt-1 text-[10px] text-accent">
-                Equipment fit: {s.fit}
-              </p>
-            </div>
-          ))}
-        </div>
+      <Section bordered theme="paper">
+        <SectionHeader
+          index="02"
+          eyebrow="Sub-applications"
+          title="Four scope buckets."
+          headlineClassName="text-3xl md:text-4xl"
+        />
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
+            {SUB_APPS.map((s) => (
+              <div
+                key={s.title}
+                data-reveal-item
+                className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
+              >
+                <h3 className="font-display text-xl font-semibold tracking-tight">
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">{s.copy}</p>
+                <p className="font-mono-label mt-1 text-[10px] text-accent">
+                  Equipment fit: {s.fit}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Buying triggers</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Four reasons chemical operators call us.
-          </h2>
-        </div>
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {TRIGGERS.map((t, i) => (
-            <li
-              key={t.title}
-              className="grid grid-cols-12 gap-4 py-6 md:gap-6 md:py-8"
-            >
-              <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-display col-span-10 text-xl font-medium tracking-tight md:col-span-3 md:text-2xl">
-                {t.title}
-              </h3>
-              <p className="col-span-12 text-sm text-muted md:col-span-8">
-                {t.copy}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <SectionHeader
+          index="03"
+          eyebrow="Buying triggers"
+          title="Four reasons chemical operators call us."
+          headlineClassName="text-3xl md:text-4xl"
+        />
+        <Reveal stagger={0.07} yFrom={16}>
+          <ol className="divide-y divide-border/10 border-y border-border/10">
+            {TRIGGERS.map((t, i) => (
+              <li
+                key={t.title}
+                data-reveal-item
+                className="grid grid-cols-12 gap-4 py-6 md:gap-6 md:py-8"
+              >
+                <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-display col-span-10 text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+                  {t.title}
+                </h3>
+                <p className="col-span-12 text-sm text-muted md:col-span-8">
+                  {t.copy}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </Section>
 
       <CtaBand

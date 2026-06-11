@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
@@ -130,10 +130,13 @@ export default function ZincAlumTanksPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>Why this metallurgy</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Carbon steel rusts. Stainless costs. Zinc-alum is the answer to both.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="Why this metallurgy"
+              title="Carbon steel rusts. Stainless costs. Zinc-alum is the answer to both."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-7">
             <Prose>
@@ -166,13 +169,16 @@ export default function ZincAlumTanksPage() {
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The numbers that matter on procurement.
-            </h2>
+            <SectionHeader
+              index="02"
+              eyebrow="Specifications"
+              title="The numbers that matter on procurement."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-8">
             <SpecTable rows={SPECS} />
@@ -181,27 +187,27 @@ export default function ZincAlumTanksPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Versus carbon steel</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            The lifecycle math, in one table.
-          </h2>
-          <p className="max-w-prose text-sm text-muted">
-            Initial cost is rarely the right way to spec a tank. We publish
-            this because nobody else does, and because the conversation
-            usually closes on the second number, not the first.
-          </p>
-        </div>
+        <SectionHeader
+          index="03"
+          eyebrow="Versus carbon steel"
+          title="The lifecycle math, in one table."
+          side={
+            <p>
+              Initial cost is rarely the right way to spec a tank. We publish
+              this because nobody else does, and because the conversation
+              usually closes on the second number, not the first.
+            </p>
+          }
+        />
         <SpecTable rows={VS_CS_ROWS} />
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What buyers ask before specifying zinc-alum.
-          </h2>
-        </div>
+      <Section bordered theme="paper">
+        <SectionHeader
+          index="04"
+          eyebrow="Common questions"
+          title="What buyers ask before specifying zinc-alum."
+        />
         <FaqList items={FAQS} />
       </Section>
 

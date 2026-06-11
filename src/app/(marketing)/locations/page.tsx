@@ -3,10 +3,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
+import { Magnetic } from "@/components/motion/magnetic";
 
 export const metadata: Metadata = {
   title: "Kenya Delivery & On-Site Supply",
@@ -55,36 +57,48 @@ export default function LocationsPage() {
         />
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <Eyebrow>Where we are</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Nairobi, with the country in delivery range.
-            </h2>
-          </div>
-          <div className="md:col-span-7">
-            <Prose>
-              <p>
-                Our workshop and engineering team sit in the Nairobi
-                industrial belt. We deliver across Kenya by flatbed, and
-                install supervision is part of every project.
-              </p>
-              <p>
-                For Nairobi industrial estates the typical response time
-                is 48 hours from call to site. For the rest of Kenya it
-                depends on the route and the project scope, and is
-                usually a few days for delivery and the same for
-                supervision arrival.
-              </p>
-            </Prose>
-            <Link
-              href="/locations/nairobi/"
-              className="press mt-6 inline-flex items-center gap-2 rounded-pill bg-accent px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-accent-strong"
-            >
-              See the Nairobi page
-              <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
-            </Link>
+      <Section ariaLabel="Where we are">
+        <SectionHeader
+          index="01"
+          eyebrow="Where we are"
+          title="Nairobi, with the country"
+          titleAccent="in delivery range."
+        />
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal stagger={0.08}>
+              <div data-reveal-item>
+                <Prose>
+                  <p>
+                    Our workshop and engineering team sit in the Nairobi
+                    industrial belt. We deliver across Kenya by flatbed, and
+                    install supervision is part of every project.
+                  </p>
+                  <p>
+                    For Nairobi industrial estates the typical response time
+                    is 48 hours from call to site. For the rest of Kenya it
+                    depends on the route and the project scope, and is
+                    usually a few days for delivery and the same for
+                    supervision arrival.
+                  </p>
+                </Prose>
+              </div>
+              <div data-reveal-item className="mt-6">
+                <Magnetic strength={0.2}>
+                  <Link
+                    href="/locations/nairobi/"
+                    data-cursor="view"
+                    className="press group inline-flex items-center gap-2 rounded-pill bg-accent px-5 py-3 text-sm font-medium text-on-accent transition-colors hover:bg-accent-strong"
+                  >
+                    See the Nairobi page
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      strokeWidth={2.2}
+                    />
+                  </Link>
+                </Magnetic>
+              </div>
+            </Reveal>
           </div>
         </div>
       </Section>

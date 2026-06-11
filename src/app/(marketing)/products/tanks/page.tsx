@@ -4,9 +4,10 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
@@ -88,53 +89,56 @@ export default function TanksOverviewPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>The three options</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Each metallurgy exists because the others would fail in its job.
-          </h2>
-        </div>
+        <SectionHeader
+          index="01"
+          eyebrow="The three options"
+          title="Each metallurgy exists because the others would fail in its job."
+        />
 
-        <div className="grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-3">
-          {TANK_TYPES.map((t) => (
-            <Link
-              key={t.href}
-              href={t.href}
-              className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
-            >
-              <Image
-                src={t.imageSrc}
-                alt={t.imageAlt}
-                fill
-                sizes="(min-width: 1024px) 33vw, 100vw"
-                className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
-                }}
-              />
-              <div className="relative flex flex-col gap-2 p-5 md:p-6">
-                <p className="font-mono-label text-[10px] text-accent">
-                  {t.grades}
-                </p>
-                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-white md:text-3xl">
-                  {t.title}
-                </h3>
-                <p className="text-xs leading-relaxed text-white/70">
-                  Capacity {t.capacity}. Best for {t.best.toLowerCase()}.
-                </p>
-                <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
-                  Open
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <Reveal effect="scale-in" stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 md:gap-4 lg:grid-cols-3">
+            {TANK_TYPES.map((t) => (
+              <Link
+                key={t.href}
+                href={t.href}
+                data-reveal-item
+                data-cursor="view"
+                className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
+              >
+                <Image
+                  src={t.imageSrc}
+                  alt={t.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 -z-10"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
+                  }}
+                />
+                <div className="relative flex flex-col gap-2 p-5 md:p-6">
+                  <p className="font-mono-label text-[10px] text-accent">
+                    {t.grades}
+                  </p>
+                  <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
+                    {t.title}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-white/70">
+                    Capacity {t.capacity}. Best for {t.best.toLowerCase()}.
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
+                    Open
+                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand

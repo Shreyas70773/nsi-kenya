@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
@@ -12,6 +12,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { FaqList } from "@/components/primitives/faq-list";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
@@ -144,10 +145,13 @@ export default function StainlessSteelTanksPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>What it is</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The right grade for the medium you store.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="What it is"
+              title="The right grade for the medium you store."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-7">
             <Prose>
@@ -174,13 +178,16 @@ export default function StainlessSteelTanksPage() {
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The numbers that matter on procurement.
-            </h2>
+            <SectionHeader
+              index="02"
+              eyebrow="Specifications"
+              title="The numbers that matter on procurement."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
             <p className="mt-4 text-sm text-muted">
               Every spec below is the standard. Anything outside the range
               is doable; tell us what you need and we'll quote it.
@@ -193,35 +200,39 @@ export default function StainlessSteelTanksPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Applications</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Where stainless earns its premium.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
-          {APPLICATIONS.map((a) => (
-            <div
-              key={a.title}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
-            >
-              <h3 className="font-display text-xl font-medium tracking-tight">
-                {a.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
-            </div>
-          ))}
-        </div>
+        <SectionHeader
+          index="03"
+          eyebrow="Applications"
+          title="Where stainless earns its premium."
+        />
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
+            {APPLICATIONS.map((a) => (
+              <div
+                key={a.title}
+                data-reveal-item
+                className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
+              >
+                <h3 className="font-display text-xl font-semibold tracking-tight">
+                  {a.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
-            <Eyebrow>Cloud-ready, when you want it</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-2xl font-medium leading-tight tracking-tight md:text-3xl">
-              Every stainless tank we install can be wired to our remote
-              monitoring app.
-            </h2>
+            <SectionHeader
+              index="04"
+              eyebrow="Cloud-ready, when you want it"
+              title="Every stainless tank we install can be wired to our remote monitoring app."
+              className="mb-0"
+              headlineClassName="text-2xl leading-tight md:text-3xl"
+            />
             <p className="mt-4 max-w-prose text-sm text-muted">
               Level, temperature, pressure, and pH read out to a phone or
               browser, with alarms routed to whoever you nominate. NB-IoT,
@@ -235,28 +246,32 @@ export default function StainlessSteelTanksPage() {
               See how remote monitoring works →
             </Link>
           </div>
-          <div className="rounded-card border border-border/15 bg-surface p-7 md:col-span-5">
-            <p className="font-mono-label text-[10px] text-faint">
-              Read-out coverage
-            </p>
-            <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
-              <li>· Tank level (radar, ultrasonic, hydrostatic)</li>
-              <li>· Temperature (RTD or thermocouple)</li>
-              <li>· Pressure (gauge or absolute)</li>
-              <li>· pH and conductivity</li>
-              <li>· CIP cycle timing and verification</li>
-            </ul>
-          </div>
+          <Reveal className="md:col-span-5">
+            <div
+              data-reveal-item
+              className="rounded-card border border-border/15 bg-surface p-7"
+            >
+              <p className="font-mono-label text-[10px] text-faint">
+                Read-out coverage
+              </p>
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-text">
+                <li>· Tank level (radar, ultrasonic, hydrostatic)</li>
+                <li>· Temperature (RTD or thermocouple)</li>
+                <li>· Pressure (gauge or absolute)</li>
+                <li>· pH and conductivity</li>
+                <li>· CIP cycle timing and verification</li>
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </Section>
 
       <Section>
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What buyers ask before specifying a stainless tank.
-          </h2>
-        </div>
+        <SectionHeader
+          index="05"
+          eyebrow="Common questions"
+          title="What buyers ask before specifying a stainless tank."
+        />
         <FaqList items={FAQS} />
       </Section>
 

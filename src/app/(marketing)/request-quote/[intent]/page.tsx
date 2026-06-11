@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { QuoteForm } from "@/components/forms/quote-form";
 
@@ -23,8 +23,7 @@ const INTENT_META: Record<
 > = {
   explore: {
     label: "Explore",
-    title: "Early stage exploration."
-,
+    title: "Early stage exploration.",
     titleAccent: "We'll keep it directional.",
     subtitle:
       "You're scoping and want a directional spec, not a final quote yet. Sketch the brief in the message; we'll come back with capacity, materials, and ballpark lead time within 48 working hours.",
@@ -35,8 +34,7 @@ const INTENT_META: Record<
   },
   evaluate: {
     label: "Evaluate",
-    title: "Technical evaluation."
-,
+    title: "Technical evaluation.",
     titleAccent: "Detailed spec and pricing.",
     subtitle:
       "You're comparing suppliers and need a real spec sheet with pricing. Tell us materials, capacity, fittings, lead-time pressure, and any standards you're working to.",
@@ -47,8 +45,7 @@ const INTENT_META: Record<
   },
   purchase: {
     label: "Purchase",
-    title: "Ready to purchase."
-,
+    title: "Ready to purchase.",
     titleAccent: "Move to PO this week.",
     subtitle:
       "Budget approved, decision-maker on the chain, ready to PO. We'll come back with a quotation, lead time confirmation, and the contract framework inside one business day.",
@@ -59,8 +56,7 @@ const INTENT_META: Record<
   },
   "urgent-etp": {
     label: "Urgent ETP",
-    title: "Compliance deadline pressure."
-,
+    title: "Compliance deadline pressure.",
     titleAccent: "Expedited ETP supply.",
     subtitle:
       "Regulator inspection on the horizon or discharge parameters out of spec. We expedite ETP equipment, including epoxy-lined tanks and multi-parameter analyzers, in 2 to 3 weeks where possible.",
@@ -198,13 +194,17 @@ export default async function RequestQuoteIntentPage({
       </Section>
 
       <Section>
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Form</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Tell us what you need.
-          </h2>
-        </div>
+        <SectionHeader
+          index="01"
+          eyebrow="Form"
+          title="Tell us what you need."
+        />
         <div className="max-w-3xl">
+          <div className="font-mono-label mb-8 flex flex-wrap items-center gap-3 text-[10px] text-faint">
+            <span>{meta.metaLeft}</span>
+            <span aria-hidden className="hairline h-px min-w-8 flex-1" />
+            <span>{meta.metaRight}</span>
+          </div>
           <QuoteForm defaultIntent={i} showIntentSelector={false} />
         </div>
       </Section>

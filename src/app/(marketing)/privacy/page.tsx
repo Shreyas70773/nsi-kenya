@@ -19,20 +19,21 @@ export default function PrivacyPage() {
     <>
       <section
         aria-label="Page header"
-        className="bg-surface-2/40 px-6 pt-32 pb-12 md:pt-40 md:pb-16"
+        className="hairline-b bg-surface-2/40 px-6 pt-32 pb-12 md:pt-40 md:pb-16"
       >
         <div className="mx-auto max-w-6xl">
-          <span className="font-mono-label text-[10px] text-faint">
+          <span className="font-mono-label flex items-center gap-3 text-[10px] text-faint">
+            <span aria-hidden className="hairline h-px w-8" />
             Legal
           </span>
-          <h1 className="font-display mt-3 max-w-3xl text-balance text-[clamp(2rem,4vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
+          <h1 className="font-display mt-4 max-w-3xl text-balance text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.05] tracking-tight">
             Privacy Policy.
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted md:text-lg">
             What we collect when you reach out through this site, how we
             use it, and how to ask us to delete it.
           </p>
-          <p className="font-mono-label mt-6 text-[10px] text-faint">
+          <p className="font-mono-label hairline-t mt-8 inline-flex pt-4 text-[10px] text-faint">
             Last updated {UPDATED} · Kenya Data Protection Act, 2019
           </p>
         </div>
@@ -50,7 +51,7 @@ export default function PrivacyPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <aside className="md:col-span-3">
-            <Eyebrow>On this page</Eyebrow>
+            <Eyebrow marker={false}>On this page</Eyebrow>
             <ul className="mt-4 flex flex-col gap-2 text-sm">
               <li>
                 <a href="#what-we-collect" className="text-text underline-offset-2 hover:underline">
@@ -86,7 +87,7 @@ export default function PrivacyPage() {
           </aside>
 
           <div className="md:col-span-9">
-            <Prose>
+            <Prose className="[&_h2:not(:first-child)]:border-t [&_h2:not(:first-child)]:border-border/10 [&_h2:not(:first-child)]:pt-10">
               <p>
                 This is the privacy policy for {SITE_NAME} LTD (&quot;we&quot;,
                 &quot;us&quot;, &quot;our&quot;). It describes what personal

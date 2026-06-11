@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -110,10 +111,13 @@ export default function StructuralWorksPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>What we fabricate</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The structural envelope around your process equipment.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="What we fabricate"
+              title="The structural envelope around your process equipment."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-7">
             <Prose>
@@ -133,35 +137,40 @@ export default function StructuralWorksPage() {
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Scope</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Six scope buckets, fabricated locally.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
-          {SCOPE.map((s) => (
-            <div
-              key={s.title}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6"
-            >
-              <h3 className="font-display text-lg font-medium tracking-tight">
-                {s.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{s.copy}</p>
-            </div>
-          ))}
-        </div>
+      <Section bordered theme="paper">
+        <SectionHeader
+          index="02"
+          eyebrow="Scope"
+          title="Six scope buckets, fabricated locally."
+        />
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
+            {SCOPE.map((s) => (
+              <div
+                key={s.title}
+                data-reveal-item
+                className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6"
+              >
+                <h3 className="font-display text-lg font-semibold tracking-tight">
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">{s.copy}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Standards we work to.
-            </h2>
+            <SectionHeader
+              index="03"
+              eyebrow="Specifications"
+              title="Standards we work to."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-8">
             <SpecTable rows={SPECS} />

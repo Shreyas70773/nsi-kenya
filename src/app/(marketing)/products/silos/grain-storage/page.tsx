@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
@@ -11,6 +11,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { FaqList } from "@/components/primitives/faq-list";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Grain Storage Silo Kenya: Brewery & Feed Mill",
@@ -135,10 +136,13 @@ export default function GrainStorageSilosPage() {
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>What it is</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              A silo is half storage, half instrumentation.
-            </h2>
+            <SectionHeader
+              index="01"
+              eyebrow="What it is"
+              title="A silo is half storage, half instrumentation."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-7">
             <Prose>
@@ -165,13 +169,16 @@ export default function GrainStorageSilosPage() {
         </div>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section bordered theme="paper">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
-            <Eyebrow>Specifications</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              The base spec, then your overlays.
-            </h2>
+            <SectionHeader
+              index="02"
+              eyebrow="Specifications"
+              title="The base spec, then your overlays."
+              className="mb-0"
+              headlineClassName="text-3xl leading-tight md:text-4xl"
+            />
           </div>
           <div className="md:col-span-8">
             <SpecTable rows={SPECS} />
@@ -180,34 +187,35 @@ export default function GrainStorageSilosPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3">
-          <Eyebrow>Where they fit</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Sized for Kenyan plants, not export-only volumes.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
-          {APPLICATIONS.map((a) => (
-            <div
-              key={a.title}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
-            >
-              <h3 className="font-display text-xl font-medium tracking-tight">
-                {a.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
-            </div>
-          ))}
-        </div>
+        <SectionHeader
+          index="03"
+          eyebrow="Where they fit"
+          title="Sized for Kenyan plants, not export-only volumes."
+        />
+        <Reveal stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+            {APPLICATIONS.map((a) => (
+              <div
+                key={a.title}
+                data-reveal-item
+                className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
+              >
+                <h3 className="font-display text-xl font-semibold tracking-tight">
+                  {a.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted">{a.copy}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What brewery and feed-mill operators ask first.
-          </h2>
-        </div>
+      <Section bordered theme="paper">
+        <SectionHeader
+          index="04"
+          eyebrow="Common questions"
+          title="What brewery and feed-mill operators ask first."
+        />
         <FaqList items={FAQS} />
       </Section>
 

@@ -4,9 +4,10 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Industries We Equip in Kenya",
@@ -100,64 +101,65 @@ export default function IndustriesPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col items-start gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-col gap-3">
-            <Eyebrow>Pick yours</Eyebrow>
-            <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-              We span across the
-              <br />
-              following industries.
-            </h2>
-          </div>
-          <p className="max-w-sm text-sm text-muted">
-            Each sector page covers the equipment we install, the buying
-            triggers we see, and the compliance posture we maintain in
-            Kenya.
-          </p>
-        </div>
+        <SectionHeader
+          index="01"
+          eyebrow="Pick yours"
+          title="We span across the following industries."
+          side={
+            <p>
+              Each sector page covers the equipment we install, the buying
+              triggers we see, and the compliance posture we maintain in
+              Kenya.
+            </p>
+          }
+        />
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
-          {SECTORS.map((s) => (
-            <Link
-              key={s.href}
-              href={s.href}
-              className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
-            >
-              <Image
-                src={s.image}
-                alt={s.imageAlt}
-                fill
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10"
-                style={{
-                  background:
-                    "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
-                }}
-              />
-              <div className="absolute left-5 top-5">
-                <span className="font-mono-label rounded-pill border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] text-white/85 backdrop-blur-md">
-                  Sector {s.n}
-                </span>
-              </div>
-              <div className="relative flex flex-col gap-2 p-5 md:p-6">
-                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-white md:text-3xl">
-                  {s.name}
-                </h3>
-                <p className="text-xs leading-relaxed text-white/70">
-                  {s.pillar}
-                </p>
-                <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
-                  Open sector
-                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <Reveal effect="scale-in" stagger={0.08}>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
+            {SECTORS.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                data-reveal-item
+                data-cursor="view"
+                className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
+              >
+                <Image
+                  src={s.image}
+                  alt={s.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 -z-10"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
+                  }}
+                />
+                <div className="absolute left-5 top-5">
+                  <span className="font-mono-label rounded-pill border border-white/25 bg-white/10 px-2.5 py-1 text-[10px] text-white/85 backdrop-blur-md">
+                    Sector {s.n}
+                  </span>
+                </div>
+                <div className="relative flex flex-col gap-2 p-5 md:p-6">
+                  <h3 className="font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl">
+                    {s.name}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-white/70">
+                    {s.pillar}
+                  </p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
+                    Open sector
+                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <CtaBand

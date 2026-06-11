@@ -3,10 +3,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
+import { Reveal } from "@/components/motion/reveal";
 
 export const metadata: Metadata = {
   title: "Process Instruments Kenya: Flow, Level, pH, More",
@@ -104,49 +105,52 @@ export default function InstrumentsGatewayPage() {
       </Section>
 
       <Section>
-        <div className="mb-10 flex flex-col gap-3 md:mb-14">
-          <Eyebrow>Pick by what you measure</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Six instrument categories. Each one is its own page.
-          </h2>
-        </div>
+        <SectionHeader
+          index="01"
+          eyebrow="Pick by what you measure"
+          title="Six instrument categories. Each one is its own page."
+        />
 
-        <ol className="divide-y divide-border/10 border-y border-border/10">
-          {CATEGORIES.map((c, i) => (
-            <li key={c.href}>
-              <Link
-                href={c.href}
-                className="group grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-surface/40 md:gap-6 md:py-9"
-              >
-                <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="font-display col-span-10 text-2xl font-medium tracking-tight md:col-span-3 md:text-3xl">
-                  {c.name}
-                </h3>
-                <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-4">
-                  {c.sub}
-                </p>
-                <p className="col-span-12 text-sm text-muted md:col-span-3">
-                  {c.use}
-                </p>
-                <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent md:col-span-1">
-                  <ArrowUpRight className="h-5 w-5" strokeWidth={1.8} />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <Reveal stagger={0.07} yFrom={18}>
+          <ol className="divide-y divide-border/10 border-y border-border/10">
+            {CATEGORIES.map((c, i) => (
+              <li key={c.href} data-reveal-item>
+                <Link
+                  href={c.href}
+                  data-cursor="view"
+                  className="group grid grid-cols-12 items-center gap-4 py-7 transition-colors hover:bg-surface/40 md:gap-6 md:py-9"
+                >
+                  <span className="font-mono-label col-span-2 text-xs text-faint md:col-span-1">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display col-span-10 text-2xl font-semibold tracking-tight md:col-span-3 md:text-3xl">
+                    {c.name}
+                  </h3>
+                  <p className="font-mono-label col-span-12 text-[10px] text-faint md:col-span-4">
+                    {c.sub}
+                  </p>
+                  <p className="col-span-12 text-sm text-muted md:col-span-3">
+                    {c.use}
+                  </p>
+                  <span className="col-span-12 flex items-center justify-end text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent md:col-span-1">
+                    <ArrowUpRight className="h-5 w-5" strokeWidth={1.8} />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
+      <Section theme="paper" bordered>
+        <SectionHeader
+          index="02"
+          eyebrow="Out of the box"
+          title="Protocols that plug into your SCADA on day one."
+        />
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
-            <Eyebrow>Out of the box</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Protocols that plug into your SCADA on day one.
-            </h2>
-            <Prose className="mt-5" size="sm">
+            <Prose size="sm">
               <p>
                 Every instrument we supply ships with the protocol your plant
                 already speaks. If your control system needs something
@@ -156,21 +160,24 @@ export default function InstrumentsGatewayPage() {
             </Prose>
           </div>
           <div className="md:col-span-7">
-            <ul className="divide-y divide-border/10 border-y border-border/10">
-              {PROTOCOLS.map((p) => (
-                <li
-                  key={p.label}
-                  className="grid grid-cols-12 items-center gap-4 py-5"
-                >
-                  <span className="font-mono-label col-span-4 text-xs text-text">
-                    {p.label}
-                  </span>
-                  <span className="col-span-8 text-sm text-muted">
-                    {p.note}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <Reveal stagger={0.06} yFrom={14}>
+              <ul className="divide-y divide-border/10 border-y border-border/10">
+                {PROTOCOLS.map((p) => (
+                  <li
+                    key={p.label}
+                    data-reveal-item
+                    className="grid grid-cols-12 items-center gap-4 py-5"
+                  >
+                    <span className="font-mono-label col-span-4 text-xs text-text">
+                      {p.label}
+                    </span>
+                    <span className="col-span-8 text-sm text-muted">
+                      {p.note}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </div>
       </Section>
