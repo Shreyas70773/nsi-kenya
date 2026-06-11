@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
-import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { RelatedProducts } from "@/components/primitives/related-products";
-import { ImagePlaceholder } from "@/components/placeholders/image-placeholder";
+import { FaqList } from "@/components/primitives/faq-list";
 import { JsonLd } from "@/components/seo/json-ld";
 import { softwareApplicationLd, faqLd } from "@/lib/seo";
-import { FaqList } from "@/components/primitives/faq-list";
+import { Reveal } from "@/components/motion/reveal";
+import { Marquee } from "@/components/motion/marquee";
+import { TelemetrySection } from "@/components/iot/telemetry-section";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -36,6 +37,17 @@ export const metadata: Metadata = {
     images: [{ url: "/images/products/iot-hero.png" }],
   },
 };
+
+const MARQUEE_TOKENS = [
+  "NB-IoT",
+  "LoRaWAN",
+  "4G LTE",
+  "Ethernet / Wi-Fi",
+  "TLS 1.3 in transit",
+  "AES-256 at rest",
+  "Role-based, audit-logged",
+  "Live dashboards from any device",
+] as const;
 
 const FLOW_STEPS = [
   {
@@ -120,48 +132,36 @@ const DATA_HANDLING = [
   { label: "Third-party sharing", value: "None" },
 ] as const;
 
-type ScreenSlot = {
-  title: string;
-  description: string;
-} & (
-  | { kind: "image"; src: string; aspect: string }
-  | {
-      kind: "placeholder";
-      role: "card" | "diagram";
-      prompt: string;
-    }
-);
-
-const SCREEN_SLOTS: readonly ScreenSlot[] = [
+const SCREEN_SLOTS = [
   {
     title: "Single-tank dashboard",
-    description: "Phone dashboard for one tank: level, 24h trend, alarm thresholds, last refresh",
-    kind: "image",
+    description:
+      "Phone dashboard for one tank: level, 24h trend, alarm thresholds, last refresh",
     src: "/images/iot/screen-single-tank.png",
     aspect: "aspect-[9/16] md:aspect-[4/3]",
   },
   {
     title: "Multi-site overview",
-    description: "Browser dashboard showing Kenyan plant sites on a map with traffic-light status",
-    kind: "image",
+    description:
+      "Browser dashboard showing Kenyan plant sites on a map with traffic-light status",
     src: "/images/iot/screen-multi-site.png",
     aspect: "aspect-[16/9]",
   },
   {
     title: "Alarm log",
-    description: "Tabular alarm log with timestamps, sites, severity, acknowledgement state",
-    kind: "image",
+    description:
+      "Tabular alarm log with timestamps, sites, severity, acknowledgement state",
     src: "/images/iot/screen-alarm-log.png",
     aspect: "aspect-[16/9]",
   },
   {
     title: "Process trend chart",
-    description: "Time-series chart of process flow rate with rolling 24-hour view and zoom-to-range",
-    kind: "image",
+    description:
+      "Time-series chart of process flow rate with rolling 24-hour view and zoom-to-range",
     src: "/images/iot/screen-process-trend.webp",
     aspect: "aspect-[16/9]",
   },
-];
+] as const;
 
 export default function IoTPage() {
   return (
@@ -199,158 +199,189 @@ export default function IoTPage() {
         />
       </Section>
 
-      <Section>
-        <div className="mb-10 flex flex-col gap-3 md:mb-14">
-          <Eyebrow>How it works</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Four steps. Nothing exotic.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4">
+      {/* ─── NETWORK + DATA REGISTER MARQUEE ──────────────────────────── */}
+      <section
+        aria-label="Network and data registers"
+        className="border-y border-border/10 bg-surface/60 py-5"
+      >
+        <Marquee duration={36}>
+          {MARQUEE_TOKENS.map((t, i) => (
+            <span
+              key={i}
+              className="font-mono-label mx-6 flex items-center gap-12 text-xs text-muted"
+            >
+              {t}
+              <span className="h-1 w-1 rounded-full bg-faint/60" aria-hidden />
+            </span>
+          ))}
+        </Marquee>
+      </section>
+
+      {/* ─── 01 · HOW IT WORKS ────────────────────────────────────────── */}
+      <Section ariaLabel="How it works">
+        <SectionHeader
+          index="01"
+          eyebrow="How it works"
+          title="Four steps."
+          titleAccent="Nothing exotic."
+        />
+        <Reveal
+          stagger={0.09}
+          className="grid grid-cols-1 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {FLOW_STEPS.map((step) => (
             <div
               key={step.n}
-              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 md:p-7"
+              data-reveal-item
+              className="flex flex-col gap-4 border-t border-border/15 pt-6"
             >
-              <span className="font-mono-label text-[10px] text-accent">
+              <span
+                aria-hidden
+                className="font-display-condensed text-6xl font-black leading-none text-accent md:text-7xl"
+              >
                 {step.n}
               </span>
-              <h3 className="font-display text-xl font-medium tracking-tight">
+              <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
                 {step.label}
               </h3>
-              <p className="text-sm leading-relaxed text-muted">
-                {step.copy}
-              </p>
+              <p className="text-sm leading-relaxed text-muted">{step.copy}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-10 flex flex-col gap-3 md:mb-14">
-          <Eyebrow>What you see</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            Four screens, designed for plant operators, not analysts.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-          {SCREEN_SLOTS.map((s) => (
-            <div
+      {/* ─── 02 · IRON STATEMENT · LIVE TELEMETRY SCENE ───────────────── */}
+      <TelemetrySection />
+
+      {/* ─── 03 · WHAT YOU SEE ────────────────────────────────────────── */}
+      <Section theme="paper" bordered ariaLabel="What you see">
+        <SectionHeader
+          index="03"
+          eyebrow="What you see"
+          title="Four screens, designed for plant operators,"
+          titleAccent="not analysts."
+        />
+        <Reveal
+          stagger={0.08}
+          effect="scale-in"
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+        >
+          {SCREEN_SLOTS.map((s, i) => (
+            <figure
               key={s.title}
-              className="flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-5 md:p-6"
+              data-reveal-item
+              className="group flex flex-col gap-4 rounded-card border border-border/10 bg-surface p-5 md:p-6"
             >
-              {s.kind === "image" ? (
-                <div
-                  className={cn(
-                    "relative w-full overflow-hidden rounded-button",
-                    s.aspect,
-                  )}
-                >
-                  <Image
-                    src={s.src}
-                    alt={s.description}
-                    fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              ) : (
-                <ImagePlaceholder
-                  role={s.role}
-                  description={s.description}
-                  prompt={s.prompt}
+              <div
+                className={cn(
+                  "relative w-full overflow-hidden rounded-button",
+                  s.aspect,
+                )}
+              >
+                <Image
+                  src={s.src}
+                  alt={s.description}
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
                 />
-              )}
-              <h3 className="font-display text-lg font-medium tracking-tight">
-                {s.title}
+              </div>
+              <figcaption className="flex flex-col gap-2">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-display text-lg font-semibold tracking-tight md:text-xl">
+                    {s.title}
+                  </h3>
+                  <span
+                    aria-hidden
+                    className="font-mono-label text-[10px] text-faint"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p className="text-sm leading-relaxed text-muted">
+                  {s.description}
+                </p>
+              </figcaption>
+            </figure>
+          ))}
+        </Reveal>
+      </Section>
+
+      {/* ─── 04 · CONNECTIVITY ────────────────────────────────────────── */}
+      <Section ariaLabel="Connectivity options">
+        <SectionHeader
+          index="04"
+          eyebrow="Connectivity"
+          title="Pick the network that fits"
+          titleAccent="your site."
+          side={
+            <p>
+              Single tank in a remote location? NB-IoT, multi-year battery.
+              Multi-tank brewery with on-prem IT? LoRaWAN with a yard gateway.
+              Plant with existing fibre? Ethernet. We size the radio, not the
+              other way round.
+            </p>
+          }
+        />
+        <Reveal
+          stagger={0.08}
+          className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-4"
+        >
+          {CONNECTIVITY.map((p, i) => (
+            <div
+              key={p.label}
+              data-reveal-item
+              className="flex flex-col gap-3 rounded-card border border-border/10 bg-surface p-6 transition-colors duration-300 hover:bg-surface-2/60 md:p-7"
+            >
+              <span className="font-mono-label text-[10px] text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="font-display text-xl font-semibold tracking-tight">
+                {p.label}
               </h3>
-              <p className="text-sm leading-relaxed text-muted">
-                {s.description}
-              </p>
+              <p className="text-sm leading-relaxed text-muted">{p.note}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-5">
-            <Eyebrow>Connectivity</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Pick the network that fits your site.
-            </h2>
-            <Prose className="mt-5" size="sm">
-              <p>
-                Single tank in a remote location? NB-IoT, multi-
-                year battery. Multi-tank brewery with on-prem IT? LoRaWAN
-                with a yard gateway. Plant with existing fibre? Ethernet.
-                We size the radio, not the other way round.
-              </p>
-            </Prose>
-          </div>
-          <div className="md:col-span-7">
-            <ul className="divide-y divide-border/10 border-y border-border/10">
-              {CONNECTIVITY.map((p) => (
-                <li
-                  key={p.label}
-                  className="grid grid-cols-12 items-start gap-4 py-5"
-                >
-                  <span className="font-mono-label col-span-12 text-xs text-text md:col-span-4">
-                    {p.label}
-                  </span>
-                  <span className="col-span-12 text-sm text-muted md:col-span-8">
-                    {p.note}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      {/* ─── 05 · SUPPORTED INSTRUMENTS ───────────────────────────────── */}
+      <Section theme="paper" bordered ariaLabel="Supported instruments">
+        <SectionHeader
+          index="05"
+          eyebrow="Supported instruments"
+          title="Any instrument we install can be wired"
+          titleAccent="to the app."
+        />
+        <SpecTable rows={SUPPORTED} />
       </Section>
 
-      <Section bordered className="bg-surface-2/40">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-4">
-            <Eyebrow>Supported instruments</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              Any instrument we install can be wired to the app.
-            </h2>
-          </div>
-          <div className="md:col-span-8">
-            <SpecTable rows={SUPPORTED} />
-          </div>
-        </div>
+      {/* ─── 06 · DATA HANDLING ───────────────────────────────────────── */}
+      <Section ariaLabel="Data handling">
+        <SectionHeader
+          index="06"
+          eyebrow="Your data, your rules"
+          title="No surprises in the"
+          titleAccent="data handling layer."
+          side={
+            <p>
+              You decide whether we host the time-series data or push it into
+              your existing systems. Either way, no third-party sharing, audit
+              log on every read, role-based access for everyone with login.
+            </p>
+          }
+        />
+        <SpecTable rows={DATA_HANDLING} />
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
-          <div className="md:col-span-4">
-            <Eyebrow>Your data, your rules</Eyebrow>
-            <h2 className="font-display mt-3 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-              No surprises in the data handling layer.
-            </h2>
-            <Prose className="mt-5" size="sm">
-              <p>
-                You decide whether we host the time-series data or push it
-                into your existing systems. Either way, no third-party
-                sharing, audit log on every read, role-based access for
-                everyone with login.
-              </p>
-            </Prose>
-          </div>
-          <div className="md:col-span-8">
-            <SpecTable rows={DATA_HANDLING} />
-          </div>
-        </div>
-      </Section>
-
-      <Section bordered className="bg-surface-2/40">
-        <div className="mb-8 flex flex-col gap-3">
-          <Eyebrow>Common questions</Eyebrow>
-          <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-            What buyers ask about Kenya tank monitoring.
-          </h2>
-        </div>
+      {/* ─── 07 · FAQ ─────────────────────────────────────────────────── */}
+      <Section theme="paper" bordered ariaLabel="Common questions">
+        <SectionHeader
+          index="07"
+          eyebrow="Common questions"
+          title="What buyers ask about"
+          titleAccent="Kenya tank monitoring."
+        />
         <FaqList items={FAQS} />
       </Section>
 

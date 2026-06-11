@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
-import { Eyebrow } from "@/components/primitives/eyebrow";
+import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
@@ -39,7 +39,6 @@ const CATEGORIES = [
     tagline: "Stainless · Epoxy-lined · Zinc-alum",
     copy: "304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted zinc-alum for multi-decade water storage.",
     imageSrc: "/images/home/tanks-weld-bead.png",
-    imageAlt: "Macro detail of a stainless tank weld bead",
   },
   {
     href: "/products/silos/",
@@ -47,7 +46,6 @@ const CATEGORIES = [
     tagline: "Grain · Feed · Industrial bulk",
     copy: "Industrial grain, feed, and bulk-material silos from 10 to 1000 MT, with conveyor catwalks and aeration on request.",
     imageSrc: "/images/home/silos-corrugated.png",
-    imageAlt: "Three corrugated steel silos with catwalk",
   },
   {
     href: "/products/structural-works/",
@@ -55,7 +53,6 @@ const CATEGORIES = [
     tagline: "Platforms · Walkways · Tank supports",
     copy: "In-house steel fabrication for new plant builds, retrofits, and tank support structures. Carbon and galvanised finishes.",
     imageSrc: "/images/home/structural-gantry.png",
-    imageAlt: "Steel gantry and tank-support framework mid-installation",
   },
   {
     href: "/products/instruments/",
@@ -63,7 +60,6 @@ const CATEGORIES = [
     tagline: "Flow · Level · Pressure · Liquid analysis · Temperature",
     copy: "Full instrument categories with 4 to 20mA, Modbus, HART. Sized and supplied for ETP, F&B, brewing, and chemical processing.",
     imageSrc: "/images/home/instruments-flow-meter.png",
-    imageAlt: "Electromagnetic flow meter on stainless steel pipework",
   },
   {
     href: "/products/iot/",
@@ -71,7 +67,6 @@ const CATEGORIES = [
     tagline: "Optional · NB-IoT capable",
     copy: "Cloud-connected oversight on any tank or instrument we install. Levels, flow, water quality, and alarms from any device.",
     imageSrc: "/images/home/iot-kisumu-plant.png",
-    imageAlt: "Plant manager reviewing a live tank-monitoring dashboard on a tablet at a Kenyan industrial plant",
   },
 ];
 
@@ -100,57 +95,97 @@ export default function ProductsPage() {
         />
       </Section>
 
-      <Section size="default">
-        <Reveal stagger={0.08}>
-          <div data-reveal-item className="mb-10 flex flex-col gap-3 md:mb-14">
-            <Eyebrow>Category map</Eyebrow>
-            <h2 className="font-display max-w-2xl text-balance text-3xl font-medium tracking-tight md:text-4xl">
-              Pick a category. The page shows you exactly what we install.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
-            {CATEGORIES.map((cat) => (
-              <Link
-                key={cat.href}
-                href={cat.href}
-                data-reveal-item
-                className="press group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-card border border-border/10"
-              >
-                <Image
-                  src={cat.imageSrc}
-                  alt={cat.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="-z-20 object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 -z-10"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgb(8 6 4 / 0.92) 0%, rgb(8 6 4 / 0.55) 38%, rgb(8 6 4 / 0.1) 70%, rgb(8 6 4 / 0) 100%)",
-                  }}
-                />
-                <div className="relative flex flex-col gap-2 p-5 md:p-6">
-                  <p className="font-mono-label text-[10px] text-accent">
-                    {cat.tagline}
-                  </p>
-                  <h3 className="font-display text-2xl font-medium leading-tight tracking-tight text-white md:text-3xl">
-                    {cat.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-white/70">
-                    {cat.copy}
-                  </p>
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs text-white transition-transform duration-300 group-hover:translate-x-0.5">
-                    Explore
-                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.2} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
+      {/* Fabrication ledger — the catalogue rendered as a full-bleed,
+          hairline-ruled directory. Hover a row to preview the category. */}
+      <Section
+        size="default"
+        ariaLabel="Product category index"
+        className="pb-0 md:pb-0"
+      >
+        <SectionHeader
+          index="01"
+          eyebrow="Category map"
+          title="Pick a category."
+          titleAccent="The page shows you exactly what we install."
+          side="Five lines in the ledger, one supplier behind all of them. Each row opens the full category page — materials, capacities, finishes, and the industries they serve."
+        />
       </Section>
+
+      <section aria-label="Product catalogue ledger" className="pb-20 md:pb-28">
+        <Reveal stagger={0.08}>
+          <ul className="hairline-t flex flex-col">
+            {CATEGORIES.map((cat, i) => (
+              <li key={cat.href} data-reveal-item className="hairline-b">
+                <Link
+                  href={cat.href}
+                  data-cursor="view"
+                  data-cursor-label="Open"
+                  className="group block px-6 transition-colors duration-500 ease-out hover:bg-surface-2"
+                >
+                  <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 py-8 md:flex-row md:items-center md:gap-10 md:py-9">
+                    {/* Index numeral + name + spec line */}
+                    <div className="flex min-w-0 flex-1 items-start gap-4 md:gap-8">
+                      <span
+                        aria-hidden
+                        className="font-display-condensed w-9 shrink-0 pt-1.5 text-xl font-black leading-none text-faint transition-colors duration-300 group-hover:text-accent md:w-12 md:pt-2.5 md:text-2xl"
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="flex min-w-0 flex-1 flex-col gap-3">
+                        <h3 className="font-display text-balance text-4xl font-semibold leading-[0.95] tracking-tight transition-transform duration-500 ease-out group-hover:translate-x-2 md:text-5xl md:group-hover:translate-x-3 lg:text-6xl">
+                          {cat.title}
+                        </h3>
+                        <p className="font-mono-label text-[10px] text-faint">
+                          {cat.tagline}
+                        </p>
+                        <p className="max-w-xl text-sm leading-relaxed text-muted">
+                          {cat.copy}
+                        </p>
+                      </div>
+                      <ArrowUpRight
+                        className="mt-2 h-5 w-5 shrink-0 text-faint transition-colors duration-300 group-hover:text-accent md:hidden"
+                        strokeWidth={2.2}
+                      />
+                    </div>
+
+                    {/* Hover-revealed category thumbnail + arrow (desktop) */}
+                    <div className="hidden shrink-0 items-center gap-6 md:flex">
+                      <div
+                        aria-hidden
+                        className="relative aspect-[4/3] w-36 overflow-hidden rounded-xl opacity-0 scale-[0.94] transition-[opacity,transform] duration-500 ease-out group-hover:opacity-100 group-hover:scale-100 motion-reduce:transition-none lg:w-44"
+                      >
+                        <Image
+                          src={cat.imageSrc}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 176px, 144px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <ArrowUpRight
+                        className="h-5 w-5 shrink-0 text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent motion-reduce:transition-none"
+                        strokeWidth={2.2}
+                      />
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        {/* Ledger footer rule — mirrors the hero meta line */}
+        <div className="px-6">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 pt-5">
+            <p className="font-mono-label text-[10px] text-faint">
+              Five product categories
+            </p>
+            <p className="font-mono-label text-[10px] text-faint">
+              Fabricated in Kenya
+            </p>
+          </div>
+        </div>
+      </section>
 
       <CtaBand
         headline="Have a project in mind?"
