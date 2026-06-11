@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { SectionHeader } from "@/components/primitives/section-header";
+import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 import { JsonLd } from "@/components/seo/json-ld";
 import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -131,7 +136,30 @@ export default function FeedStorageSilosPage() {
         </div>
       </Section>
 
+      {/* Full-bleed fabrication strip — hero photograph recropped, breaking
+          the container rhythm between the brief and the datasheet. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0">
+          <Image
+            src="/images/products/silos-feed-storage-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_70%]"
+          />
+        </ParallaxImage>
+        <p className="font-mono-label absolute bottom-6 left-6 z-[1] text-[10px] text-white/75 md:bottom-8 md:left-8">
+          Hopper or flat-bottom · sized to the truck cycle
+        </p>
+      </div>
+
       <Section bordered theme="paper">
+        {/* Datasheet header strip — document-style meta row. */}
+        <div className="font-mono-label hairline-t hairline-b mb-10 flex flex-col gap-2 py-3 text-[10px] text-faint md:mb-14 md:flex-row md:items-center md:justify-between">
+          <span>NS-SL-FD · 5–100 MT</span>
+          <span className="hidden md:block">Specification</span>
+          <span>Hot-dip galvanised · ex-works 6–10 wk</span>
+        </div>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <SectionHeader
@@ -148,9 +176,75 @@ export default function FeedStorageSilosPage() {
         </div>
       </Section>
 
+      {/* Iron statement — the sizing discipline, in the page's own numbers. */}
+      <Section theme="iron" size="spacious" ariaLabel="Sizing discipline">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="03">Sizing discipline</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              The spec lives in the discharge and the intake —{" "}
+              <span className="text-accent">
+                sized to the feed type and the truck cycle you actually run.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Capacity ceiling, per silo
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={100} suffix=" MT" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  From 5 MT poultry rows to 100 MT dispatch silos.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Hopper angle
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={45} suffix="°" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Clean gravity flow, or sweep auger on flat-bottom.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Diameter ceiling
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={5} suffix=" m" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  2 to 5 m, corrugated or smooth galvanised wall.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+            <span>5 to 100 MT per silo</span>
+            <span>Flexible-auger or pneumatic intake</span>
+            <span>Foundation drawing supplied with quote</span>
+          </div>
+        </div>
+      </Section>
+
       <Section>
         <SectionHeader
-          index="03"
+          index="04"
           eyebrow="Applications"
           title="Where feed silos earn their place."
         />
@@ -170,6 +264,25 @@ export default function FeedStorageSilosPage() {
             ))}
           </div>
         </Reveal>
+      </Section>
+
+      {/* Pull quote — why hopper geometry is the whole spec. */}
+      <Section size="compact" ariaLabel="Discharge design">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="flex flex-col gap-4 md:col-span-5">
+            <span aria-hidden className="hairline h-px w-12" />
+            <p className="font-mono-label text-[10px] text-faint">
+              Discharge design · sized to the feed type
+            </p>
+          </div>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            “The wrong hopper angle means feed rat-holes and operators have
+            to climb in with a rake.”
+          </TextReveal>
+        </div>
       </Section>
 
       <CtaBand

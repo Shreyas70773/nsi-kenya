@@ -55,8 +55,8 @@ const STEPS = [
     title: "Fit out & install",
     copy: "Manways, nozzles, instrumentation stubs — then our crew installs on your site.",
     meta: "Nationwide install crews",
-    film: "/videos/fab-04-install-v2.mp4",
-    filmLabel: "Installed row · dusk",
+    film: "/videos/fab-04-install-v3.mp4",
+    filmLabel: "Bolted epoxy install · on site",
   },
 ] as const;
 

@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { SectionHeader } from "@/components/primitives/section-header";
+import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 import { JsonLd } from "@/components/seo/json-ld";
 import { productLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
@@ -137,6 +142,23 @@ export default function StructuralWorksPage() {
         </div>
       </Section>
 
+      {/* Full-bleed fabrication strip — hero photograph recropped, breaking
+          the container rhythm between the brief and the scope grid. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0">
+          <Image
+            src="/images/products/structural-works-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_70%]"
+          />
+        </ParallaxImage>
+        <p className="font-mono-label absolute bottom-6 left-6 z-[1] text-[10px] text-white/75 md:bottom-8 md:left-8">
+          Concept GA inside a week · ex-works inside the month
+        </p>
+      </div>
+
       <Section bordered theme="paper">
         <SectionHeader
           index="02"
@@ -161,11 +183,102 @@ export default function StructuralWorksPage() {
         </Reveal>
       </Section>
 
-      <Section>
+      {/* Pull quote — the open-workshop line. */}
+      <Section size="compact" ariaLabel="Workshop scope">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="flex flex-col gap-4 md:col-span-5">
+            <span aria-hidden className="hairline h-px w-12" />
+            <p className="font-mono-label text-[10px] text-faint">
+              The workshop · Nairobi
+            </p>
+          </div>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            “Most of our structural work is in support of our own tanks and
+            silos. But the workshop is open.”
+          </TextReveal>
+        </div>
+      </Section>
+
+      {/* Iron statement — the delivery promise, in the page's own numbers. */}
+      <Section theme="iron" size="spacious" ariaLabel="Delivery promise">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="03">The promise</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              Drawings inside a week. Ex-works inside the month.{" "}
+              <span className="text-accent">
+                On flatbed on the date we promised.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Concept GA turnaround
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={5} suffix=" days" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Working days from brief sign-off to concept drawings.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Workshop capacity
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={30} suffix=" t" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Per month, scaling with the order book.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Drawings to ex-works
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={6} suffix=" wk" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Typically three to six weeks, by tonnage and finish.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+            <span>In-house workshop</span>
+            <span>Eurocode 3 · AWS D1.1 · qualified welders</span>
+            <span>Abnormal-load permits handled in-house</span>
+          </div>
+        </div>
+      </Section>
+
+      <Section bordered theme="paper">
+        {/* Datasheet header strip — document-style meta row. */}
+        <div className="font-mono-label hairline-t hairline-b mb-10 flex flex-col gap-2 py-3 text-[10px] text-faint md:mb-14 md:flex-row md:items-center md:justify-between">
+          <span>NS-ST-FW · S275 / S355</span>
+          <span className="hidden md:block">Specification</span>
+          <span>Eurocode 3 · AWS D1.1</span>
+        </div>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <SectionHeader
-              index="03"
+              index="04"
               eyebrow="Specifications"
               title="Standards we work to."
               className="mb-0"

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { SectionHeader } from "@/components/primitives/section-header";
+import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
@@ -11,6 +13,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { FaqList } from "@/components/primitives/faq-list";
+import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 
 export const metadata: Metadata = {
   title: "Zinc-Alum Tank Kenya: 30-Year Water Storage",
@@ -169,7 +175,30 @@ export default function ZincAlumTanksPage() {
         </div>
       </Section>
 
+      {/* Full-bleed fabrication strip — hero photograph recropped, breaking
+          the container rhythm between the metallurgy case and the datasheet. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0">
+          <Image
+            src="/images/products/tanks-zinc-alum-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_75%]"
+          />
+        </ParallaxImage>
+        <p className="font-mono-label absolute bottom-6 left-6 z-[1] text-[10px] text-white/75 md:bottom-8 md:left-8">
+          55% Al · 43.5% Zn · self-healing at every cut
+        </p>
+      </div>
+
       <Section bordered theme="paper">
+        {/* Datasheet header strip — document-style meta row. */}
+        <div className="font-mono-label hairline-t hairline-b mb-10 flex flex-col gap-2 py-3 text-[10px] text-faint md:mb-14 md:flex-row md:items-center md:justify-between">
+          <span>NS-TK-ZA · 55% Al / 43.5% Zn</span>
+          <span className="hidden md:block">Specification</span>
+          <span>Design life 30+ yr · ex-works 6–10 wk</span>
+        </div>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <SectionHeader
@@ -202,9 +231,95 @@ export default function ZincAlumTanksPage() {
         <SpecTable rows={VS_CS_ROWS} />
       </Section>
 
+      {/* Iron statement — the lifecycle claim, in the page's own numbers. */}
+      <Section theme="iron" size="spacious" ariaLabel="Lifecycle claim">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="04">The lifecycle claim</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              One install, zero recoats,{" "}
+              <span className="text-accent">
+                zero replacement downtime over a thirty-year horizon.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Service life, Kenya humidity
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={30} suffix="+ yr" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Versus 8 to 12 years for untreated carbon steel.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Capacity ceiling
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={5000} suffix=" m³" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Bolted panels, 3 to 30 m diameter, no site welding.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Downtime avoided, 30-yr horizon
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={14} prefix="~" suffix=" wk" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Reinstall labour carbon steel costs you; zinc-alum doesn&rsquo;t.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+            <span>50 to 5,000 m³</span>
+            <span>1 replacement cycle vs 3 for carbon steel</span>
+            <span>Expandable in place by adding ring courses</span>
+          </div>
+        </div>
+      </Section>
+
+      {/* Pull quote — the metallurgy, in one sentence. */}
+      <Section size="compact" ariaLabel="Barrier coating behaviour">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="flex flex-col gap-4 md:col-span-5">
+            <span aria-hidden className="hairline h-px w-12" />
+            <p className="font-mono-label text-[10px] text-faint">
+              Metallurgy · barrier coating behaviour
+            </p>
+          </div>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            “The 55% aluminium, 43.5% zinc barrier coating is a self-healing
+            system: at any cut or scratch, the zinc sacrificially protects
+            the steel underneath.”
+          </TextReveal>
+        </div>
+      </Section>
+
       <Section bordered theme="paper">
         <SectionHeader
-          index="04"
+          index="05"
           eyebrow="Common questions"
           title="What buyers ask before specifying zinc-alum."
         />

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/primitives/page-hero";
 import { Section } from "@/components/primitives/section";
 import { SectionHeader } from "@/components/primitives/section-header";
+import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { SpecTable } from "@/components/primitives/spec-table";
@@ -12,6 +14,9 @@ import { productLd, faqLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
 import { FaqList } from "@/components/primitives/faq-list";
 import { Reveal } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { CountUp } from "@/components/motion/count-up";
+import { ParallaxImage } from "@/components/motion/parallax";
 
 export const metadata: Metadata = {
   title: "Grain Storage Silo Kenya: Brewery & Feed Mill",
@@ -169,7 +174,30 @@ export default function GrainStorageSilosPage() {
         </div>
       </Section>
 
+      {/* Full-bleed fabrication strip — hero photograph recropped, breaking
+          the container rhythm between the brief and the datasheet. */}
+      <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
+        <ParallaxImage className="absolute inset-0">
+          <Image
+            src="/images/products/silos-grain-storage-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-[50%_25%]"
+          />
+        </ParallaxImage>
+        <p className="font-mono-label absolute bottom-6 left-6 z-[1] text-[10px] text-white/75 md:bottom-8 md:left-8">
+          Galvanised · aerated · instrumented — 10 to 500 MT per silo
+        </p>
+      </div>
+
       <Section bordered theme="paper">
+        {/* Datasheet header strip — document-style meta row. */}
+        <div className="font-mono-label hairline-t hairline-b mb-10 flex flex-col gap-2 py-3 text-[10px] text-faint md:mb-14 md:flex-row md:items-center md:justify-between">
+          <span>NS-SL-GR · hot-dip galvanised</span>
+          <span className="hidden md:block">Specification</span>
+          <span>30° conical roof · ex-works 8–12 wk</span>
+        </div>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <SectionHeader
@@ -210,9 +238,95 @@ export default function GrainStorageSilosPage() {
         </Reveal>
       </Section>
 
+      {/* Iron statement — defaults, not options, in the page's own numbers. */}
+      <Section theme="iron" size="spacious" ariaLabel="Defaults, not options">
+        <div className="flex flex-col gap-12 md:gap-16">
+          <Eyebrow index="04">Defaults, not options</Eyebrow>
+
+          <TextReveal
+            as="p"
+            className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
+          >
+            <>
+              Without aeration, a quality problem. Without instrumentation,
+              an inventory problem.{" "}
+              <span className="text-accent">
+                We treat both as defaults, not options.
+              </span>
+            </>
+          </TextReveal>
+
+          <Reveal stagger={0.08}>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:max-w-3xl md:grid-cols-3">
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Capacity ceiling, per silo
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={500} suffix=" MT" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  From 10 MT craft intake to 500 MT industrial malt.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Diameter ceiling
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={11} suffix=" m" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Corrugated galvanised wall panels, 3 to 11 m.
+                </p>
+              </div>
+              <div data-reveal-item className="flex flex-col gap-3">
+                <span className="font-mono-label text-[10px] text-faint">
+                  Conical roof pitch
+                </span>
+                <span className="font-display-condensed text-5xl font-black leading-none tracking-tight md:text-6xl">
+                  <CountUp value={30} suffix="°" />
+                </span>
+                <span className="hairline h-px w-10" aria-hidden />
+                <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
+                  Aluminium or galvanised, sweep auger or 45° hopper below.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
+            <span>10 to 500 MT per silo</span>
+            <span>Radar inventory · rotary paddle alarms</span>
+            <span>Bolted on-site, no field welding</span>
+          </div>
+        </div>
+      </Section>
+
+      {/* Pull quote — the aeration argument, in one sentence. */}
+      <Section size="compact" ariaLabel="Aeration guidance">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="flex flex-col gap-4 md:col-span-5">
+            <span aria-hidden className="hairline h-px w-12" />
+            <p className="font-mono-label text-[10px] text-faint">
+              Aeration guidance · tropical-climate storage
+            </p>
+          </div>
+          <TextReveal
+            as="p"
+            className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
+          >
+            “Cross-flow fans with under-floor ducting are inexpensive to fit
+            during fabrication and expensive to retrofit later.”
+          </TextReveal>
+        </div>
+      </Section>
+
       <Section bordered theme="paper">
         <SectionHeader
-          index="04"
+          index="05"
           eyebrow="Common questions"
           title="What brewery and feed-mill operators ask first."
         />
