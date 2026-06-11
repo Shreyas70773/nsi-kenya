@@ -165,8 +165,8 @@ export function SiteFooter() {
         aria-hidden
         className="pointer-events-none relative z-[1] -mb-[0.23em] flex justify-center overflow-hidden"
       >
-        <span className="font-display-wide text-outline whitespace-nowrap text-[18vw] font-black leading-none text-text/25 select-none md:text-[15vw]">
-          NORTH&nbsp;STAR
+        <span className="font-display-wide text-outline whitespace-nowrap text-[11.5vw] font-black leading-none text-text/25 select-none md:text-[9.5vw]">
+          NORTH&nbsp;STAR&nbsp;IMPEX
         </span>
       </div>
     </footer>

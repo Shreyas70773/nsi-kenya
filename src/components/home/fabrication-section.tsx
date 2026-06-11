@@ -3,21 +3,23 @@
 /**
  * "How a tank gets built" — the homepage's iron statement moment.
  *
- * Desktop: the section pins for ~2.6 viewport-heights over a cinematic
- * fabrication film (macro TIG weld, generated in-house); four
- * fabrication-step captions crossfade in sync and a red progress hairline
- * tracks the sequence. The film loads lazily, plays only on screen, and
- * falls back to the weld photograph for reduced motion / save-data.
+ * Four fabrication steps, four films. On desktop the section pins for ~2.2
+ * viewport-heights: as each numbered caption crossfades in, ITS film
+ * crossfades with it — roll the plate, weld the courses, dye-test the seam,
+ * crane the tank onto site. A red hairline tracks progress. Only the active
+ * film plays; the rest stay paused.
  *
- * Mobile: no pin — captions stack as a readable list beside the film.
+ * Mobile: no pin — each step stacks with its own inline film.
+ * Reduced motion: captions read as a list over a quiet iron panel; no video
+ * bytes are downloaded.
  */
 import { useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { AmbientVideo } from "@/components/motion/ambient-video";
 import { Eyebrow } from "@/components/primitives/eyebrow";
+import { useExperience } from "@/components/experience/experience-context";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -29,29 +31,39 @@ const STEPS = [
     title: "Cut & roll",
     copy: "304/316L plate is cut, edge-prepped, and rolled to radius in our Nairobi workshop.",
     meta: "Plate 3–6 mm · rolled to spec",
+    film: "/videos/fab-01-roll.mp4",
+    filmLabel: "Plate rolling · workshop",
   },
   {
     n: "02",
     title: "Weld course by course",
-    copy: "Shell courses stack and join with continuous TIG seams — the same sequence you're watching.",
+    copy: "Shell courses stack and join with continuous TIG seams — the film is the real thing.",
     meta: "TIG · continuous seam",
+    film: "/videos/fabrication-weld.mp4",
+    filmLabel: "TIG seam · workshop",
   },
   {
     n: "03",
     title: "Test every seam",
     copy: "Dye-penetrant on welds, hydrostatic on the finished shell. Nothing ships untested.",
     meta: "DPI + hydrostatic",
+    film: "/videos/fab-03-test.mp4",
+    filmLabel: "Dye-penetrant inspection",
   },
   {
     n: "04",
     title: "Fit out & install",
     copy: "Manways, nozzles, instrumentation stubs — then our crew installs on your site.",
     meta: "Nationwide install crews",
+    film: "/videos/fab-04-install.mp4",
+    filmLabel: "Site install · crane lift",
   },
 ] as const;
 
 export function FabricationSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { tier } = useExperience();
+  const showFilms = tier !== "static";
 
   useGSAP(
     () => {
@@ -65,10 +77,37 @@ export function FabricationSection() {
         const captions = gsap.utils.toArray<HTMLElement>(
           section.querySelectorAll("[data-step]"),
         );
+        const films = gsap.utils.toArray<HTMLElement>(
+          section.querySelectorAll("[data-step-film]"),
+        );
         const bar = section.querySelector<HTMLElement>("[data-progress-bar]");
-        const film = section.querySelector<HTMLElement>("[data-film]");
 
         gsap.set(captions.slice(1), { autoAlpha: 0, y: 28 });
+        gsap.set(films.slice(1), { autoAlpha: 0 });
+
+        // Films mount with preload="none" (zero bytes). The moment the pin
+        // engages, all four start buffering; only the active step plays.
+        let warmed = false;
+        const warm = () => {
+          if (warmed) return;
+          warmed = true;
+          films.forEach((frame) => {
+            const video = frame.querySelector("video");
+            if (video) video.preload = "auto";
+          });
+        };
+
+        let active = -1;
+        const syncPlayback = (index: number, running: boolean) => {
+          if (index === active && running) return;
+          active = running ? index : -1;
+          films.forEach((frame, i) => {
+            const video = frame.querySelector("video");
+            if (!video) return;
+            if (running && i === index) void video.play().catch(() => {});
+            else video.pause();
+          });
+        };
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -77,14 +116,25 @@ export function FabricationSection() {
             end: "+=220%",
             pin: true,
             scrub: 0.6,
+            onUpdate: (self) => {
+              warm();
+              const step = Math.min(
+                STEPS.length - 1,
+                Math.floor(self.progress * STEPS.length),
+              );
+              syncPlayback(step, self.isActive);
+            },
+            onToggle: (self) => {
+              if (!self.isActive) syncPlayback(-1, false);
+            },
           },
         });
 
         captions.forEach((caption, i) => {
-          const previous = captions[i - 1];
-          if (i === 0 || !previous) return;
+          const prevCaption = captions[i - 1];
+          if (i === 0 || !prevCaption) return;
           tl.to(
-            previous,
+            prevCaption,
             { autoAlpha: 0, y: -28, duration: 0.18, ease: "power2.in" },
             0.25 * i - 0.06,
           ).to(
@@ -92,6 +142,20 @@ export function FabricationSection() {
             { autoAlpha: 1, y: 0, duration: 0.2, ease: "power2.out" },
             0.25 * i,
           );
+
+          const film = films[i];
+          const prevFilm = films[i - 1];
+          if (film && prevFilm) {
+            tl.to(
+              prevFilm,
+              { autoAlpha: 0, duration: 0.14, ease: "power1.in" },
+              0.25 * i - 0.05,
+            ).to(
+              film,
+              { autoAlpha: 1, duration: 0.16, ease: "power1.out" },
+              0.25 * i - 0.02,
+            );
+          }
         });
 
         if (bar) {
@@ -105,24 +169,6 @@ export function FabricationSection() {
               scrub: true,
             },
           });
-        }
-
-        // The film frame eases through a slow zoom across the whole pin.
-        if (film) {
-          gsap.fromTo(
-            film,
-            { scale: 1.08 },
-            {
-              scale: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top top",
-                end: "+=220%",
-                scrub: true,
-              },
-            },
-          );
         }
       });
 
@@ -149,15 +195,27 @@ export function FabricationSection() {
 
         <div className="grid flex-1 grid-cols-1 items-center gap-10 md:grid-cols-12">
           {/* Captions / steps */}
-          <div className="order-2 flex flex-col gap-8 md:order-1 md:col-span-5">
-            {/* Desktop: stacked, crossfaded. Mobile: plain list. */}
-            <div className="relative flex flex-col gap-8 md:block md:min-h-[240px]">
+          <div className="order-2 flex flex-col gap-10 md:order-1 md:col-span-5">
+            <div className="relative flex flex-col gap-10 md:block md:min-h-[260px]">
               {STEPS.map((step) => (
                 <div
                   key={step.n}
                   data-step
                   className="flex flex-col gap-3 md:absolute md:inset-x-0 md:top-0"
                 >
+                  {/* Mobile: each step carries its own film. */}
+                  {showFilms ? (
+                    <div className="grain relative mb-2 aspect-video overflow-hidden rounded-card border border-border/15 md:hidden">
+                      <AmbientVideo
+                        src={step.film}
+                        className="absolute inset-0"
+                        poster={<div className="absolute inset-0 bg-surface" />}
+                      />
+                      <span className="font-mono-label absolute bottom-3 left-3 z-[2] text-[10px] text-white/70">
+                        {step.filmLabel}
+                      </span>
+                    </div>
+                  ) : null}
                   <span className="font-display-condensed text-6xl font-black leading-none text-accent md:text-7xl">
                     {step.n}
                   </span>
@@ -175,8 +233,8 @@ export function FabricationSection() {
             </div>
           </div>
 
-          {/* Fabrication film + progress hairline */}
-          <div className="order-1 flex items-stretch gap-5 md:order-2 md:col-span-7">
+          {/* Film stack + progress hairline (desktop) */}
+          <div className="order-1 hidden items-stretch gap-5 md:order-2 md:col-span-7 md:flex">
             <div
               aria-hidden
               className="hidden w-px self-stretch bg-border/15 md:block"
@@ -187,25 +245,29 @@ export function FabricationSection() {
                 style={{ transform: "scaleY(0)" }}
               />
             </div>
-            <div className="grain relative h-[46vh] w-full overflow-hidden rounded-card border border-border/15 md:h-[68vh]">
-              <div data-film className="absolute inset-0 will-change-transform">
-                <AmbientVideo
-                  src="/videos/fabrication-weld.mp4"
-                  className="absolute inset-0"
-                  poster={
-                    <Image
-                      src="/images/home/tanks-weld-bead.png"
-                      alt="Continuous TIG weld bead on a stainless steel tank course"
-                      fill
-                      sizes="(min-width: 768px) 58vw, 100vw"
-                      className="object-cover"
-                    />
-                  }
-                />
-              </div>
-              <span className="font-mono-label absolute bottom-4 left-4 z-[2] text-[10px] text-white/70">
-                Workshop film · Nairobi
-              </span>
+            <div className="grain relative h-[68vh] w-full overflow-hidden rounded-card border border-border/15 bg-surface">
+              {showFilms
+                ? STEPS.map((step) => (
+                    <div
+                      key={step.n}
+                      data-step-film
+                      className="absolute inset-0"
+                    >
+                      <video
+                        src={step.film}
+                        muted
+                        loop
+                        playsInline
+                        preload="none"
+                        aria-hidden
+                        className="h-full w-full object-cover"
+                      />
+                      <span className="font-mono-label absolute bottom-4 left-4 z-[2] text-[10px] text-white/70">
+                        {step.filmLabel}
+                      </span>
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
         </div>

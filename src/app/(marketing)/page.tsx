@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { webSiteLd } from "@/lib/seo";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
-import { AmbientVideo } from "@/components/motion/ambient-video";
+import { ParallaxImage } from "@/components/motion/parallax";
 import { Marquee } from "@/components/motion/marquee";
 import { Magnetic } from "@/components/motion/magnetic";
 import { CountUp } from "@/components/motion/count-up";
@@ -89,22 +89,16 @@ export default function Home() {
         className="px-3 pt-24 sm:px-4 md:pt-28 lg:px-6"
       >
         <div className="relative isolate min-h-[90vh] overflow-hidden rounded-[28px] md:min-h-[calc(100vh-6rem)] md:rounded-[36px]">
-          {/* Living hero: the still paints instantly (LCP), the aerial film
-              fades in over it once loaded. */}
-          <AmbientVideo
-            src="/videos/hero-tank-farm.mp4"
-            className="absolute inset-0 -z-20"
-            poster={
-              <Image
-                src="/images/home/hero-tank-farm.png"
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center"
-              />
-            }
-          />
+          <ParallaxImage className="absolute inset-0 -z-20" amount={10}>
+            <Image
+              src="/images/home/hero-tank-farm.png"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </ParallaxImage>
           {/* Cinematic wash: darker bottom for the credential strip, gentler
               top so the headline reads clearly without killing the photo. */}
           <div
