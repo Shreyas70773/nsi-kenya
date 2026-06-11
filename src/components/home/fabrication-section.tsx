@@ -47,7 +47,7 @@ const STEPS = [
     title: "Test every seam",
     copy: "Dye-penetrant on welds, hydrostatic on the finished shell. Nothing ships untested.",
     meta: "DPI + hydrostatic",
-    film: "/videos/fab-03-test.mp4",
+    film: "/videos/fab-03-test-v2.mp4",
     filmLabel: "Hydrostatic test · gauge",
   },
   {
@@ -55,7 +55,7 @@ const STEPS = [
     title: "Fit out & install",
     copy: "Manways, nozzles, instrumentation stubs — then our crew installs on your site.",
     meta: "Nationwide install crews",
-    film: "/videos/fab-04-install.mp4",
+    film: "/videos/fab-04-install-v2.mp4",
     filmLabel: "Installed row · dusk",
   },
 ] as const;
@@ -187,7 +187,7 @@ export function FabricationSection() {
       <div className="relative z-[2] mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-6 py-24 md:py-28">
         <div className="flex flex-col gap-4">
           <Eyebrow index="02">Inside the workshop</Eyebrow>
-          <h2 className="font-display max-w-4xl text-balance text-[clamp(2.5rem,5.2vw,4.75rem)] font-semibold leading-[0.96] tracking-tight">
+          <h2 className="font-display max-w-3xl text-balance text-4xl font-semibold leading-[1.02] tracking-tight md:text-5xl">
             Watch a tank
             <span className="text-accent"> take shape.</span>
           </h2>

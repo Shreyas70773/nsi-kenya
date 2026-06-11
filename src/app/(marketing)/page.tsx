@@ -126,14 +126,44 @@ export default function Home() {
           </div>
 
           <div className="relative flex h-full min-h-[90vh] flex-col gap-8 p-7 sm:p-10 md:min-h-[calc(100vh-6rem)] md:gap-10 md:p-14 lg:p-16">
-            {/* TOP ROW: locator left, brief + CTA right */}
-            <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-              <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
-                <span className="h-px w-8 bg-white/30" aria-hidden />
-                <span>Nairobi · Kenya · 1°17′S 36°49′E</span>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10">
+              {/* TOP-LEFT: headline + pills */}
+              <div className="flex flex-col gap-7 md:col-span-7">
+                <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
+                  <span className="h-px w-8 bg-white/30" aria-hidden />
+                  <span>Nairobi · Kenya · 1°17′S 36°49′E</span>
+                </div>
+                <TextReveal
+                  as="h1"
+                  mode="mount"
+                  className="font-display text-balance text-[clamp(2.5rem,5.5vw,5.5rem)] font-semibold leading-[0.98] tracking-tight text-white"
+                >
+                  <>
+                    Made in Kenya,{" "}
+                    <br className="hidden sm:block" />
+                    <span className="text-accent">made for East Africa.</span>
+                  </>
+                </TextReveal>
+                <Reveal stagger={0.05} yFrom={14}>
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    {["Tanks", "Silos", "Structural", "Instruments", "Monitoring"].map(
+                      (tag) => (
+                        <span
+                          key={tag}
+                          data-reveal-item
+                          className="rounded-pill border border-white/20 bg-white/8 px-3.5 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md"
+                        >
+                          {tag}
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </Reveal>
               </div>
-              <div className="flex flex-col items-start gap-5 md:max-w-sm md:items-end md:text-right">
-                <p className="text-sm leading-relaxed text-white/85 md:text-base">
+
+              {/* TOP-RIGHT: body + CTA */}
+              <div className="flex flex-col items-start gap-5 md:col-span-5 md:items-end md:text-right">
+                <p className="max-w-sm text-sm leading-relaxed text-white/85 md:text-base">
                   One supplier across stainless, epoxy-lined, and zinc-alum
                   tanks; silos and grain storage; structural fabrication;
                   and the full instrument stack.
@@ -153,22 +183,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* POSTER HEADLINE: bottom-anchored, full display scale */}
-            <TextReveal
-              as="h1"
-              mode="mount"
-              className="font-display-wide mt-auto text-[clamp(2.6rem,8.6vw,8.5rem)] font-black uppercase leading-[0.9] tracking-tight text-white"
-            >
-              <>
-                Made in Kenya,
-                <br />
-                <span className="text-accent">made for East Africa.</span>
-              </>
-            </TextReveal>
-
             {/* BOTTOM credential strip */}
-            <div className="font-mono-label flex flex-col gap-2 text-[10px] text-white/65 md:flex-row md:items-end md:justify-between">
-              <span>Tanks · Silos · Structural · Instruments · Monitoring</span>
+            <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:flex-row md:items-end md:justify-between">
+              <span>Serving Kenya, every county.</span>
               <span className="hidden items-center gap-2 md:flex" aria-hidden>
                 <span>Scroll</span>
                 <span className="h-px w-10 bg-white/40" />
@@ -309,7 +326,7 @@ export default function Home() {
                   <span className="font-mono-label text-[10px] text-accent">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-display-condensed text-7xl font-black leading-none tracking-tight text-text md:text-[6.5rem]">
+                  <span className="font-display-condensed text-6xl font-black leading-none tracking-tight text-text md:text-7xl">
                     <CountUp value={stat.value} suffix={stat.suffix} />
                   </span>
                   <span className="hairline h-px w-full" aria-hidden />

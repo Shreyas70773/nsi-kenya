@@ -38,7 +38,7 @@ export function CtaBand({
         <Eyebrow>{eyebrow}</Eyebrow>
         <TextReveal
           as="h2"
-          className="font-display max-w-5xl text-balance text-[clamp(2.75rem,6.5vw,5.5rem)] font-semibold leading-[0.94] tracking-tight"
+          className="font-display max-w-4xl text-balance text-4xl font-semibold leading-[0.98] tracking-tight md:text-6xl"
         >
           <>
             {headline}
