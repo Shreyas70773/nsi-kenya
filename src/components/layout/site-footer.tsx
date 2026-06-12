@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { SITE_NAME, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/constants";
 import { Marquee } from "@/components/motion/marquee";
+import { BrandStar } from "@/components/brand/brand-star";
 
 const FOOTER_NAV = [
   {
@@ -87,13 +87,16 @@ export function SiteFooter() {
 
       <div className="relative z-[2] mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 md:py-20">
         <div className="mb-8 flex flex-col gap-5 border-b border-border/15 pb-8 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-10 md:pb-12">
-          <Image
-            src="/brand/logo.png"
-            alt={SITE_NAME}
-            width={215}
-            height={94}
-            className="h-10 w-auto md:h-14"
-          />
+          {/* The wordmark PNG is near-black and disappears on iron — the red
+              star + set company line carries the brand here instead. */}
+          <div className="flex items-center gap-4">
+            <BrandStar filled className="h-10 w-10 md:h-12 md:w-12" />
+            <span className="font-mono-label text-[11px] leading-relaxed text-text/85">
+              North Star Impex
+              <br />
+              Kenya LTD
+            </span>
+          </div>
           <p className="font-display max-w-md text-balance text-xl font-semibold leading-tight tracking-tight sm:text-2xl md:text-3xl">
             Made in Kenya,{" "}
             <span className="text-accent">made for East Africa</span>.

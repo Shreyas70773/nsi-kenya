@@ -32,6 +32,10 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* No horizontal page scrollbar, ever — decorative bleeds (marquees,
+     watermarks, pinned tracks) must never widen the document. clip (not
+     hidden) so no scroll container is created. */
+  overflow-x: clip;
 }
 
 body {
