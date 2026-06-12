@@ -117,10 +117,18 @@ export function IndustriesGallery({
         </div>
       </div>
 
-      <div data-viewport className="w-full">
+      {/* Mobile: the viewport is the (native, snap) scroll container — the
+          w-max track can never overflow itself. Desktop: overflow released
+          so the pinned GSAP translate drives the track instead.
+          data-lenis-prevent keeps Lenis from swallowing the touch gesture. */}
+      <div
+        data-viewport
+        data-lenis-prevent
+        className="w-full snap-x snap-mandatory overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:snap-none md:overflow-visible md:pb-0"
+      >
         <div
           data-track
-          className="flex w-max snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [scrollbar-width:none] md:snap-none md:overflow-visible md:px-[max(1.5rem,calc((100vw-72rem)/2))] md:pb-0"
+          className="flex w-max gap-4 px-6 md:px-[max(1.5rem,calc((100vw-72rem)/2))]"
         >
           {industries.map((ind) => (
             <Link
