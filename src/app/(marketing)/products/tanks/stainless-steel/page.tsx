@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products/tanks/stainless-steel/" },
   keywords: [
     "stainless steel tank Kenya",
+    "stainless steel tank manufacturer Kenya",
+    "stainless steel tank suppliers Kenya",
+    "stainless steel tank fabrication near me",
     "304 stainless steel tank Kenya",
     "316L stainless steel tank Kenya",
     "food grade tank Kenya",
@@ -121,7 +124,7 @@ export default function StainlessSteelTanksPage() {
         eyebrow="Tanks / Stainless Steel"
         title="304 and 316L stainless tanks,"
         titleAccent="fabricated in Kenya."
-        subtitle="The default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
+        subtitle="As a stainless steel tank manufacturer in Nairobi serving plants across Kenya, North Star Impex fabricates the default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
         imageSrc="/images/products/tanks-stainless-steel-hero.png"
         imageAlt="A row of polished 304 stainless steel processing tanks inside a Kenyan F&B plant"
         primaryCta={{ href: "/request-quote/", label: "Spec a stainless tank" }}

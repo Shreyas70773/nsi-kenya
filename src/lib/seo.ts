@@ -9,21 +9,55 @@
 
 import {
   SITE_NAME,
+  LEGAL_NAME,
   SITE_URL,
   SITE_DESCRIPTION,
   CONTACT_EMAIL,
   CONTACT_PHONE,
   COUNTRY,
+  LOGO_URL,
+  BUSINESS,
 } from "./constants";
 
 const SCHEMA = "https://schema.org";
 const AREA_SERVED = ["KE", "UG", "TZ", "ET", "RW"] as const;
+const ORG_ID = `${SITE_URL}/#organization`;
 
+/** Reference to the single canonical Organization node (declared site-wide
+ *  via the root layout). Carries @id so engines resolve one entity rather
+ *  than many copies, plus @type/name so the reference is self-describing. */
 function organizationRef() {
   return {
     "@type": "Organization" as const,
+    "@id": ORG_ID,
     name: SITE_NAME,
     url: SITE_URL,
+  };
+}
+
+/** PostalAddress built from whatever NAP facts are confirmed; street/postal
+ *  are omitted until set (see BUSINESS in constants). */
+function postalAddress() {
+  return {
+    "@type": "PostalAddress" as const,
+    ...(BUSINESS.streetAddress
+      ? { streetAddress: BUSINESS.streetAddress }
+      : {}),
+    addressLocality: BUSINESS.locality,
+    addressRegion: BUSINESS.region,
+    ...(BUSINESS.postalCode ? { postalCode: BUSINESS.postalCode } : {}),
+    addressCountry: COUNTRY,
+  };
+}
+
+function salesContactPoint() {
+  return {
+    "@type": "ContactPoint" as const,
+    contactType: "sales",
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE,
+    areaServed: [...AREA_SERVED],
+    availableLanguage: ["en"],
   };
 }
 
@@ -31,21 +65,52 @@ export function organizationLd() {
   return {
     "@context": SCHEMA,
     "@type": "Organization" as const,
+    "@id": ORG_ID,
     name: SITE_NAME,
+    legalName: LEGAL_NAME,
     url: SITE_URL,
+    logo: LOGO_URL,
+    image: LOGO_URL,
     description: SITE_DESCRIPTION,
-    address: {
-      "@type": "PostalAddress" as const,
-      addressCountry: COUNTRY,
-    },
-    contactPoint: {
-      "@type": "ContactPoint" as const,
-      contactType: "sales",
-      email: CONTACT_EMAIL,
-      telephone: CONTACT_PHONE,
-      areaServed: [...AREA_SERVED],
-      availableLanguage: ["en"],
-    },
+    foundingDate: BUSINESS.foundingDate,
+    address: postalAddress(),
+    areaServed: [...AREA_SERVED],
+    contactPoint: salesContactPoint(),
+    ...(BUSINESS.sameAs.length ? { sameAs: [...BUSINESS.sameAs] } : {}),
+  };
+}
+
+/**
+ * Homepage LocalBusiness node — the entity engines attach map/phone/hours to.
+ * Emits the geo pin only when real coordinates are configured (never a guess).
+ */
+export function homeLocalBusinessLd() {
+  return {
+    "@context": SCHEMA,
+    "@type": "LocalBusiness" as const,
+    "@id": `${SITE_URL}/#localbusiness`,
+    name: LEGAL_NAME,
+    url: SITE_URL,
+    image: LOGO_URL,
+    logo: LOGO_URL,
+    description: SITE_DESCRIPTION,
+    telephone: CONTACT_PHONE,
+    email: CONTACT_EMAIL,
+    priceRange: "$$",
+    address: postalAddress(),
+    areaServed: [...AREA_SERVED],
+    openingHours: [...BUSINESS.openingHours],
+    ...(BUSINESS.geoLat && BUSINESS.geoLng
+      ? {
+          geo: {
+            "@type": "GeoCoordinates" as const,
+            latitude: BUSINESS.geoLat,
+            longitude: BUSINESS.geoLng,
+          },
+        }
+      : {}),
+    parentOrganization: organizationRef(),
+    ...(BUSINESS.sameAs.length ? { sameAs: [...BUSINESS.sameAs] } : {}),
   };
 }
 

@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products/silos/grain-storage/" },
   keywords: [
     "grain storage silo Kenya",
+    "grain silo price Kenya",
+    "grain silo cost Kenya",
+    "grain silo for sale Kenya",
     "silo manufacturer Nairobi",
     "brewery grain silo Kenya",
     "feed mill silo Kenya",

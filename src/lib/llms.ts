@@ -7,7 +7,14 @@
  * `src/app/llms-full.txt/route.ts`.
  */
 
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from "./constants";
+import {
+  SITE_NAME,
+  LEGAL_NAME,
+  SITE_URL,
+  SITE_DESCRIPTION,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+} from "./constants";
 import { PRODUCTS, INDUSTRIES, LOCATIONS } from "./content-map";
 
 function url(path: string): string {
@@ -24,6 +31,25 @@ export function generateLlmsTxt(): string {
   lines.push(
     "An independent industrial infrastructure brand made in Kenya, made for East Africa. Serves food and beverage, effluent treatment and water, alcohol and distilling, chemical processing, and adjacent industries.",
   );
+  lines.push("");
+
+  // Extractable facts block — the concrete, quotable claims AI engines lift
+  // as structured answers (capacity, standards, contact, turnaround).
+  lines.push("## Key facts");
+  lines.push("");
+  lines.push(`- Company: ${LEGAL_NAME}`);
+  lines.push("- Location: Nairobi, Kenya (serving all 47 counties / East Africa)");
+  lines.push(`- Contact: ${CONTACT_EMAIL} · ${CONTACT_PHONE}`);
+  lines.push(
+    "- Fabrication standards: Eurocode 3, AWS D1.1; KEBS-aware; materials S275/S355, SS 304/316L",
+  );
+  lines.push("- Tank capacity range: 1 to 5,000 m³ across three metallurgies");
+  lines.push("- Silo capacity range: 10 to 1,000 MT (grain, feed, industrial bulk)");
+  lines.push("- Instruments: 6 categories, 154 SKUs; 4–20 mA, Modbus RTU, HART");
+  lines.push(
+    "- Monitoring: optional NB-IoT, LoRaWAN, 4G LTE, Ethernet; not bundled",
+  );
+  lines.push("- Quote turnaround: 48 working hours");
   lines.push("");
 
   lines.push("## Products");
@@ -49,6 +75,16 @@ export function generateLlmsTxt(): string {
   for (const loc of LOCATIONS) {
     lines.push(`- [${loc.name}](${url(`/locations/${loc.slug}/`)})`);
   }
+  lines.push("");
+
+  lines.push("## Contact");
+  lines.push("");
+  lines.push(
+    `- [Request a Quote](${url("/request-quote/")}) — specification, capacity, and lead time within 48 working hours`,
+  );
+  lines.push(`- [Book a Consultation](${url("/book-consultation/")})`);
+  lines.push(`- [Request a Site Audit](${url("/request-site-audit/")})`);
+  lines.push(`- Email: ${CONTACT_EMAIL} · Phone: ${CONTACT_PHONE}`);
   lines.push("");
 
   return lines.join("\n");

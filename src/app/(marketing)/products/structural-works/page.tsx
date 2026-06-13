@@ -13,8 +13,11 @@ import { TextReveal } from "@/components/motion/text-reveal";
 import { CountUp } from "@/components/motion/count-up";
 import { ParallaxImage } from "@/components/motion/parallax";
 import { JsonLd } from "@/components/seo/json-ld";
-import { productLd } from "@/lib/seo";
+import { productLd, breadcrumbLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/constants";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { PRODUCT_GEO } from "@/lib/product-geo";
 
 export const metadata: Metadata = {
   title: "Structural Fabrication Nairobi: Platforms, Pipe Racks",
@@ -89,6 +92,16 @@ export default function StructuralWorksPage() {
           url: `${SITE_URL}/products/structural-works/`,
         })}
       />
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          {
+            name: "Structural Works",
+            url: "https://northstarimpex.co.ke/products/structural-works/",
+          },
+        ])}
+      />
 
       <PageHero
         eyebrow="Products / Structural Works"
@@ -112,6 +125,8 @@ export default function StructuralWorksPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO["structural-works"]} />
 
       <Section>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
@@ -290,6 +305,8 @@ export default function StructuralWorksPage() {
           </div>
         </div>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO["structural-works"]} index="05" />
 
       <CtaBand
         headline="Got a steel scope on a deadline?"

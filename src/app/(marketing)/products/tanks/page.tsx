@@ -8,6 +8,11 @@ import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
@@ -65,6 +70,14 @@ const TANK_TYPES = [
 export default function TanksOverviewPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          { name: "Tanks", url: "https://northstarimpex.co.ke/products/tanks/" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Tanks"
         title="Three metallurgies."
@@ -87,6 +100,8 @@ export default function TanksOverviewPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.tanks} />
 
       <Section>
         <SectionHeader
@@ -140,6 +155,8 @@ export default function TanksOverviewPage() {
           </div>
         </Reveal>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.tanks} index="02" />
 
       <CtaBand
         headline="Not sure which tank fits?"

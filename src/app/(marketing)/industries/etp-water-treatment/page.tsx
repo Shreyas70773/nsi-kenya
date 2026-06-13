@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "Compliant effluent treatment plant equipment for Kenya. Stainless, epoxy-lined tanks, multi-parameter water analyzers, flow meters. Built for Kenyan discharge regulations.",
   alternates: { canonical: "/industries/etp-water-treatment/" },
   keywords: [
+    "effluent treatment plant Kenya",
+    "effluent treatment plant cost Kenya",
+    "what is an effluent treatment plant",
     "compliant ETP Kenya",
     "effluent treatment plant tanks Kenya",
     "wastewater treatment equipment Nairobi",

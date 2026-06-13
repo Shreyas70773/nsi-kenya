@@ -7,6 +7,11 @@ import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Industrial Silos Kenya: Grain, Feed, Bulk",
@@ -55,6 +60,14 @@ const SILO_TYPES = [
 export default function SilosOverviewPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          { name: "Silos", url: "https://northstarimpex.co.ke/products/silos/" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Silos"
         title="Storage that"
@@ -77,6 +90,8 @@ export default function SilosOverviewPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.silos} />
 
       <Section>
         <SectionHeader
@@ -113,6 +128,8 @@ export default function SilosOverviewPage() {
           </div>
         </Reveal>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.silos} index="02" />
 
       <CtaBand
         headline="Mixing grain and process water in the same plant?"

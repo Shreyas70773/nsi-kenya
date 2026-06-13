@@ -1,8 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
-import { webSiteLd } from "@/lib/seo";
+import { webSiteLd, homeLocalBusinessLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  // Absolute title: the homepage leads with product + geo instead of the
+  // brand-only default, and skips the "· North Star Impex Kenya" template
+  // suffix since the brand is already in the string.
+  title: {
+    absolute:
+      "Industrial Tanks, Silos & Process Instruments in Kenya | North Star Impex",
+  },
+  description:
+    "North Star Impex fabricates industrial tanks, silos, structural steel and process instruments in Nairobi for plants across Kenya and East Africa. Quote in 48 hours.",
+  alternates: { canonical: "/" },
+  keywords: [
+    "industrial tanks Kenya",
+    "grain storage silos Kenya",
+    "process instruments Kenya",
+    "stainless steel tank manufacturer Nairobi",
+    "structural steel fabrication Kenya",
+  ],
+};
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { ParallaxImage } from "@/components/motion/parallax";
@@ -82,6 +103,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={webSiteLd()} />
+      <JsonLd data={homeLocalBusinessLd()} />
 
       {/* ─── HERO (framed card, parallax + masked headline) ───────────── */}
       <section

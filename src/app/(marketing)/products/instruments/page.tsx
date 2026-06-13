@@ -8,6 +8,11 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Process Instruments Kenya: Flow, Level, pH, More",
@@ -81,6 +86,17 @@ const PROTOCOLS = [
 export default function InstrumentsGatewayPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          {
+            name: "Process Instruments",
+            url: "https://northstarimpex.co.ke/products/instruments/",
+          },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Instruments"
         title="Six categories,"
@@ -103,6 +119,8 @@ export default function InstrumentsGatewayPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.instruments} />
 
       <Section>
         <SectionHeader
@@ -181,6 +199,8 @@ export default function InstrumentsGatewayPage() {
           </div>
         </div>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.instruments} index="03" />
 
       <CtaBand
         headline="Specifying an instrument loop?"

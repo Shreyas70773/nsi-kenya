@@ -13,6 +13,8 @@ import { softwareApplicationLd, faqLd } from "@/lib/seo";
 import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
 import { TelemetrySection } from "@/components/iot/telemetry-section";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { PRODUCT_GEO } from "@/lib/product-geo";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -198,6 +200,8 @@ export default function IoTPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.iot} />
 
       {/* ─── NETWORK + DATA REGISTER MARQUEE ──────────────────────────── */}
       <section
