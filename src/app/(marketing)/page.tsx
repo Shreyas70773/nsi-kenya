@@ -34,6 +34,8 @@ import { BrandStar } from "@/components/brand/brand-star";
 import { SectionHeader } from "@/components/primitives/section-header";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { FabricationSection } from "@/components/home/fabrication-section";
+import { ProofBand } from "@/components/home/proof-band";
+import { CaseStrip } from "@/components/home/case-strip";
 import {
   IndustriesGallery,
   type IndustryCard,
@@ -218,6 +220,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── PROOF BAND (T-1, four tiles under the hero) ──────────────── */}
+      <ProofBand />
+
       {/* ─── TRUST MARQUEE (velocity-reactive) ────────────────────────── */}
       <section
         aria-label="Trust marquee"
@@ -364,6 +369,9 @@ export default function Home() {
 
       {/* ─── INDUSTRIES (horizontal gallery) ──────────────────────────── */}
       <IndustriesGallery industries={INDUSTRIES} />
+
+      {/* ─── CASE STRIP (T-2, renders once verified blurbs land) ─────── */}
+      <CaseStrip />
 
       {/* ─── HOW WE WORK ──────────────────────────────────────────────── */}
       <section

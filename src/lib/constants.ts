@@ -53,3 +53,10 @@ export const BUSINESS = {
   // truth Google actually displays.
   openingHours: ["Mo-Fr 08:00-17:00", "Sa 08:00-13:00"],
 } as const;
+
+/**
+ * T-3 compliance strip statements (KEBS / NEMA / NCA, as applicable).
+ * SHIPS EMPTY: NSI supplies the exact approved wording — never draft
+ * compliance claims in-house. Fill and the strip renders above the footer.
+ */
+export const COMPLIANCE_STATEMENTS: readonly string[] = [];
