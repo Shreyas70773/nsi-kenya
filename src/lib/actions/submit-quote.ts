@@ -106,5 +106,6 @@ export async function submitQuote(
     message: data.message || undefined,
   });
 
-  redirect("/request-quote/success/");
+  // The thank-you URL is the GA4/Meta conversion trigger (GC-7).
+  redirect("/thank-you/quote/");
 }

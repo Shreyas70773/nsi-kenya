@@ -27,7 +27,12 @@ const AI_CRAWLERS = [
   "MistralAI-User",
 ];
 
-const DISALLOW = ["/admin/", "/api/", "/request-quote/success/"];
+const DISALLOW = [
+  "/admin/",
+  "/api/",
+  "/request-quote/success/",
+  "/thank-you/",
+];
 
 export default function robots(): MetadataRoute.Robots {
   return {

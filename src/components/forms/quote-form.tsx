@@ -8,6 +8,7 @@ import {
   fieldSelectClass,
 } from "@/components/primitives/form-field";
 import { submitQuote, type QuoteFormState } from "@/lib/actions/submit-quote";
+import { markLeadPending } from "@/lib/lead-pending";
 
 const INTENT_LABEL: Record<string, string> = {
   explore: "Exploring options",
@@ -45,7 +46,13 @@ export function QuoteForm({
   const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
 
   return (
-    <form action={formAction} className="flex flex-col gap-6">
+    <form
+      action={formAction}
+      // Native validation has passed by the time submit fires; the pending
+      // token lets the thank-you page emit generate_lead exactly once.
+      onSubmit={() => markLeadPending("quote")}
+      className="flex flex-col gap-6"
+    >
       {showIntentSelector ? (
         <FormField
           label="Intent"

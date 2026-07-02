@@ -6,6 +6,7 @@ import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
+import { ThankYouTracker } from "@/components/analytics/thank-you-tracker";
 
 export const metadata: Metadata = {
   title: "We've got your request",
@@ -17,6 +18,9 @@ export const metadata: Metadata = {
 export default function QuoteSuccessPage() {
   return (
     <>
+      {/* Contact-form submissions land here (quote/consult/audit have their
+          own thank-you pages, GC-7); this emits their generate_lead. */}
+      <ThankYouTracker journey="contact" />
       <PageHero
         eyebrow="Submitted"
         title="We've got it."

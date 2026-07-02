@@ -93,5 +93,13 @@ export async function submitInquiry(
     message: data.message || undefined,
   });
 
-  redirect("/request-quote/success/");
+  // Per-journey thank-you URLs are the conversion triggers (GC-7);
+  // plain contact keeps the original confirmation page.
+  redirect(
+    data.kind === "consultation"
+      ? "/thank-you/consultation/"
+      : data.kind === "site-audit"
+        ? "/thank-you/site-audit/"
+        : "/request-quote/success/",
+  );
 }

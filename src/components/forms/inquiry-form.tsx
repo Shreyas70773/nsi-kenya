@@ -11,6 +11,7 @@ import {
   submitInquiry,
   type InquiryFormState,
 } from "@/lib/actions/submit-inquiry";
+import { markLeadPending } from "@/lib/lead-pending";
 
 const INITIAL: InquiryFormState = { status: "idle" };
 
@@ -35,7 +36,15 @@ export function InquiryForm({
   const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
 
   return (
-    <form action={formAction} className="flex flex-col gap-6">
+    <form
+      action={formAction}
+      // Route kind uses hyphens; the dataLayer journey contract (GC-5)
+      // uses underscores — convert once here.
+      onSubmit={() =>
+        markLeadPending(kind === "site-audit" ? "site_audit" : kind)
+      }
+      className="flex flex-col gap-6"
+    >
       <input type="hidden" name="kind" value={kind} />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
