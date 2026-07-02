@@ -4,6 +4,7 @@ import "./globals.css";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationLd } from "@/lib/seo";
+import { Gtm } from "@/components/analytics/gtm";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { PageFade } from "@/components/motion/page-fade";
 import { ExperienceProvider } from "@/components/experience/experience-context";
@@ -69,6 +70,7 @@ export default function RootLayout({
       className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent/20 selection:text-text">
+        <Gtm />
         <JsonLd data={organizationLd()} />
         <ExperienceProvider>
           <IntroSequence />
