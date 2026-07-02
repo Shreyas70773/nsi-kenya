@@ -6,6 +6,7 @@ import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
+import { postLeadWebhook } from "@/lib/lead-webhook";
 import { phoneSchema } from "@/lib/validation/phone";
 import { leadMetadataFromForm } from "@/lib/attribution";
 
@@ -96,6 +97,20 @@ export async function submitQuote(
     metadata,
   }).catch((err) => {
     console.error("[submitQuote] email failed", err);
+  });
+
+  void postLeadWebhook({
+    form_type: "quote",
+    submitted_at: new Date().toISOString(),
+    intent: data.intent,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    product_slugs: productSlugs.join(", "),
+    message: data.message || undefined,
+    ...(metadata ?? {}),
   });
 
   // Also mirror to Google Sheets for the sales team's working spreadsheet.

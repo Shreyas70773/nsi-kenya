@@ -5,6 +5,8 @@ import { fetchMutation } from "convex/nextjs";
 import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
+import { sendInquiryNotification } from "@/lib/email";
+import { postLeadWebhook } from "@/lib/lead-webhook";
 import { phoneSchema } from "@/lib/validation/phone";
 import { leadMetadataFromForm } from "@/lib/attribution";
 
@@ -83,6 +85,37 @@ export async function submitInquiry(
           : "Could not submit your request.",
     };
   }
+
+  // Notify sales immediately (GC-9) without blocking the redirect.
+  void sendInquiryNotification({
+    kind: data.kind,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    siteLocation: data.siteLocation || undefined,
+    topic: data.topic || undefined,
+    message: data.message || undefined,
+    metadata,
+  }).catch((err) => {
+    console.error("[submitInquiry] email failed", err);
+  });
+
+  void postLeadWebhook({
+    form_type: "inquiry",
+    submitted_at: new Date().toISOString(),
+    kind: data.kind,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    site_location: data.siteLocation || undefined,
+    topic: data.topic || undefined,
+    message: data.message || undefined,
+    ...(metadata ?? {}),
+  });
 
   void appendToSheets({
     form_type: "inquiry",
