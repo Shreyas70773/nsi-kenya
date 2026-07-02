@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { InquiryForm } from "@/components/forms/inquiry-form";
+import { BookingEmbed } from "@/components/conversion/booking-embed";
 
 export const metadata: Metadata = {
   title: "Request a Free Site Audit: Plants in Kenya",
@@ -106,6 +107,7 @@ export default function RequestSiteAuditPage() {
               topicLabel="Scope of the audit"
               topicHint="What we should focus on (e.g. ETP train, tank farm, new line bay)."
             />
+            <BookingEmbed />
           </div>
         </div>
       </Section>

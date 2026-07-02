@@ -7,6 +7,7 @@ import { appendToSheets } from "@/lib/sheets";
 import { sendInquiryNotification } from "@/lib/email";
 import { postLeadWebhook } from "@/lib/lead-webhook";
 import { INQUIRY_SCHEMA } from "@/lib/validation/lead-schemas";
+import { isSpam, verifyRecaptcha } from "@/lib/validation/spam";
 import { leadMetadataFromForm } from "@/lib/attribution";
 
 export type InquiryFormState =
@@ -14,10 +15,32 @@ export type InquiryFormState =
   | { status: "error"; message: string; fieldErrors?: Record<string, string> }
   | { status: "success" };
 
+const SUCCESS_REDIRECT: Record<string, string> = {
+  consultation: "/thank-you/consultation/",
+  "site-audit": "/thank-you/site-audit/",
+  contact: "/request-quote/success/",
+};
+
 export async function submitInquiry(
   _previous: InquiryFormState,
   formData: FormData,
 ): Promise<InquiryFormState> {
+  // F-7: spam-positive submissions pretend success — redirect without
+  // inserting or notifying, so bots learn nothing.
+  if (
+    isSpam({
+      honeypot: String(formData.get("company_website") ?? ""),
+      renderedAt: Number(formData.get("rendered_at")),
+      now: Date.now(),
+    }) ||
+    !(await verifyRecaptcha(String(formData.get("recaptcha_token") ?? ""))).ok
+  ) {
+    redirect(
+      SUCCESS_REDIRECT[String(formData.get("kind") ?? "contact")] ??
+        "/request-quote/success/",
+    );
+  }
+
   const raw = {
     kind: String(formData.get("kind") ?? "contact"),
     name: String(formData.get("name") ?? ""),
@@ -130,11 +153,5 @@ export async function submitInquiry(
 
   // Per-journey thank-you URLs are the conversion triggers (GC-7);
   // plain contact keeps the original confirmation page.
-  redirect(
-    data.kind === "consultation"
-      ? "/thank-you/consultation/"
-      : data.kind === "site-audit"
-        ? "/thank-you/site-audit/"
-        : "/request-quote/success/",
-  );
+  redirect(SUCCESS_REDIRECT[data.kind] ?? "/request-quote/success/");
 }

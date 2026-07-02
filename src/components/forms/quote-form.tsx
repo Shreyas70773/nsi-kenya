@@ -11,6 +11,7 @@ import { submitQuote, type QuoteFormState } from "@/lib/actions/submit-quote";
 import { markLeadPending } from "@/lib/lead-pending";
 import { AttributionFields } from "@/components/forms/attribution-fields";
 import { ConsentNote } from "@/components/forms/consent-note";
+import { SpamFields } from "@/components/forms/spam-fields";
 import {
   PRODUCT_GROUPS,
   CAPACITY_OPTIONS,
@@ -49,6 +50,7 @@ export function QuoteForm({
       className="flex flex-col gap-6"
     >
       <AttributionFields />
+      <SpamFields action="quote" />
       {showIntentSelector ? (
         <FormField
           label="Intent"

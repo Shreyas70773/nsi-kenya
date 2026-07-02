@@ -14,6 +14,7 @@ import {
 import { markLeadPending } from "@/lib/lead-pending";
 import { AttributionFields } from "@/components/forms/attribution-fields";
 import { ConsentNote } from "@/components/forms/consent-note";
+import { SpamFields } from "@/components/forms/spam-fields";
 import { CAPACITY_OPTIONS } from "@/lib/validation/lead-schemas";
 
 const INITIAL: InquiryFormState = { status: "idle" };
@@ -59,6 +60,7 @@ export function InquiryForm({
     >
       <input type="hidden" name="kind" value={kind} />
       <AttributionFields />
+      <SpamFields action={kind} />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <FormField label="Full name" htmlFor="name" required error={fieldErrors.name}>

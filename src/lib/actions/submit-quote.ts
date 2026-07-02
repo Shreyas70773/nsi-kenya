@@ -7,6 +7,7 @@ import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
 import { postLeadWebhook } from "@/lib/lead-webhook";
 import { QUOTE_SCHEMA } from "@/lib/validation/lead-schemas";
+import { isSpam, verifyRecaptcha } from "@/lib/validation/spam";
 import { leadMetadataFromForm } from "@/lib/attribution";
 
 export type QuoteFormState =
@@ -18,6 +19,19 @@ export async function submitQuote(
   _previous: QuoteFormState,
   formData: FormData,
 ): Promise<QuoteFormState> {
+  // F-7: spam-positive submissions pretend success — redirect without
+  // inserting or notifying, so bots learn nothing.
+  if (
+    isSpam({
+      honeypot: String(formData.get("company_website") ?? ""),
+      renderedAt: Number(formData.get("rendered_at")),
+      now: Date.now(),
+    }) ||
+    !(await verifyRecaptcha(String(formData.get("recaptcha_token") ?? ""))).ok
+  ) {
+    redirect("/thank-you/quote/");
+  }
+
   const raw = {
     intent: String(formData.get("intent") ?? "explore"),
     name: String(formData.get("name") ?? ""),
