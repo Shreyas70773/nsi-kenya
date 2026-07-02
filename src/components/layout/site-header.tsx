@@ -4,8 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "@/lib/constants";
+import { trackCallClick } from "@/lib/analytics";
 
 const NAV = [
   { href: "/products/", label: "Products" },
@@ -146,6 +148,19 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
+            {/* Click-to-call on every viewport (GC-3): number text on xl,
+                icon-only below so the pill stays compact. */}
+            <a
+              href={`tel:${CONTACT_PHONE_TEL}`}
+              aria-label={`Call us on ${CONTACT_PHONE}`}
+              onClick={() => trackCallClick(pathname ?? "/")}
+              className="press inline-flex items-center gap-1.5 rounded-pill border border-border/15 bg-surface/70 px-2.5 py-2 text-sm text-text transition-colors hover:bg-surface"
+            >
+              <Phone className="h-4 w-4" strokeWidth={2.2} aria-hidden />
+              <span className="hidden whitespace-nowrap xl:inline">
+                {CONTACT_PHONE}
+              </span>
+            </a>
             <Link
               href="/contact/"
               className="press hidden text-sm text-muted transition-colors duration-200 hover:text-text lg:inline"
@@ -182,6 +197,7 @@ export function SiteHeader() {
 }
 
 function MobileNavDrawer({ onClose }: { onClose: () => void }) {
+  const pathname = usePathname();
   return (
     <div
       id="mobile-nav-drawer"
@@ -254,7 +270,15 @@ function MobileNavDrawer({ onClose }: { onClose: () => void }) {
           ))}
         </nav>
 
-        <div className="border-t border-border/10 px-5 py-5">
+        <div className="flex flex-col gap-2.5 border-t border-border/10 px-5 py-5">
+          <a
+            href={`tel:${CONTACT_PHONE_TEL}`}
+            onClick={() => trackCallClick(pathname ?? "/")}
+            className="press inline-flex w-full items-center justify-center gap-2 rounded-pill border border-border/15 bg-surface px-5 py-3 text-sm font-medium text-text transition-colors hover:bg-surface-2"
+          >
+            <Phone className="h-4 w-4" strokeWidth={2.2} aria-hidden />
+            {CONTACT_PHONE}
+          </a>
           <Link
             href="/request-quote/"
             onClick={onClose}
