@@ -20,12 +20,31 @@ type Grecaptcha = {
  * No visible challenge anywhere (every extra click costs mobile leads).
  */
 export function SpamFields({ action }: { action: string }) {
-  const [renderedAt, setRenderedAt] = useState(0);
+  const renderedAtRef = useRef<HTMLInputElement>(null);
   const [token, setToken] = useState("");
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Uncontrolled: SSR emits a stable "0" and the real render time lands
+  // straight in the DOM after mount (no state, no cascading render).
+  // React 19 resets uncontrolled fields after every action dispatch, so
+  // re-write the ORIGINAL mount time before each submit and after resets —
+  // otherwise a retry after a validation error submits "0" (fail-open).
   useEffect(() => {
-    setRenderedAt(Date.now());
+    const input = renderedAtRef.current;
+    if (!input) return;
+    const mountedAt = String(Date.now());
+    const populate = () => {
+      input.value = mountedAt;
+    };
+    populate();
+    const form = input.closest("form");
+    const onReset = () => setTimeout(populate, 0);
+    form?.addEventListener("submit", populate, true);
+    form?.addEventListener("reset", onReset);
+    return () => {
+      form?.removeEventListener("submit", populate, true);
+      form?.removeEventListener("reset", onReset);
+    };
   }, []);
 
   useEffect(() => {
@@ -62,7 +81,12 @@ export function SpamFields({ action }: { action: string }) {
           />
         </label>
       </div>
-      <input type="hidden" name="rendered_at" value={renderedAt} />
+      <input
+        ref={renderedAtRef}
+        type="hidden"
+        name="rendered_at"
+        defaultValue="0"
+      />
       {SITE_KEY ? (
         <>
           <input type="hidden" name="recaptcha_token" value={token} />

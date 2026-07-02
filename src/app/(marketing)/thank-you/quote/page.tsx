@@ -3,6 +3,8 @@ import { ThankYouPage } from "@/components/conversion/thank-you-page";
 
 export const metadata: Metadata = {
   title: "Your enquiry is in",
+  description:
+    "Quote request received. Our engineer calls within one working day; your quotation follows within 48 working hours.",
   robots: { index: false, follow: false },
 };
 

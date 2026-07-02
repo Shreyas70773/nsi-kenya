@@ -1,47 +1,61 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { getAttribution, type Attribution } from "@/lib/attribution";
+
+const FIELD_MAP: ReadonlyArray<[name: string, key: keyof Attribution]> = [
+  ["utm_source", "utmSource"],
+  ["utm_medium", "utmMedium"],
+  ["utm_campaign", "utmCampaign"],
+  ["utm_content", "utmContent"],
+  ["gclid", "gclid"],
+  ["fbclid", "fbclid"],
+  ["landing_page", "landingPage"],
+  ["referrer", "referrer"],
+  ["source_code", "sourceCode"],
+];
 
 /**
  * Hidden attribution inputs (GC-8) — snake_case wire names per the brief.
- * Hydrated after mount so SSR markup stays stable regardless of what the
- * visitor's localStorage holds.
+ * Uncontrolled: SSR renders them empty (stable markup regardless of the
+ * visitor's localStorage) and the effect writes the stored first-touch
+ * values straight into the DOM after mount.
  */
 export function AttributionFields() {
-  const [attribution, setAttribution] = useState<Attribution>({});
+  const hostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setAttribution(getAttribution());
+    const host = hostRef.current;
+    if (!host) return;
+    const populate = () => {
+      const attribution = getAttribution();
+      for (const [name, key] of FIELD_MAP) {
+        const input = host.querySelector<HTMLInputElement>(
+          `input[name="${name}"]`,
+        );
+        if (input) input.value = attribution[key] ?? "";
+      }
+    };
+    populate();
+    // React 19 resets uncontrolled fields after every action dispatch, so a
+    // submission retried after a validation error would otherwise carry
+    // blank attribution. Re-populate right before FormData is read (capture
+    // runs ahead of React's submit handling) and again after any reset.
+    const form = host.closest("form");
+    const onReset = () => setTimeout(populate, 0);
+    form?.addEventListener("submit", populate, true);
+    form?.addEventListener("reset", onReset);
+    return () => {
+      form?.removeEventListener("submit", populate, true);
+      form?.removeEventListener("reset", onReset);
+    };
   }, []);
 
   return (
-    <>
-      <input type="hidden" name="utm_source" value={attribution.utmSource ?? ""} />
-      <input type="hidden" name="utm_medium" value={attribution.utmMedium ?? ""} />
-      <input
-        type="hidden"
-        name="utm_campaign"
-        value={attribution.utmCampaign ?? ""}
-      />
-      <input
-        type="hidden"
-        name="utm_content"
-        value={attribution.utmContent ?? ""}
-      />
-      <input type="hidden" name="gclid" value={attribution.gclid ?? ""} />
-      <input type="hidden" name="fbclid" value={attribution.fbclid ?? ""} />
-      <input
-        type="hidden"
-        name="landing_page"
-        value={attribution.landingPage ?? ""}
-      />
-      <input type="hidden" name="referrer" value={attribution.referrer ?? ""} />
-      <input
-        type="hidden"
-        name="source_code"
-        value={attribution.sourceCode ?? ""}
-      />
-    </>
+    <div ref={hostRef} hidden aria-hidden>
+      {FIELD_MAP.map(([name]) => (
+        <input key={name} type="hidden" name={name} defaultValue="" />
+      ))}
+    </div>
   );
 }
