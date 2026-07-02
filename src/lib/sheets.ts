@@ -19,6 +19,7 @@ export type SheetsPayload =
       phone: string;
       industry?: string;
       product_slugs?: string;
+      capacity?: string;
       message?: string;
       utm_source?: string;
       utm_medium?: string;
@@ -40,6 +41,7 @@ export type SheetsPayload =
       industry?: string;
       site_location?: string;
       topic?: string;
+      capacity?: string;
       message?: string;
       utm_source?: string;
       utm_medium?: string;

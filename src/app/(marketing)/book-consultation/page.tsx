@@ -99,8 +99,9 @@ export default function BookConsultationPage() {
             </div>
             <InquiryForm
               kind="consultation"
-              submitLabel="Request consultation"
+              submitLabel="Book my consultation"
               showTopic
+              showCapacity
               topicLabel="Topic for the call"
               topicHint="Roughly what you'd like to scope. We'll come back with two or three time slots."
             />

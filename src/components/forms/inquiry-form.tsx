@@ -13,6 +13,8 @@ import {
 } from "@/lib/actions/submit-inquiry";
 import { markLeadPending } from "@/lib/lead-pending";
 import { AttributionFields } from "@/components/forms/attribution-fields";
+import { ConsentNote } from "@/components/forms/consent-note";
+import { CAPACITY_OPTIONS } from "@/lib/validation/lead-schemas";
 
 const INITIAL: InquiryFormState = { status: "idle" };
 
@@ -21,20 +23,29 @@ type Props = {
   submitLabel?: string;
   showTopic?: boolean;
   showSiteLocation?: boolean;
+  showCapacity?: boolean;
   topicLabel?: string;
   topicHint?: string;
 };
 
+/**
+ * Shared inquiry form (contact / consultation / site-audit), F-3 field
+ * order: Name* → Phone* → Company* → Sector* → Requirement* (topic, when
+ * shown) → Capacity → Email → Message. Topic doubles as the journey's
+ * required "Requirement" for consultation and site-audit.
+ */
 export function InquiryForm({
   kind,
   submitLabel = "Send",
   showTopic = false,
   showSiteLocation = false,
+  showCapacity = false,
   topicLabel = "Topic",
   topicHint,
 }: Props) {
   const [state, formAction, isPending] = useActionState(submitInquiry, INITIAL);
   const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
+  const topicRequired = showTopic && kind !== "contact";
 
   return (
     <form
@@ -50,7 +61,7 @@ export function InquiryForm({
       <AttributionFields />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField label="Your name" htmlFor="name" required error={fieldErrors.name}>
+        <FormField label="Full name" htmlFor="name" required error={fieldErrors.name}>
           <input
             id="name"
             name="name"
@@ -60,6 +71,21 @@ export function InquiryForm({
             className={fieldInputClass}
           />
         </FormField>
+        <FormField label="Phone" htmlFor="phone" required error={fieldErrors.phone}>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+254 7XX XXX XXX"
+            required
+            className={fieldInputClass}
+          />
+        </FormField>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <FormField
           label="Company"
           htmlFor="company"
@@ -75,42 +101,50 @@ export function InquiryForm({
             className={fieldInputClass}
           />
         </FormField>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField label="Phone" htmlFor="phone" required error={fieldErrors.phone}>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            placeholder="+254 7XX XXX XXX"
+        <FormField
+          label="Sector"
+          htmlFor="industry"
+          required
+          error={fieldErrors.industry}
+        >
+          <select
+            id="industry"
+            name="industry"
             required
-            className={fieldInputClass}
-          />
-        </FormField>
-        <FormField label="Email (optional)" htmlFor="email" error={fieldErrors.email}>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            className={fieldInputClass}
-          />
+            defaultValue=""
+            className={fieldSelectClass}
+          >
+            <option value="" disabled>
+              Pick one
+            </option>
+            <option value="food-and-beverage">Food &amp; Beverage</option>
+            <option value="etp-water-treatment">
+              Water &amp; Effluent Treatment
+            </option>
+            <option value="alcohol-distilling">Alcohol &amp; Distilling</option>
+            <option value="chemical-processing">Chemical Processing</option>
+            <option value="other">Other</option>
+          </select>
         </FormField>
       </div>
 
-      <FormField label="Industry (optional)" htmlFor="industry">
-        <select id="industry" name="industry" className={fieldSelectClass}>
-          <option value="">Pick one</option>
-          <option value="food-and-beverage">Food & Beverage</option>
-          <option value="etp-water-treatment">ETP & Water Treatment</option>
-          <option value="alcohol-distilling">Alcohol & Distilling</option>
-          <option value="chemical-processing">Chemical Processing</option>
-          <option value="other">Other</option>
-        </select>
-      </FormField>
+      {showTopic ? (
+        <FormField
+          label={topicLabel}
+          htmlFor="topic"
+          required={topicRequired}
+          error={fieldErrors.topic}
+          hint={topicHint}
+        >
+          <input
+            id="topic"
+            name="topic"
+            type="text"
+            required={topicRequired}
+            className={fieldInputClass}
+          />
+        </FormField>
+      ) : null}
 
       {showSiteLocation ? (
         <FormField
@@ -128,18 +162,39 @@ export function InquiryForm({
         </FormField>
       ) : null}
 
-      {showTopic ? (
-        <FormField label={topicLabel} htmlFor="topic" hint={topicHint}>
-          <input
-            id="topic"
-            name="topic"
-            type="text"
-            className={fieldInputClass}
-          />
+      {showCapacity ? (
+        <FormField
+          label="Approximate capacity (optional)"
+          htmlFor="capacity"
+          error={fieldErrors.capacity}
+        >
+          <select
+            id="capacity"
+            name="capacity"
+            defaultValue=""
+            className={fieldSelectClass}
+          >
+            <option value="">Not sure yet</option>
+            {CAPACITY_OPTIONS.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
         </FormField>
       ) : null}
 
-      <FormField label="Message" htmlFor="message">
+      <FormField label="Email (optional)" htmlFor="email" error={fieldErrors.email}>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          className={fieldInputClass}
+        />
+      </FormField>
+
+      <FormField label="Brief message (optional)" htmlFor="message">
         <textarea
           id="message"
           name="message"
@@ -165,10 +220,7 @@ export function InquiryForm({
         {isPending ? "Sending..." : submitLabel}
       </button>
 
-      <p className="text-xs text-faint">
-        Required fields marked with an asterisk. We respond within 48
-        working hours.
-      </p>
+      <ConsentNote />
     </form>
   );
 }

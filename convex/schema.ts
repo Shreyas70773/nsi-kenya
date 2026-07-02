@@ -111,6 +111,8 @@ export default defineSchema({
     phone: v.optional(v.string()),
     industry: v.optional(v.string()),
     productSlugs: v.array(v.string()),
+    /** F-3 capacity band, stored as the literal label (e.g. "10–100 m³"). */
+    capacity: v.optional(v.string()),
     message: v.optional(v.string()),
     /** UTM + referrer captured client-side for attribution. */
     metadata: v.optional(
@@ -160,6 +162,8 @@ export default defineSchema({
     siteLocation: v.optional(v.string()),
     /** For consultation: topic or scope they want to discuss. */
     topic: v.optional(v.string()),
+    /** F-3 capacity band, stored as the literal label. */
+    capacity: v.optional(v.string()),
     /** Freeform message. */
     message: v.optional(v.string()),
     metadata: v.optional(

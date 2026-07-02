@@ -88,6 +88,7 @@ export type QuoteNotificationInput = {
   phone: string;
   industry?: string;
   productSlugs?: readonly string[];
+  capacity?: string;
   message?: string;
   metadata?: (Attribution & { referrer?: string }) | undefined;
 };
@@ -113,6 +114,7 @@ export async function sendQuoteNotification(
     quote.productSlugs && quote.productSlugs.length > 0
       ? `Products:  ${quote.productSlugs.join(", ")}`
       : null,
+    quote.capacity ? `Capacity:  ${quote.capacity}` : null,
     "",
     quote.message ? `Message:\n${quote.message}` : null,
     ...attributionLines(quote.metadata),
@@ -145,6 +147,7 @@ export type InquiryNotificationInput = {
   industry?: string;
   siteLocation?: string;
   topic?: string;
+  capacity?: string;
   message?: string;
   metadata?: (Attribution & { referrer?: string }) | undefined;
 };
@@ -180,6 +183,7 @@ export async function sendInquiryNotification(
     inquiry.industry ? `Sector:    ${inquiry.industry}` : null,
     inquiry.siteLocation ? `Location:  ${inquiry.siteLocation}` : null,
     inquiry.topic ? `Topic:     ${inquiry.topic}` : null,
+    inquiry.capacity ? `Capacity:  ${inquiry.capacity}` : null,
     "",
     inquiry.message ? `Message:\n${inquiry.message}` : null,
     ...attributionLines(inquiry.metadata),

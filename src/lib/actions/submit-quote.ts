@@ -2,27 +2,12 @@
 
 import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
-import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
 import { postLeadWebhook } from "@/lib/lead-webhook";
-import { phoneSchema } from "@/lib/validation/phone";
+import { QUOTE_SCHEMA } from "@/lib/validation/lead-schemas";
 import { leadMetadataFromForm } from "@/lib/attribution";
-
-const INTENT_SCHEMA = z.enum(["explore", "evaluate", "purchase", "urgent-etp"]);
-
-const QUOTE_SCHEMA = z.object({
-  intent: INTENT_SCHEMA,
-  name: z.string().min(1, "Required").max(120),
-  company: z.string().min(1, "Required").max(160),
-  // F-1: phone is the required channel in this market; email is optional.
-  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
-  phone: phoneSchema,
-  industry: z.string().max(80).optional().or(z.literal("")),
-  productSlugs: z.array(z.string()).max(20).optional(),
-  message: z.string().max(4000).optional().or(z.literal("")),
-});
 
 export type QuoteFormState =
   | { status: "idle" }
@@ -41,6 +26,7 @@ export async function submitQuote(
     phone: String(formData.get("phone") ?? ""),
     industry: String(formData.get("industry") ?? ""),
     productSlugs: formData.getAll("productSlugs").map((v) => String(v)),
+    capacity: String(formData.get("capacity") ?? ""),
     message: String(formData.get("message") ?? ""),
   };
 
@@ -71,6 +57,7 @@ export async function submitQuote(
       phone: data.phone,
       industry: data.industry || undefined,
       productSlugs,
+      capacity: data.capacity || undefined,
       message: data.message || undefined,
       metadata,
     });
@@ -93,6 +80,7 @@ export async function submitQuote(
     phone: data.phone,
     industry: data.industry || undefined,
     productSlugs,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     metadata,
   }).catch((err) => {
@@ -109,6 +97,7 @@ export async function submitQuote(
     phone: data.phone,
     industry: data.industry || undefined,
     product_slugs: productSlugs.join(", "),
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     ...(metadata ?? {}),
   });
@@ -124,6 +113,7 @@ export async function submitQuote(
     phone: data.phone,
     industry: data.industry || undefined,
     product_slugs: productSlugs.join(", "),
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     utm_source: metadata?.utmSource,
     utm_medium: metadata?.utmMedium,

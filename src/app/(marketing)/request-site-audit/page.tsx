@@ -99,9 +99,10 @@ export default function RequestSiteAuditPage() {
             </div>
             <InquiryForm
               kind="site-audit"
-              submitLabel="Request site visit"
+              submitLabel="Book my free site audit"
               showSiteLocation
               showTopic
+              showCapacity
               topicLabel="Scope of the audit"
               topicHint="What we should focus on (e.g. ETP train, tank farm, new line bay)."
             />

@@ -21,6 +21,7 @@ export const submit = mutation({
     industry: v.optional(v.string()),
     siteLocation: v.optional(v.string()),
     topic: v.optional(v.string()),
+    capacity: v.optional(v.string()),
     message: v.optional(v.string()),
     metadata: v.optional(
       v.object({

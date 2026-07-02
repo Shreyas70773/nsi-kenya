@@ -2,28 +2,12 @@
 
 import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
-import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
 import { sendInquiryNotification } from "@/lib/email";
 import { postLeadWebhook } from "@/lib/lead-webhook";
-import { phoneSchema } from "@/lib/validation/phone";
+import { INQUIRY_SCHEMA } from "@/lib/validation/lead-schemas";
 import { leadMetadataFromForm } from "@/lib/attribution";
-
-const KIND_SCHEMA = z.enum(["contact", "consultation", "site-audit"]);
-
-const INQUIRY_SCHEMA = z.object({
-  kind: KIND_SCHEMA,
-  name: z.string().min(1, "Required").max(120),
-  company: z.string().min(1, "Required").max(160),
-  // F-1: phone is the required channel in this market; email is optional.
-  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
-  phone: phoneSchema,
-  industry: z.string().max(80).optional().or(z.literal("")),
-  siteLocation: z.string().max(200).optional().or(z.literal("")),
-  topic: z.string().max(200).optional().or(z.literal("")),
-  message: z.string().max(4000).optional().or(z.literal("")),
-});
 
 export type InquiryFormState =
   | { status: "idle" }
@@ -43,6 +27,7 @@ export async function submitInquiry(
     industry: String(formData.get("industry") ?? ""),
     siteLocation: String(formData.get("siteLocation") ?? ""),
     topic: String(formData.get("topic") ?? ""),
+    capacity: String(formData.get("capacity") ?? ""),
     message: String(formData.get("message") ?? ""),
   };
 
@@ -73,6 +58,7 @@ export async function submitInquiry(
       industry: data.industry || undefined,
       siteLocation: data.siteLocation || undefined,
       topic: data.topic || undefined,
+      capacity: data.capacity || undefined,
       message: data.message || undefined,
       metadata,
     });
@@ -96,6 +82,7 @@ export async function submitInquiry(
     industry: data.industry || undefined,
     siteLocation: data.siteLocation || undefined,
     topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     metadata,
   }).catch((err) => {
@@ -113,6 +100,7 @@ export async function submitInquiry(
     industry: data.industry || undefined,
     site_location: data.siteLocation || undefined,
     topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     ...(metadata ?? {}),
   });
@@ -128,6 +116,7 @@ export async function submitInquiry(
     industry: data.industry || undefined,
     site_location: data.siteLocation || undefined,
     topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
     utm_source: metadata?.utmSource,
     utm_medium: metadata?.utmMedium,
