@@ -18,7 +18,6 @@ const NAV = [
 ] as const;
 
 const SECONDARY = [
-  { href: "/contact/", label: "Contact" },
   { href: "/book-consultation/", label: "Book a consultation" },
   { href: "/request-site-audit/", label: "Request a site audit" },
 ] as const;
@@ -161,12 +160,6 @@ export function SiteHeader() {
                 {CONTACT_PHONE}
               </span>
             </a>
-            <Link
-              href="/contact/"
-              className="press hidden text-sm text-muted transition-colors duration-200 hover:text-text lg:inline"
-            >
-              Contact
-            </Link>
             <Link
               href="/request-quote/"
               className="press inline-flex items-center gap-1.5 rounded-pill bg-accent px-3.5 py-2 text-xs font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong sm:px-4 sm:text-sm"
