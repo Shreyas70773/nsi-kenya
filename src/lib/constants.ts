@@ -6,7 +6,18 @@ export const SITE_DESCRIPTION =
   "Industrial tanks, silos, structural works, and process instruments. Made in Kenya, made for East Africa.";
 export const CONTACT_EMAIL =
   process.env.CONTACT_EMAIL ?? "info@northstarimpex.co.ke";
-export const CONTACT_PHONE = process.env.CONTACT_PHONE ?? "+254 757 724 148";
+// NAP rule: this number must stay byte-identical to the Google Business
+// Profile. NEXT_PUBLIC_ variant exists because client components can only
+// see inlined public env vars — set both when overriding.
+export const CONTACT_PHONE =
+  process.env.NEXT_PUBLIC_CONTACT_PHONE ??
+  process.env.CONTACT_PHONE ??
+  "+254 718 727 334";
+/** Digits-only tel: target, e.g. "+254718727334". */
+export const CONTACT_PHONE_TEL = CONTACT_PHONE.replace(/[^+\d]/g, "");
+/** wa.me links take digits without the leading "+". */
+export const WHATSAPP_NUMBER = CONTACT_PHONE_TEL.replace(/^\+/, "");
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 export const COUNTRY = "KE" as const;
 export const LOCALE = "en-KE" as const;
 export const LOGO_URL = `${SITE_URL}/brand/logo.png`;
