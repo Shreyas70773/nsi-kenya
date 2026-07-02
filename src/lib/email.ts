@@ -46,8 +46,8 @@ export type QuoteNotificationInput = {
   intent: "explore" | "evaluate" | "purchase" | "urgent-etp";
   name: string;
   company: string;
-  email: string;
-  phone?: string;
+  email?: string;
+  phone: string;
   industry?: string;
   productSlugs?: readonly string[];
   message?: string;
@@ -68,8 +68,8 @@ export async function sendQuoteNotification(
     `Intent:    ${describeIntent(quote.intent)}`,
     `Name:      ${quote.name}`,
     `Company:   ${quote.company}`,
-    `Email:     ${quote.email}`,
-    quote.phone ? `Phone:     ${quote.phone}` : null,
+    `Phone:     ${quote.phone}`,
+    quote.email ? `Email:     ${quote.email}` : null,
     quote.industry ? `Industry:  ${quote.industry}` : null,
     quote.productSlugs && quote.productSlugs.length > 0
       ? `Products:  ${quote.productSlugs.join(", ")}`
@@ -78,7 +78,7 @@ export async function sendQuoteNotification(
     quote.message ? `Message:\n${quote.message}` : null,
     "",
     "---",
-    `Reply at ${quote.email}`,
+    `Reply at ${quote.email ?? quote.phone}`,
     `Source: ${SITE_URL}`,
   ]
     .filter(Boolean)
@@ -86,7 +86,7 @@ export async function sendQuoteNotification(
   const res = await c.emails.send({
     from: FROM,
     to: [QUOTE_TO],
-    replyTo: quote.email,
+    ...(quote.email ? { replyTo: quote.email } : {}),
     subject,
     text: body,
   });

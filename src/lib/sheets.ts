@@ -14,8 +14,9 @@ export type SheetsPayload =
       intent: "explore" | "evaluate" | "purchase" | "urgent-etp";
       name: string;
       company: string;
-      email: string;
-      phone?: string;
+      // F-1 swap: phone always present, email only when the buyer gave one.
+      email?: string;
+      phone: string;
       industry?: string;
       product_slugs?: string;
       message?: string;
@@ -26,8 +27,8 @@ export type SheetsPayload =
       kind: "contact" | "consultation" | "site-audit";
       name: string;
       company: string;
-      email: string;
-      phone?: string;
+      email?: string;
+      phone: string;
       industry?: string;
       site_location?: string;
       topic?: string;

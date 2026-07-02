@@ -104,7 +104,10 @@ export default defineSchema({
     ),
     name: v.string(),
     company: v.string(),
-    email: v.string(),
+    /** Optional since the F-1 swap (Kenyan market: phone is the channel);
+        phone stays v.optional for pre-swap rows, but new submissions
+        always carry it. */
+    email: v.optional(v.string()),
     phone: v.optional(v.string()),
     industry: v.optional(v.string()),
     productSlugs: v.array(v.string()),
@@ -144,7 +147,8 @@ export default defineSchema({
     ),
     name: v.string(),
     company: v.string(),
-    email: v.string(),
+    /** Optional since the F-1 swap — see quoteRequests. */
+    email: v.optional(v.string()),
     phone: v.optional(v.string()),
     industry: v.optional(v.string()),
     /** For site-audit: plant location / address. */

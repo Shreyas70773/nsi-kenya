@@ -5,6 +5,7 @@ import { fetchMutation } from "convex/nextjs";
 import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
+import { phoneSchema } from "@/lib/validation/phone";
 
 const KIND_SCHEMA = z.enum(["contact", "consultation", "site-audit"]);
 
@@ -12,8 +13,9 @@ const INQUIRY_SCHEMA = z.object({
   kind: KIND_SCHEMA,
   name: z.string().min(1, "Required").max(120),
   company: z.string().min(1, "Required").max(160),
-  email: z.string().email("Enter a valid email"),
-  phone: z.string().max(40).optional().or(z.literal("")),
+  // F-1: phone is the required channel in this market; email is optional.
+  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
+  phone: phoneSchema,
   industry: z.string().max(80).optional().or(z.literal("")),
   siteLocation: z.string().max(200).optional().or(z.literal("")),
   topic: z.string().max(200).optional().or(z.literal("")),
@@ -62,8 +64,8 @@ export async function submitInquiry(
       kind: data.kind,
       name: data.name,
       company: data.company,
-      email: data.email,
-      phone: data.phone || undefined,
+      email: data.email || undefined,
+      phone: data.phone,
       industry: data.industry || undefined,
       siteLocation: data.siteLocation || undefined,
       topic: data.topic || undefined,
@@ -85,8 +87,8 @@ export async function submitInquiry(
     kind: data.kind,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     site_location: data.siteLocation || undefined,
     topic: data.topic || undefined,

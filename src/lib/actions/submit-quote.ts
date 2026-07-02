@@ -6,6 +6,7 @@ import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
+import { phoneSchema } from "@/lib/validation/phone";
 
 const INTENT_SCHEMA = z.enum(["explore", "evaluate", "purchase", "urgent-etp"]);
 
@@ -13,8 +14,9 @@ const QUOTE_SCHEMA = z.object({
   intent: INTENT_SCHEMA,
   name: z.string().min(1, "Required").max(120),
   company: z.string().min(1, "Required").max(160),
-  email: z.string().email("Enter a valid email"),
-  phone: z.string().max(40).optional().or(z.literal("")),
+  // F-1: phone is the required channel in this market; email is optional.
+  email: z.string().email("Enter a valid email").optional().or(z.literal("")),
+  phone: phoneSchema,
   industry: z.string().max(80).optional().or(z.literal("")),
   productSlugs: z.array(z.string()).max(20).optional(),
   message: z.string().max(4000).optional().or(z.literal("")),
@@ -62,8 +64,8 @@ export async function submitQuote(
       intent: data.intent,
       name: data.name,
       company: data.company,
-      email: data.email,
-      phone: data.phone || undefined,
+      email: data.email || undefined,
+      phone: data.phone,
       industry: data.industry || undefined,
       productSlugs,
       message: data.message || undefined,
@@ -83,8 +85,8 @@ export async function submitQuote(
     intent: data.intent,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     productSlugs,
     message: data.message || undefined,
@@ -99,8 +101,8 @@ export async function submitQuote(
     intent: data.intent,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     product_slugs: productSlugs.join(", "),
     message: data.message || undefined,

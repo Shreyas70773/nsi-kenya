@@ -107,22 +107,24 @@ export function QuoteForm({
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField label="Email" htmlFor="email" required error={fieldErrors.email}>
+        <FormField label="Phone" htmlFor="phone" required error={fieldErrors.phone}>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+254 7XX XXX XXX"
+            required
+            className={fieldInputClass}
+          />
+        </FormField>
+        <FormField label="Email (optional)" htmlFor="email" error={fieldErrors.email}>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
-            required
-            className={fieldInputClass}
-          />
-        </FormField>
-        <FormField label="Phone (optional)" htmlFor="phone">
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
             className={fieldInputClass}
           />
         </FormField>
