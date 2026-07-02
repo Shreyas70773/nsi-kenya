@@ -7,6 +7,7 @@ import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
 import { phoneSchema } from "@/lib/validation/phone";
+import { leadMetadataFromForm } from "@/lib/attribution";
 
 const INTENT_SCHEMA = z.enum(["explore", "evaluate", "purchase", "urgent-etp"]);
 
@@ -58,6 +59,7 @@ export async function submitQuote(
 
   const data = parsed.data;
   const productSlugs = data.productSlugs ?? [];
+  const metadata = leadMetadataFromForm(formData);
 
   try {
     await fetchMutation(api.quoteRequests.submit, {
@@ -69,6 +71,7 @@ export async function submitQuote(
       industry: data.industry || undefined,
       productSlugs,
       message: data.message || undefined,
+      metadata,
     });
   } catch (e) {
     return {
@@ -90,6 +93,7 @@ export async function submitQuote(
     industry: data.industry || undefined,
     productSlugs,
     message: data.message || undefined,
+    metadata,
   }).catch((err) => {
     console.error("[submitQuote] email failed", err);
   });
@@ -106,6 +110,14 @@ export async function submitQuote(
     industry: data.industry || undefined,
     product_slugs: productSlugs.join(", "),
     message: data.message || undefined,
+    utm_source: metadata?.utmSource,
+    utm_medium: metadata?.utmMedium,
+    utm_campaign: metadata?.utmCampaign,
+    utm_content: metadata?.utmContent,
+    gclid: metadata?.gclid,
+    fbclid: metadata?.fbclid,
+    landing_page: metadata?.landingPage,
+    source_code: metadata?.sourceCode,
   });
 
   // The thank-you URL is the GA4/Meta conversion trigger (GC-7).

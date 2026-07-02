@@ -13,6 +13,7 @@ import {
   SITE_URL,
   CONTACT_EMAIL,
 } from "./constants";
+import { attributionLines, type Attribution } from "./attribution";
 
 const FROM = `${SITE_NAME} <${CONTACT_EMAIL}>`;
 
@@ -51,6 +52,7 @@ export type QuoteNotificationInput = {
   industry?: string;
   productSlugs?: readonly string[];
   message?: string;
+  metadata?: (Attribution & { referrer?: string }) | undefined;
 };
 
 export async function sendQuoteNotification(
@@ -76,6 +78,7 @@ export async function sendQuoteNotification(
       : null,
     "",
     quote.message ? `Message:\n${quote.message}` : null,
+    ...attributionLines(quote.metadata),
     "",
     "---",
     `Reply at ${quote.email ?? quote.phone}`,

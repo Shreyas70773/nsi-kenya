@@ -12,6 +12,7 @@ import {
   type InquiryFormState,
 } from "@/lib/actions/submit-inquiry";
 import { markLeadPending } from "@/lib/lead-pending";
+import { AttributionFields } from "@/components/forms/attribution-fields";
 
 const INITIAL: InquiryFormState = { status: "idle" };
 
@@ -46,6 +47,7 @@ export function InquiryForm({
       className="flex flex-col gap-6"
     >
       <input type="hidden" name="kind" value={kind} />
+      <AttributionFields />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <FormField label="Your name" htmlFor="name" required error={fieldErrors.name}>

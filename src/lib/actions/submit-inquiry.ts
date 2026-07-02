@@ -6,6 +6,7 @@ import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
 import { phoneSchema } from "@/lib/validation/phone";
+import { leadMetadataFromForm } from "@/lib/attribution";
 
 const KIND_SCHEMA = z.enum(["contact", "consultation", "site-audit"]);
 
@@ -58,6 +59,7 @@ export async function submitInquiry(
   }
 
   const data = parsed.data;
+  const metadata = leadMetadataFromForm(formData);
 
   try {
     await fetchMutation(api.inquiries.submit, {
@@ -70,6 +72,7 @@ export async function submitInquiry(
       siteLocation: data.siteLocation || undefined,
       topic: data.topic || undefined,
       message: data.message || undefined,
+      metadata,
     });
   } catch (e) {
     return {
@@ -93,6 +96,14 @@ export async function submitInquiry(
     site_location: data.siteLocation || undefined,
     topic: data.topic || undefined,
     message: data.message || undefined,
+    utm_source: metadata?.utmSource,
+    utm_medium: metadata?.utmMedium,
+    utm_campaign: metadata?.utmCampaign,
+    utm_content: metadata?.utmContent,
+    gclid: metadata?.gclid,
+    fbclid: metadata?.fbclid,
+    landing_page: metadata?.landingPage,
+    source_code: metadata?.sourceCode,
   });
 
   // Per-journey thank-you URLs are the conversion triggers (GC-7);

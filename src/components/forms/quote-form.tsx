@@ -9,6 +9,7 @@ import {
 } from "@/components/primitives/form-field";
 import { submitQuote, type QuoteFormState } from "@/lib/actions/submit-quote";
 import { markLeadPending } from "@/lib/lead-pending";
+import { AttributionFields } from "@/components/forms/attribution-fields";
 
 const INTENT_LABEL: Record<string, string> = {
   explore: "Exploring options",
@@ -53,6 +54,7 @@ export function QuoteForm({
       onSubmit={() => markLeadPending("quote")}
       className="flex flex-col gap-6"
     >
+      <AttributionFields />
       {showIntentSelector ? (
         <FormField
           label="Intent"

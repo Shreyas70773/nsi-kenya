@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { trackLead, type LeadJourney } from "@/lib/analytics";
 import { consumeLeadPending } from "@/lib/lead-pending";
+import { getAttribution } from "@/lib/attribution";
 
 /**
  * Fires generate_lead {journey} exactly once per real submission (GC-5/7).
@@ -12,7 +13,7 @@ import { consumeLeadPending } from "@/lib/lead-pending";
 export function ThankYouTracker({ journey }: { journey: LeadJourney }) {
   useEffect(() => {
     if (consumeLeadPending(journey)) {
-      trackLead(journey);
+      trackLead(journey, getAttribution().sourceCode);
     }
   }, [journey]);
 

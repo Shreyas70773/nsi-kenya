@@ -20,6 +20,14 @@ export type SheetsPayload =
       industry?: string;
       product_slugs?: string;
       message?: string;
+      utm_source?: string;
+      utm_medium?: string;
+      utm_campaign?: string;
+      utm_content?: string;
+      gclid?: string;
+      fbclid?: string;
+      landing_page?: string;
+      source_code?: string;
     }
   | {
       form_type: "inquiry";
@@ -33,6 +41,14 @@ export type SheetsPayload =
       site_location?: string;
       topic?: string;
       message?: string;
+      utm_source?: string;
+      utm_medium?: string;
+      utm_campaign?: string;
+      utm_content?: string;
+      gclid?: string;
+      fbclid?: string;
+      landing_page?: string;
+      source_code?: string;
     };
 
 const TIMEOUT_MS = 4000;
