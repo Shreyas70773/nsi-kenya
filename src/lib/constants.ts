@@ -15,8 +15,18 @@ export const CONTACT_PHONE =
   "+254 718 727 334";
 /** Digits-only tel: target, e.g. "+254718727334". */
 export const CONTACT_PHONE_TEL = CONTACT_PHONE.replace(/[^+\d]/g, "");
+/**
+ * WhatsApp can live on a different number than the displayed call/NAP
+ * number (e.g. while the primary line's eSIM isn't WhatsApp-registered).
+ * Set NEXT_PUBLIC_WHATSAPP_PHONE to divert only the wa.me links.
+ */
+const WHATSAPP_PHONE =
+  process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? CONTACT_PHONE;
 /** wa.me links take digits without the leading "+". */
-export const WHATSAPP_NUMBER = CONTACT_PHONE_TEL.replace(/^\+/, "");
+export const WHATSAPP_NUMBER = WHATSAPP_PHONE.replace(/[^+\d]/g, "").replace(
+  /^\+/,
+  "",
+);
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID ?? "";
 export const COUNTRY = "KE" as const;
 export const LOCALE = "en-KE" as const;
