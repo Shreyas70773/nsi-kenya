@@ -53,8 +53,8 @@ const TANK_TYPES = [
     grades: "Carbon steel + chemical-resistant epoxy",
     capacity: "1 to 200 m³",
     best: "ETP chemical dosing, corrosive media storage",
-    imageSrc: "/images/home/sector-chemical.png",
-    imageAlt: "Epoxy reactor with pressure gauge cluster",
+    imageSrc: "/images/products/tanks-epoxy-lined-hero.png",
+    imageAlt: "Bolted epoxy fusion-bonded steel tank with side ladder",
   },
   {
     href: "/products/tanks/zinc-alum/",
@@ -62,8 +62,8 @@ const TANK_TYPES = [
     grades: "Bolted zinc-aluminium steel panels",
     capacity: "50 to 5000 m³",
     best: "Industrial water storage, ETP process tanks, brewing",
-    imageSrc: "/images/home/silos-corrugated.png",
-    imageAlt: "Bolted zinc-alum tank exterior with vertical panel seams",
+    imageSrc: "/images/products/tanks-zinc-alum-hero.png",
+    imageAlt: "Corrugated zinc-aluminium bolted storage tanks",
   },
 ];
 

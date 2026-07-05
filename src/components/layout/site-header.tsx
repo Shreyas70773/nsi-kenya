@@ -110,9 +110,9 @@ export function SiteHeader() {
           >
             <Image
               src="/brand/logo.png"
-              alt="North Star Impex Kenya"
-              width={215}
-              height={94}
+              alt="North Star Impex"
+              width={900}
+              height={266}
               priority
               className="h-10 w-auto md:h-10"
             />
@@ -209,9 +209,9 @@ function MobileNavDrawer({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between border-b border-border/10 px-5 pt-5 pb-4">
           <Image
             src="/brand/logo.png"
-            alt="North Star Impex Kenya"
-            width={215}
-            height={94}
+            alt="North Star Impex"
+            width={900}
+            height={266}
             className="h-9 w-auto"
           />
           <button
