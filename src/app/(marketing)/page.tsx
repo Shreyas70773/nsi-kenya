@@ -328,7 +328,7 @@ export default function Home() {
                 copy="Every tank we install can be connected to a remote-monitoring app, personalized to your site: tank levels, flow, water quality, and alarms from any device."
                 stat="LoRa · NB-IoT · LTE · Ethernet"
                 className="col-span-6 row-span-1 md:col-span-3"
-                imageSrc="/images/home/iot-kisumu-plant.png"
+                imageSrc="/images/home/iot-kisumu-plant-v2.png"
                 imageAlt="Plant manager reviewing a live tank-monitoring dashboard on a tablet outside a Kenyan industrial plant"
                 data-reveal-item
               />

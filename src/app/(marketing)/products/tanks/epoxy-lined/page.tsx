@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in-house, lining picked to the chemistry.",
     url: "/products/tanks/epoxy-lined/",
-    images: [{ url: "/images/products/tanks-epoxy-lined-hero.png" }],
+    images: [{ url: "/images/products/tanks-epoxy-lined-hero-v2.png" }],
   },
 };
 
@@ -108,7 +108,7 @@ export default function EpoxyLinedTanksPage() {
         title="Bolted carbon steel tanks,"
         titleAccent="lined with fusion-bonded epoxy."
         subtitle="The tank shown here is bolted and epoxy fusion-bonded, built for ETP chemical dosing and corrosive process water where stainless costs more than the duty needs and plain carbon steel will not survive the medium. Built in-house, lined to the chemistry, and cured before delivery."
-        imageSrc="/images/products/tanks-epoxy-lined-hero.png"
+        imageSrc="/images/products/tanks-epoxy-lined-hero-v2.png"
         imageAlt="Bolted epoxy fusion-bonded steel tank with side ladder"
         primaryCta={{ href: "/request-quote/", label: "Spec an epoxy tank" }}
         secondaryCta={{
@@ -173,7 +173,7 @@ export default function EpoxyLinedTanksPage() {
       <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
         <ParallaxImage className="absolute inset-0">
           <Image
-            src="/images/products/tanks-epoxy-lined-hero.png"
+            src="/images/products/tanks-epoxy-lined-hero-v2.png"
             alt=""
             fill
             sizes="100vw"

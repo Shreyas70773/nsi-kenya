@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description:
       "Bolted zinc-aluminium water-storage tanks for Kenyan industrial sites. 50 to 5,000 m³, 20+ year service life, modular panels, no on-site welding.",
     url: "/products/tanks/zinc-alum/",
-    images: [{ url: "/images/products/tanks-zinc-alum-hero.png" }],
+    images: [{ url: "/images/products/tanks-zinc-alum-hero-v2.png" }],
   },
 };
 
@@ -105,7 +105,7 @@ export default function ZincAlumTanksPage() {
         title="The bolted tank that"
         titleAccent="outlasts carbon steel by 20 years."
         subtitle="A 55% aluminium, 43.5% zinc barrier coating that self-heals at cuts and performs well in humid conditions. Modular panels mean we can drop a 50 to 5000 cubic metre tank on your site without on-location welding, with a liner included as standard."
-        imageSrc="/images/products/tanks-zinc-alum-hero.png"
+        imageSrc="/images/products/tanks-zinc-alum-hero-v2.png"
         imageAlt="A large bolted zinc-aluminium water tank standing on a concrete plinth"
         primaryCta={{ href: "/request-quote/", label: "Spec a zinc aluminium tank" }}
         secondaryCta={{
@@ -176,7 +176,7 @@ export default function ZincAlumTanksPage() {
       <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
         <ParallaxImage className="absolute inset-0">
           <Image
-            src="/images/products/tanks-zinc-alum-hero.png"
+            src="/images/products/tanks-zinc-alum-hero-v2.png"
             alt=""
             fill
             sizes="100vw"
@@ -328,7 +328,7 @@ export default function ZincAlumTanksPage() {
             href: "/products/tanks/stainless-steel/",
             title: "Stainless steel tanks",
             copy: "304 and 316L for food, dairy, and chemical-resistant duty where corrosion matters more than initial cost.",
-            imageSrc: "/images/products/tanks-stainless-steel-hero.png",
+            imageSrc: "/images/products/tanks-stainless-steel-hero-v2.png",
             imageAlt: "Polished stainless steel tank inside an East African F&B plant",
           },
           {

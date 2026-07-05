@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description:
       "304 and 316L stainless steel tanks fabricated in-house for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
     url: "/products/tanks/stainless-steel/",
-    images: [{ url: "/images/products/tanks-stainless-steel-hero.png" }],
+    images: [{ url: "/images/products/tanks-stainless-steel-hero-v2.png" }],
   },
 };
 
@@ -125,7 +125,7 @@ export default function StainlessSteelTanksPage() {
         title="304 and 316L stainless tanks,"
         titleAccent="built for food, beverage, and process duty."
         subtitle="North Star Impex fabricates the default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment, for plants across East Africa. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
-        imageSrc="/images/products/tanks-stainless-steel-hero.png"
+        imageSrc="/images/products/tanks-stainless-steel-hero-v2.png"
         imageAlt="A row of polished 304 stainless steel processing tanks inside an F&B plant"
         primaryCta={{ href: "/request-quote/", label: "Spec a stainless tank" }}
         secondaryCta={{
@@ -191,7 +191,7 @@ export default function StainlessSteelTanksPage() {
       <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
         <ParallaxImage className="absolute inset-0">
           <Image
-            src="/images/products/tanks-stainless-steel-hero.png"
+            src="/images/products/tanks-stainless-steel-hero-v2.png"
             alt=""
             fill
             sizes="100vw"
@@ -398,7 +398,7 @@ export default function StainlessSteelTanksPage() {
             href: "/products/tanks/epoxy-lined/",
             title: "Epoxy-lined tanks",
             copy: "Carbon-steel shells with chemistry-matched linings for ETP dosing and acid storage.",
-            imageSrc: "/images/products/tanks-epoxy-lined-hero.png",
+            imageSrc: "/images/products/tanks-epoxy-lined-hero-v2.png",
             imageAlt: "Epoxy-lined tank for chemical dosing",
           },
           {

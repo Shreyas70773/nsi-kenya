@@ -66,7 +66,7 @@ const CATEGORIES = [
     title: "Remote Monitoring",
     tagline: "NB-IoT capable",
     copy: "Cloud-connected oversight on every tank or instrument we install. Levels, flow, water quality, and alarms from any device.",
-    imageSrc: "/images/home/iot-kisumu-plant.png",
+    imageSrc: "/images/home/iot-kisumu-plant-v2.png",
   },
 ];
 

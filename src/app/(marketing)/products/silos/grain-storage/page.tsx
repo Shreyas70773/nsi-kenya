@@ -343,7 +343,7 @@ export default function GrainStorageSilosPage() {
             href: "/products/silos/feed-storage/",
             title: "Feed storage silos",
             copy: "Smaller-format silos for finished-feed dispatch, poultry farms, and dairy operations.",
-            imageSrc: "/images/products/silos-feed-storage-hero.png",
+            imageSrc: "/images/products/silos-feed-storage-hero-v2.png",
             imageAlt: "Galvanised feed storage silo at a farm",
           },
           {

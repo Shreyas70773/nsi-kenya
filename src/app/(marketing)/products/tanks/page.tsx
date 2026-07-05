@@ -44,7 +44,7 @@ const TANK_TYPES = [
     grades: "304 and 316L",
     capacity: "1 to 500 m³",
     best: "Food and beverage, dairy, pharmaceutical-adjacent",
-    imageSrc: "/images/products/tanks-stainless-steel-hero.png",
+    imageSrc: "/images/products/tanks-stainless-steel-hero-v2.png",
     imageAlt: "A row of polished stainless steel process tanks in a plant",
   },
   {
@@ -53,7 +53,7 @@ const TANK_TYPES = [
     grades: "Carbon steel + chemical-resistant epoxy",
     capacity: "1 to 200 m³",
     best: "ETP chemical dosing, corrosive media storage",
-    imageSrc: "/images/products/tanks-epoxy-lined-hero.png",
+    imageSrc: "/images/products/tanks-epoxy-lined-hero-v2.png",
     imageAlt: "Bolted epoxy fusion-bonded steel tank with side ladder",
   },
   {
@@ -62,7 +62,7 @@ const TANK_TYPES = [
     grades: "Bolted zinc-aluminium steel panels",
     capacity: "50 to 5000 m³",
     best: "Industrial water storage, ETP process tanks, brewing",
-    imageSrc: "/images/products/tanks-zinc-alum-hero.png",
+    imageSrc: "/images/products/tanks-zinc-alum-hero-v2.png",
     imageAlt: "Corrugated zinc-aluminium bolted storage tanks",
   },
 ];

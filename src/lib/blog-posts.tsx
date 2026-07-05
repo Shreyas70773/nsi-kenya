@@ -232,7 +232,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-26",
     readingMinutes: 7,
     tags: ["Tanks", "Food & Beverage"],
-    heroImage: "/images/products/tanks-stainless-steel-hero.png",
+    heroImage: "/images/products/tanks-stainless-steel-hero-v2.png",
     heroImageAlt:
       "Polished stainless steel processing tank inside a Kenyan F&B plant",
     body: (
@@ -410,7 +410,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     publishedAt: "2026-05-19",
     readingMinutes: 6,
     tags: ["Tanks", "Lifecycle"],
-    heroImage: "/images/products/tanks-zinc-alum-hero.png",
+    heroImage: "/images/products/tanks-zinc-alum-hero-v2.png",
     heroImageAlt:
       "Side-by-side comparison of Zinc Aluminium and carbon-steel tank construction",
     body: (

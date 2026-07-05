@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
     url: "/products/silos/feed-storage/",
-    images: [{ url: "/images/products/silos-feed-storage-hero.png" }],
+    images: [{ url: "/images/products/silos-feed-storage-hero-v2.png" }],
   },
 };
 
@@ -85,7 +85,7 @@ export default function FeedStorageSilosPage() {
         title="Feed storage,"
         titleAccent="sized to your throughput."
         subtitle="Galvanised feed silos for poultry, feed mills, and dairy farms. Hopper discharge or sweep auger, flexible-auger or pneumatic intake. Sized from 5 to 100 MT per silo."
-        imageSrc="/images/products/silos-feed-storage-hero.png"
+        imageSrc="/images/products/silos-feed-storage-hero-v2.png"
         imageAlt="Two galvanised feed silos at a feed mill or poultry operation"
         primaryCta={{ href: "/request-quote/", label: "Spec a feed silo" }}
         secondaryCta={{ href: "/products/silos/", label: "All silo types" }}
@@ -141,7 +141,7 @@ export default function FeedStorageSilosPage() {
       <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
         <ParallaxImage className="absolute inset-0">
           <Image
-            src="/images/products/silos-feed-storage-hero.png"
+            src="/images/products/silos-feed-storage-hero-v2.png"
             alt=""
             fill
             sizes="100vw"
