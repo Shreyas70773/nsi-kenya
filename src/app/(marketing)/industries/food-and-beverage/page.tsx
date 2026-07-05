@@ -77,7 +77,7 @@ const TRIGGERS = [
   },
   {
     title: "Plant audit",
-    copy: "KEBS or third-party audit identifies aging vessels or insufficient sanitary design. Triggers a replacement program inside 12 months.",
+    copy: "Regulatory or third-party audit identifies aging vessels or insufficient sanitary design. Triggers a replacement program inside 12 months.",
   },
   {
     title: "Food-safety failure",
@@ -97,15 +97,15 @@ export default function FoodAndBeveragePage() {
 
       <PageHero
         eyebrow="Industries / Food & Beverage"
-        title="Equipment for the plants"
-        titleAccent="that feed Kenya."
-        subtitle="Dairy, beverage, edible oils, brewing, bakery. Single supplier across stainless processing tanks, jacketed vessels, grain silos, structural fabrication, and the full instrument stack. Sanitary tri-clamp, food-grade finishes, KEBS-aware sourcing."
+        title="Equipment for"
+        titleAccent="food and beverage plants."
+        subtitle="Dairy, beverage, edible oils, brewing, bakery. Single supplier across stainless processing tanks, jacketed vessels, grain silos, structural fabrication, and the full instrument stack. Sanitary tri-clamp, food-grade finishes, regulatory-compliant sourcing."
         imageSrc="/images/industries/food-and-beverage-hero.png"
-        imageAlt="Interior of a Kenyan beverage filling line with stainless filling heads and bottles on conveyor"
+        imageAlt="Interior of a beverage filling line with stainless filling heads and bottles on conveyor"
         primaryCta={{ href: "/request-quote/", label: "Spec an F&B project" }}
         secondaryCta={{ href: "/products/tanks/stainless-steel/", label: "Stainless tanks" }}
         metaLeft="Dairy · Beverage · Edible oils · Brewing · Bakery"
-        metaRight="KEBS-aware sourcing"
+        metaRight="Regulatory-compliant sourcing"
       />
 
       <Section size="compact">
@@ -124,7 +124,7 @@ export default function FoodAndBeveragePage() {
             <SectionHeader
               index="01"
               eyebrow="The buying frame"
-              title="F&B buyers are growing. We equip them to grow."
+              title="Food and beverage buyers invest in equipment to support growth."
               className="mb-0 md:mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -133,10 +133,9 @@ export default function FoodAndBeveragePage() {
             <div data-reveal-item>
               <Prose>
               <p>
-                F&B operators don't buy infrastructure because they have to.
-                They buy it because they're expanding. New line, new SKU,
-                new facility, new export market. The brief reads as ambition,
-                not compliance.
+                F&B operators typically invest in equipment to support
+                expansion: a new line, a new SKU, a new facility, or a new
+                export market.
               </p>
               <p>
                 That changes what matters in the spec. Material grade for
@@ -177,7 +176,7 @@ export default function FoodAndBeveragePage() {
           }}
         />
         <div className="font-mono-label absolute inset-x-0 bottom-0 z-[2] flex flex-col gap-2 px-6 pb-6 text-[10px] text-white/75 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8">
-          <span>Sanitary tri-clamp · food-grade finishes · KEBS-aware sourcing</span>
+          <span>Sanitary tri-clamp · food-grade finishes · regulatory-compliant sourcing</span>
           <span>Dairy · Beverage · Edible oils · Brewing · Bakery</span>
         </div>
       </div>
@@ -232,10 +231,10 @@ export default function FoodAndBeveragePage() {
             className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
           >
             <>
-              F&amp;B operators don&apos;t buy infrastructure because they have
-              to.{" "}
+              Food and beverage operators invest in infrastructure{" "}
               <span className="text-accent">
-                They buy it because they&apos;re expanding.
+                to support growth in demand, new product lines, and new
+                markets.
               </span>
             </>
           </TextReveal>
@@ -324,7 +323,8 @@ export default function FoodAndBeveragePage() {
             as="p"
             className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
           >
-            &ldquo;The brief reads as ambition, not compliance.&rdquo;
+            &ldquo;F&amp;B equipment investment is typically driven by growth,
+            not just compliance.&rdquo;
           </TextReveal>
         </div>
       </Section>

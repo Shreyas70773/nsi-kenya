@@ -84,7 +84,7 @@ export default function NairobiPage() {
         eyebrow="Locations / Nairobi"
         title="On-site within 48 hours,"
         titleAccent="across every industrial estate."
-        subtitle="The workshop is in Nairobi. From there we serve Athi River, Ruiru, Mlolongo, Industrial Area, the Mombasa Road corridor, Tatu City, and Thika Road. Forty-eight hours from call to plant for non-urgent visits; sooner for urgent ones."
+        subtitle="We're based in Nairobi and serve Athi River, Ruiru, Mlolongo, Industrial Area, the Mombasa Road corridor, Tatu City, and Thika Road. Forty-eight hours from call to plant for non-urgent visits; sooner for urgent ones."
         imageSrc="/images/locations/nairobi-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-site-audit/", label: "Book a Nairobi site visit" }}
@@ -158,7 +158,7 @@ export default function NairobiPage() {
           }}
         />
         <div className="font-mono-label absolute inset-x-0 bottom-0 z-[2] flex flex-col gap-2 px-6 pb-6 text-[10px] text-white/75 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8">
-          <span>The workshop is in Nairobi</span>
+          <span>Based in Nairobi</span>
           <span>48-hour response · all major industrial estates</span>
         </div>
       </div>
@@ -167,8 +167,8 @@ export default function NairobiPage() {
         <SectionHeader
           index="02"
           eyebrow="Industrial estates we serve"
-          title="Seven estates,"
-          titleAccent="every gate."
+          title="The industrial estates"
+          titleAccent="we serve."
         />
         <Reveal stagger={0.07}>
           <ol className="flex flex-col">
@@ -239,7 +239,7 @@ export default function NairobiPage() {
                 </span>
                 <span className="hairline h-px w-10" aria-hidden />
                 <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
-                  Athi River to Thika Road, every gate.
+                  Athi River to Thika Road.
                 </p>
               </div>
             </div>
@@ -265,8 +265,8 @@ export default function NairobiPage() {
       </Section>
 
       <CtaBand
-        headline="Site in Nairobi?"
-        headlineAccent="We can be there by Friday."
+        headline="Have a project in Nairobi?"
+        headlineAccent="Request a quote or book a site visit."
         cards={DEFAULT_CTA_CARDS}
       />
     </>

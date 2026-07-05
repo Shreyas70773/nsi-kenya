@@ -19,7 +19,7 @@ import { SITE_URL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Epoxy-Lined Tank Kenya: ETP & Chemical Dosing",
   description:
-    "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in Kenya, lining picked to the chemistry.",
+    "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in-house, lining picked to the chemistry.",
   alternates: { canonical: "/products/tanks/epoxy-lined/" },
   keywords: [
     "epoxy lined tank Kenya",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Epoxy-Lined Tank Kenya: ETP & Chemical Dosing",
     description:
-      "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in Kenya, lining picked to the chemistry.",
+      "Carbon-steel tanks with chemical-resistant epoxy lining for ETP dosing, acid storage, and corrosive process media. Fabricated in-house, lining picked to the chemistry.",
     url: "/products/tanks/epoxy-lined/",
     images: [{ url: "/images/products/tanks-epoxy-lined-hero.png" }],
   },
@@ -65,7 +65,7 @@ const SPECS = [
     value: "Bolted manway, drain, fill port, instrument flanges",
   },
   {
-    label: "Lead time, Kenya",
+    label: "Lead time",
     value: "5 to 8 weeks ex-works, including lining cure time",
   },
 ] as const;
@@ -105,11 +105,11 @@ export default function EpoxyLinedTanksPage() {
 
       <PageHero
         eyebrow="Tanks / Epoxy-Lined"
-        title="Carbon steel shell,"
-        titleAccent="chemical-resistant epoxy inside."
-        subtitle="The default tank for ETP chemical dosing and corrosive process water, where stainless is more cost than the duty needs and carbon steel alone will not survive the medium. Fabricated in Kenya, lined to the chemistry, cured before delivery."
+        title="Bolted carbon steel tanks,"
+        titleAccent="lined with fusion-bonded epoxy."
+        subtitle="The tank shown here is bolted and epoxy fusion-bonded, built for ETP chemical dosing and corrosive process water where stainless costs more than the duty needs and plain carbon steel will not survive the medium. Built in-house, lined to the chemistry, and cured before delivery."
         imageSrc="/images/products/tanks-epoxy-lined-hero.png"
-        imageAlt=""
+        imageAlt="Bolted epoxy fusion-bonded steel tank with side ladder"
         primaryCta={{ href: "/request-quote/", label: "Spec an epoxy tank" }}
         secondaryCta={{
           href: "/products/tanks/",
@@ -136,7 +136,7 @@ export default function EpoxyLinedTanksPage() {
             <SectionHeader
               index="01"
               eyebrow="What it is"
-              title="The tank that exists where stainless is overkill and carbon alone is wrong."
+              title="The right tank for duty where stainless is unnecessary and plain carbon steel will not survive the medium."
               className="mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -203,9 +203,8 @@ export default function EpoxyLinedTanksPage() {
             />
             <p className="mt-4 text-sm text-muted">
               The numbers below are the default. The right epoxy for your
-              chemistry is a conversation, not a catalogue. Tell us the
-              medium and concentration; we will quote the lining system
-              that matches.
+              chemistry depends on the medium and its concentration. Tell
+              us both, and we will quote the lining system that matches.
             </p>
           </div>
           <div className="md:col-span-8">
@@ -315,8 +314,8 @@ export default function EpoxyLinedTanksPage() {
             as="p"
             className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
           >
-            “The right epoxy for your chemistry is a conversation, not a
-            catalogue.”
+            “The right epoxy for your chemistry depends on the medium and
+            its concentration.”
           </TextReveal>
         </div>
       </Section>

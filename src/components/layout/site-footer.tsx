@@ -9,7 +9,7 @@ const FOOTER_NAV = [
     heading: "Products",
     links: [
       { href: "/products/tanks/stainless-steel/", label: "Stainless Steel Tanks" },
-      { href: "/products/tanks/zinc-alum/", label: "Zinc-Alum Tanks" },
+      { href: "/products/tanks/zinc-alum/", label: "Zinc Aluminium Tanks" },
       { href: "/products/silos/grain-storage/", label: "Grain Storage Silos" },
       { href: "/products/structural-works/", label: "Structural Works" },
       { href: "/products/instruments/", label: "Process Instruments" },
@@ -127,7 +127,7 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border/15 pt-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE_NAME} LTD. Fabricated in Kenya.
+            © {new Date().getFullYear()} {SITE_NAME} LTD.
           </p>
           <p className="flex flex-wrap gap-x-4 gap-y-1">
             <a href={`mailto:${CONTACT_EMAIL}`} className="link-draw hover:text-text">

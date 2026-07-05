@@ -22,7 +22,7 @@ import { ParallaxImage } from "@/components/motion/parallax";
 export const metadata: Metadata = {
   title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
   description:
-    "304 and 316L stainless steel tanks fabricated in Kenya for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
+    "304 and 316L stainless steel tanks fabricated in-house for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
   alternates: { canonical: "/products/tanks/stainless-steel/" },
   keywords: [
     "stainless steel tank Kenya",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Stainless Steel Tank Kenya: 304 & 316L Food-Grade",
     description:
-      "304 and 316L stainless steel tanks fabricated in Kenya for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
+      "304 and 316L stainless steel tanks fabricated in-house for dairy, beverage, edible-oil, and ETP duty. Sanitary tri-clamp, CIP-ready, 4 to 8 week lead time.",
     url: "/products/tanks/stainless-steel/",
     images: [{ url: "/images/products/tanks-stainless-steel-hero.png" }],
   },
@@ -56,19 +56,19 @@ const SPECS = [
   { label: "Design pressure", value: "Atmospheric to 6", unit: "bar" },
   { label: "Standard fittings", value: "Tri-clamp manway, sanitary drain, CIP spray ball, sight glass, temperature port" },
   { label: "Instrumentation ports", value: "Pre-tapped for level, temperature, pressure, and pH" },
-  { label: "Lead time, Kenya", value: "4 to 8 weeks ex-works, depending on capacity" },
+  { label: "Lead time", value: "4 to 8 weeks ex-works, depending on capacity" },
 ] as const;
 
 const FAQS = [
   {
     question: "When should I choose 316L over 304 for a stainless tank?",
     answer:
-      "Switch from 304 to 316L when chlorides exceed roughly 200 ppm or when the duty involves repeated acid CIP cycles. The most common 316L triggers we see in Kenya are whey concentrates, acid wash chemistry in food plants, and any pharmaceutical-adjacent application. The low-carbon (L) variant resists weld-zone sensitisation during CIP cycling.",
+      "Switch from 304 to 316L when chlorides exceed roughly 200 ppm or when the duty involves repeated acid CIP cycles. The most common 316L triggers we see are whey concentrates, acid wash chemistry in food plants, and any pharmaceutical-adjacent application. The low-carbon (L) variant resists weld-zone sensitisation during CIP cycling.",
   },
   {
-    question: "What is the typical lead time for a stainless tank in Kenya?",
+    question: "What is the typical lead time for a stainless tank?",
     answer:
-      "Standard lead time is 4 to 8 weeks ex-works from our Nairobi workshop, depending on capacity and finish. Smaller tanks (under 5 m³) usually land closer to 4 weeks; large jacketed vessels with mirror polish run toward 8.",
+      "Standard lead time is 4 to 8 weeks ex-works, depending on capacity and finish. Smaller tanks (under 5 m³) usually land closer to 4 weeks; large jacketed vessels with mirror polish run toward 8.",
   },
   {
     question: "What internal surface finish should I specify for food contact?",
@@ -110,7 +110,7 @@ export default function StainlessSteelTanksPage() {
           material: "Stainless Steel 304 / 316L",
           category: "Industrial Tank",
           description:
-            "Food-grade and chemical-grade stainless steel storage and processing tanks fabricated in Kenya.",
+            "Food-grade and chemical-grade stainless steel storage and processing tanks fabricated in-house.",
           url: `${SITE_URL}/products/tanks/stainless-steel/`,
         })}
       />
@@ -123,10 +123,10 @@ export default function StainlessSteelTanksPage() {
       <PageHero
         eyebrow="Tanks / Stainless Steel"
         title="304 and 316L stainless tanks,"
-        titleAccent="fabricated in Kenya."
-        subtitle="As a stainless steel tank manufacturer in Nairobi serving plants across Kenya, North Star Impex fabricates the default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
+        titleAccent="built for food, beverage, and process duty."
+        subtitle="North Star Impex fabricates the default tank for any process where the medium will touch food, pharma-adjacent product, or a corrosive aqueous environment, for plants across East Africa. We TIG-weld with argon backing, finish to your Ra requirement, and pre-tap for the instruments you want."
         imageSrc="/images/products/tanks-stainless-steel-hero.png"
-        imageAlt="A row of polished 304 stainless steel processing tanks inside a Kenyan F&B plant"
+        imageAlt="A row of polished 304 stainless steel processing tanks inside an F&B plant"
         primaryCta={{ href: "/request-quote/", label: "Spec a stainless tank" }}
         secondaryCta={{
           href: "/products/tanks/",
@@ -314,7 +314,7 @@ export default function StainlessSteelTanksPage() {
 
           <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
             <span>304 · 316L · 1 to 500 m³</span>
-            <span>Fabricated locally · Nairobi workshop</span>
+            <span>Fabricated locally · in-house</span>
             <span>Ex-works 4 to 8 weeks</span>
           </div>
         </div>
@@ -325,16 +325,15 @@ export default function StainlessSteelTanksPage() {
           <div className="md:col-span-7">
             <SectionHeader
               index="05"
-              eyebrow="Cloud-ready, when you want it"
-              title="Every stainless tank we install can be wired to our remote monitoring app."
+              eyebrow="Remote monitoring, on every install"
+              title="Every stainless tank we install can be connected to a remote-monitoring app, personalized to your site."
               className="mb-0"
               headlineClassName="text-2xl leading-tight md:text-3xl"
             />
             <p className="mt-4 max-w-prose text-sm text-muted">
               Level, temperature, pressure, and pH read out to a phone or
-              browser, with alarms routed to whoever you nominate. NB-IoT,
-              LoRaWAN, 4G, or Ethernet. Not bundled into the tank quote;
-              ask for it if you want it.
+              browser, with alarms routed to whoever you nominate, over
+              NB-IoT, LoRaWAN, 4G, or Ethernet.
             </p>
             <Link
               href="/products/iot/"
@@ -407,14 +406,14 @@ export default function StainlessSteelTanksPage() {
             title: "Food & beverage equipment",
             copy: "Where most of our 304 and 316L tanks land. Dairy, brewing, edible oils, bakery.",
             imageSrc: "/images/industries/food-and-beverage-hero.png",
-            imageAlt: "Inside a Kenyan food and beverage processing plant",
+            imageAlt: "Inside a food and beverage processing plant",
           },
           {
             href: "/products/iot/",
             title: "Cloud-ready monitoring",
             copy: "Wire level, temperature, pressure, and pH on any stainless install to a phone or browser.",
             imageSrc: "/images/products/iot-hero.png",
-            imageAlt: "NB-IoT gateway box at a Kenyan tank site",
+            imageAlt: "NB-IoT gateway box at a tank site",
           },
         ]}
       />

@@ -63,10 +63,10 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     slug: "tanks/zinc-alum",
-    name: "Zinc-Alum Tanks",
+    name: "Zinc Aluminium Tanks",
     category: "tanks",
     shortDescription:
-      "Bolted zinc-aluminum steel tanks. A corrosion-resistant alternative to carbon steel with multi-decade lifespan.",
+      "Bolted Zinc Aluminium tanks, supplied with a liner as standard. A corrosion-resistant alternative to carbon steel with a 20+ year service life.",
     applications: ["Water storage", "Industrial process water", "Brewing", "ETP"],
     primaryQueries: [
       "zinc aluminum tank Kenya",
@@ -220,7 +220,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Cloud-Ready Remote Monitoring",
     category: "iot",
     shortDescription:
-      "Optional cloud-connected monitoring for tanks and process instruments. View levels, flow, water quality, and alarms from any device.",
+      "Cloud-connected remote monitoring for tanks and process instruments. View levels, flow, water quality, and alarms from any device.",
     applications: [
       "Tank level monitoring",
       "ETP continuous compliance",
@@ -378,7 +378,7 @@ export const COMPARE_PAGES = [
   {
     a: "zinc-alum",
     b: "carbon-steel",
-    title: "Zinc-Alum vs Carbon Steel Tanks",
+    title: "Zinc Aluminium vs Carbon Steel Tanks",
   },
   {
     a: "stainless-steel",
@@ -406,7 +406,7 @@ export const BEST_PAGES = [
   {
     product: "zinc-alum-tank",
     useCase: "water-storage",
-    title: "Best Zinc-Alum Tank for Water Storage",
+    title: "Best Zinc Aluminium Tank for Water Storage",
   },
   {
     product: "grain-silo",

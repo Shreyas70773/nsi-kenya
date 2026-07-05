@@ -34,8 +34,8 @@ export default function RequestSiteAuditPage() {
     <>
       <PageHero
         eyebrow="Request a Site Audit"
-        title="Boots on the ground."
-        titleAccent="Brief on your desk."
+        title="We visit your site"
+        titleAccent="and send you a written technical brief."
         subtitle="We walk your plant, measure, photograph the relevant zones, and leave you with a written brief. For Nairobi industrial estates, we can be on-site within 48 hours. No charge, no commitment from either side."
         imageSrc="/images/conversion/request-site-audit-hero.png"
         imageAlt=""
@@ -77,7 +77,7 @@ export default function RequestSiteAuditPage() {
                   Utility hook-up review (steam, CIP, drains, power)
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
-                  Compliance gap check (KEBS, fire, OSHA-style)
+                  Compliance gap check (fire, OSHA-style)
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
                   Written brief, delivered within 5 working days

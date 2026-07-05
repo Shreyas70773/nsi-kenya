@@ -1,7 +1,7 @@
 import { COMPLIANCE_STATEMENTS } from "@/lib/constants";
 
 /**
- * T-3 compliance strip (KEBS / NEMA / NCA statements) above the footer.
+ * T-3 compliance strip (regulatory / environmental statements) above the footer.
  * Renders NOTHING until NSI-approved wording lands in
  * COMPLIANCE_STATEMENTS — compliance claims are never drafted in-house.
  */

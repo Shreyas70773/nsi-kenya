@@ -67,7 +67,7 @@ export default function BookConsultationPage() {
                   Plant layout review (if you can share one)
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
-                  Material selection (304 vs 316L vs epoxy vs zinc-alum)
+                  Material selection (304 vs 316L vs epoxy vs zinc aluminium)
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
                   Instrument loop topology
@@ -76,10 +76,10 @@ export default function BookConsultationPage() {
                   Lead-time scenario planning
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
-                  Compliance posture (KEBS, ASME, AWS)
+                  Compliance posture (ASME, AWS)
                 </li>
                 <li data-reveal-item className="hairline-b py-3.5">
-                  Optional remote monitoring scope
+                  Remote monitoring scope
                 </li>
               </ul>
             </Reveal>

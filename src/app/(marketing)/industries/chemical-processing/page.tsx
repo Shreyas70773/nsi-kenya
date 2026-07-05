@@ -92,9 +92,9 @@ export default function ChemicalProcessingPage() {
 
       <PageHero
         eyebrow="Industries / Chemical Processing"
-        title="Equipment that survives"
-        titleAccent="the medium it stores."
-        subtitle="Epoxy-lined and stainless storage tanks, dosing tanks, reactor support structures, and pressure and temperature instrumentation for Kenyan chemical processing plants. Materials picked against the chemistry, not the catalogue."
+        title="Equipment specified"
+        titleAccent="for the medium it stores."
+        subtitle="Epoxy-lined and stainless storage tanks, dosing tanks, reactor support structures, and pressure and temperature instrumentation for chemical processing plants across East Africa. Materials are selected to match the chemistry involved."
         imageSrc="/images/industries/chemical-processing-hero.png"
         imageAlt="A wide view of a chemical processing bay with an epoxy-lined reactor and colour-coded process piping"
         primaryCta={{ href: "/request-quote/", label: "Spec a chemical project" }}
@@ -125,7 +125,7 @@ export default function ChemicalProcessingPage() {
             <SectionHeader
               index="01"
               eyebrow="The buying frame"
-              title="The spec is the chemistry. Everything else follows."
+              title="Material selection starts with the chemistry involved."
               className="mb-0 md:mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -224,16 +224,16 @@ export default function ChemicalProcessingPage() {
       {/* Iron statement — the page's material doctrine, elevated. */}
       <Section theme="iron" size="spacious" ariaLabel="Material doctrine">
         <div className="flex flex-col gap-12 md:gap-16">
-          <Eyebrow index="03">The doctrine</Eyebrow>
+          <Eyebrow index="03">Material selection</Eyebrow>
 
           <TextReveal
             as="p"
             className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
           >
             <>
-              Equipment that survives the medium it stores.{" "}
+              Equipment specified to match the medium it stores.{" "}
               <span className="text-accent">
-                Materials picked against the chemistry, not the catalogue.
+                Materials are selected based on the chemistry involved.
               </span>
             </>
           </TextReveal>

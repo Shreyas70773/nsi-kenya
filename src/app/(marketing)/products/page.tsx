@@ -36,8 +36,8 @@ const CATEGORIES = [
   {
     href: "/products/tanks/",
     title: "Tanks",
-    tagline: "Stainless · Epoxy-lined · Zinc-alum",
-    copy: "304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted zinc-alum for multi-decade water storage.",
+    tagline: "Stainless · Epoxy-lined · Zinc Aluminium",
+    copy: "304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted Zinc Aluminium, supplied with a liner as standard, for 20+ year water storage.",
     imageSrc: "/images/home/tanks-weld-bead.png",
   },
   {
@@ -64,8 +64,8 @@ const CATEGORIES = [
   {
     href: "/products/iot/",
     title: "Remote Monitoring",
-    tagline: "Optional · NB-IoT capable",
-    copy: "Cloud-connected oversight on any tank or instrument we install. Levels, flow, water quality, and alarms from any device.",
+    tagline: "NB-IoT capable",
+    copy: "Cloud-connected oversight on every tank or instrument we install. Levels, flow, water quality, and alarms from any device.",
     imageSrc: "/images/home/iot-kisumu-plant.png",
   },
 ];
@@ -75,15 +75,15 @@ export default function ProductsPage() {
     <>
       <PageHero
         eyebrow="Products"
-        title="Everything a Kenyan plant needs,"
+        title="Everything your plant needs,"
         titleAccent="under one roof."
-        subtitle="Single supplier across stainless, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication; the full instrument stack; and optional cloud-ready monitoring. No competitor in Kenya carries this breadth."
+        subtitle="Single supplier across stainless, epoxy-lined, and Zinc Aluminium tanks; silos and grain storage; structural fabrication; the full instrument stack; and cloud-ready monitoring on every install. One partner across the entire stack."
         imageSrc="/images/products/products-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         secondaryCta={{ href: "/industries/", label: "By industry" }}
         metaLeft="Five product categories"
-        metaRight="Fabricated in Kenya"
+        metaRight="Fabricated in-house"
       />
 
       <Section size="compact">
@@ -181,7 +181,7 @@ export default function ProductsPage() {
               Five product categories
             </p>
             <p className="font-mono-label text-[10px] text-faint">
-              Fabricated in Kenya
+              Fabricated in-house
             </p>
           </div>
         </div>

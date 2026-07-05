@@ -2,10 +2,10 @@ import { Factory, Timer, Boxes, MapPinned } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 
 const TILES = [
-  { icon: Factory, copy: "Fabricated in our Nairobi workshop" },
+  { icon: Factory, copy: "Fabricated in our own workshop" },
   { icon: Timer, copy: "Quotes in 48 working hours" },
   { icon: Boxes, copy: "154 instrument SKUs ex-stock" },
-  { icon: MapPinned, copy: "Installed & supported nationwide" },
+  { icon: MapPinned, copy: "Installed & supported across East Africa" },
 ] as const;
 
 /**

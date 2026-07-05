@@ -48,7 +48,7 @@ export const metadata: Metadata = {
  * national water-quality regulations. These are the maximum permissible
  * levels for discharge into the environment or public sewers.
  *
- * Published here because few Kenya tank/equipment supplier sites do.
+ * Published here for reference during audits and inspections.
  */
 const DISCHARGE_PARAMETERS = [
   {
@@ -126,7 +126,7 @@ const DISCHARGE_PARAMETERS = [
 const EQUIPMENT_TRAIN = [
   {
     title: "Equalization & primary",
-    copy: "Bolted zinc-alum equalization tank, epoxy-lined primary clarifier feeds.",
+    copy: "Bolted Zinc Aluminium equalization tank, epoxy-lined primary clarifier feeds.",
     products: ["tanks/zinc-alum", "tanks/epoxy-lined"],
   },
   {
@@ -153,12 +153,12 @@ const EQUIPMENT_TRAIN = [
 
 const FAQS = [
   {
-    question: "What are the Kenyan industrial discharge limits I have to meet?",
+    question: "What are the discharge limits I have to meet?",
     answer:
-      "The Kenyan regulator enforces two separate limit sets under Kenyan water quality regulations: a stricter set for direct environmental discharge (e.g. BOD 30 mg/L, COD 50 mg/L, TSS 30 mg/L, pH 6.5 to 8.5) and a looser set for discharge into a public sewer (BOD 500, COD 1000, TSS 250). The full table with all 10 parameters is published above on this page.",
+      "The regulator enforces two separate limit sets under the applicable water quality regulations: a stricter set for direct environmental discharge (e.g. BOD 30 mg/L, COD 50 mg/L, TSS 30 mg/L, pH 6.5 to 8.5) and a looser set for discharge into a public sewer (BOD 500, COD 1000, TSS 250). The full table with all 10 parameters is published above on this page.",
   },
   {
-    question: "How long does an ETP retrofit usually take in Kenya?",
+    question: "How long does an ETP retrofit usually take?",
     answer:
       "From audit to commissioning: 4 to 6 weeks for an equipment-only retrofit (replacing analyzers, adding a polishing tank), 8 to 14 weeks for a stage replacement (new clarifier, new aeration loop). Expedited builds for regulator inspection pressure can compress to 2 to 3 weeks on standard equipment.",
   },
@@ -170,7 +170,7 @@ const FAQS = [
   {
     question: "Do you handle continuous compliance monitoring?",
     answer:
-      "Yes, optionally. Every multi-parameter analyzer we install can stream pH, conductivity, DO, turbidity, flow, and temperature 24/7 to a dashboard you can hand to a regulator inspector. Connectivity is NB-IoT, LoRaWAN, or 4G LTE depending on site coverage.",
+      "Yes. Every multi-parameter analyzer we install can stream pH, conductivity, DO, turbidity, flow, and temperature 24/7 to a dashboard you can hand to a regulator inspector. Connectivity is NB-IoT, LoRaWAN, or 4G LTE depending on site coverage.",
   },
 ] as const;
 
@@ -213,14 +213,14 @@ export default function ETPPage() {
 
       <PageHero
         eyebrow="Industries / ETP & Water Treatment"
-        title="Discharge standards have tightened."
-        titleAccent="We supply equipment that passes."
-        subtitle="Failing inspection halts production. Donor-funded projects gate on compliance. We supply the tanks, instruments, and analyzers that pass Kenyan discharge standards under Kenyan water quality regulations. The parameters table is on this page; no other Kenya supplier publishes it."
+        title="Discharge standards apply to every effluent treatment plant."
+        titleAccent="We supply equipment built to meet them."
+        subtitle="A failed inspection can halt production, and donor-funded projects often gate funding on compliance. We supply the tanks, instruments, and analyzers needed to meet discharge standards under national water quality regulations. The full parameters table is set out on this page."
         imageSrc="/images/industries/etp-water-treatment-hero.png"
-        imageAlt="A wide angle of an outdoor ETP at a Kenyan factory with clarifier, aeration basin and dosing tanks"
+        imageAlt="A wide angle of an outdoor ETP at a factory with clarifier, aeration basin and dosing tanks"
         primaryCta={{ href: "/request-quote/", label: "Urgent ETP quote" }}
         secondaryCta={{ href: "#discharge-parameters", label: "See discharge limits" }}
-        metaLeft="Kenya water quality regulations aware"
+        metaLeft="Regulatory-compliant equipment"
         metaRight="2 to 3 week expedited delivery"
       />
 
@@ -243,7 +243,7 @@ export default function ETPPage() {
             <SectionHeader
               index="01"
               eyebrow="The buying frame"
-              title="ETP is the one industry where compliance is the brief."
+              title="For ETP buyers, compliance is the main requirement."
               className="mb-0 md:mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -260,10 +260,10 @@ export default function ETPPage() {
                   from a sector-specific regulation.
                 </p>
                 <p>
-                  Speed matters more than anywhere else on the catalogue. So
-                  does the answer to one question: <em>will this equipment
-                  pass the next inspection?</em> Everything on this page is
-                  designed to make that answer yes.
+                  Speed matters here more than in other equipment categories,
+                  and so does one question: <em>will this equipment pass the
+                  next inspection?</em> Everything on this page is designed to
+                  help you answer that with confidence.
                 </p>
               </Prose>
             </div>
@@ -278,8 +278,8 @@ export default function ETPPage() {
         >
           <SectionHeader
             index="02"
-            eyebrow="Kenyan discharge parameters"
-            title="Maximum permissible levels per Kenya water quality regulations."
+            eyebrow="Discharge parameters"
+            title="Maximum permissible discharge levels."
             className="mb-0 md:mb-0"
             headlineClassName="text-3xl leading-tight md:text-4xl"
             side={
@@ -340,10 +340,10 @@ export default function ETPPage() {
           </Reveal>
 
           <p className="text-xs text-faint">
-            Source: Kenya environmental management regulations on water
-            quality. Limits shown are representative; consult the
-            relevant Kenyan regulator directly for your sector-specific
-            requirements before construction or commissioning.
+            Source: applicable environmental discharge regulations. Limits
+            shown are representative; consult the relevant regulator
+            directly for your sector-specific requirements before
+            construction or commissioning.
           </p>
         </div>
       </Section>
@@ -432,9 +432,9 @@ export default function ETPPage() {
             className="font-display max-w-4xl text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-5xl"
           >
             <>
-              Discharge standards have tightened.{" "}
+              Discharge standards apply to every effluent treatment plant.{" "}
               <span className="text-accent">
-                We supply equipment that passes.
+                We supply equipment built to meet them.
               </span>
             </>
           </TextReveal>
@@ -450,8 +450,8 @@ export default function ETPPage() {
                 </span>
                 <span className="hairline h-px w-10" aria-hidden />
                 <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
-                  The full discharge limits table is on this page; no other
-                  Kenya supplier publishes it.
+                  The full discharge limits table is set out on this page
+                  for reference.
                 </p>
               </div>
               <div data-reveal-item className="flex flex-col gap-3">
@@ -490,7 +490,7 @@ export default function ETPPage() {
           <div className="md:col-span-7">
             <SectionHeader
               index="05"
-              eyebrow="Continuous compliance, optional"
+              eyebrow="Continuous compliance monitoring"
               title="For plants under continuous monitoring obligations, every analyzer we install can stream parameter data 24/7."
               className="mb-0 md:mb-0"
               headlineClassName="text-2xl leading-tight md:text-3xl"
@@ -549,15 +549,16 @@ export default function ETPPage() {
             className="font-display text-balance text-2xl font-semibold leading-snug tracking-tight md:col-span-7 md:text-3xl"
           >
             &ldquo;Will this equipment pass the next inspection? Everything on
-            this page is designed to make that answer yes.&rdquo;
+            this page is designed to help you answer that with
+            confidence.&rdquo;
           </TextReveal>
         </div>
       </Section>
 
       <CtaBand
         eyebrow="ETP-specific paths"
-        headline="Inspection coming?"
-        headlineAccent="Pick the door that matches."
+        headline="Preparing for an inspection?"
+        headlineAccent="Choose the option that fits your situation."
         cards={URGENT_CTA}
       />
     </>

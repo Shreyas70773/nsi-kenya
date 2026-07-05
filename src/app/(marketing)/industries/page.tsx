@@ -47,7 +47,7 @@ const SECTORS = [
     n: "02",
     href: "/industries/etp-water-treatment/",
     name: "ETP & Water Treatment",
-    pillar: "Kenyan environmental compliance, discharge parameters",
+    pillar: "Environmental compliance, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
     image: "/images/home/sector-etp.png",
     imageAlt:
@@ -58,7 +58,7 @@ const SECTORS = [
     href: "/industries/alcohol-distilling/",
     name: "Alcohol & Distilling",
     pillar: "Brewing scale-up, distillery containment, grain handling",
-    products: "SS · Epoxy · Zinc-alum · Grain silos",
+    products: "SS · Epoxy · Zinc Aluminium · Grain silos",
     image: "/images/home/sector-alcohol.png",
     imageAlt:
       "Stainless fermenter tagged FV-03 with a copper still in the background",
@@ -82,13 +82,13 @@ export default function IndustriesPage() {
         eyebrow="Industries"
         title="Four industries,"
         titleAccent="four different buying conversations."
-        subtitle="Food and beverage scales by demand. ETP scales by regulation. Alcohol and distilling scales by brand growth. Chemical processing scales by containment. Each one shows up with a different brief, and each gets a different page."
+        subtitle="Food and beverage scales with demand, ETP and water treatment scales with regulation, alcohol and distilling scales with brand growth, and chemical processing scales with containment needs. Each industry has its own page covering the equipment and considerations specific to it."
         imageSrc="/images/industries/industries-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Get a quote" }}
         secondaryCta={{ href: "/products/", label: "By product" }}
         metaLeft="F&B · ETP · Alcohol · Chemical"
-        metaRight="Sized for Kenyan operators"
+        metaRight="Sized for East African operators"
       />
 
       <Section size="compact">
@@ -108,8 +108,8 @@ export default function IndustriesPage() {
           side={
             <p>
               Each sector page covers the equipment we install, the buying
-              triggers we see, and the compliance posture we maintain in
-              Kenya.
+              triggers we see, and the compliance posture we maintain across
+              East Africa.
             </p>
           }
         />

@@ -117,7 +117,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           vortex to resolve.
         </p>
 
-        <h2>The questions we wish more buyers asked us</h2>
+        <h2>The questions that decide the right technology</h2>
         <p>
           Medium, conductivity if it&apos;s a liquid, pipe size,
           temperature, pressure, accuracy requirement, and turndown ratio.
@@ -133,7 +133,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "structural-fabrication-nairobi-pipe-racks",
-    title: "Structural fabrication in Nairobi: pipe racks, tank supports, walkways",
+    title: "In-house structural fabrication: pipe racks, tank supports, walkways",
     excerpt:
       "Tanks and silos don't stand alone. The platforms, racks, and supports around them are usually the load-bearing schedule risk. Here is how we approach the rest of the steel.",
     publishedAt: "2026-05-26",
@@ -242,8 +242,8 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           but. The same outer cylinder, in two different specifications,
           can carry a five-times price gap, a four-times difference in
           service life, and the difference between passing and failing a
-          KEBS audit. Here is the conversation we have with most F&B
-          buyers, in the order we have it.
+          regulatory compliance audit. Here is what we cover with most
+          F&B buyers, in the order we cover it.
         </p>
 
         <h2>Material grade comes first</h2>
@@ -290,7 +290,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           high.
         </p>
 
-        <h2>The conversation we wish more buyers had with us</h2>
+        <h2>What we need from you to spec it</h2>
         <p>
           Tell us the medium, the volume, the cycle frequency, the CIP
           chemistry, and the lead-time pressure. Almost every other
@@ -404,15 +404,15 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "zinc-alum-vs-carbon-steel-tco",
-    title: "Zinc-alum vs carbon steel: the 30-year math, for Kenyan operators",
+    title: "Zinc Aluminium vs carbon steel: the 20-year math, for Kenyan operators",
     excerpt:
-      "Initial cost is rarely the right way to spec a water tank. Here is the lifecycle math that decides why our larger water-storage installs land in zinc-alum, not carbon.",
+      "Initial cost is rarely the right way to spec a water tank. Here is the lifecycle math that decides why our larger water-storage installs land in Zinc Aluminium, not carbon.",
     publishedAt: "2026-05-19",
     readingMinutes: 6,
     tags: ["Tanks", "Lifecycle"],
     heroImage: "/images/products/tanks-zinc-alum-hero.png",
     heroImageAlt:
-      "Side-by-side comparison of zinc-alum and carbon-steel tank construction",
+      "Side-by-side comparison of Zinc Aluminium and carbon-steel tank construction",
     body: (
       <>
         <p>
@@ -422,44 +422,47 @@ export const BLOG_POSTS: readonly BlogPost[] = [
           capacity, and we publish the math because nobody else does.
         </p>
 
-        <h2>Bare carbon steel in Kenyan humidity</h2>
+        <h2>Bare carbon steel in humid conditions</h2>
         <p>
-          Untreated carbon steel in Kenyan humidity reaches end of life
-          in eight to twelve years. Coatings (paint or epoxy) buy you
-          three to five years per coat, so a coated carbon-steel tank
-          needs recoating two to three times per decade.
+          Untreated carbon steel in high-humidity conditions reaches end
+          of life in eight to twelve years. Coatings (paint or epoxy)
+          buy you three to five years per coat, so a coated
+          carbon-steel tank needs recoating two to three times per
+          decade.
         </p>
         <p>
           Each recoat means draining the tank, isolating the supply
           line, surface-prepping the interior, applying the coating
           system, and curing. That is one to two weeks of plant downtime
-          plus the recoat cost. Over a thirty-year horizon, that adds up
-          to six to ten recoat cycles, or roughly twelve to twenty weeks
+          plus the recoat cost. Over a twenty-year horizon, that adds up
+          to four to six recoat cycles, or roughly eight to twelve weeks
           of accumulated downtime.
         </p>
 
-        <h2>Bolted zinc-alum, same horizon</h2>
+        <h2>Bolted Zinc Aluminium, same horizon</h2>
         <p>
-          Zinc-aluminium steel (55 percent aluminium, 43.5 percent zinc)
+          Zinc Aluminium steel (55 percent aluminium, 43.5 percent zinc)
           forms a self-healing barrier coating. At any cut or scratch,
           the zinc sacrificially protects the steel underneath. Service
-          life in unsheltered Kenyan conditions runs to thirty years and
-          beyond, with no recoating required during the design life.
+          life in unsheltered outdoor conditions runs to twenty years and
+          beyond, with no recoating required during the design life. The
+          tank is supplied with a liner as standard, so the water-contact
+          surface is protected from day one.
         </p>
         <p>
           At our typical tank sizes above 200 cubic metres, the initial
           cost premium over carbon steel is in the range of fifteen to
-          twenty-five percent. At twenty years and again at thirty
-          years, the math swings hard in favour of zinc-alum:
+          twenty-five percent. At the twenty-year mark, the math swings
+          hard in favour of Zinc Aluminium:
         </p>
         <ul>
           <li>
-            <strong>Carbon steel:</strong> 2 to 3 full replacement
-            cycles in 30 years, 12 to 20 weeks accumulated downtime,
+            <strong>Carbon steel:</strong> 1 to 2 full replacement
+            cycles in 20 years, 8 to 12 weeks accumulated downtime,
             plus recoat labour every 3 to 5 years.
           </li>
           <li>
-            <strong>Zinc-alum:</strong> 1 install, 0 recoats, zero
+            <strong>Zinc Aluminium:</strong> 1 install, 0 recoats, zero
             replacement downtime over the same horizon.
           </li>
         </ul>
@@ -467,15 +470,15 @@ export const BLOG_POSTS: readonly BlogPost[] = [
         <h2>The exception worth noting</h2>
         <p>
           Carbon steel still wins under one hundred cubic metres of
-          capacity, where the zinc-alum modular-panel economics do not
-          land yet. We quote both options openly when a tank sits on the
-          boundary; the right answer depends on your replacement
+          capacity, where the Zinc Aluminium bolted-panel economics do
+          not land yet. We quote both options openly when a tank sits on
+          the boundary; the right answer depends on your replacement
           tolerance and your downtime cost.
         </p>
         <p>
           The longer version of this argument, plus a spec sheet for the
-          zinc-alum range, lives on the{" "}
-          <Link href="/products/tanks/zinc-alum/">zinc-alum tanks page</Link>.
+          Zinc Aluminium range, lives on the{" "}
+          <Link href="/products/tanks/zinc-alum/">Zinc Aluminium tanks page</Link>.
         </p>
       </>
     ),

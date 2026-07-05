@@ -37,17 +37,19 @@ export const LOGO_URL = `${SITE_URL}/brand/logo.png`;
  *
  * NAP (name / address / phone) here MUST stay byte-identical to the Google
  * Business Profile and every directory listing — inconsistent NAP is the
- * fastest way to forfeit local-pack trust. `streetAddress`, `postalCode`,
- * and the geo pin are intentionally env-driven and omitted when blank:
- * fill them in once the real workshop address is confirmed and the GBP is
- * live, so the schema pin and the map pin agree. Do NOT hard-code a guessed
- * address — a wrong pin is worse than none.
+ * fastest way to forfeit local-pack trust. This is the registered OFFICE
+ * address (Western Heights, Westlands); the fabrication workshop location is
+ * deliberately not published. The geo pin stays env-driven and is omitted
+ * until confirmed — a wrong pin is worse than none, so we do not guess
+ * coordinates.
  */
 export const BUSINESS = {
   locality: "Nairobi",
   region: "Nairobi County",
   country: COUNTRY,
-  streetAddress: process.env.BUSINESS_STREET ?? "",
+  streetAddress:
+    process.env.BUSINESS_STREET ??
+    "Western Heights, 6th Floor, Suite 07, Westlands",
   postalCode: process.env.BUSINESS_POSTAL ?? "",
   geoLat: process.env.BUSINESS_GEO_LAT ?? "",
   geoLng: process.env.BUSINESS_GEO_LNG ?? "",
@@ -65,7 +67,7 @@ export const BUSINESS = {
 } as const;
 
 /**
- * T-3 compliance strip statements (KEBS / NEMA / NCA, as applicable).
+ * T-3 compliance strip statements (regulatory / environmental, as applicable).
  * SHIPS EMPTY: NSI supplies the exact approved wording — never draft
  * compliance claims in-house. Fill and the strip renders above the footer.
  */

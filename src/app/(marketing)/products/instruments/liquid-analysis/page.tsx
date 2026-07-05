@@ -94,7 +94,7 @@ export default function LiquidAnalysisInstrumentsPage() {
         eyebrow="Instruments / Liquid Analysis"
         title="Six water-quality parameters,"
         titleAccent="or all of them in one panel."
-        subtitle="pH for control. Conductivity for water quality. DO for aeration. Turbidity for clarity. TSS for solids. Multi-parameter for compliance reporting. We supply individual instruments and the multi-parameter analyzers that Kenyan discharge compliance often requires."
+        subtitle="pH for control. Conductivity for water quality. DO for aeration. Turbidity for clarity. TSS for solids. Multi-parameter for compliance reporting. We supply individual instruments and the multi-parameter analyzers that discharge compliance often requires."
         imageSrc="/images/products/instruments-liquid-analysis-hero.png"
         imageAlt="A multi-parameter water analyzer panel mounted above a water-treatment basin"
         primaryCta={{ href: "/request-quote/", label: "Spec a water-quality loop" }}
@@ -103,7 +103,7 @@ export default function LiquidAnalysisInstrumentsPage() {
           label: "ETP applications",
         }}
         metaLeft="6 parameters"
-        metaRight="ETP-ready · compliance-aware"
+        metaRight="ETP-ready · regulatory-compliant"
       />
 
       <Section size="compact">
@@ -129,9 +129,9 @@ export default function LiquidAnalysisInstrumentsPage() {
               <Prose>
                 <p>
                   Liquid analysis is the instrumentation category that
-                  most directly touches compliance. The Kenyan discharge
+                  most directly touches compliance. The discharge
                   parameters table on the{" "}
-                  <Link href="/industries/etp-water-treatment/#nema-parameters">
+                  <Link href="/industries/etp-water-treatment/#discharge-parameters">
                     ETP page
                   </Link>{" "}
                   is read off these instruments. Get the analyzer right
@@ -142,9 +142,11 @@ export default function LiquidAnalysisInstrumentsPage() {
                   We supply individual sensors for plants that already
                   have a SCADA front-end, and multi-parameter analyzers
                   with a built-in display and data logger for plants that
-                  want one panel covering everything. The cloud-connected
-                  option streams 24/7 for plants under continuous
-                  compliance obligations.
+                  want one panel covering everything. Every analyzer we
+                  install can be connected to a remote-monitoring app,
+                  personalized to your site, streaming data around the
+                  clock for plants under continuous compliance
+                  obligations.
                 </p>
               </Prose>
             </div>

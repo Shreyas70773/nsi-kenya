@@ -14,7 +14,7 @@ describe("llms.txt", () => {
 
   it("lists primary product categories", () => {
     expect(txt).toContain("Stainless Steel Tanks");
-    expect(txt).toContain("Zinc-Alum Tanks");
+    expect(txt).toContain("Zinc Aluminium Tanks");
     expect(txt).toContain("Grain Storage Silos");
   });
 

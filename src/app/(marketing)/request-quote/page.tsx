@@ -59,7 +59,7 @@ export default function RequestQuotePage() {
       <PageHero
         eyebrow="Request a Quote"
         title="Tell us what you're building."
-        titleAccent="We'll come back in 48 hours."
+        titleAccent="We respond within 48 working hours."
         subtitle="Pick the intent that matches your stage; the form below adapts. If you're not sure which to pick, leave it on Exploring options; we'll figure out the rest from your brief."
         imageSrc="/images/conversion/request-quote-hero.png"
         imageAlt=""

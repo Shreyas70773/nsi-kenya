@@ -26,7 +26,7 @@ export const PRODUCT_GROUPS: ReadonlyArray<{
   value: (typeof PRODUCT_GROUP_VALUES)[number];
   label: string;
 }> = [
-  { value: "tanks", label: "Tanks (stainless / lined / zinc-alum)" },
+  { value: "tanks", label: "Tanks (stainless / lined / zinc aluminium)" },
   { value: "silos", label: "Silos (grain / feed / industrial)" },
   { value: "structural-fabrication", label: "Structural fabrication" },
   { value: "process-instrumentation", label: "Process instrumentation" },

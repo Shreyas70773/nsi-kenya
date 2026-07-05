@@ -142,8 +142,8 @@ export default function TermsPage() {
                 project is what we issue in writing.
               </p>
               <p>
-                Regulatory references on this Site (KEBS,
-                ASME, AWS, and similar) are provided in summary form
+                Regulatory references on this Site (ASME, AWS,
+                and similar) are provided in summary form
                 and are not legal advice. Refer to the regulating body
                 directly for your sector-specific obligations.
               </p>

@@ -13,7 +13,7 @@ import { BLOG_POSTS } from "@/lib/blog-posts";
 export const metadata: Metadata = {
   title: "Industrial Field Notes: Tank, ETP, IoT, Kenya",
   description:
-    "Practical writing for Kenyan plant managers and engineering teams. Tank metallurgy, ETP compliance, instrument selection, IoT monitoring, workshop process.",
+    "Practical writing for Kenyan plant managers and engineering teams. Tank materials, ETP compliance, instrument selection, IoT monitoring, workshop process.",
   alternates: { canonical: "/blog/" },
   keywords: [
     "industrial blog Kenya",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Industrial Field Notes: Tank, ETP, IoT, Kenya",
     description:
-      "Practical writing for Kenyan plant managers and engineering teams. Tank metallurgy, ETP compliance, instrument selection, IoT monitoring, workshop process.",
+      "Practical writing for Kenyan plant managers and engineering teams. Tank materials, ETP compliance, instrument selection, IoT monitoring, workshop process.",
     url: "/blog/",
     images: [{ url: "/images/about/workshop-tig-welding.png" }],
   },
@@ -62,12 +62,12 @@ export default function BlogIndexPage() {
             <>
               What we&apos;ve learned shipping
               <br className="hidden sm:block" />{" "}
-              industrial infrastructure in Kenya.
+              industrial infrastructure across East Africa.
             </>
           </TextReveal>
           <p className="mt-5 max-w-2xl text-base text-muted md:text-lg">
             Practical writing for operators, plant managers, and the
-            engineering teams sizing the next install. Tank metallurgy,
+            engineering teams sizing the next install. Tank materials,
             ETP compliance, instrument selection, IoT monitoring, and
             the parts of the work that don&apos;t fit in a spec sheet.
           </p>
