@@ -1,8 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/json-ld";
-import { webSiteLd } from "@/lib/seo";
+import { webSiteLd, homeLocalBusinessLd } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  // Absolute title: the homepage leads with product + geo instead of the
+  // brand-only default, and skips the "· North Star Impex Kenya" template
+  // suffix since the brand is already in the string.
+  title: {
+    absolute:
+      "Industrial Tanks, Silos & Process Instruments in Kenya | North Star Impex",
+  },
+  description:
+    "North Star Impex fabricates industrial tanks, silos, structural steel and process instruments in Nairobi for plants across Kenya and East Africa. Quote in 48 hours.",
+  alternates: { canonical: "/" },
+  keywords: [
+    "industrial tanks Kenya",
+    "grain storage silos Kenya",
+    "process instruments Kenya",
+    "stainless steel tank manufacturer Nairobi",
+    "structural steel fabrication Kenya",
+  ],
+};
 import { Reveal } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { ParallaxImage } from "@/components/motion/parallax";
@@ -13,6 +34,8 @@ import { BrandStar } from "@/components/brand/brand-star";
 import { SectionHeader } from "@/components/primitives/section-header";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { FabricationSection } from "@/components/home/fabrication-section";
+import { ProofBand } from "@/components/home/proof-band";
+import { CaseStrip } from "@/components/home/case-strip";
 import {
   IndustriesGallery,
   type IndustryCard,
@@ -20,12 +43,12 @@ import {
 import { cn } from "@/lib/utils";
 
 const TRUST_TOKENS = [
-  "Fabricated in Kenya",
-  "Stainless, epoxy, zinc-alum",
-  "compliance-aware ETP equipment",
-  "Optional cloud-ready monitoring",
-  "On-site within 48 hours, Nairobi",
-  "Reference work across Kenya",
+  "Fabricated in-house",
+  "Stainless, epoxy, Zinc Aluminium",
+  "Regulatory-compliant ETP equipment",
+  "Cloud-ready monitoring on every install",
+  "On-site within 48 hours",
+  "Reference work across East Africa",
 ] as const;
 
 const INDUSTRIES: readonly IndustryCard[] = [
@@ -43,7 +66,7 @@ const INDUSTRIES: readonly IndustryCard[] = [
     n: "02",
     name: "ETP & Water Treatment",
     href: "/industries/etp-water-treatment/",
-    pillar: "Kenyan environmental compliance, discharge parameters",
+    pillar: "Environmental compliance, discharge parameters",
     products: "Epoxy-lined · SS · Multi-parameter analyzers · Flow",
     image: "/images/home/sector-etp.png",
     imageAlt:
@@ -54,7 +77,7 @@ const INDUSTRIES: readonly IndustryCard[] = [
     name: "Alcohol & Distilling",
     href: "/industries/alcohol-distilling/",
     pillar: "Brewing scale-up, distillery containment, grain handling",
-    products: "SS · Epoxy · Zinc-alum · Grain silos",
+    products: "SS · Epoxy · Zinc Aluminium · Grain silos",
     image: "/images/home/sector-alcohol.png",
     imageAlt:
       "Stainless steel fermenter tagged FV-03 with a copper still and brewer in the background of a craft brewery",
@@ -82,6 +105,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={webSiteLd()} />
+      <JsonLd data={homeLocalBusinessLd()} />
 
       {/* ─── HERO (framed card, parallax + masked headline) ───────────── */}
       <section
@@ -131,7 +155,7 @@ export default function Home() {
               <div className="flex flex-col gap-7 md:col-span-7">
                 <div className="font-mono-label flex items-center gap-3 text-[10px] text-white/70">
                   <span className="h-px w-8 bg-white/30" aria-hidden />
-                  <span>Nairobi · Kenya · 1°17′S 36°49′E</span>
+                  <span>Nairobi · Kenya</span>
                 </div>
                 <TextReveal
                   as="h1"
@@ -164,9 +188,9 @@ export default function Home() {
               {/* TOP-RIGHT: body + CTA */}
               <div className="flex flex-col items-start gap-5 md:col-span-5 md:items-end md:text-right">
                 <p className="max-w-sm text-sm leading-relaxed text-white/85 md:text-base">
-                  One supplier across stainless, epoxy-lined, and zinc-alum
-                  tanks; silos and grain storage; structural fabrication;
-                  and the full instrument stack.
+                  One supplier across stainless, epoxy-lined, and Zinc
+                  Aluminium tanks; silos and grain storage; structural
+                  fabrication; and the full instrument stack.
                 </p>
                 <Magnetic strength={0.25}>
                   <Link
@@ -185,16 +209,19 @@ export default function Home() {
 
             {/* BOTTOM credential strip */}
             <div className="font-mono-label mt-auto flex flex-col gap-2 text-[10px] text-white/65 md:flex-row md:items-end md:justify-between">
-              <span>Serving Kenya, every county.</span>
+              <span>Across East African markets.</span>
               <span className="hidden items-center gap-2 md:flex" aria-hidden>
                 <span>Scroll</span>
                 <span className="h-px w-10 bg-white/40" />
               </span>
-              <span>compliance-aware · KEBS-fluent · NB-IoT capable</span>
+              <span>Regulatory-compliant · NB-IoT capable</span>
             </div>
           </div>
         </div>
       </section>
+
+      {/* ─── PROOF BAND (T-1, four tiles under the hero) ──────────────── */}
+      <ProofBand />
 
       {/* ─── TRUST MARQUEE (velocity-reactive) ────────────────────────── */}
       <section
@@ -232,12 +259,12 @@ export default function Home() {
           <SectionHeader
             index="01"
             eyebrow="Product range"
-            title="Built for the plants that build Kenya."
+            title="One supplier for the full plant infrastructure stack."
             side={
               <p>
-                Single supplier across the entire infrastructure stack. No
-                competitor in Kenya carries this breadth. Every category is
-                locally fabricated or locally stocked.
+                Tanks, silos, structural steel, and process instruments from
+                a single supplier. Every category is fabricated in-house or
+                stocked locally.
               </p>
             }
             className="mb-0"
@@ -248,9 +275,9 @@ export default function Home() {
               <BentoCard
                 href="/products/tanks/"
                 title="Tanks"
-                tagline="Stainless · Epoxy-lined · Zinc-alum"
-                copy="304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted zinc-alum for multi-decade water storage."
-                stat="3 metallurgies, 1 to 500m³"
+                tagline="Stainless · Epoxy-lined · Zinc Aluminium"
+                copy="304 and 316L stainless for dairy and beverage. Epoxy-lined steel for ETP and chemical dosing. Bolted Zinc Aluminium, supplied with a liner as standard, for 20+ year water storage."
+                stat="3 materials, 1 to 500m³"
                 className="col-span-6 row-span-2 md:col-span-4"
                 imageSrc="/images/home/tanks-weld-bead.png"
                 imageAlt="Macro detail of a stainless steel tank weld bead"
@@ -297,11 +324,11 @@ export default function Home() {
               <BentoCard
                 href="/products/iot/"
                 title="Remote Monitoring"
-                tagline="Optional · NB-IoT capable"
-                copy="Cloud-connected oversight on every install: tank levels, flow, water quality, alarms from any device. Not bundled; ask for it when you want it."
+                tagline="Remote-monitoring capable · NB-IoT"
+                copy="Every tank we install can be connected to a remote-monitoring app, personalized to your site: tank levels, flow, water quality, and alarms from any device."
                 stat="LoRa · NB-IoT · LTE · Ethernet"
                 className="col-span-6 row-span-1 md:col-span-3"
-                imageSrc="/images/home/iot-kisumu-plant.png"
+                imageSrc="/images/home/iot-kisumu-plant-v2.png"
                 imageAlt="Plant manager reviewing a live tank-monitoring dashboard on a tablet outside a Kenyan industrial plant"
                 data-reveal-item
               />
@@ -343,6 +370,9 @@ export default function Home() {
       {/* ─── INDUSTRIES (horizontal gallery) ──────────────────────────── */}
       <IndustriesGallery industries={INDUSTRIES} />
 
+      {/* ─── CASE STRIP (T-2, renders once verified blurbs land) ─────── */}
+      <CaseStrip />
+
       {/* ─── HOW WE WORK ──────────────────────────────────────────────── */}
       <section
         aria-label="Where the work lives"
@@ -368,8 +398,8 @@ export default function Home() {
               <WorkCard
                 href="/about/local-manufacturing/"
                 kicker="Inside the workshop"
-                title="Where the tanks get built."
-                copy="Cutting, rolling, TIG welding, dye-penetrant, and finishing, all in our Nairobi workshop."
+                title="How our tanks are built."
+                copy="Cutting, rolling, TIG welding, dye-penetrant testing, and finishing, all in our own workshop."
                 cta="Local manufacturing"
                 data-reveal-item
               />
@@ -385,7 +415,7 @@ export default function Home() {
                 href="/blog/"
                 kicker="Field notes"
                 title="What we've learned."
-                copy="Practical writing on tank metallurgy, ETP compliance, instrument selection, and the work of running a Kenyan industrial plant."
+                copy="Practical writing on tank materials, ETP compliance, instrument selection, and the work of running an industrial plant in East Africa."
                 cta="Read the blog"
                 data-reveal-item
               />
@@ -396,8 +426,8 @@ export default function Home() {
 
       {/* ─── CTA ──────────────────────────────────────────────────────── */}
       <CtaBand
-        headline="Pick the door that"
-        headlineAccent="matches where you are."
+        headline="Choose how you'd"
+        headlineAccent="like to get started."
         cards={DEFAULT_CTA_CARDS}
       />
     </>

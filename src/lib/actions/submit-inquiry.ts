@@ -2,33 +2,45 @@
 
 import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
-import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
-
-const KIND_SCHEMA = z.enum(["contact", "consultation", "site-audit"]);
-
-const INQUIRY_SCHEMA = z.object({
-  kind: KIND_SCHEMA,
-  name: z.string().min(1, "Required").max(120),
-  company: z.string().min(1, "Required").max(160),
-  email: z.string().email("Enter a valid email"),
-  phone: z.string().max(40).optional().or(z.literal("")),
-  industry: z.string().max(80).optional().or(z.literal("")),
-  siteLocation: z.string().max(200).optional().or(z.literal("")),
-  topic: z.string().max(200).optional().or(z.literal("")),
-  message: z.string().max(4000).optional().or(z.literal("")),
-});
+import { sendInquiryNotification } from "@/lib/email";
+import { postLeadWebhook } from "@/lib/lead-webhook";
+import { INQUIRY_SCHEMA } from "@/lib/validation/lead-schemas";
+import { isSpam, verifyRecaptcha } from "@/lib/validation/spam";
+import { leadMetadataFromForm } from "@/lib/attribution";
 
 export type InquiryFormState =
   | { status: "idle" }
   | { status: "error"; message: string; fieldErrors?: Record<string, string> }
   | { status: "success" };
 
+const SUCCESS_REDIRECT: Record<string, string> = {
+  consultation: "/thank-you/consultation/",
+  "site-audit": "/thank-you/site-audit/",
+  contact: "/request-quote/success/",
+};
+
 export async function submitInquiry(
   _previous: InquiryFormState,
   formData: FormData,
 ): Promise<InquiryFormState> {
+  // F-7: spam-positive submissions pretend success — redirect without
+  // inserting or notifying, so bots learn nothing.
+  if (
+    isSpam({
+      honeypot: String(formData.get("company_website") ?? ""),
+      renderedAt: Number(formData.get("rendered_at")),
+      now: Date.now(),
+    }) ||
+    !(await verifyRecaptcha(String(formData.get("recaptcha_token") ?? ""))).ok
+  ) {
+    redirect(
+      SUCCESS_REDIRECT[String(formData.get("kind") ?? "contact")] ??
+        "/request-quote/success/",
+    );
+  }
+
   const raw = {
     kind: String(formData.get("kind") ?? "contact"),
     name: String(formData.get("name") ?? ""),
@@ -38,6 +50,7 @@ export async function submitInquiry(
     industry: String(formData.get("industry") ?? ""),
     siteLocation: String(formData.get("siteLocation") ?? ""),
     topic: String(formData.get("topic") ?? ""),
+    capacity: String(formData.get("capacity") ?? ""),
     message: String(formData.get("message") ?? ""),
   };
 
@@ -56,18 +69,21 @@ export async function submitInquiry(
   }
 
   const data = parsed.data;
+  const metadata = leadMetadataFromForm(formData);
 
   try {
     await fetchMutation(api.inquiries.submit, {
       kind: data.kind,
       name: data.name,
       company: data.company,
-      email: data.email,
-      phone: data.phone || undefined,
+      email: data.email || undefined,
+      phone: data.phone,
       industry: data.industry || undefined,
       siteLocation: data.siteLocation || undefined,
       topic: data.topic || undefined,
+      capacity: data.capacity || undefined,
       message: data.message || undefined,
+      metadata,
     });
   } catch (e) {
     return {
@@ -79,19 +95,63 @@ export async function submitInquiry(
     };
   }
 
+  // Notify sales immediately (GC-9) without blocking the redirect.
+  void sendInquiryNotification({
+    kind: data.kind,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    siteLocation: data.siteLocation || undefined,
+    topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
+    message: data.message || undefined,
+    metadata,
+  }).catch((err) => {
+    console.error("[submitInquiry] email failed", err);
+  });
+
+  void postLeadWebhook({
+    form_type: "inquiry",
+    submitted_at: new Date().toISOString(),
+    kind: data.kind,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    site_location: data.siteLocation || undefined,
+    topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
+    message: data.message || undefined,
+    ...(metadata ?? {}),
+  });
+
   void appendToSheets({
     form_type: "inquiry",
     submitted_at: new Date().toISOString(),
     kind: data.kind,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     site_location: data.siteLocation || undefined,
     topic: data.topic || undefined,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
+    utm_source: metadata?.utmSource,
+    utm_medium: metadata?.utmMedium,
+    utm_campaign: metadata?.utmCampaign,
+    utm_content: metadata?.utmContent,
+    gclid: metadata?.gclid,
+    fbclid: metadata?.fbclid,
+    landing_page: metadata?.landingPage,
+    source_code: metadata?.sourceCode,
   });
 
-  redirect("/request-quote/success/");
+  // Per-journey thank-you URLs are the conversion triggers (GC-7);
+  // plain contact keeps the original confirmation page.
+  redirect(SUCCESS_REDIRECT[data.kind] ?? "/request-quote/success/");
 }

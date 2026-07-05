@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Industrial Fabrication Nairobi: Inside Our Workshop",
   description:
-    "Inside our Nairobi fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
+    "Inside our fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
   alternates: { canonical: "/about/local-manufacturing/" },
   keywords: [
     "industrial fabrication Nairobi",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Industrial Fabrication Nairobi: Inside Our Workshop",
     description:
-      "Inside our Nairobi fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
+      "Inside our fabrication workshop. TIG welding, plate rolling, dye-penetrant testing, and finishing for every tank and structural assembly. ASME/AWS standards.",
     url: "/about/local-manufacturing/",
     images: [{ url: "/images/about/local-manufacturing-hero.png" }],
   },
@@ -67,7 +67,7 @@ const PROCESS_STEPS = [
 ];
 
 const WORKSHOP_FACTS = [
-  { label: "Location", value: "Nairobi industrial belt" },
+  { label: "Facility", value: "In-house fabrication workshop" },
   { label: "Workshop capacity", value: "Up to 30 tonnes per month of structural fabrication" },
   { label: "Largest tank we can ship", value: "Roughly 50 m³ welded; larger via on-site bolted assembly" },
   { label: "Lead time, standard stainless tank", value: "4 to 8 weeks ex-works" },
@@ -83,12 +83,12 @@ export default function LocalManufacturingPage() {
         eyebrow="About / Local Manufacturing"
         title="The workshop, the process,"
         titleAccent="the people."
-        subtitle="This is not an import operation. The tanks are built in Kenya, by Kenyan welders, on machines you can visit. The page below shows the workshop and the process we run on every order."
+        subtitle="This is not an import operation. The tanks are built in-house by our own welders. The page below shows the workshop and the process we run on every order."
         imageSrc="/images/about/local-manufacturing-hero.png"
         imageAlt="The workshop entrance with a finished tank being loaded by overhead crane onto a flatbed"
         primaryCta={{ href: "/request-quote/", label: "Quote a project" }}
         secondaryCta={{ href: "/about/", label: "About us" }}
-        metaLeft="Nairobi industrial belt"
+        metaLeft="In-house fabrication"
         metaRight="ASME + AWS qualified welders"
       />
 
@@ -107,8 +107,8 @@ export default function LocalManufacturingPage() {
         <SectionHeader
           index="01"
           eyebrow="What you walk into"
-          title="An actual fabrication workshop,"
-          titleAccent="not a marketing claim."
+          title="How our workshop"
+          titleAccent="is set up."
         />
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7 md:col-start-6">
@@ -118,21 +118,20 @@ export default function LocalManufacturingPage() {
                   data-reveal-item
                   className="text-sm leading-relaxed text-muted md:text-base"
                 >
-                  The workshop is in the Nairobi industrial belt. Plate
-                  rolling machines, TIG and MIG welding bays, dye-
-                  penetrant test stations, finishing bays, and a flatbed-
-                  accessible loading yard. Overhead cranes for vessel
-                  handling.
+                  Our workshop is equipped with plate rolling machines, TIG
+                  and MIG welding bays, dye-penetrant test stations,
+                  finishing bays, and a flatbed-accessible loading yard.
+                  Overhead cranes handle vessel movement.
                 </p>
                 <p
                   data-reveal-item
                   className="text-sm leading-relaxed text-muted md:text-base"
                 >
                   We work to ASME and AWS standards where the spec
-                  requires it, and to KEBS and client-specific standards
-                  where it doesn&apos;t. Welder certification is current;
-                  test records on every weld; vessel commissioning
-                  supervised on-site.
+                  requires it, and to relevant regulatory and
+                  client-specific standards where it doesn&apos;t. Welder
+                  certification is current; test records on every weld;
+                  vessel commissioning is supervised on-site.
                 </p>
               </div>
             </Reveal>
@@ -234,8 +233,8 @@ export default function LocalManufacturingPage() {
       </Section>
 
       <CtaBand
-        headline="Want to visit the workshop?"
-        headlineAccent="Book a site audit on our end."
+        headline="Want to move forward?"
+        headlineAccent="Request a quote for your project."
         cards={DEFAULT_CTA_CARDS}
       />
     </>

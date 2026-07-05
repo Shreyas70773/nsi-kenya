@@ -59,3 +59,5 @@ next-env.d.ts
 !.vscode/extensions.json
 !.vscode/settings.json
 
+COMMIT_MSG.txt
+scripts/xlsx-dump.txt

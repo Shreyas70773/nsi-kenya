@@ -8,6 +8,11 @@ import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Process Instruments Kenya: Flow, Level, pH, More",
@@ -81,13 +86,24 @@ const PROTOCOLS = [
 export default function InstrumentsGatewayPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          {
+            name: "Process Instruments",
+            url: "https://northstarimpex.co.ke/products/instruments/",
+          },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Instruments"
         title="Six categories,"
         titleAccent="one supplier, full stack."
-        subtitle="No competitor in Kenya carries this much instrument depth. We size, supply, install, and (if you want) connect to the cloud, across flow, level, pressure, liquid analysis, temperature, and system products."
+        subtitle="Few suppliers in the region carry this much instrument depth. We size, supply, and install across flow, level, pressure, liquid analysis, temperature, and system products, and every instrument can be connected to a remote-monitoring app personalized to your site."
         imageSrc="/images/products/instruments-overview-hero.png"
-        imageAlt="Instrument panel inside a Kenyan plant control room with process indicators and a paperless recorder"
+        imageAlt="Instrument panel inside a plant control room with process indicators and a paperless recorder"
         primaryCta={{ href: "/request-quote/", label: "Request a spec sheet" }}
         secondaryCta={{ href: "/products/iot/", label: "See cloud-ready options" }}
         metaLeft="Six categories"
@@ -103,6 +119,8 @@ export default function InstrumentsGatewayPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.instruments} />
 
       <Section>
         <SectionHeader
@@ -181,6 +199,8 @@ export default function InstrumentsGatewayPage() {
           </div>
         </div>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.instruments} index="03" />
 
       <CtaBand
         headline="Specifying an instrument loop?"

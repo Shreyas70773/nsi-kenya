@@ -197,9 +197,9 @@ export function IntroSequence() {
         style={{ opacity: 0 }}
       >
         <span>
-          Fabricated in Nairobi
+          In-house fabrication
           <br />
-          1°17′S · 36°49′E
+          East Africa
         </span>
         <span ref={countRef} className="text-text">
           000

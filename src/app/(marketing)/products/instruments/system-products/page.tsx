@@ -72,7 +72,7 @@ const SPECS = [
   { label: "Communication", value: "Modbus RTU (RS485), Modbus TCP, OPC-UA on premium models" },
   { label: "Power supply", value: "24 VDC standard, 90 to 240 VAC universal on most models" },
   { label: "Display", value: "Mono LCD, colour TFT, or touchscreen, depending on model" },
-  { label: "Data storage", value: "SD card and Ethernet export; cloud sync via the monitoring app" },
+  { label: "Data storage", value: "SD card and Ethernet export; sync via the remote-monitoring app" },
   { label: "Certification", value: "CE, RoHS; FDA 21 CFR Part 11 compliance for recorder models" },
 ] as const;
 
@@ -91,9 +91,9 @@ export default function SystemProductsInstrumentsPage() {
 
       <PageHero
         eyebrow="Instruments / System Products"
-        title="The control-panel stack,"
-        titleAccent="not just the sensors."
-        subtitle="A field sensor without a recorder, controller, or isolator is half a loop. We supply the panel-side equipment too: paperless recorders, indicators, totalisers, controllers, signal isolators, and signal generators."
+        title="The control-panel equipment"
+        titleAccent="that completes the loop."
+        subtitle="A field sensor needs a recorder, controller, or isolator to complete the process loop. We supply the panel-side equipment too: paperless recorders, indicators, totalisers, controllers, signal isolators, and signal generators."
         imageSrc="/images/products/instruments-system-products-hero.png"
         imageAlt="A control-cabinet door open showing a paperless recorder, indicators, and signal isolators on DIN rail"
         primaryCta={{ href: "/request-quote/", label: "Spec a control panel" }}
@@ -117,7 +117,7 @@ export default function SystemProductsInstrumentsPage() {
         <SectionHeader
           index="01"
           eyebrow="What we mean by system products"
-          title="The cabinet, not the field."
+          title="The equipment inside the control cabinet."
         />
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <Reveal className="md:col-span-7 md:col-start-6" yFrom={18}>
@@ -133,10 +133,10 @@ export default function SystemProductsInstrumentsPage() {
                 </p>
                 <p>
                   We supply the panel side. The paperless recorders log
-                  to SD card and stream to the cloud-monitoring app
-                  simultaneously, which means compliance reporting is
-                  often a one-click export rather than a manual
-                  reconstruction.
+                  to SD card and can stream to a remote-monitoring app
+                  personalized to your site at the same time, which means
+                  compliance reporting is often a one-click export rather
+                  than a manual reconstruction.
                 </p>
               </Prose>
             </div>

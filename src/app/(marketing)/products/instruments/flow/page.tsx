@@ -95,7 +95,7 @@ export default function FlowInstrumentsPage() {
         eyebrow="Instruments / Flow"
         title="Six flow technologies,"
         titleAccent="one for every duty."
-        subtitle="Pick by the medium, not the catalogue. Electromagnetic for conductive process water and food-grade duty, vortex for steam and gases, ultrasonic for non-invasive retrofit, Coriolis for mass-flow accuracy, thermal mass for gas audits, turbine for custody transfer."
+        subtitle="We size flow meters to the medium being measured. Electromagnetic for conductive process water and food-grade duty, vortex for steam and gases, ultrasonic for non-invasive retrofit, Coriolis for mass-flow accuracy, thermal mass for gas audits, turbine for custody transfer."
         imageSrc="/images/products/instruments-flow-hero.png"
         imageAlt="Macro shot of an electromagnetic flow meter on a process pipe with live flow rate displayed"
         primaryCta={{ href: "/request-quote/", label: "Spec a flow meter" }}

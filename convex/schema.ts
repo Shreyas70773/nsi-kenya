@@ -104,10 +104,15 @@ export default defineSchema({
     ),
     name: v.string(),
     company: v.string(),
-    email: v.string(),
+    /** Optional since the F-1 swap (Kenyan market: phone is the channel);
+        phone stays v.optional for pre-swap rows, but new submissions
+        always carry it. */
+    email: v.optional(v.string()),
     phone: v.optional(v.string()),
     industry: v.optional(v.string()),
     productSlugs: v.array(v.string()),
+    /** F-3 capacity band, stored as the literal label (e.g. "10–100 m³"). */
+    capacity: v.optional(v.string()),
     message: v.optional(v.string()),
     /** UTM + referrer captured client-side for attribution. */
     metadata: v.optional(
@@ -116,6 +121,11 @@ export default defineSchema({
         utmSource: v.optional(v.string()),
         utmMedium: v.optional(v.string()),
         utmCampaign: v.optional(v.string()),
+        utmContent: v.optional(v.string()),
+        gclid: v.optional(v.string()),
+        fbclid: v.optional(v.string()),
+        landingPage: v.optional(v.string()),
+        sourceCode: v.optional(v.string()),
         userAgent: v.optional(v.string()),
       }),
     ),
@@ -144,13 +154,16 @@ export default defineSchema({
     ),
     name: v.string(),
     company: v.string(),
-    email: v.string(),
+    /** Optional since the F-1 swap — see quoteRequests. */
+    email: v.optional(v.string()),
     phone: v.optional(v.string()),
     industry: v.optional(v.string()),
     /** For site-audit: plant location / address. */
     siteLocation: v.optional(v.string()),
     /** For consultation: topic or scope they want to discuss. */
     topic: v.optional(v.string()),
+    /** F-3 capacity band, stored as the literal label. */
+    capacity: v.optional(v.string()),
     /** Freeform message. */
     message: v.optional(v.string()),
     metadata: v.optional(
@@ -159,6 +172,11 @@ export default defineSchema({
         utmSource: v.optional(v.string()),
         utmMedium: v.optional(v.string()),
         utmCampaign: v.optional(v.string()),
+        utmContent: v.optional(v.string()),
+        gclid: v.optional(v.string()),
+        fbclid: v.optional(v.string()),
+        landingPage: v.optional(v.string()),
+        sourceCode: v.optional(v.string()),
         userAgent: v.optional(v.string()),
       }),
     ),

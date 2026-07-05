@@ -8,11 +8,16 @@ import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
+  title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc Aluminium",
   description:
-    "Stainless 304/316L, epoxy-lined, and zinc-alum industrial tanks fabricated in Kenya. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
+    "Stainless 304/316L, epoxy-lined, and zinc aluminium industrial tanks fabricated in-house. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
   alternates: { canonical: "/products/tanks/" },
   keywords: [
     "industrial tanks Kenya",
@@ -24,9 +29,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc-Alum",
+    title: "Industrial Tanks Kenya: Stainless, Epoxy, Zinc Aluminium",
     description:
-      "Stainless 304/316L, epoxy-lined, and zinc-alum industrial tanks fabricated in Kenya. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
+      "Stainless 304/316L, epoxy-lined, and zinc aluminium industrial tanks fabricated in-house. 1 to 5,000 m³ for food, ETP, chemical, and bulk storage duty.",
     url: "/products/tanks/",
     images: [{ url: "/images/products/tanks-overview-hero.png" }],
   },
@@ -39,8 +44,8 @@ const TANK_TYPES = [
     grades: "304 and 316L",
     capacity: "1 to 500 m³",
     best: "Food and beverage, dairy, pharmaceutical-adjacent",
-    imageSrc: "/images/home/tanks-weld-bead.png",
-    imageAlt: "Polished stainless tank weld bead detail",
+    imageSrc: "/images/products/tanks-stainless-steel-hero-v2.png",
+    imageAlt: "A row of polished stainless steel process tanks in a plant",
   },
   {
     href: "/products/tanks/epoxy-lined/",
@@ -48,34 +53,42 @@ const TANK_TYPES = [
     grades: "Carbon steel + chemical-resistant epoxy",
     capacity: "1 to 200 m³",
     best: "ETP chemical dosing, corrosive media storage",
-    imageSrc: "/images/home/sector-chemical.png",
-    imageAlt: "Epoxy reactor with pressure gauge cluster",
+    imageSrc: "/images/products/tanks-epoxy-lined-hero-v2.png",
+    imageAlt: "Bolted epoxy fusion-bonded steel tank with side ladder",
   },
   {
     href: "/products/tanks/zinc-alum/",
-    title: "Zinc-Alum Tanks",
+    title: "Zinc Aluminium Tanks",
     grades: "Bolted zinc-aluminium steel panels",
     capacity: "50 to 5000 m³",
     best: "Industrial water storage, ETP process tanks, brewing",
-    imageSrc: "/images/home/silos-corrugated.png",
-    imageAlt: "Bolted zinc-alum tank exterior with vertical panel seams",
+    imageSrc: "/images/products/tanks-zinc-alum-hero-v2.png",
+    imageAlt: "Corrugated zinc-aluminium bolted storage tanks",
   },
 ];
 
 export default function TanksOverviewPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          { name: "Tanks", url: "https://northstarimpex.co.ke/products/tanks/" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Tanks"
-        title="Three metallurgies."
-        titleAccent="Picked for the job, not the catalogue."
-        subtitle="The right tank is the one that survives the medium it stores. We fabricate in stainless for the hygiene path, epoxy-lined for the corrosive path, and bolted zinc-alum for the long-cycle bulk-water path. Sized between one and five thousand cubic metres."
+        title="Three tank materials,"
+        titleAccent="each suited to a different job."
+        subtitle="The right tank is the one that survives the medium it stores. We fabricate in stainless for the hygiene path, epoxy-lined for the corrosive path, and bolted zinc aluminium for the long-cycle bulk-water path. Sized between one and five thousand cubic metres."
         imageSrc="/images/products/tanks-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Spec a tank" }}
         secondaryCta={{ href: "/products/", label: "All products" }}
-        metaLeft="Stainless · Epoxy · Zinc-alum"
-        metaRight="Fabricated in Kenya"
+        metaLeft="Stainless · Epoxy · Zinc Aluminium"
+        metaRight="Fabricated in-house"
       />
 
       <Section size="compact">
@@ -88,11 +101,13 @@ export default function TanksOverviewPage() {
         />
       </Section>
 
+      <CitableBrief geo={PRODUCT_GEO.tanks} />
+
       <Section>
         <SectionHeader
           index="01"
           eyebrow="The three options"
-          title="Each metallurgy exists because the others would fail in its job."
+          title="Each material exists because the others would fail in its job."
         />
 
         <Reveal effect="scale-in" stagger={0.08}>
@@ -140,6 +155,8 @@ export default function TanksOverviewPage() {
           </div>
         </Reveal>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.tanks} index="02" />
 
       <CtaBand
         headline="Not sure which tank fits?"

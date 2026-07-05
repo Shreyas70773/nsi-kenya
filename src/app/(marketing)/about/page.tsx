@@ -40,23 +40,23 @@ export const metadata: Metadata = {
 const PILLARS = [
   {
     title: "Local accountability",
-    copy: "Kenya-registered, Kenya-staffed, reachable by phone. On-site within 48 hours for Nairobi industrial estates, days for the rest of Kenya.",
+    copy: "Registered in Kenya and reachable by phone. On-site within 48 hours for Nairobi industrial estates, and across East African markets beyond that.",
   },
   {
     title: "Full-range single supplier",
-    copy: "Stainless, epoxy, zinc-alum tanks. Silos and grain storage. Structural fabrication. Process instruments across six categories. Cloud-ready monitoring on every install. No other Kenyan supplier carries this breadth.",
+    copy: "Stainless, epoxy, Zinc Aluminium tanks. Silos and grain storage. Structural fabrication. Process instruments across six categories. Remote-monitoring on every install. Few regional suppliers carry this breadth.",
   },
   {
     title: "Built to last vs. carbon steel",
-    copy: "Zinc-alum and stainless head-to-head with the carbon-steel default. Lifecycle cost, not sticker price.",
+    copy: "Zinc Aluminium and stainless head-to-head with the carbon-steel default. Lifecycle cost, not sticker price.",
   },
   {
-    title: "Cloud-ready when you want it",
-    copy: "Every instrument we install can be wired to a remote-monitoring app. Not pushed as default. No local competitor offers this as standard.",
+    title: "Remote monitoring, built in",
+    copy: "Every instrument we install can be connected to a remote-monitoring app, personalized to your site.",
   },
   {
     title: "Reference-grade work",
-    copy: "Operating installs across the country, most of them behind customer NDAs. The work is the proof; the workshop and process pages are where we show it.",
+    copy: "Operating installs across East African markets, most of them behind customer NDAs. The work is the proof; the workshop and process pages are where we show it.",
   },
 ];
 
@@ -65,9 +65,9 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About"
-        title="A Kenyan industrial brand,"
-        titleAccent="built for the operators who run this country."
-        subtitle="Industrial infrastructure made for Kenyan plants, by a team based in Kenya. Stainless tanks for dairy, epoxy-lined for ETP, zinc-alum for water storage, silos for breweries, structural steel for plant builds, and instruments across the entire process stack."
+        title="An industrial infrastructure brand"
+        titleAccent="built for East African plants."
+        subtitle="Industrial infrastructure for East African plants, from a team based in Nairobi. Stainless tanks for dairy, epoxy-lined for ETP, Zinc Aluminium for water storage, silos for breweries, structural steel for plant builds, and instruments across the entire process stack."
         imageSrc="/images/about/about-hero.png"
         imageAlt=""
         primaryCta={{ href: "/about/local-manufacturing/", label: "Inside the workshop" }}
@@ -94,15 +94,15 @@ export default function AboutPage() {
             as="p"
             className="font-display max-w-4xl text-balance text-2xl font-semibold leading-snug tracking-tight md:text-3xl"
           >
-            Our model is straightforward: fabricate locally, support locally,
+            Our model is straightforward: fabricate in-house, support locally,
             and source globally only when a particular part or material truly
-            requires it. The team and workshop sit in Kenya, so the people
+            requires it. Our team is close to the work, so the people
             answering the phone are the people who build the equipment.
           </TextReveal>
 
           <div className="grid grid-cols-1 gap-8 hairline-t pt-10 md:grid-cols-12 md:gap-10 md:pt-14">
             <h2 className="font-display text-balance text-xl font-semibold leading-tight tracking-tight md:col-span-4 md:text-2xl">
-              How we work, and why it matters in Kenya.
+              How we work, and why it matters.
             </h2>
             <Reveal className="md:col-span-7 md:col-start-6" stagger={0.08}>
               <div className="flex flex-col gap-5">
@@ -213,8 +213,8 @@ export default function AboutPage() {
                 </span>
                 <span className="hairline h-px w-10" aria-hidden />
                 <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
-                  On-site for Nairobi industrial estates; days for the rest of
-                  Kenya.
+                  On-site for Nairobi industrial estates; across East African
+                  markets beyond that.
                 </p>
               </div>
               <div data-reveal-item className="flex flex-col gap-3">
@@ -223,7 +223,7 @@ export default function AboutPage() {
                 </span>
                 <span className="hairline h-px w-10" aria-hidden />
                 <p className="max-w-[26ch] text-xs leading-relaxed text-muted">
-                  Process instrument categories, cloud-ready monitoring on
+                  Process instrument categories, remote-monitoring on
                   every install.
                 </p>
               </div>
@@ -232,8 +232,8 @@ export default function AboutPage() {
 
           <div className="font-mono-label hairline-t flex flex-col gap-2 pt-5 text-[10px] text-faint md:flex-row md:items-center md:justify-between">
             <span>Nairobi · Kenya</span>
-            <span>Kenya-registered · Kenya-staffed · Reachable by phone</span>
-            <span>Reference work across the country</span>
+            <span>Registered in Kenya · Reachable by phone</span>
+            <span>Reference work across East Africa</span>
           </div>
         </div>
       </Section>
@@ -277,10 +277,9 @@ export default function AboutPage() {
                 data-reveal-item
                 className="text-sm leading-relaxed text-muted md:text-base"
               >
-                The fabrication workshop is in Kenya. TIG welders, rolling
-                machines, dye-penetrant test stations, finishing bays. The
-                pictures on the next page are the actual workshop, not stock
-                photos.
+                We fabricate in-house: TIG welders, rolling machines,
+                dye-penetrant test stations, finishing bays. The pictures on
+                the next page are from our own workshop, not stock photos.
               </p>
               <div data-reveal-item className="pt-1">
                 <Magnetic strength={0.2}>

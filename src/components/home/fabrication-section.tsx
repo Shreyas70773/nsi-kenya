@@ -29,7 +29,7 @@ const STEPS = [
   {
     n: "01",
     title: "Cut & roll",
-    copy: "304/316L plate is cut, edge-prepped, and rolled to radius in our Nairobi workshop.",
+    copy: "304/316L plate is cut, edge-prepped, and rolled to radius in our own workshop.",
     meta: "Plate 3–6 mm · rolled to spec",
     film: "/videos/fab-01-roll.mp4",
     filmLabel: "Plate rolling · workshop",
@@ -54,7 +54,7 @@ const STEPS = [
     n: "04",
     title: "Fit out & install",
     copy: "Manways, nozzles, instrumentation stubs — then our crew installs on your site.",
-    meta: "Nationwide install crews",
+    meta: "Install crews across East Africa",
     film: "/videos/fab-04-install-v3.mp4",
     filmLabel: "Bolted epoxy install · on site",
   },

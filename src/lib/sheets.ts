@@ -14,11 +14,21 @@ export type SheetsPayload =
       intent: "explore" | "evaluate" | "purchase" | "urgent-etp";
       name: string;
       company: string;
-      email: string;
-      phone?: string;
+      // F-1 swap: phone always present, email only when the buyer gave one.
+      email?: string;
+      phone: string;
       industry?: string;
       product_slugs?: string;
+      capacity?: string;
       message?: string;
+      utm_source?: string;
+      utm_medium?: string;
+      utm_campaign?: string;
+      utm_content?: string;
+      gclid?: string;
+      fbclid?: string;
+      landing_page?: string;
+      source_code?: string;
     }
   | {
       form_type: "inquiry";
@@ -26,12 +36,21 @@ export type SheetsPayload =
       kind: "contact" | "consultation" | "site-audit";
       name: string;
       company: string;
-      email: string;
-      phone?: string;
+      email?: string;
+      phone: string;
       industry?: string;
       site_location?: string;
       topic?: string;
+      capacity?: string;
       message?: string;
+      utm_source?: string;
+      utm_medium?: string;
+      utm_campaign?: string;
+      utm_content?: string;
+      gclid?: string;
+      fbclid?: string;
+      landing_page?: string;
+      source_code?: string;
     };
 
 const TIMEOUT_MS = 4000;

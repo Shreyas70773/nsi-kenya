@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Galvanised feed storage silos for Kenyan poultry, feed mills, and dairy farms. 5 to 100 MT, hopper discharge or sweep auger, flexible-auger intake.",
     url: "/products/silos/feed-storage/",
-    images: [{ url: "/images/products/silos-feed-storage-hero.png" }],
+    images: [{ url: "/images/products/silos-feed-storage-hero-v2.png" }],
   },
 };
 
@@ -46,9 +46,9 @@ const SPECS = [
   { label: "Discharge", value: "45° hopper for clean gravity flow, or sweep auger for flat-bottom" },
   { label: "Intake", value: "Flexible auger or pneumatic top-fill, sized to your feed truck" },
   { label: "Inspection access", value: "Lockable manway, internal ladder, exterior ladder with cage" },
-  { label: "Inventory", value: "Optional radar or load-cell level reading, connects to the monitoring app" },
+  { label: "Inventory", value: "Radar or load-cell level reading, connects to our remote-monitoring app, personalised to your site" },
   { label: "Foundation", value: "Concrete pad with anchor bolts, drawing supplied with quote" },
-  { label: "Lead time, Kenya", value: "6 to 10 weeks ex-works, plus on-site assembly" },
+  { label: "Lead time", value: "6 to 10 weeks ex-works, plus on-site assembly" },
 ] as const;
 
 const APPLICATIONS = [
@@ -85,8 +85,8 @@ export default function FeedStorageSilosPage() {
         title="Feed storage,"
         titleAccent="sized to your throughput."
         subtitle="Galvanised feed silos for poultry, feed mills, and dairy farms. Hopper discharge or sweep auger, flexible-auger or pneumatic intake. Sized from 5 to 100 MT per silo."
-        imageSrc="/images/products/silos-feed-storage-hero.png"
-        imageAlt="Two galvanised feed silos at a Kenyan feed mill or poultry operation"
+        imageSrc="/images/products/silos-feed-storage-hero-v2.png"
+        imageAlt="Two galvanised feed silos at a feed mill or poultry operation"
         primaryCta={{ href: "/request-quote/", label: "Spec a feed silo" }}
         secondaryCta={{ href: "/products/silos/", label: "All silo types" }}
         metaLeft="5 to 100 MT per silo"
@@ -110,7 +110,7 @@ export default function FeedStorageSilosPage() {
             <SectionHeader
               index="01"
               eyebrow="What it is"
-              title="Storage that fits the truck cycle, not the other way round."
+              title="We size storage to match your truck cycle."
               className="mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -141,7 +141,7 @@ export default function FeedStorageSilosPage() {
       <div className="relative h-[50vh] overflow-hidden md:h-[65vh]">
         <ParallaxImage className="absolute inset-0">
           <Image
-            src="/images/products/silos-feed-storage-hero.png"
+            src="/images/products/silos-feed-storage-hero-v2.png"
             alt=""
             fill
             sizes="100vw"
@@ -287,7 +287,7 @@ export default function FeedStorageSilosPage() {
 
       <CtaBand
         headline="Got a feed cycle to match?"
-        headlineAccent="We size silos to it, not the other way."
+        headlineAccent="We size silos to match it."
         cards={DEFAULT_CTA_CARDS}
       />
     </>

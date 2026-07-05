@@ -48,7 +48,7 @@ const SPECS = [
   { label: "Bottom fittings", value: "Bulk loading spout, slide gate, fluidising pads for cement" },
   { label: "Level monitoring", value: "Continuous radar plus high/low setpoint paddle, default" },
   { label: "Access", value: "Caged ladder with intermediate platforms, top safety rail" },
-  { label: "Lead time, Kenya", value: "10 to 16 weeks ex-works, plus on-site erection" },
+  { label: "Lead time", value: "10 to 16 weeks ex-works, plus on-site erection" },
 ] as const;
 
 const APPLICATIONS = [
@@ -86,7 +86,7 @@ export default function IndustrialBulkSilosPage() {
         titleAccent="from a single cement silo to a powder-handling array."
         subtitle="Steel silos for cement, powders, and food ingredients. Pneumatic-conveying compatible, dust-collector ready, radar level monitoring on every install. Sized between 10 and 1000 metric tonnes per silo."
         imageSrc="/images/products/silos-industrial-bulk-hero.png"
-        imageAlt="A large industrial bulk silo for cement or powder at a Kenyan plant"
+        imageAlt="A large industrial bulk silo for cement or powder at an industrial plant"
         primaryCta={{ href: "/request-quote/", label: "Spec a bulk silo" }}
         secondaryCta={{ href: "/products/silos/", label: "All silo types" }}
         metaLeft="10 to 1000 MT"

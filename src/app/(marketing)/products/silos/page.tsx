@@ -7,6 +7,11 @@ import { SectionHeader } from "@/components/primitives/section-header";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { CtaBand, DEFAULT_CTA_CARDS } from "@/components/primitives/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { ProductFaqSection } from "@/components/seo/product-faq-section";
+import { JsonLd } from "@/components/seo/json-ld";
+import { PRODUCT_GEO } from "@/lib/product-geo";
+import { breadcrumbLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Industrial Silos Kenya: Grain, Feed, Bulk",
@@ -55,11 +60,19 @@ const SILO_TYPES = [
 export default function SilosOverviewPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Home", url: "https://northstarimpex.co.ke/" },
+          { name: "Products", url: "https://northstarimpex.co.ke/products/" },
+          { name: "Silos", url: "https://northstarimpex.co.ke/products/silos/" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Products / Silos"
-        title="Storage that"
-        titleAccent="moves with your plant."
-        subtitle="Galvanised steel silos for grain, feed, and bulk materials. Conveyor catwalks, aeration, level instrumentation, and inventory tracking are all options, not retrofits. Sized between ten and a thousand metric tonnes."
+        title="Industrial silos"
+        titleAccent="for grain, feed, and bulk materials."
+        subtitle="Galvanised steel silos for grain, feed, and bulk materials. Conveyor catwalks, aeration, level instrumentation, and inventory tracking can all be specified up front, rather than added later. Sized between ten and a thousand metric tonnes."
         imageSrc="/images/products/silos-overview-hero.png"
         imageAlt=""
         primaryCta={{ href: "/request-quote/", label: "Spec a silo" }}
@@ -78,11 +91,13 @@ export default function SilosOverviewPage() {
         />
       </Section>
 
+      <CitableBrief geo={PRODUCT_GEO.silos} />
+
       <Section>
         <SectionHeader
           index="01"
           eyebrow="Three classes"
-          title="Pick by what you store and how often you cycle it."
+          title="Pick a silo class by what you store and how often you cycle it."
         />
 
         <Reveal stagger={0.08}>
@@ -113,6 +128,8 @@ export default function SilosOverviewPage() {
           </div>
         </Reveal>
       </Section>
+
+      <ProductFaqSection geo={PRODUCT_GEO.silos} index="02" />
 
       <CtaBand
         headline="Mixing grain and process water in the same plant?"

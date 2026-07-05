@@ -7,7 +7,14 @@
  * `src/app/llms-full.txt/route.ts`.
  */
 
-import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from "./constants";
+import {
+  SITE_NAME,
+  LEGAL_NAME,
+  SITE_URL,
+  SITE_DESCRIPTION,
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+} from "./constants";
 import { PRODUCTS, INDUSTRIES, LOCATIONS } from "./content-map";
 
 function url(path: string): string {
@@ -24,6 +31,25 @@ export function generateLlmsTxt(): string {
   lines.push(
     "An independent industrial infrastructure brand made in Kenya, made for East Africa. Serves food and beverage, effluent treatment and water, alcohol and distilling, chemical processing, and adjacent industries.",
   );
+  lines.push("");
+
+  // Extractable facts block — the concrete, quotable claims AI engines lift
+  // as structured answers (capacity, standards, contact, turnaround).
+  lines.push("## Key facts");
+  lines.push("");
+  lines.push(`- Company: ${LEGAL_NAME}`);
+  lines.push("- Location: Nairobi, Kenya (office), serving East African markets");
+  lines.push(`- Contact: ${CONTACT_EMAIL} · ${CONTACT_PHONE}`);
+  lines.push(
+    "- Fabrication standards: Eurocode 3, AWS D1.1; regulatory-compliant; materials S275/S355, SS 304/316L",
+  );
+  lines.push("- Tank capacity range: 1 to 5,000 m³ across three materials");
+  lines.push("- Silo capacity range: 10 to 1,000 MT (grain, feed, industrial bulk)");
+  lines.push("- Instruments: 6 categories, 154 SKUs; 4–20 mA, Modbus RTU, HART");
+  lines.push(
+    "- Monitoring: every tank and instrument installed can connect to a remote-monitoring app over NB-IoT, LoRaWAN, 4G LTE, or Ethernet",
+  );
+  lines.push("- Quote turnaround: 48 working hours");
   lines.push("");
 
   lines.push("## Products");
@@ -51,6 +77,16 @@ export function generateLlmsTxt(): string {
   }
   lines.push("");
 
+  lines.push("## Contact");
+  lines.push("");
+  lines.push(
+    `- [Request a Quote](${url("/request-quote/")}) — specification, capacity, and lead time within 48 working hours`,
+  );
+  lines.push(`- [Book a Consultation](${url("/book-consultation/")})`);
+  lines.push(`- [Request a Site Audit](${url("/request-site-audit/")})`);
+  lines.push(`- Email: ${CONTACT_EMAIL} · Phone: ${CONTACT_PHONE}`);
+  lines.push("");
+
   return lines.join("\n");
 }
 
@@ -60,7 +96,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("## Positioning");
   lines.push("");
   lines.push(
-    `${SITE_NAME} is an industrial infrastructure partner made in Kenya for East Africa: stainless steel, epoxy-lined, and zinc-alum tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature). All with optional cloud-ready remote monitoring. Locally fabricated and locally supported.`,
+    `${SITE_NAME} is an industrial infrastructure partner serving East Africa: stainless steel, epoxy-lined, and Zinc Aluminium tanks; silos and grain storage; structural fabrication works; and process instruments (flow, level, pressure, water quality, temperature). Every install can be connected to cloud-ready remote monitoring. Locally fabricated and locally supported.`,
   );
   lines.push("");
 
@@ -93,18 +129,18 @@ export function generateLlmsFullTxt(): string {
   lines.push("## IoT / Remote Monitoring");
   lines.push("");
   lines.push(
-    "Every tank and process instrument installed can optionally be wired to the remote-monitoring app. Connectivity options include NB-IoT (primary recommendation for single-tank or low-bandwidth Kenya sites), LoRaWAN, 4G/LTE cellular, and Ethernet/Wi-Fi. Cloud monitoring is not bundled into tank quotes; it is opt-in.",
+    "Every tank and process instrument installed can be connected to a remote-monitoring app personalized to the customer's site. Connectivity options include NB-IoT (primary recommendation for single-tank or low-bandwidth sites), LoRaWAN, 4G/LTE cellular, and Ethernet/Wi-Fi.",
   );
   lines.push("");
 
   lines.push("## Differentiation");
   lines.push("");
   lines.push(
-    "- Single supplier across SS, epoxy, and zinc-alum tanks, silos (grain, feed, industrial bulk), structural fabrication, and full instrument categories (flow, level, pressure, liquid analysis, temperature, system products).",
+    "- Single supplier across SS, epoxy, and Zinc Aluminium tanks, silos (grain, feed, industrial bulk), structural fabrication, and full instrument categories (flow, level, pressure, liquid analysis, temperature, system products).",
   );
-  lines.push("- Locally fabricated and supported in Kenya, not an importer.");
+  lines.push("- Locally fabricated and supported, not an importer.");
   lines.push(
-    "- Optional cloud-ready monitoring with NB-IoT connectivity, a capability no local competitor currently offers as standard.",
+    "- Cloud-ready monitoring with NB-IoT connectivity, a capability no local competitor currently offers as standard.",
   );
   lines.push("");
 

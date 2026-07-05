@@ -12,13 +12,13 @@ import { BLOG_POSTS } from "@/lib/blog-posts";
 export const metadata: Metadata = {
   title: "Industrial Resources: Spec Sheets, Compliance, Field Notes",
   description:
-    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. KEBS and Kenyan environmental standards. Free, gate-free, no signup.",
+    "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. Regulatory and environmental standards. Free, gate-free, no signup.",
   alternates: { canonical: "/resources/" },
   keywords: [
     "industrial resources Kenya",
     "Kenya environmental guide",
     "Kenya water quality regulations",
-    "KEBS food grade",
+    "food grade standards Kenya",
     "tank spec sheet Kenya",
     "ETP compliance Kenya",
   ],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Industrial Resources: Spec Sheets, Compliance, Field Notes",
     description:
-      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. KEBS and Kenyan environmental standards. Free, gate-free, no signup.",
+      "Spec sheets, technical guides, blog posts, and regulatory references for Kenyan industrial operators. Regulatory and environmental standards. Free, gate-free, no signup.",
     url: "/resources/",
     images: [{ url: "/images/about/workshop-tig-welding.png" }],
   },
@@ -36,7 +36,7 @@ const SECTIONS = [
   {
     icon: BookOpen,
     title: "Field notes",
-    copy: "Practical writing on tank metallurgy, ETP compliance, instrument selection, and the parts of the work that don't fit on a spec sheet.",
+    copy: "Practical writing on tank materials, ETP compliance, instrument selection, and the parts of the work that don't fit on a spec sheet.",
     href: "/blog/",
     label: "Read the blog",
   },
@@ -50,8 +50,8 @@ const SECTIONS = [
   {
     icon: Wrench,
     title: "Regulatory references",
-    copy: "Kenyan discharge limits, Kenyan water-quality summary, KEBS food-grade standards, and the standards we work to on every install.",
-    href: "/industries/etp-water-treatment/#nema-parameters",
+    copy: "Discharge limits, water-quality summary, food-grade standards, and the standards we work to on every install.",
+    href: "/industries/etp-water-treatment/#discharge-parameters",
     label: "Discharge parameters table",
   },
 ];
@@ -84,9 +84,9 @@ export default function ResourcesPage() {
             className="font-display mt-4 max-w-3xl text-balance text-[clamp(2.25rem,4.5vw,4rem)] font-semibold leading-[1.02] tracking-tight"
           >
             <>
-              The reading list we wish more
+              Technical guides and references
               <br className="hidden sm:block" />{" "}
-              customers had before they bought.
+              to help you specify with confidence.
             </>
           </TextReveal>
           <p className="mt-5 max-w-2xl text-base text-muted md:text-lg">
@@ -195,7 +195,7 @@ export default function ResourcesPage() {
 
       <CtaBand
         headline="Got a brief and a deadline?"
-        headlineAccent="Skip the catalogue, get a quote."
+        headlineAccent="Get a quote."
         cards={DEFAULT_CTA_CARDS}
       />
     </>

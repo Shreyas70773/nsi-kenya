@@ -92,11 +92,11 @@ export default function AlcoholDistillingPage() {
 
       <PageHero
         eyebrow="Industries / Alcohol & Distilling"
-        title="Equipment for Kenya's"
+        title="Equipment for East Africa's"
         titleAccent="brewing and distilling growth."
         subtitle="Fermenters, mash tuns, bright tanks, malt silos, distillation supports, and the structural and instrument equipment around them. Sized from craft (50 HL) to industrial (5,000 HL+)."
         imageSrc="/images/industries/alcohol-distilling-hero.png"
-        imageAlt="A row of large stainless fermentation tanks at a Kenyan brewery with cooling jackets and sample valves"
+        imageAlt="A row of large stainless fermentation tanks at a brewery with cooling jackets and sample valves"
         primaryCta={{ href: "/request-quote/", label: "Spec a brewing project" }}
         secondaryCta={{
           href: "/products/tanks/stainless-steel/",
@@ -125,7 +125,7 @@ export default function AlcoholDistillingPage() {
             <SectionHeader
               index="01"
               eyebrow="The buying frame"
-              title="Brewery scale-up is a happy buyer. Distillery scale-up is a careful one."
+              title="Brewery and distillery scale-up call for different considerations."
               className="mb-0 md:mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />

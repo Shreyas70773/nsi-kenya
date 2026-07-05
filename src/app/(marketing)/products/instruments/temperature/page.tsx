@@ -82,9 +82,9 @@ export default function TemperatureInstrumentsPage() {
 
       <PageHero
         eyebrow="Instruments / Temperature"
-        title="The boring instrument"
-        titleAccent="that's wrong in three quarters of plants we audit."
-        subtitle="Temperature is the most-measured process variable and the most often badly installed. Wrong thermowell length, wrong sheath material, wrong accuracy class for the duty. We supply RTD and thermocouple sensors picked to the actual duty, not the catalogue."
+        title="Temperature sensing,"
+        titleAccent="specified to the thermowell as well as the sensor."
+        subtitle="Temperature is the most-measured process variable, and it is easy to get the installation wrong: wrong thermowell length, wrong sheath material, wrong accuracy class for the duty. We supply RTD and thermocouple sensors specified to the actual duty."
         imageSrc="/images/products/instruments-temperature-hero.png"
         imageAlt="An RTD temperature sensor mounted in a tank wall thermowell"
         primaryCta={{ href: "/request-quote/", label: "Spec a temp loop" }}

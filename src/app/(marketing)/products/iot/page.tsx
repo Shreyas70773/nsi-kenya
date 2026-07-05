@@ -13,6 +13,8 @@ import { softwareApplicationLd, faqLd } from "@/lib/seo";
 import { Reveal } from "@/components/motion/reveal";
 import { Marquee } from "@/components/motion/marquee";
 import { TelemetrySection } from "@/components/iot/telemetry-section";
+import { CitableBrief } from "@/components/seo/citable-brief";
+import { PRODUCT_GEO } from "@/lib/product-geo";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -75,7 +77,7 @@ const FLOW_STEPS = [
 const CONNECTIVITY = [
   {
     label: "NB-IoT",
-    note: "Primary recommendation for single-tank or low-bandwidth Kenya sites. Low power, multi-year battery.",
+    note: "Primary recommendation for single-tank or low-bandwidth sites. Low power, multi-year battery.",
   },
   {
     label: "LoRaWAN",
@@ -104,7 +106,7 @@ const FAQS = [
   {
     question: "Should I use NB-IoT or LoRaWAN for tank monitoring?",
     answer:
-      "NB-IoT is the default for single-tank or low-bandwidth sites in Kenya: nationwide cellular coverage, multi-year primary battery, low message overhead. LoRaWAN is the right answer for multi-tank plants where one yard gateway covers 20+ instruments at lower per-instrument operating cost. 4G LTE wins only when you need real-time streaming for SCADA.",
+      "NB-IoT is the default for single-tank or low-bandwidth sites: wide cellular coverage, multi-year primary battery, low message overhead. LoRaWAN is the right answer for multi-tank plants where one yard gateway covers 20+ instruments at lower per-instrument operating cost. 4G LTE wins only when you need real-time streaming for SCADA.",
   },
   {
     question: "Where does the data get hosted?",
@@ -143,7 +145,7 @@ const SCREEN_SLOTS = [
   {
     title: "Multi-site overview",
     description:
-      "Browser dashboard showing Kenyan plant sites on a map with traffic-light status",
+      "Browser dashboard showing plant sites across East Africa on a map with traffic-light status",
     src: "/images/iot/screen-multi-site.png",
     aspect: "aspect-[16/9]",
   },
@@ -175,11 +177,11 @@ export default function IoTPage() {
 
       <PageHero
         eyebrow="Products / Remote Monitoring"
-        title="Optional remote monitoring,"
+        title="Remote monitoring,"
         titleAccent="available on every install."
-        subtitle="We don't bundle this into our tank quotes. Most of our customers don't need it on day one; many add it later as their operations scale. The capability sits behind every instrument we install, ready when you want it."
+        subtitle="Every tank and instrument we install can be connected to a remote-monitoring app, personalized to your site. Live values, trends, and alarms, from a phone or a browser."
         imageSrc="/images/products/iot-hero.png"
-        imageAlt="An NB-IoT gateway box mounted on a pole at a remote Kenyan tank site"
+        imageAlt="An NB-IoT gateway box mounted on a pole at a remote tank site"
         primaryCta={{ href: "/request-quote/", label: "Book an IoT demo" }}
         secondaryCta={{
           href: "/products/instruments/",
@@ -198,6 +200,8 @@ export default function IoTPage() {
           ]}
         />
       </Section>
+
+      <CitableBrief geo={PRODUCT_GEO.iot} />
 
       {/* ─── NETWORK + DATA REGISTER MARQUEE ──────────────────────────── */}
       <section
@@ -222,8 +226,8 @@ export default function IoTPage() {
         <SectionHeader
           index="01"
           eyebrow="How it works"
-          title="Four steps."
-          titleAccent="Nothing exotic."
+          title="Four steps,"
+          titleAccent="from installed instrument to live dashboard."
         />
         <Reveal
           stagger={0.09}
@@ -258,8 +262,8 @@ export default function IoTPage() {
         <SectionHeader
           index="03"
           eyebrow="What you see"
-          title="Four screens, designed for plant operators,"
-          titleAccent="not analysts."
+          title="Four dashboard screens,"
+          titleAccent="built for plant operators."
         />
         <Reveal
           stagger={0.08}
@@ -361,8 +365,8 @@ export default function IoTPage() {
         <SectionHeader
           index="06"
           eyebrow="Your data, your rules"
-          title="No surprises in the"
-          titleAccent="data handling layer."
+          title="How data handling works"
+          titleAccent="for every install."
           side={
             <p>
               You decide whether we host the time-series data or push it into
@@ -380,7 +384,7 @@ export default function IoTPage() {
           index="07"
           eyebrow="Common questions"
           title="What buyers ask about"
-          titleAccent="Kenya tank monitoring."
+          titleAccent="remote monitoring."
         />
         <FaqList items={FAQS} />
       </Section>
@@ -393,7 +397,7 @@ export default function IoTPage() {
             title: "Liquid analysis instruments",
             copy: "pH, ORP, DO, conductivity, turbidity, multi-parameter analyzers. The instruments most ETP dashboards depend on.",
             imageSrc: "/images/products/instruments-liquid-analysis-hero.png",
-            imageAlt: "Multi-parameter water quality analyzer at a Kenyan ETP",
+            imageAlt: "Multi-parameter water quality analyzer at an ETP",
           },
           {
             href: "/products/instruments/level/",
@@ -405,9 +409,9 @@ export default function IoTPage() {
           {
             href: "/industries/etp-water-treatment/",
             title: "ETP & water treatment",
-            copy: "Where continuous compliance monitoring earns its keep. compliance-aware streaming of every discharge parameter.",
+            copy: "Where continuous compliance monitoring earns its keep. Regulatory-compliant streaming of every discharge parameter.",
             imageSrc: "/images/industries/etp-water-treatment-hero.png",
-            imageAlt: "Effluent treatment plant clarifier at a Kenyan factory",
+            imageAlt: "Effluent treatment plant clarifier at a factory",
           },
         ]}
       />

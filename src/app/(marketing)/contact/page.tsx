@@ -34,9 +34,9 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="Contact"
-        title="The fastest path"
-        titleAccent="is the phone."
-        subtitle="If you'd rather talk than type, the number's below. Otherwise the form goes straight to our engineering team in Nairobi."
+        title="Reach us directly"
+        titleAccent="by phone, email, or the form."
+        subtitle="If you'd rather talk than type, the number is below. Otherwise the form goes straight to our engineering team."
         imageSrc="/images/conversion/contact-hero.png"
         imageAlt=""
         primaryCta={{ href: `mailto:${CONTACT_EMAIL}`, label: "Email us" }}
@@ -97,9 +97,11 @@ export default function ContactPage() {
                 </div>
                 <div data-reveal-item className="hairline-b flex flex-col gap-1 py-4">
                   <dt className="font-mono-label text-[10px] text-faint">
-                    Workshop
+                    Office
                   </dt>
-                  <dd className="text-text">Nairobi industrial belt, Kenya</dd>
+                  <dd className="text-text">
+                    Western Heights, 6th Floor, Suite 07, Westlands, Nairobi
+                  </dd>
                 </div>
                 <div data-reveal-item className="hairline-b flex flex-col gap-1 py-4">
                   <dt className="font-mono-label text-[10px] text-faint">

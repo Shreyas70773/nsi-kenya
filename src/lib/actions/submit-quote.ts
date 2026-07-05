@@ -2,23 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
-import { z } from "zod";
 import { api } from "@/../convex/_generated/api";
 import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
-
-const INTENT_SCHEMA = z.enum(["explore", "evaluate", "purchase", "urgent-etp"]);
-
-const QUOTE_SCHEMA = z.object({
-  intent: INTENT_SCHEMA,
-  name: z.string().min(1, "Required").max(120),
-  company: z.string().min(1, "Required").max(160),
-  email: z.string().email("Enter a valid email"),
-  phone: z.string().max(40).optional().or(z.literal("")),
-  industry: z.string().max(80).optional().or(z.literal("")),
-  productSlugs: z.array(z.string()).max(20).optional(),
-  message: z.string().max(4000).optional().or(z.literal("")),
-});
+import { postLeadWebhook } from "@/lib/lead-webhook";
+import { QUOTE_SCHEMA } from "@/lib/validation/lead-schemas";
+import { isSpam, verifyRecaptcha } from "@/lib/validation/spam";
+import { leadMetadataFromForm } from "@/lib/attribution";
 
 export type QuoteFormState =
   | { status: "idle" }
@@ -29,6 +19,19 @@ export async function submitQuote(
   _previous: QuoteFormState,
   formData: FormData,
 ): Promise<QuoteFormState> {
+  // F-7: spam-positive submissions pretend success — redirect without
+  // inserting or notifying, so bots learn nothing.
+  if (
+    isSpam({
+      honeypot: String(formData.get("company_website") ?? ""),
+      renderedAt: Number(formData.get("rendered_at")),
+      now: Date.now(),
+    }) ||
+    !(await verifyRecaptcha(String(formData.get("recaptcha_token") ?? ""))).ok
+  ) {
+    redirect("/thank-you/quote/");
+  }
+
   const raw = {
     intent: String(formData.get("intent") ?? "explore"),
     name: String(formData.get("name") ?? ""),
@@ -37,6 +40,7 @@ export async function submitQuote(
     phone: String(formData.get("phone") ?? ""),
     industry: String(formData.get("industry") ?? ""),
     productSlugs: formData.getAll("productSlugs").map((v) => String(v)),
+    capacity: String(formData.get("capacity") ?? ""),
     message: String(formData.get("message") ?? ""),
   };
 
@@ -56,17 +60,20 @@ export async function submitQuote(
 
   const data = parsed.data;
   const productSlugs = data.productSlugs ?? [];
+  const metadata = leadMetadataFromForm(formData);
 
   try {
     await fetchMutation(api.quoteRequests.submit, {
       intent: data.intent,
       name: data.name,
       company: data.company,
-      email: data.email,
-      phone: data.phone || undefined,
+      email: data.email || undefined,
+      phone: data.phone,
       industry: data.industry || undefined,
       productSlugs,
+      capacity: data.capacity || undefined,
       message: data.message || undefined,
+      metadata,
     });
   } catch (e) {
     return {
@@ -83,13 +90,30 @@ export async function submitQuote(
     intent: data.intent,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     productSlugs,
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
+    metadata,
   }).catch((err) => {
     console.error("[submitQuote] email failed", err);
+  });
+
+  void postLeadWebhook({
+    form_type: "quote",
+    submitted_at: new Date().toISOString(),
+    intent: data.intent,
+    name: data.name,
+    company: data.company,
+    email: data.email || undefined,
+    phone: data.phone,
+    industry: data.industry || undefined,
+    product_slugs: productSlugs.join(", "),
+    capacity: data.capacity || undefined,
+    message: data.message || undefined,
+    ...(metadata ?? {}),
   });
 
   // Also mirror to Google Sheets for the sales team's working spreadsheet.
@@ -99,12 +123,22 @@ export async function submitQuote(
     intent: data.intent,
     name: data.name,
     company: data.company,
-    email: data.email,
-    phone: data.phone || undefined,
+    email: data.email || undefined,
+    phone: data.phone,
     industry: data.industry || undefined,
     product_slugs: productSlugs.join(", "),
+    capacity: data.capacity || undefined,
     message: data.message || undefined,
+    utm_source: metadata?.utmSource,
+    utm_medium: metadata?.utmMedium,
+    utm_campaign: metadata?.utmCampaign,
+    utm_content: metadata?.utmContent,
+    gclid: metadata?.gclid,
+    fbclid: metadata?.fbclid,
+    landing_page: metadata?.landingPage,
+    source_code: metadata?.sourceCode,
   });
 
-  redirect("/request-quote/success/");
+  // The thank-you URL is the GA4/Meta conversion trigger (GC-7).
+  redirect("/thank-you/quote/");
 }

@@ -8,6 +8,14 @@ import {
   fieldSelectClass,
 } from "@/components/primitives/form-field";
 import { submitQuote, type QuoteFormState } from "@/lib/actions/submit-quote";
+import { markLeadPending } from "@/lib/lead-pending";
+import { AttributionFields } from "@/components/forms/attribution-fields";
+import { ConsentNote } from "@/components/forms/consent-note";
+import { SpamFields } from "@/components/forms/spam-fields";
+import {
+  PRODUCT_GROUPS,
+  CAPACITY_OPTIONS,
+} from "@/lib/validation/lead-schemas";
 
 const INTENT_LABEL: Record<string, string> = {
   explore: "Exploring options",
@@ -16,24 +24,13 @@ const INTENT_LABEL: Record<string, string> = {
   "urgent-etp": "Urgent: ETP compliance deadline",
 };
 
-const PRODUCT_OPTIONS = [
-  { slug: "tanks/stainless-steel", label: "Stainless Steel Tanks" },
-  { slug: "tanks/epoxy-lined", label: "Epoxy-Lined Tanks" },
-  { slug: "tanks/zinc-alum", label: "Zinc-Alum Tanks" },
-  { slug: "silos/grain-storage", label: "Grain Storage Silos" },
-  { slug: "silos/feed-storage", label: "Feed Storage Silos" },
-  { slug: "silos/industrial-bulk", label: "Industrial Bulk Silos" },
-  { slug: "structural-works", label: "Structural Works" },
-  { slug: "instruments/flow", label: "Flow Instruments" },
-  { slug: "instruments/level", label: "Level Instruments" },
-  { slug: "instruments/pressure", label: "Pressure Instruments" },
-  { slug: "instruments/liquid-analysis", label: "Liquid Analysis Instruments" },
-  { slug: "instruments/temperature", label: "Temperature Instruments" },
-  { slug: "iot", label: "Remote Monitoring" },
-];
-
 const INITIAL: QuoteFormState = { status: "idle" };
 
+/**
+ * Request-a-Quote form, F-3 field order: Name* → Phone* → Company* →
+ * Sector* → Requirement* (six F-2 groups) → Capacity → Email → Message.
+ * The form starts the conversation; detail is qualified by phone.
+ */
 export function QuoteForm({
   defaultIntent = "explore",
   showIntentSelector = true,
@@ -45,7 +42,15 @@ export function QuoteForm({
   const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
 
   return (
-    <form action={formAction} className="flex flex-col gap-6">
+    <form
+      action={formAction}
+      // Native validation has passed by the time submit fires; the pending
+      // token lets the thank-you page emit generate_lead exactly once.
+      onSubmit={() => markLeadPending("quote")}
+      className="flex flex-col gap-6"
+    >
+      <AttributionFields />
+      <SpamFields action="quote" />
       {showIntentSelector ? (
         <FormField
           label="Intent"
@@ -72,7 +77,7 @@ export function QuoteForm({
       )}
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField label="Your name" htmlFor="name" required error={fieldErrors.name}>
+        <FormField label="Full name" htmlFor="name" required error={fieldErrors.name}>
           <input
             id="name"
             name="name"
@@ -82,6 +87,21 @@ export function QuoteForm({
             className={fieldInputClass}
           />
         </FormField>
+        <FormField label="Phone" htmlFor="phone" required error={fieldErrors.phone}>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="+254 7XX XXX XXX"
+            required
+            className={fieldInputClass}
+          />
+        </FormField>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <FormField
           label="Company"
           htmlFor="company"
@@ -97,57 +117,51 @@ export function QuoteForm({
             className={fieldInputClass}
           />
         </FormField>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField label="Email" htmlFor="email" required error={fieldErrors.email}>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
+        <FormField
+          label="Sector"
+          htmlFor="industry"
+          required
+          error={fieldErrors.industry}
+        >
+          <select
+            id="industry"
+            name="industry"
             required
-            className={fieldInputClass}
-          />
-        </FormField>
-        <FormField label="Phone (optional)" htmlFor="phone">
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            className={fieldInputClass}
-          />
+            defaultValue=""
+            className={fieldSelectClass}
+          >
+            <option value="" disabled>
+              Pick one
+            </option>
+            <option value="food-and-beverage">Food &amp; Beverage</option>
+            <option value="etp-water-treatment">
+              Water &amp; Effluent Treatment
+            </option>
+            <option value="alcohol-distilling">Alcohol &amp; Distilling</option>
+            <option value="chemical-processing">Chemical Processing</option>
+            <option value="other">Other</option>
+          </select>
         </FormField>
       </div>
-
-      <FormField label="Industry (optional)" htmlFor="industry">
-        <select id="industry" name="industry" className={fieldSelectClass}>
-          <option value="">Pick one</option>
-          <option value="food-and-beverage">Food & Beverage</option>
-          <option value="etp-water-treatment">ETP & Water Treatment</option>
-          <option value="alcohol-distilling">Alcohol & Distilling</option>
-          <option value="chemical-processing">Chemical Processing</option>
-          <option value="other">Other</option>
-        </select>
-      </FormField>
 
       <FormField
-        label="Products of interest (tick any)"
-        htmlFor="productSlugs-tanks-stainless-steel"
-        hint="Tick everything that applies. We'll size against the brief in your message below."
+        label="What do you need?"
+        htmlFor={`productSlugs-${PRODUCT_GROUPS[0]?.value}`}
+        required
+        error={fieldErrors.productSlugs}
+        hint="Tick everything that applies — we confirm the detail on the phone."
       >
         <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {PRODUCT_OPTIONS.map((p) => (
+          {PRODUCT_GROUPS.map((p) => (
             <label
-              key={p.slug}
+              key={p.value}
               className="flex items-center gap-2 text-sm text-text"
             >
               <input
                 type="checkbox"
                 name="productSlugs"
-                value={p.slug}
-                id={`productSlugs-${p.slug.replace(/\//g, "-")}`}
+                value={p.value}
+                id={`productSlugs-${p.value}`}
                 className="h-4 w-4 rounded border-border/30 text-accent focus:ring-accent/30"
               />
               {p.label}
@@ -157,14 +171,44 @@ export function QuoteForm({
       </FormField>
 
       <FormField
-        label="Brief"
+        label="Approximate capacity (optional)"
+        htmlFor="capacity"
+        error={fieldErrors.capacity}
+      >
+        <select
+          id="capacity"
+          name="capacity"
+          defaultValue=""
+          className={fieldSelectClass}
+        >
+          <option value="">Not sure yet</option>
+          {CAPACITY_OPTIONS.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      </FormField>
+
+      <FormField label="Email (optional)" htmlFor="email" error={fieldErrors.email}>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          className={fieldInputClass}
+        />
+      </FormField>
+
+      <FormField
+        label="Brief message (optional)"
         htmlFor="message"
-        hint="Capacity, materials, lead-time pressure, anything we should know."
+        hint="Materials, lead-time pressure, anything we should know."
       >
         <textarea
           id="message"
           name="message"
-          rows={6}
+          rows={5}
           className={fieldTextareaClass}
         />
       </FormField>
@@ -183,13 +227,10 @@ export function QuoteForm({
         disabled={isPending}
         className="press inline-flex w-fit items-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong disabled:opacity-60"
       >
-        {isPending ? "Sending..." : "Send request"}
+        {isPending ? "Sending..." : "Get my 48-hour quote"}
       </button>
 
-      <p className="text-xs text-faint">
-        Required fields marked with an asterisk. We respond within 48 working
-        hours, typically faster.
-      </p>
+      <ConsentNote />
     </form>
   );
 }

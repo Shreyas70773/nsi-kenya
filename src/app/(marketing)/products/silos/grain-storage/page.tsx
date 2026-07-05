@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/products/silos/grain-storage/" },
   keywords: [
     "grain storage silo Kenya",
+    "grain silo price Kenya",
+    "grain silo cost Kenya",
+    "grain silo for sale Kenya",
     "silo manufacturer Nairobi",
     "brewery grain silo Kenya",
     "feed mill silo Kenya",
@@ -50,13 +53,13 @@ const SPECS = [
   { label: "Aeration", value: "Optional cross-flow fans with under-floor ducting" },
   { label: "Level instrumentation", value: "Radar (continuous) or rotary paddle (set-point)" },
   { label: "Catwalk and access", value: "Galvanised catwalks between silos, OSHA-style cages on ladders" },
-  { label: "Inventory tracking", value: "Optional, integrates with our remote monitoring app" },
-  { label: "Lead time, Kenya", value: "8 to 12 weeks ex-works, plus on-site assembly" },
+  { label: "Inventory tracking", value: "Connects to our remote-monitoring app, personalised to your site" },
+  { label: "Lead time", value: "8 to 12 weeks ex-works, plus on-site assembly" },
 ] as const;
 
 const FAQS = [
   {
-    question: "Do I really need aeration on a grain silo in Kenya?",
+    question: "Do I really need aeration on a grain silo?",
     answer:
       "On anything above 50 MT and any silo running in lowland or coastal humidity, yes. Tropical-climate grain silos without aeration eventually develop hot spots, condensation, and quality problems. Cross-flow fans with under-floor ducting are inexpensive to fit during fabrication and expensive to retrofit later.",
   },
@@ -71,9 +74,9 @@ const FAQS = [
       "Per-silo capacity is driven by the upstream conveyor, not the plant. For craft breweries, 20 to 80 MT per malt silo is the typical range; for large industrial breweries, 100 to 300 MT. Feed mills cluster around 50 to 150 MT for raw grain intake. We design the array against your conveyor geometry and turnover rate.",
   },
   {
-    question: "How is a silo array delivered and assembled in Kenya?",
+    question: "How is a silo array delivered and assembled?",
     answer:
-      "Galvanised panels and the conical roof leave our Nairobi workshop on flatbed. On-site assembly is bolted, no field welding, with our supervisor on the crew. A 4-silo array on a prepared concrete pad typically erects in 3 to 5 weeks, with electrical, aeration ducting, and level instrumentation tied in during the same window.",
+      "Galvanised panels and the conical roof leave our workshop on flatbed. On-site assembly is bolted, no field welding, with our supervisor on the crew. A 4-silo array on a prepared concrete pad typically erects in 3 to 5 weeks, with electrical, aeration ducting, and level instrumentation tied in during the same window.",
   },
 ] as const;
 
@@ -113,11 +116,11 @@ export default function GrainStorageSilosPage() {
 
       <PageHero
         eyebrow="Silos / Grain Storage"
-        title="Storage you fill"
-        titleAccent="and storage you trust."
-        subtitle="Galvanised grain silos for breweries, feed mills, and food processors. Aeration, level instrumentation, catwalks, and inventory hardware are all options on every install. Sized between 10 and 500 metric tonnes per silo."
+        title="Grain storage silos,"
+        titleAccent="built for breweries and feed mills."
+        subtitle="Galvanised grain silos for breweries, feed mills, and food processors. Aeration, level instrumentation, catwalks, and inventory hardware can all be specified on the install. Every silo can be connected to a remote-monitoring app, personalised to your site. Sized between 10 and 500 metric tonnes per silo."
         imageSrc="/images/products/silos-grain-storage-hero.png"
-        imageAlt="Galvanised grain storage silos at a Kenyan brewery with conveyor and catwalk"
+        imageAlt="Galvanised grain storage silos at a brewery with conveyor and catwalk"
         primaryCta={{ href: "/request-quote/", label: "Spec a silo" }}
         secondaryCta={{
           href: "/products/silos/",
@@ -144,7 +147,7 @@ export default function GrainStorageSilosPage() {
             <SectionHeader
               index="01"
               eyebrow="What it is"
-              title="A silo is half storage, half instrumentation."
+              title="Storage and instrumentation, sized together."
               className="mb-0"
               headlineClassName="text-3xl leading-tight md:text-4xl"
             />
@@ -218,7 +221,7 @@ export default function GrainStorageSilosPage() {
         <SectionHeader
           index="03"
           eyebrow="Where they fit"
-          title="Sized for Kenyan plants, not export-only volumes."
+          title="Sized for East African plants, not export-only volumes."
         />
         <Reveal stagger={0.08}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
@@ -340,15 +343,15 @@ export default function GrainStorageSilosPage() {
             href: "/products/silos/feed-storage/",
             title: "Feed storage silos",
             copy: "Smaller-format silos for finished-feed dispatch, poultry farms, and dairy operations.",
-            imageSrc: "/images/products/silos-feed-storage-hero.png",
-            imageAlt: "Galvanised feed storage silo at a Kenyan farm",
+            imageSrc: "/images/products/silos-feed-storage-hero-v2.png",
+            imageAlt: "Galvanised feed storage silo at a farm",
           },
           {
             href: "/industries/alcohol-distilling/",
             title: "Brewery & distillery",
             copy: "Where most of our larger malt silos land. Mash, lauter, fermentation, and grain storage as a single package.",
             imageSrc: "/images/industries/alcohol-distilling-hero.png",
-            imageAlt: "Stainless brewing vessels inside a Kenyan brewery",
+            imageAlt: "Stainless brewing vessels inside a brewery",
           },
           {
             href: "/products/instruments/level/",
