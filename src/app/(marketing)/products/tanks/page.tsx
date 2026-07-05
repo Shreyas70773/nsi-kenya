@@ -44,8 +44,8 @@ const TANK_TYPES = [
     grades: "304 and 316L",
     capacity: "1 to 500 m³",
     best: "Food and beverage, dairy, pharmaceutical-adjacent",
-    imageSrc: "/images/home/tanks-weld-bead.png",
-    imageAlt: "Polished stainless tank weld bead detail",
+    imageSrc: "/images/products/tanks-stainless-steel-hero.png",
+    imageAlt: "A row of polished stainless steel process tanks in a plant",
   },
   {
     href: "/products/tanks/epoxy-lined/",
