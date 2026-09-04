@@ -25,11 +25,9 @@ jobs:
 
       - run: npm ci
 
-      # Convex codegen runs without auth — it reads convex/schema.ts and
-      # convex/*.ts and writes convex/_generated/. The generated types are
-      # required for tsc and next build.
-      - name: Generate Convex types
-        run: npx convex codegen
+      # Convex's generated client types are committed under convex/_generated.
+      # Codegen requires a configured deployment, which CI intentionally does
+      # not have; schema changes must regenerate and commit these files locally.
 
       - name: TypeScript
         run: npm run typecheck
@@ -71,8 +69,6 @@ jobs:
 
       - run: npm ci
 
-      - run: npx convex codegen
-
       - name: Build
         run: npm run build
 
@@ -112,8 +108,6 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
-
-      - run: npx convex codegen
 
       - name: Build
         run: npm run build
