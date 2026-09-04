@@ -80,7 +80,7 @@ export function InquiryForm({
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="+254 7XX XXX XXX"
+            placeholder="e.g. 0712 345 678 or +971 50 123 4567"
             required
             className={fieldInputClass}
           />
