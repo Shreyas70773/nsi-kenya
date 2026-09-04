@@ -85,21 +85,28 @@ export async function submitQuote(
     };
   }
 
-  // Fire the email notification but do not block redirect on its outcome.
-  void sendQuoteNotification({
-    intent: data.intent,
-    name: data.name,
-    company: data.company,
-    email: data.email || undefined,
-    phone: data.phone,
-    industry: data.industry || undefined,
-    productSlugs,
-    capacity: data.capacity || undefined,
-    message: data.message || undefined,
-    metadata,
-  }).catch((err) => {
+  // Await the delivery attempt before redirecting. A detached promise can be
+  // terminated as soon as a serverless invocation returns, dropping the
+  // notification even though the lead was safely stored in Convex.
+  try {
+    const notification = await sendQuoteNotification({
+      intent: data.intent,
+      name: data.name,
+      company: data.company,
+      email: data.email || undefined,
+      phone: data.phone,
+      industry: data.industry || undefined,
+      productSlugs,
+      capacity: data.capacity || undefined,
+      message: data.message || undefined,
+      metadata,
+    });
+    if (!notification.ok) {
+      console.error("[submitQuote] email failed", notification.error);
+    }
+  } catch (err) {
     console.error("[submitQuote] email failed", err);
-  });
+  }
 
   void postLeadWebhook({
     form_type: "quote",

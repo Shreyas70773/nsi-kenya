@@ -95,22 +95,29 @@ export async function submitInquiry(
     };
   }
 
-  // Notify sales immediately (GC-9) without blocking the redirect.
-  void sendInquiryNotification({
-    kind: data.kind,
-    name: data.name,
-    company: data.company,
-    email: data.email || undefined,
-    phone: data.phone,
-    industry: data.industry || undefined,
-    siteLocation: data.siteLocation || undefined,
-    topic: data.topic || undefined,
-    capacity: data.capacity || undefined,
-    message: data.message || undefined,
-    metadata,
-  }).catch((err) => {
+  // Await the delivery attempt before redirecting. A detached promise can be
+  // terminated as soon as a serverless invocation returns, dropping the
+  // notification even though the lead was safely stored in Convex.
+  try {
+    const notification = await sendInquiryNotification({
+      kind: data.kind,
+      name: data.name,
+      company: data.company,
+      email: data.email || undefined,
+      phone: data.phone,
+      industry: data.industry || undefined,
+      siteLocation: data.siteLocation || undefined,
+      topic: data.topic || undefined,
+      capacity: data.capacity || undefined,
+      message: data.message || undefined,
+      metadata,
+    });
+    if (!notification.ok) {
+      console.error("[submitInquiry] email failed", notification.error);
+    }
+  } catch (err) {
     console.error("[submitInquiry] email failed", err);
-  });
+  }
 
   void postLeadWebhook({
     form_type: "inquiry",
