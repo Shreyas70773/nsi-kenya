@@ -27,7 +27,7 @@ const INTENT_META: Record<
     titleAccent: "We'll keep it directional.",
     subtitle:
       "You're scoping and want a directional spec, not a final quote yet. Sketch the brief in the message; we'll come back with capacity, materials, and ballpark lead time within 48 working hours.",
-    metaLeft: "Intent: explore",
+    metaLeft: "Project stage: exploring",
     metaRight: "48-hour response",
     hero: "/images/conversion/request-quote-explore-hero.png",
     breadcrumb: "Explore",
@@ -38,7 +38,7 @@ const INTENT_META: Record<
     titleAccent: "Detailed spec and pricing.",
     subtitle:
       "You're comparing suppliers and need a real spec sheet with pricing. Tell us materials, capacity, fittings, lead-time pressure, and any standards you're working to.",
-    metaLeft: "Intent: evaluate",
+    metaLeft: "Project stage: comparing options",
     metaRight: "Detailed quote within 48 hours",
     hero: "/images/conversion/request-quote-evaluate-hero.png",
     breadcrumb: "Evaluate",
@@ -49,7 +49,7 @@ const INTENT_META: Record<
     titleAccent: "Move to PO this week.",
     subtitle:
       "Budget approved, decision-maker on the chain, ready to PO. We'll come back with a quotation, lead time confirmation, and the contract framework inside one business day.",
-    metaLeft: "Intent: purchase",
+    metaLeft: "Project stage: ready for pricing",
     metaRight: "Same-day quotation",
     hero: "/images/conversion/request-quote-purchase-hero.png",
     breadcrumb: "Purchase",
@@ -60,28 +60,20 @@ const INTENT_META: Record<
     titleAccent: "Expedited ETP supply.",
     subtitle:
       "Regulator inspection on the horizon or discharge parameters out of spec. We expedite ETP equipment, including epoxy-lined tanks and multi-parameter analyzers, in 2 to 3 weeks where possible.",
-    metaLeft: "Intent: urgent ETP",
+    metaLeft: "Project stage: urgent ETP need",
     metaRight: "2 to 3 week expedited delivery",
     hero: "/images/conversion/request-quote-urgent-etp-hero.png",
     breadcrumb: "Urgent ETP",
   },
 };
 
-const INTENTS: readonly Intent[] = [
-  "explore",
-  "evaluate",
-  "purchase",
-  "urgent-etp",
-];
+const INTENTS: readonly Intent[] = ["explore", "evaluate", "purchase", "urgent-etp"];
 
 export function generateStaticParams() {
   return INTENTS.map((intent) => ({ intent }));
 }
 
-const INTENT_SEO: Record<
-  Intent,
-  { title: string; description: string; keywords: string[] }
-> = {
+const INTENT_SEO: Record<Intent, { title: string; description: string; keywords: string[] }> = {
   explore: {
     title: "Quote: Exploring Options (Kenya)",
     description:
@@ -194,13 +186,9 @@ export default async function RequestQuoteIntentPage({
       </Section>
 
       <Section>
-        <SectionHeader
-          index="01"
-          eyebrow="Form"
-          title="Tell us what you need."
-        />
+        <SectionHeader index="01" eyebrow="Form" title="Tell us what you need." />
         <div className="max-w-3xl">
-          <div className="font-mono-label mb-8 flex flex-wrap items-center gap-3 text-[10px] text-faint">
+          <div className="font-mono-label text-faint mb-8 flex flex-wrap items-center gap-3 text-[10px]">
             <span>{meta.metaLeft}</span>
             <span aria-hidden className="hairline h-px min-w-8 flex-1" />
             <span>{meta.metaRight}</span>

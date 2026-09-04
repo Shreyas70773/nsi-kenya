@@ -31,25 +31,30 @@ describe("codeForPath — per-page WhatsApp source codes (brief §6)", () => {
 });
 
 describe("waLink — exact wa.me deep links", () => {
-  it("uses the canonical number and the encoded quote message with [CODE]", () => {
-    expect(waLink("WEB-QUOTE")).toBe(
-      "https://wa.me/254718727334?text=Hello%2C%20I%20would%20like%20a%2048-hour%20quotation.%20My%20requirement%3A%20%5BWEB-QUOTE%5D",
+  it("uses the canonical number and a customer-friendly quote message", () => {
+    const url = new URL(waLink("WEB-QUOTE"));
+
+    expect(`${url.origin}${url.pathname}`).toBe("https://wa.me/254718727334");
+    expect(url.searchParams.get("text")).toBe(
+      "Hello North Star Impex, I'd like to request a quotation.\n\nMy requirements are:",
     );
   });
 
-  it("encodes the ETP message's forward slash", () => {
-    expect(waLink("WEB-ETP")).toBe(
-      "https://wa.me/254718727334?text=Hello%2C%20I%20have%20a%20water%2Feffluent%20treatment%20enquiry.%20%5BWEB-ETP%5D",
+  it("preserves the ETP message in the encoded link", () => {
+    const url = new URL(waLink("WEB-ETP"));
+
+    expect(url.searchParams.get("text")).toBe(
+      "Hello North Star Impex, I have a water or effluent treatment enquiry.",
     );
   });
 
   it("home message greets with the brand name", () => {
     expect(waMessage("WEB-HOME")).toBe(
-      "Hello North Star Impex, I have an enquiry. [WEB-HOME]",
+      "Hello North Star Impex, I'd like to discuss an industrial project.",
     );
   });
 
-  it("every code's message contains its own [CODE] token", () => {
+  it("never exposes internal source codes in customer messages", () => {
     for (const code of [
       "WEB-HOME",
       "WEB-QUOTE",
@@ -58,8 +63,8 @@ describe("waLink — exact wa.me deep links", () => {
       "WEB-ETP",
       "WEB-SECTOR",
     ] as const) {
-      expect(waMessage(code)).toContain(`[${code}]`);
-      expect(waLink(code)).toContain(encodeURIComponent(`[${code}]`));
+      expect(waMessage(code)).not.toContain("[WEB-");
+      expect(waLink(code)).not.toContain("%5BWEB-");
     }
   });
 });

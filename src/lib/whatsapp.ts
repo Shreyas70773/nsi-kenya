@@ -1,13 +1,11 @@
 import { WHATSAPP_NUMBER } from "./constants";
 
 /**
- * WhatsApp deep links with per-page source codes (GC-1, brief §6).
+ * WhatsApp deep links with per-page analytics source codes (GC-1, brief §6).
  *
- * UTMs do not survive into WhatsApp — the [CODE] token inside the
- * pre-filled message is the ONLY attribution mechanism for WhatsApp leads.
- * The same code must be pushed on the whatsapp_click dataLayer event, and
- * the message strings are contractual copy from the brief: change nothing
- * without a new CR.
+ * Source codes belong in the whatsapp_click dataLayer event, not in the
+ * customer-visible message. This keeps attribution without asking prospects
+ * to send internal labels such as [WEB-QUOTE].
  */
 
 export type WaCode =
@@ -19,14 +17,12 @@ export type WaCode =
   | "WEB-SECTOR";
 
 const MESSAGES: Record<WaCode, string> = {
-  "WEB-HOME": "Hello North Star Impex, I have an enquiry. [WEB-HOME]",
-  "WEB-QUOTE":
-    "Hello, I would like a 48-hour quotation. My requirement: [WEB-QUOTE]",
-  "WEB-AUDIT":
-    "Hello, I would like to book a free site audit for my plant. [WEB-AUDIT]",
-  "WEB-CONSULT": "Hello, I would like to book a consultation. [WEB-CONSULT]",
-  "WEB-ETP": "Hello, I have a water/effluent treatment enquiry. [WEB-ETP]",
-  "WEB-SECTOR": "Hello, I have a plant equipment enquiry. [WEB-SECTOR]",
+  "WEB-HOME": "Hello North Star Impex, I'd like to discuss an industrial project.",
+  "WEB-QUOTE": "Hello North Star Impex, I'd like to request a quotation.\n\nMy requirements are:",
+  "WEB-AUDIT": "Hello North Star Impex, I'd like to arrange a free site audit for my plant.",
+  "WEB-CONSULT": "Hello North Star Impex, I'd like to book a consultation.",
+  "WEB-ETP": "Hello North Star Impex, I have a water or effluent treatment enquiry.",
+  "WEB-SECTOR": "Hello North Star Impex, I have a plant equipment enquiry.",
 };
 
 export function waMessage(code: WaCode): string {

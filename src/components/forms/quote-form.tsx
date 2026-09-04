@@ -12,16 +12,13 @@ import { markLeadPending } from "@/lib/lead-pending";
 import { AttributionFields } from "@/components/forms/attribution-fields";
 import { ConsentNote } from "@/components/forms/consent-note";
 import { SpamFields } from "@/components/forms/spam-fields";
-import {
-  PRODUCT_GROUPS,
-  CAPACITY_OPTIONS,
-} from "@/lib/validation/lead-schemas";
+import { PRODUCT_GROUPS, CAPACITY_OPTIONS } from "@/lib/validation/lead-schemas";
 
 const INTENT_LABEL: Record<string, string> = {
-  explore: "Exploring options",
-  evaluate: "Technical evaluation",
-  purchase: "Ready to purchase",
-  "urgent-etp": "Urgent: ETP compliance deadline",
+  explore: "I'm just exploring options",
+  evaluate: "I'm comparing technical options",
+  purchase: "I'm ready to request pricing",
+  "urgent-etp": "I have an urgent ETP compliance need",
 };
 
 const INITIAL: QuoteFormState = { status: "idle" };
@@ -39,7 +36,7 @@ export function QuoteForm({
   showIntentSelector?: boolean;
 }) {
   const [state, formAction, isPending] = useActionState(submitQuote, INITIAL);
-  const fieldErrors = state.status === "error" ? state.fieldErrors ?? {} : {};
+  const fieldErrors = state.status === "error" ? (state.fieldErrors ?? {}) : {};
 
   return (
     <form
@@ -53,9 +50,9 @@ export function QuoteForm({
       <SpamFields action="quote" />
       {showIntentSelector ? (
         <FormField
-          label="Intent"
+          label="What best describes your project?"
           htmlFor="intent"
-          required
+          hint="This helps us prepare the right first response."
           error={fieldErrors.intent}
         >
           <select
@@ -102,12 +99,7 @@ export function QuoteForm({
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormField
-          label="Company"
-          htmlFor="company"
-          required
-          error={fieldErrors.company}
-        >
+        <FormField label="Company" htmlFor="company" required error={fieldErrors.company}>
           <input
             id="company"
             name="company"
@@ -117,12 +109,7 @@ export function QuoteForm({
             className={fieldInputClass}
           />
         </FormField>
-        <FormField
-          label="Sector"
-          htmlFor="industry"
-          required
-          error={fieldErrors.industry}
-        >
+        <FormField label="Sector" htmlFor="industry" required error={fieldErrors.industry}>
           <select
             id="industry"
             name="industry"
@@ -134,9 +121,7 @@ export function QuoteForm({
               Pick one
             </option>
             <option value="food-and-beverage">Food &amp; Beverage</option>
-            <option value="etp-water-treatment">
-              Water &amp; Effluent Treatment
-            </option>
+            <option value="etp-water-treatment">Water &amp; Effluent Treatment</option>
             <option value="alcohol-distilling">Alcohol &amp; Distilling</option>
             <option value="chemical-processing">Chemical Processing</option>
             <option value="other">Other</option>
@@ -153,16 +138,13 @@ export function QuoteForm({
       >
         <div className="mt-1 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {PRODUCT_GROUPS.map((p) => (
-            <label
-              key={p.value}
-              className="flex items-center gap-2 text-sm text-text"
-            >
+            <label key={p.value} className="text-text flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
                 name="productSlugs"
                 value={p.value}
                 id={`productSlugs-${p.value}`}
-                className="h-4 w-4 rounded border-border/30 text-accent focus:ring-accent/30"
+                className="border-border/30 text-accent focus:ring-accent/30 h-4 w-4 rounded"
               />
               {p.label}
             </label>
@@ -175,12 +157,7 @@ export function QuoteForm({
         htmlFor="capacity"
         error={fieldErrors.capacity}
       >
-        <select
-          id="capacity"
-          name="capacity"
-          defaultValue=""
-          className={fieldSelectClass}
-        >
+        <select id="capacity" name="capacity" defaultValue="" className={fieldSelectClass}>
           <option value="">Not sure yet</option>
           {CAPACITY_OPTIONS.map((c) => (
             <option key={c} value={c}>
@@ -205,17 +182,12 @@ export function QuoteForm({
         htmlFor="message"
         hint="Materials, lead-time pressure, anything we should know."
       >
-        <textarea
-          id="message"
-          name="message"
-          rows={5}
-          className={fieldTextareaClass}
-        />
+        <textarea id="message" name="message" rows={5} className={fieldTextareaClass} />
       </FormField>
 
       {state.status === "error" && (
         <p
-          className="rounded-button border border-accent/30 bg-accent/8 px-4 py-3 text-sm text-accent-strong"
+          className="rounded-button border-accent/30 bg-accent/8 text-accent-strong border px-4 py-3 text-sm"
           role="alert"
         >
           {state.message}
@@ -225,7 +197,7 @@ export function QuoteForm({
       <button
         type="submit"
         disabled={isPending}
-        className="press inline-flex w-fit items-center gap-2 rounded-pill bg-accent px-6 py-3.5 text-sm font-medium text-on-accent transition-colors duration-200 hover:bg-accent-strong disabled:opacity-60"
+        className="press rounded-pill bg-accent text-on-accent hover:bg-accent-strong inline-flex w-fit items-center gap-2 px-6 py-3.5 text-sm font-medium transition-colors duration-200 disabled:opacity-60"
       >
         {isPending ? "Sending..." : "Get my 48-hour quote"}
       </button>

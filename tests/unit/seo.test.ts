@@ -35,13 +35,11 @@ describe("JSON-LD generators", () => {
   describe("webSiteLd", () => {
     const ld = webSiteLd();
 
-    it("has @type WebSite with SearchAction", () => {
+    it("describes the real website identity and language", () => {
       expect(ld["@type"]).toBe("WebSite");
-      expect(ld.potentialAction["@type"]).toBe("SearchAction");
-    });
-
-    it("SearchAction target uses {search_term_string}", () => {
-      expect(ld.potentialAction.target).toContain("{search_term_string}");
+      expect(ld.url).toBe(SITE_URL);
+      expect(ld.inLanguage).toBe("en-KE");
+      expect(ld).not.toHaveProperty("potentialAction");
     });
   });
 

@@ -40,9 +40,7 @@ function organizationRef() {
 function postalAddress() {
   return {
     "@type": "PostalAddress" as const,
-    ...(BUSINESS.streetAddress
-      ? { streetAddress: BUSINESS.streetAddress }
-      : {}),
+    ...(BUSINESS.streetAddress ? { streetAddress: BUSINESS.streetAddress } : {}),
     addressLocality: BUSINESS.locality,
     addressRegion: BUSINESS.region,
     ...(BUSINESS.postalCode ? { postalCode: BUSINESS.postalCode } : {}),
@@ -121,11 +119,6 @@ export function webSiteLd() {
     name: SITE_NAME,
     url: SITE_URL,
     inLanguage: "en-KE",
-    potentialAction: {
-      "@type": "SearchAction" as const,
-      target: `${SITE_URL}/?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 

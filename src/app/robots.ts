@@ -27,18 +27,17 @@ const AI_CRAWLERS = [
   "MistralAI-User",
 ];
 
-const DISALLOW = [
-  "/admin/",
-  "/api/",
-  "/request-quote/success/",
-  "/thank-you/",
-];
+const DISALLOW = ["/admin/", "/api/", "/request-quote/success/", "/thank-you/"];
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: DISALLOW },
-      ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/" })),
+      ...AI_CRAWLERS.map((userAgent) => ({
+        userAgent,
+        allow: "/",
+        disallow: DISALLOW,
+      })),
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
