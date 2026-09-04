@@ -12,6 +12,7 @@ import type * as adminCredentials from "../adminCredentials.js";
 import type * as files from "../files.js";
 import type * as health from "../health.js";
 import type * as inquiries from "../inquiries.js";
+import type * as notifications from "../notifications.js";
 import type * as quoteRequests from "../quoteRequests.js";
 import type * as users from "../users.js";
 
@@ -26,6 +27,7 @@ declare const fullApi: ApiFromModules<{
   files: typeof files;
   health: typeof health;
   inquiries: typeof inquiries;
+  notifications: typeof notifications;
   quoteRequests: typeof quoteRequests;
   users: typeof users;
 }>;

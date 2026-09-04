@@ -1,11 +1,11 @@
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import { mutation } from "./_generated/server";
 
 /**
  * Public submit mutation for /contact/, /book-consultation/, /request-site-audit/.
- * Always lands the row with status "new". Notification email is sent
- * server-side by the Next.js route handler after this mutation resolves
- * (so we don't pay the Resend cost inside the Convex action runtime).
+ * Always lands the row with status "new", then schedules the notification
+ * inside Convex so it survives the originating web request.
  */
 export const submit = mutation({
   args: {
@@ -42,6 +42,10 @@ export const submit = mutation({
     const id = await ctx.db.insert("inquiries", {
       ...args,
       status: "new",
+    });
+    await ctx.scheduler.runAfter(0, internal.notifications.sendInquiry, {
+      inquiryId: id,
+      ...args,
     });
     return { id };
   },

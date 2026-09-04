@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/../convex/_generated/api";
-import { sendQuoteNotification } from "@/lib/email";
 import { appendToSheets } from "@/lib/sheets";
 import { postLeadWebhook } from "@/lib/lead-webhook";
 import { QUOTE_SCHEMA } from "@/lib/validation/lead-schemas";
@@ -83,29 +82,6 @@ export async function submitQuote(
           ? `Could not save your request: ${e.message}`
           : "Could not save your request.",
     };
-  }
-
-  // Await the delivery attempt before redirecting. A detached promise can be
-  // terminated as soon as a serverless invocation returns, dropping the
-  // notification even though the lead was safely stored in Convex.
-  try {
-    const notification = await sendQuoteNotification({
-      intent: data.intent,
-      name: data.name,
-      company: data.company,
-      email: data.email || undefined,
-      phone: data.phone,
-      industry: data.industry || undefined,
-      productSlugs,
-      capacity: data.capacity || undefined,
-      message: data.message || undefined,
-      metadata,
-    });
-    if (!notification.ok) {
-      console.error("[submitQuote] email failed", notification.error);
-    }
-  } catch (err) {
-    console.error("[submitQuote] email failed", err);
   }
 
   void postLeadWebhook({

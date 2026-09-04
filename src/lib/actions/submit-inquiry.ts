@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "@/../convex/_generated/api";
 import { appendToSheets } from "@/lib/sheets";
-import { sendInquiryNotification } from "@/lib/email";
 import { postLeadWebhook } from "@/lib/lead-webhook";
 import { INQUIRY_SCHEMA } from "@/lib/validation/lead-schemas";
 import { isSpam, verifyRecaptcha } from "@/lib/validation/spam";
@@ -93,30 +92,6 @@ export async function submitInquiry(
           ? `Could not submit: ${e.message}`
           : "Could not submit your request.",
     };
-  }
-
-  // Await the delivery attempt before redirecting. A detached promise can be
-  // terminated as soon as a serverless invocation returns, dropping the
-  // notification even though the lead was safely stored in Convex.
-  try {
-    const notification = await sendInquiryNotification({
-      kind: data.kind,
-      name: data.name,
-      company: data.company,
-      email: data.email || undefined,
-      phone: data.phone,
-      industry: data.industry || undefined,
-      siteLocation: data.siteLocation || undefined,
-      topic: data.topic || undefined,
-      capacity: data.capacity || undefined,
-      message: data.message || undefined,
-      metadata,
-    });
-    if (!notification.ok) {
-      console.error("[submitInquiry] email failed", notification.error);
-    }
-  } catch (err) {
-    console.error("[submitInquiry] email failed", err);
   }
 
   void postLeadWebhook({

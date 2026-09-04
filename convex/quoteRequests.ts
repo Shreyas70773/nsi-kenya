@@ -1,11 +1,11 @@
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import { mutation } from "./_generated/server";
 
 /**
  * Public submit mutation for /request-quote/ (and its four intent variants).
- * Inserts a row into quoteRequests with status "new". The Next.js route
- * handler that calls this also fires sendQuoteNotification via Resend
- * after the mutation resolves.
+ * Inserts a row into quoteRequests with status "new", then schedules the
+ * notification inside Convex so it survives the originating web request.
  */
 export const submit = mutation({
   args: {
@@ -42,6 +42,10 @@ export const submit = mutation({
     const id = await ctx.db.insert("quoteRequests", {
       ...args,
       status: "new",
+    });
+    await ctx.scheduler.runAfter(0, internal.notifications.sendQuote, {
+      quoteRequestId: id,
+      ...args,
     });
     return { id };
   },
