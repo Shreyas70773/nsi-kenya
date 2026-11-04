@@ -3,16 +3,16 @@ import { Section } from "@/components/primitives/section";
 import { Eyebrow } from "@/components/primitives/eyebrow";
 import { Breadcrumbs } from "@/components/primitives/breadcrumbs";
 import { Prose } from "@/components/primitives/prose";
-import { SITE_NAME, CONTACT_EMAIL } from "@/lib/constants";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How North Star Impex Kenya collects, uses, and stores personal information you submit through this site.",
+    "How North Star Impex Kenya handles personal information from our website, Facebook and Instagram enquiry forms, and related correspondence.",
   alternates: { canonical: "/privacy/" },
 };
 
-const UPDATED = "2026-05-25";
+const UPDATED = "2026-11-04";
 
 export default function PrivacyPage() {
   return (
@@ -30,8 +30,8 @@ export default function PrivacyPage() {
             Privacy Policy.
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted md:text-lg">
-            What we collect when you reach out through this site, how we
-            use it, and how to ask us to delete it.
+            What we collect through our website and Facebook and Instagram
+            enquiry forms, how we use it, and how to ask us to delete it.
           </p>
           <p className="font-mono-label hairline-t mt-8 inline-flex pt-4 text-[10px] text-faint">
             Last updated {UPDATED} · Kenya Data Protection Act, 2019
@@ -56,6 +56,11 @@ export default function PrivacyPage() {
               <li>
                 <a href="#what-we-collect" className="text-text underline-offset-2 hover:underline">
                   What we collect
+                </a>
+              </li>
+              <li>
+                <a href="#facebook-instagram-enquiries" className="text-text underline-offset-2 hover:underline">
+                  Facebook and Instagram enquiry forms
                 </a>
               </li>
               <li>
@@ -89,10 +94,10 @@ export default function PrivacyPage() {
           <div className="md:col-span-9">
             <Prose className="[&_h2:not(:first-child)]:border-t [&_h2:not(:first-child)]:border-border/10 [&_h2:not(:first-child)]:pt-10">
               <p>
-                This is the privacy policy for {SITE_NAME} LTD (&quot;we&quot;,
-                &quot;us&quot;, &quot;our&quot;). It describes what personal
-                information we collect when you use this website, what we do
-                with it, how long we keep it, and how to ask us to delete it.
+                This policy explains how North Star Impex (Kenya) Ltd
+                (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) collects and uses
+                personal information through our website, Facebook and Instagram
+                enquiry forms, and related correspondence.
               </p>
               <p>
                 We operate under the Kenya Data Protection Act, 2019 and
@@ -101,17 +106,18 @@ export default function PrivacyPage() {
               </p>
 
               <h2 id="what-we-collect">What we collect</h2>
-              <p>We only collect personal information that you give us directly:</p>
+              <p>Through our website and direct correspondence, we collect:</p>
               <ul>
                 <li>
-                  <strong>Quote and inquiry forms.</strong> Your name,
-                  company, email, phone (optional), industry (optional),
-                  the products you tick, and any message you write.
+                  <strong>Website quote and inquiry forms.</strong> Your name,
+                  company, phone number and industry are required. Quote forms
+                  also require a product selection. Email, capacity and any
+                  message you write are optional.
                 </li>
                 <li>
                   <strong>Site audit and consultation requests.</strong>
-                  Same fields as above, plus the plant location (for site
-                  audits) and the topic (for consultations).
+                  The same contact fields as above, with a required topic or
+                  requirement and optional site location and capacity.
                 </li>
                 <li>
                   <strong>Email correspondence.</strong> If you email us
@@ -123,6 +129,50 @@ export default function PrivacyPage() {
                   a form. We do not run cross-site tracking.
                 </li>
               </ul>
+
+              <h2 id="facebook-instagram-enquiries">Facebook and Instagram enquiry forms</h2>
+              <p>
+                We are setting up Meta Instant Forms on Facebook and Instagram
+                to receive product enquiries and requests for quotations. These
+                forms are not live yet. The following explains how enquiries
+                will be handled when they launch.
+              </p>
+              <p>
+                When you submit one of these forms, we collect your name, email
+                address and phone number. These fields are required to submit
+                the form. You may also choose to provide your company name, the
+                product you are interested in and details of your requirements.
+                Submitting an enquiry is voluntary. If you prefer not to use
+                the form, you can contact us directly at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              </p>
+              <p>
+                We use this information to understand your requirements, respond
+                to your enquiry, provide relevant product information or a
+                quotation, and follow up by phone or email about that enquiry.
+              </p>
+              <p>
+                Submitting an enquiry does not subscribe you to newsletters or
+                unrelated promotional messages. We will ask for a separate
+                choice before sending promotional communications, and provide
+                a way to withdraw that choice.
+              </p>
+              <p>
+                Meta processes your submission through its platform and makes
+                the information available to our authorised staff in Meta
+                Business Suite’s Leads Center. Meta’s handling of information
+                on its platforms is explained in its{" "}
+                <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noreferrer">
+                  Privacy Policy
+                </a>.
+              </p>
+              <p>
+                The <a href="#your-rights">Your rights</a> and{" "}
+                <a href="#contact">Contact</a> sections of this policy also
+                apply to information received through these forms. To exercise
+                your rights or ask us to stop following up on your enquiry,
+                contact <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+              </p>
 
               <h2 id="how-we-use-it">How we use it</h2>
               <p>We use the information you submit for one of the following:</p>
@@ -148,16 +198,27 @@ export default function PrivacyPage() {
 
               <h2 id="how-we-store-it">How we store it</h2>
               <p>
-                Form submissions are stored on Convex infrastructure. Email
-                correspondence is stored on the email provider we use for
-                business mail. Both are encrypted in transit (TLS 1.3) and
-                at rest (AES-256).
+                Website form submissions are stored on Convex infrastructure.
+                Where configured, website submissions may also be forwarded to
+                Google Sheets or a service used to manage enquiries. Email
+                correspondence is stored with our business email provider.
               </p>
               <p>
-                We keep records of commercial correspondence for as long as
-                Kenyan tax and accounting law requires (currently seven
-                years from the financial year the record was created), and
-                no longer.
+                Facebook and Instagram form enquiries will initially be
+                available to our authorised staff in Meta Business Suite’s
+                Leads Center. A planned connection to Zoho Bigin using n8n is
+                not active or tested. We have not confirmed spreadsheet
+                downloads or email delivery for these enquiries. The website
+                storage arrangements above do not describe the Meta form
+                process.
+              </p>
+              <p>
+                We have not yet confirmed a specific retention period or
+                encryption arrangements for Meta form enquiries. This policy
+                does not promise a fixed retention period or particular
+                encryption standard for those enquiries. Records required for
+                tax, accounting or other legal obligations may need to be
+                retained even when deletion is requested.
               </p>
 
               <h2 id="your-rights">Your rights</h2>
