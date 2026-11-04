@@ -133,8 +133,8 @@ export default function PrivacyPage() {
               <h2 id="facebook-instagram-enquiries">Facebook and Instagram enquiry forms</h2>
               <p>
                 We are setting up Meta Instant Forms on Facebook and Instagram
-                to receive product enquiries and requests for quotations. These
-                forms are not live yet. The following explains how enquiries
+                to receive product enquiries and requests for quotations.
+                The following explains how enquiries
                 will be handled when they launch.
               </p>
               <p>
@@ -206,8 +206,8 @@ export default function PrivacyPage() {
               <p>
                 Facebook and Instagram form enquiries will initially be
                 available to our authorised staff in Meta Business Suite’s
-                Leads Center. A planned connection to Zoho Bigin using n8n is
-                not active or tested. We have not confirmed spreadsheet
+                Leads Center. We may use n8n and Zoho Bigin to receive and
+                manage these enquiries. We have not confirmed spreadsheet
                 downloads or email delivery for these enquiries. The website
                 storage arrangements above do not describe the Meta form
                 process.
